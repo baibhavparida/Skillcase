@@ -6,7 +6,10 @@ Skillcase is configured for Cloudflare Pages.
 
 - Build command: `npm run build`
 - Build output directory: `dist`
-- Production deploy command: `npm run cf:deploy`
+- Deploy command in Cloudflare Pages Git settings: leave this blank.
+- If Cloudflare requires a custom deploy command, use: `npm run cf:publish`
+- Do not use `npx wrangler deploy`; that deploys Workers, not Pages, and fails with "Missing entry-point to Worker script or to assets directory".
+- Manual production deploy command: `npm run cf:deploy`
 - Preview deploy command: `npm run cf:deploy:preview`
 - Local Cloudflare preview: `npm run cf:dev`
 
