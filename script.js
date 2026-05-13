@@ -1,33 +1,57 @@
 function hydrateIcons() {
-  const lucide = window.lucide;
+  const iconMap = {
+    "badge-check": "seal-check",
+    "briefcase-business": "briefcase",
+    "briefcase-medical": "first-aid",
+    "building-2": "buildings",
+    "check-circle-2": "check",
+    "chevron-down": "caret-down",
+    "clipboard-check": "clipboard-text",
+    "book-open-text": "book-open-text",
+    bridge: "bridge",
+    "chart-line-up": "chart-line-up",
+    clock: "clock",
+    database: "database",
+    "file-check-2": "file-text",
+    "heart-handshake": "handshake",
+    handshake: "handshake",
+    "lock-key": "lock-key",
+    languages: "translate",
+    mail: "envelope",
+    "messages-square": "chats",
+    "mic-2": "microphone-stage",
+    plane: "airplane",
+    "plane-takeoff": "airplane-takeoff",
+    "play-filled": "play",
+    "shield-check": "shield-check",
+    stethoscope: "stethoscope",
+    sparkles: "magic-wand",
+    "ticket-check": "ticket",
+    "user-round-check": "user-circle-check",
+    "users-round": "users-three",
+    video: "video-camera",
+  };
 
-  if (!lucide?.createIcons || !lucide?.icons) {
-    return;
-  }
+  const filledIcons = new Set(["play-filled", "star"]);
 
   document.querySelectorAll("[data-icon]").forEach((node) => {
     const requestedIcon = node.dataset.icon || "check-circle-2";
-    const iconName = requestedIcon === "play-filled" ? "play" : requestedIcon;
+    const iconName = iconMap[requestedIcon] || requestedIcon;
     const iconSize = Number(node.dataset.size) || 16;
+    const adjustedIconSize = iconSize < 18 ? iconSize + 1 : iconSize;
     const existingClass = node.getAttribute("class") || "";
+    const isFilled = filledIcons.has(requestedIcon);
+    const weightClass = isFilled ? "ph-fill" : "ph-bold";
 
-    node.setAttribute("data-lucide", iconName);
-    node.setAttribute("width", String(iconSize));
-    node.setAttribute("height", String(iconSize));
-    node.setAttribute("stroke-width", "1.65");
-    node.setAttribute("class", `${existingClass} icon-svg${requestedIcon === "play-filled" ? " icon-filled" : ""}`.trim());
-    node.style.setProperty("--icon-size", `${iconSize}px`);
+    node.setAttribute(
+      "class",
+      `${existingClass} icon-svg icon-ph ${weightClass} ph-${iconName}${isFilled ? " icon-filled" : ""}`.trim(),
+    );
+    node.setAttribute("aria-hidden", "true");
+    node.style.setProperty("--icon-size", `${adjustedIconSize}px`);
+    node.textContent = "";
     node.removeAttribute("data-icon");
     node.removeAttribute("data-size");
-  });
-
-  lucide.createIcons({
-    icons: lucide.icons,
-    attrs: {
-      "aria-hidden": "true",
-      class: "icon-svg",
-      "stroke-width": "1.65",
-    },
   });
 }
 
@@ -61,6 +85,82 @@ function initMobileNavigation() {
     if (window.innerWidth > 760) {
       close();
     }
+  });
+}
+
+function initArticleToc() {
+  const toc = document.querySelector(".article-toc");
+
+  if (!toc) {
+    return;
+  }
+
+  const links = Array.from(toc.querySelectorAll("[data-toc-link]"));
+  const sections = Array.from(document.querySelectorAll("[data-toc-section]"));
+
+  if (!links.length || !sections.length) {
+    return;
+  }
+
+  const setActive = (id) => {
+    links.forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.tocLink === id);
+    });
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    setActive(sections[0].id);
+    return;
+  }
+
+  const visibleSections = new Map();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleSections.set(entry.target.id, entry.boundingClientRect.top);
+        } else {
+          visibleSections.delete(entry.target.id);
+        }
+      });
+
+      if (!visibleSections.size) {
+        return;
+      }
+
+      const [activeId] = Array.from(visibleSections.entries()).sort((a, b) => a[1] - b[1])[0];
+      setActive(activeId);
+    },
+    {
+      rootMargin: "-24% 0px -58% 0px",
+      threshold: [0, 0.25, 0.5, 1],
+    },
+  );
+
+  sections.forEach((section) => observer.observe(section));
+  setActive(sections[0].id);
+}
+
+function initSubscribeForms() {
+  document.querySelectorAll("[data-subscribe-form]").forEach((form) => {
+    const status = form.querySelector("[data-subscribe-status]");
+    const input = form.querySelector("input[type='email']");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!input || !input.checkValidity()) {
+        input?.reportValidity();
+        return;
+      }
+
+      if (status) {
+        status.textContent = "Thanks. You are on the Skillcase guidance list.";
+      }
+
+      form.classList.add("is-subscribed");
+      input.value = "";
+    });
   });
 }
 
@@ -132,10 +232,26 @@ function initSearchTimeline() {
   const panels = Array.from(timeline.querySelectorAll("[data-timeline-preview]"));
   const status = timeline.querySelector("[data-timeline-status]");
   const progress = timeline.querySelector("[data-timeline-progress]");
+  const autoAdvanceDelay = 4500;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let autoAdvanceTimer;
 
-  if (!steps.length || !panels.length) {
+  if (!steps.length) {
     return;
   }
+
+  const scheduleAutoAdvance = () => {
+    if (reducedMotion || steps.length < 2) {
+      return;
+    }
+
+    window.clearTimeout(autoAdvanceTimer);
+    autoAdvanceTimer = window.setTimeout(() => {
+      const activeIndex = steps.findIndex((item) => item.classList.contains("is-active"));
+      const nextIndex = (activeIndex + 1) % steps.length;
+      activate(steps[nextIndex]);
+    }, autoAdvanceDelay);
+  };
 
   const activate = (step) => {
     const id = step.dataset.timelineStep;
@@ -144,12 +260,21 @@ function initSearchTimeline() {
     steps.forEach((item) => {
       const isActive = item === step;
       item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-selected", String(isActive));
+      if (item.hasAttribute("aria-selected")) {
+        item.setAttribute("aria-selected", String(isActive));
+      }
+      if (isActive) {
+        item.setAttribute("aria-current", "step");
+      } else {
+        item.removeAttribute("aria-current");
+      }
     });
 
-    panels.forEach((panel) => {
-      panel.classList.toggle("is-active", panel.dataset.timelinePreview === id);
-    });
+    if (panels.length) {
+      panels.forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.timelinePreview === id);
+      });
+    }
 
     if (status) {
       status.textContent = step.dataset.timelineStatus || status.textContent;
@@ -158,6 +283,8 @@ function initSearchTimeline() {
     if (progress && index >= 0) {
       progress.style.setProperty("--timeline-progress", `${((index + 1) / steps.length) * 100}%`);
     }
+
+    scheduleAutoAdvance();
   };
 
   steps.forEach((step) => {
@@ -176,6 +303,8 @@ function initSearchTimeline() {
       activate(steps[nextIndex]);
     });
   });
+
+  scheduleAutoAdvance();
 }
 
 function setLabelStyles(container) {
@@ -197,6 +326,133 @@ function setLabelStyles(container) {
     label.style.opacity = `var(--cobe-visible-${id}, 0)`;
     label.style.filter = `blur(calc((1 - var(--cobe-visible-${id}, 0)) * 8px))`;
     label.style.translate = position.translate;
+  });
+}
+
+function initFaqAccordion() {
+  document.querySelectorAll(".faq-list").forEach((list) => {
+    const items = Array.from(list.querySelectorAll("details"));
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const cleanupByItem = new WeakMap();
+
+    const cleanupAnimation = (item) => {
+      const cleanup = cleanupByItem.get(item);
+
+      if (cleanup) {
+        cleanup();
+        cleanupByItem.delete(item);
+      }
+    };
+
+    const waitForHeightTransition = (item, callback) => {
+      const done = () => {
+        item.removeEventListener("transitionend", onEnd);
+        window.clearTimeout(fallbackTimer);
+        cleanupByItem.delete(item);
+        callback();
+      };
+
+      const onEnd = (event) => {
+        if (event.target === item && event.propertyName === "height") {
+          done();
+        }
+      };
+
+      const fallbackTimer = window.setTimeout(done, 360);
+
+      cleanupByItem.set(item, () => {
+        item.removeEventListener("transitionend", onEnd);
+        window.clearTimeout(fallbackTimer);
+      });
+
+      item.addEventListener("transitionend", onEnd);
+    };
+
+    const closeItem = (item) => {
+      const summary = item.querySelector("summary");
+
+      if (!item.open || !summary) {
+        return;
+      }
+
+      cleanupAnimation(item);
+
+      if (prefersReducedMotion) {
+        item.open = false;
+        item.style.height = "";
+        item.classList.remove("is-animating", "is-opening", "is-closing");
+        return;
+      }
+
+      item.classList.remove("is-opening");
+      item.classList.add("is-animating", "is-closing");
+      item.style.height = `${item.offsetHeight}px`;
+      item.offsetHeight;
+      item.style.height = `${summary.offsetHeight}px`;
+
+      waitForHeightTransition(item, () => {
+        item.open = false;
+        item.style.height = "";
+        item.classList.remove("is-animating", "is-closing");
+      });
+    };
+
+    const openItem = (item) => {
+      const summary = item.querySelector("summary");
+
+      if (!summary) {
+        return;
+      }
+
+      cleanupAnimation(item);
+
+      if (prefersReducedMotion) {
+        items.forEach((otherItem) => {
+          otherItem.open = otherItem === item;
+        });
+        return;
+      }
+
+      items.forEach((otherItem) => {
+        if (otherItem !== item) {
+          closeItem(otherItem);
+        }
+      });
+
+      item.classList.remove("is-closing");
+      item.classList.add("is-animating", "is-opening");
+      item.style.height = `${summary.offsetHeight}px`;
+      item.open = true;
+
+      requestAnimationFrame(() => {
+        item.style.height = `${item.scrollHeight}px`;
+        waitForHeightTransition(item, () => {
+          item.style.height = "";
+          item.classList.remove("is-animating", "is-opening");
+        });
+      });
+    };
+
+    let activeItem = null;
+
+    items.forEach((item) => {
+      if (item.open && !activeItem) {
+        activeItem = item;
+      } else {
+        item.open = false;
+      }
+
+      item.querySelector("summary")?.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if (item.open && !item.classList.contains("is-closing")) {
+          closeItem(item);
+          return;
+        }
+
+        openItem(item);
+      });
+    });
   });
 }
 
@@ -428,6 +684,9 @@ async function initGlobe() {
 
 hydrateIcons();
 initMobileNavigation();
+initArticleToc();
+initSubscribeForms();
 initProcessWorkspace();
 initSearchTimeline();
+initFaqAccordion();
 initGlobe();

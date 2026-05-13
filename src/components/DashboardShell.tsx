@@ -1,18 +1,19 @@
 import React from "react";
 import {
-  BadgeCheck,
-  Bell,
-  BriefcaseBusiness,
-  CalendarCheck,
-  ClipboardCheck,
-  FileCheck2,
-  LayoutDashboard,
-  LogOut,
-  MessageSquareText,
-  Search,
-  ShieldCheck,
-  UsersRound,
-} from "lucide-react";
+  BellIcon as Bell,
+  BriefcaseIcon as Briefcase,
+  CalendarCheckIcon as CalendarCheck,
+  ChatCircleTextIcon as ChatCircleText,
+  ClipboardTextIcon as ClipboardText,
+  FileTextIcon as FileText,
+  MagnifyingGlassIcon as MagnifyingGlass,
+  SealCheckIcon as SealCheck,
+  ShieldCheckIcon as ShieldCheck,
+  SignOutIcon as SignOut,
+  SquaresFourIcon as SquaresFour,
+  UsersThreeIcon as UsersThree,
+} from "@phosphor-icons/react/ssr";
+import type { Icon } from "@phosphor-icons/react";
 
 type DashboardRole = "nurse" | "recruiter";
 
@@ -27,9 +28,9 @@ const roleContent = {
     secondaryLabel: "Eligible jobs",
     action: "Complete profile",
     cards: [
-      ["Documents", "8 of 10 ready", FileCheck2],
+      ["Documents", "8 of 10 ready", FileText],
       ["Interview prep", "Mock session Friday", CalendarCheck],
-      ["Job matches", "3 high-fit roles", BriefcaseBusiness],
+      ["Job matches", "3 high-fit roles", Briefcase],
     ],
     tableTitle: "Recommended next steps",
     rows: [
@@ -48,7 +49,7 @@ const roleContent = {
     secondaryLabel: "Interview-ready",
     action: "Review candidates",
     cards: [
-      ["Candidate pool", "148 active profiles", UsersRound],
+      ["Candidate pool", "148 active profiles", UsersThree],
       ["Verified files", "92 ready for review", ShieldCheck],
       ["Interview queue", "12 this week", CalendarCheck],
     ],
@@ -68,7 +69,7 @@ const roleContent = {
   secondaryMetric: string;
   secondaryLabel: string;
   action: string;
-  cards: [string, string, typeof BadgeCheck][];
+  cards: [string, string, Icon][];
   tableTitle: string;
   rows: [string, string, string][];
 }>;
@@ -83,12 +84,12 @@ export default function DashboardShell({ role }: { role: DashboardRole }) {
           <img alt="Skillcase" src="/assets/images/SKILLCASE_logo.svg" />
         </a>
         <nav aria-label={`${content.eyebrow} navigation`}>
-          <a className="is-active" href="#"><LayoutDashboard size={17} />Overview</a>
-          <a href="#"><ClipboardCheck size={17} />Tasks</a>
-          <a href="#"><MessageSquareText size={17} />Messages</a>
-          <a href="#"><FileCheck2 size={17} />Documents</a>
+          <a className="is-active" href="#"><SquaresFour size={18} weight="bold" aria-hidden="true" />Overview</a>
+          <a href="#"><ClipboardText size={18} weight="bold" aria-hidden="true" />Tasks</a>
+          <a href="#"><ChatCircleText size={18} weight="bold" aria-hidden="true" />Messages</a>
+          <a href="#"><FileText size={18} weight="bold" aria-hidden="true" />Documents</a>
         </nav>
-        <a className="dashboard-logout" href="/"><LogOut size={16} />Back to website</a>
+        <a className="dashboard-logout" href="/"><SignOut size={17} weight="bold" aria-hidden="true" />Back to website</a>
       </aside>
 
       <main className="dashboard-main">
@@ -99,10 +100,10 @@ export default function DashboardShell({ role }: { role: DashboardRole }) {
           </div>
           <div className="dashboard-actions">
             <label className="dashboard-search">
-              <Search size={15} aria-hidden="true" />
+              <MagnifyingGlass size={16} weight="bold" aria-hidden="true" />
               <input aria-label="Search dashboard" placeholder="Search" />
             </label>
-            <button type="button" aria-label="Notifications"><Bell size={17} /></button>
+            <button type="button" aria-label="Notifications"><Bell size={18} weight="bold" aria-hidden="true" /></button>
           </div>
         </header>
 
@@ -126,7 +127,7 @@ export default function DashboardShell({ role }: { role: DashboardRole }) {
         <section className="dashboard-card-grid">
           {content.cards.map(([title, detail, Icon]) => (
             <article className="dashboard-card" key={title}>
-              <span><Icon size={18} /></span>
+              <span><Icon size={20} weight="bold" aria-hidden="true" /></span>
               <strong>{title}</strong>
               <small>{detail}</small>
             </article>
@@ -136,7 +137,7 @@ export default function DashboardShell({ role }: { role: DashboardRole }) {
         <section className="dashboard-table-card">
           <div className="dashboard-table-head">
             <h2>{content.tableTitle}</h2>
-            <span><BadgeCheck size={15} />Live workspace</span>
+            <span><SealCheck size={15} weight="fill" aria-hidden="true" />Live workspace</span>
           </div>
           <div className="dashboard-table" role="table" aria-label={content.tableTitle}>
             {content.rows.map(([name, context, status]) => (

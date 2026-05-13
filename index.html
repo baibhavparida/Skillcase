@@ -14,6 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="vendor/phosphor/bold/style.css" />
+    <link rel="stylesheet" href="vendor/phosphor/fill/style.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -107,7 +109,7 @@
               </a>
               <a class="btn btn-outline" href="https://learner.skillcase.in/events/7cdknjvd">
                 Register Webinar
-                <span data-icon="play" data-size="15" aria-hidden="true"></span>
+                <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -350,7 +352,7 @@
                 </div>
               </div>
               <div class="webinar-actions">
-                <a class="btn btn-gold webinar-primary-cta" href="https://learner.skillcase.in/events/7cdknjvd">
+                <a class="btn btn-outline webinar-secondary-cta" href="https://learner.skillcase.in/events/7cdknjvd">
                   Register Now for Free
                   <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
                 </a>
@@ -460,7 +462,6 @@
             <div class="journey-topbar">
               <div class="journey-logo-lockup">
                 <img alt="Skillcase" src="assets/images/SKILLCASE_logo.svg" />
-                <span>Career pathway workspace</span>
               </div>
               <div class="journey-progress-wrap" aria-hidden="true">
                 <span data-journey-status>Profile readiness in progress</span>
@@ -525,7 +526,7 @@
                 </button>
               </div>
               <div class="journey-preview">
-                <section class="journey-asset is-active" data-journey-asset="profile" aria-label="Profile and assessment preview">
+                <section class="journey-asset journey-asset-profile is-active" data-journey-asset="profile" aria-label="Profile and assessment preview">
                   <div class="asset-rail">
                     <span>Documents</span>
                     <strong>8/10</strong>
@@ -556,7 +557,7 @@
                     <small>Clear action plan</small>
                   </div>
                 </section>
-                <section class="journey-asset" data-journey-asset="matching" aria-label="Job matching preview">
+                <section class="journey-asset journey-asset-matching" data-journey-asset="matching" aria-label="Job matching preview">
                   <div class="asset-match-stack">
                     <article>
                       <span><span data-icon="stethoscope" data-size="14"></span></span>
@@ -596,7 +597,7 @@
                     <p>Relevant roles are shortlisted around your profile, preferred pathway, and employer requirements.</p>
                   </div>
                 </section>
-                <section class="journey-asset" data-journey-asset="training" aria-label="Training and preparation preview">
+                <section class="journey-asset journey-asset-training" data-journey-asset="training" aria-label="Training and preparation preview">
                   <div class="asset-panel asset-training-panel">
                     <div class="asset-panel-header">
                       <span>Preparation plan</span>
@@ -626,12 +627,13 @@
                     <small>Healthcare vocabulary</small>
                   </div>
                 </section>
-                <section class="journey-asset" data-journey-asset="relocation" aria-label="Immigration and relocation preview">
+                <section class="journey-asset journey-asset-relocation" data-journey-asset="relocation" aria-label="Immigration and relocation preview">
                   <div class="asset-route-card">
                     <div class="asset-route-map" aria-hidden="true">
                       <span class="route-dot route-dot-india">India</span>
                       <span class="route-dot route-dot-germany">Germany</span>
-                      <i></i>
+                      <span class="route-line"></span>
+                      <span class="route-plane" data-icon="plane-takeoff" data-size="14"></span>
                     </div>
                     <div class="asset-panel-header">
                       <span>Relocation file</span>
@@ -668,253 +670,344 @@
             </p>
           </div>
           <div class="job-timeline-shell" data-search-timeline>
-            <div class="job-timeline-steps" role="tablist" aria-label="International job search process">
-              <span class="timeline-rail" aria-hidden="true"><i data-timeline-progress style="--timeline-progress: 25%"></i></span>
-              <button
-                class="job-timeline-step is-active"
-                type="button"
-                role="tab"
-                aria-selected="true"
-                data-timeline-step="profile"
-                data-timeline-status="Profile builder active"
-              >
-                <span class="timeline-node"><span data-icon="user-round-check" data-size="17"></span></span>
-                <span class="timeline-copy">
-                  <small>Step 01</small>
-                  <strong>Create Profile</strong>
-                  <em>Build your Skillcase profile with education, experience, and preferred pathway.</em>
-                </span>
-              </button>
-              <button
-                class="job-timeline-step"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-timeline-step="jobs"
-                data-timeline-status="Eligible job matches ready"
-              >
-                <span class="timeline-node"><span data-icon="briefcase-medical" data-size="17"></span></span>
-                <span class="timeline-copy">
-                  <small>Step 02</small>
-                  <strong>Apply for eligible jobs</strong>
-                  <em>Shortlist the right openings and apply with a profile that is ready for employers.</em>
-                </span>
-              </button>
-              <button
-                class="job-timeline-step"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-timeline-step="prepare"
-                data-timeline-status="Interview preparation scheduled"
-              >
-                <span class="timeline-node"><span data-icon="messages-square" data-size="17"></span></span>
-                <span class="timeline-copy">
-                  <small>Step 03</small>
-                  <strong>Prepare for interviews</strong>
-                  <em>Use CV guidance, mock sessions, and role context before you meet recruiters.</em>
-                </span>
-              </button>
-              <button
-                class="job-timeline-step"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-timeline-step="visa"
-                data-timeline-status="Visa file and relocation checklist in review"
-              >
-                <span class="timeline-node"><span data-icon="file-check-2" data-size="17"></span></span>
-                <span class="timeline-copy">
-                  <small>Step 04</small>
-                  <strong>Complete VISA &amp; documentation</strong>
-                  <em>Keep documents, visa tasks, travel planning, and settlement support organized.</em>
-                </span>
-              </button>
-            </div>
-
-            <div class="job-timeline-preview">
-              <div class="timeline-preview-bar">
-                <div>
-                  <span>Skillcase pathway</span>
-                  <strong data-timeline-status>Profile builder active</strong>
-                </div>
-                <div class="timeline-live">
-                  <i></i>
-                  Live guidance
-                </div>
-              </div>
-
-              <div class="timeline-preview-stage">
-                <section class="timeline-panel is-active" data-timeline-preview="profile" aria-label="Create profile UI preview">
-                  <div class="profile-builder-card">
-                    <div class="mini-window-header">
-                      <span></span>
-                      <strong>Profile builder</strong>
-                      <small>72%</small>
+            <span class="timeline-rail" aria-hidden="true"><i data-timeline-progress style="--timeline-progress: 25%"></i></span>
+            <ol class="job-timeline-steps" aria-label="International job search process">
+              <li class="job-timeline-item">
+                <button
+                  class="job-timeline-step is-active"
+                  style="--step-accent: #05a3e5"
+                  type="button"
+                  aria-current="step"
+                  data-timeline-step="profile"
+                  data-timeline-status="Profile builder active"
+                >
+                  <span class="timeline-node"><span data-icon="user-round-check" data-size="17"></span></span>
+                  <span class="timeline-copy">
+                    <small>Step 01 · Profile builder active</small>
+                    <strong>Create Profile</strong>
+                    <em>Add education, experience, language files, and preferred pathway.</em>
+                  </span>
+                  <div class="timeline-asset timeline-asset-profile" aria-hidden="true">
+                    <div class="asset-ui-head">
+                      <span>Candidate file</span>
+                      <b>72%</b>
                     </div>
-                    <div class="builder-grid">
-                      <span class="builder-avatar">SC</span>
-                      <div>
-                        <strong>Candidate profile</strong>
-                        <small>Nursing Jobs · Germany</small>
-                      </div>
+                    <div class="asset-readiness-track"><i style="--value: 72%"></i></div>
+                    <div class="asset-status-grid">
+                      <span><span data-icon="check" data-size="13"></span>Education<b>Mapped</b></span>
+                      <span><span data-icon="check" data-size="13"></span>Experience<b>Added</b></span>
+                      <span class="asset-is-next"><span data-icon="check" data-size="13"></span>Language<b>Queued</b></span>
                     </div>
-                    <div class="timeline-meter"><i style="--value: 72%"></i></div>
-                    <ul class="timeline-checks">
-                      <li><span data-icon="check" data-size="13"></span>Education details added</li>
-                      <li><span data-icon="check" data-size="13"></span>Work experience mapped</li>
-                      <li><span data-icon="plus" data-size="13"></span>Language level pending</li>
-                    </ul>
-                  </div>
-                  <div class="upload-drop-card">
-                    <span data-icon="cloud-upload" data-size="20"></span>
-                    <strong>Upload documents</strong>
-                    <small>Passport, certificates, resume</small>
-                    <div class="upload-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-                  </div>
-                </section>
-
-                <section class="timeline-panel" data-timeline-preview="jobs" aria-label="Apply for eligible jobs UI preview">
-                  <div class="job-match-board">
-                    <article>
-                      <span data-icon="stethoscope" data-size="15"></span>
-                      <div>
-                        <strong>Registered Nurse</strong>
-                        <small>Hamburg · Full-time</small>
-                      </div>
-                      <b>96%</b>
-                    </article>
-                    <article>
-                      <span data-icon="hospital" data-size="15"></span>
-                      <div>
-                        <strong>Care Facility Nurse</strong>
-                        <small>Berlin · Relocation support</small>
-                      </div>
-                      <b>91%</b>
-                    </article>
-                    <article>
-                      <span data-icon="graduation-cap" data-size="15"></span>
-                      <div>
-                        <strong>Ausbildung pathway</strong>
-                        <small>Munich · Training route</small>
-                      </div>
-                      <b>86%</b>
-                    </article>
-                  </div>
-                  <div class="application-card">
-                    <div class="application-orbit" aria-hidden="true">
-                      <span>Profile</span>
-                      <i></i>
-                      <b>Employer</b>
+                    <div class="asset-file-strip">
+                      <span>CV</span>
+                      <span>Certs</span>
+                      <span class="asset-is-next">B1 file</span>
                     </div>
-                    <strong>Eligibility filter</strong>
-                    <small>Only roles that match your profile and pathway are surfaced first.</small>
                   </div>
-                </section>
-
-                <section class="timeline-panel" data-timeline-preview="prepare" aria-label="Interview preparation UI preview">
-                  <div class="interview-card">
-                    <div class="mini-window-header">
-                      <span></span>
+                </button>
+              </li>
+              <li class="job-timeline-item">
+                <button
+                  class="job-timeline-step"
+                  style="--step-accent: #05a3e5"
+                  type="button"
+                  data-timeline-step="jobs"
+                  data-timeline-status="Eligible matches ready"
+                >
+                  <span class="timeline-node"><span data-icon="briefcase-medical" data-size="17"></span></span>
+                  <span class="timeline-copy">
+                    <small>Step 02 · Eligible matches ready</small>
+                    <strong>Apply for eligible jobs</strong>
+                    <em>Shortlist eligible roles and apply with an employer-ready profile.</em>
+                  </span>
+                  <div class="timeline-asset timeline-asset-jobs" aria-hidden="true">
+                    <div class="asset-ui-head">
+                      <span>Role shortlist</span>
+                      <b>Fit</b>
+                    </div>
+                    <div class="asset-match-table">
+                      <span class="asset-match-row">
+                        <strong>Registered Nurse<small>Clinical route</small></strong>
+                        <b>96%</b>
+                        <i style="--value: 96%"></i>
+                      </span>
+                      <span class="asset-match-row">
+                        <strong>Care Facility<small>Employer ready</small></strong>
+                        <b>91%</b>
+                        <i style="--value: 91%"></i>
+                      </span>
+                      <span class="asset-match-row">
+                        <strong>Ausbildung<small>Training route</small></strong>
+                        <b>86%</b>
+                        <i style="--value: 86%"></i>
+                      </span>
+                    </div>
+                    <p class="asset-note">Screening keeps the shortlist focused.</p>
+                  </div>
+                </button>
+              </li>
+              <li class="job-timeline-item">
+                <button
+                  class="job-timeline-step"
+                  style="--step-accent: #05a3e5"
+                  type="button"
+                  data-timeline-step="prepare"
+                  data-timeline-status="Interview prep scheduled"
+                >
+                  <span class="timeline-node"><span data-icon="messages-square" data-size="17"></span></span>
+                  <span class="timeline-copy">
+                    <small>Step 03 · Interview prep scheduled</small>
+                    <strong>Prepare for interviews</strong>
+                    <em>Review your CV, practice B1 answers, and rehearse with role context.</em>
+                  </span>
+                  <div class="timeline-asset timeline-asset-prepare" aria-hidden="true">
+                    <div class="asset-ui-head">
+                      <span>Prep schedule</span>
+                      <b>Fri</b>
+                    </div>
+                    <div class="asset-session-strip">
+                      <span>6:30 PM</span>
                       <strong>Mock interview</strong>
-                      <small>Fri</small>
                     </div>
-                    <div class="video-frame">
-                      <span data-icon="video" data-size="20"></span>
-                      <i></i>
+                    <div class="asset-prep-list">
+                      <span><span data-icon="file-text" data-size="14"></span>CV review<b>Done</b></span>
+                      <span class="asset-is-next"><span data-icon="languages" data-size="14"></span>B1 practice<b>Active</b></span>
+                      <span>Role notes<b>Ready</b></span>
                     </div>
-                    <div class="timeline-transcript">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
+                    <p class="asset-note">Prep stays in sequence.</p>
                   </div>
-                  <div class="prep-stack">
-                    <article>
-                      <span data-icon="languages" data-size="15"></span>
-                      <strong>German practice</strong>
-                      <small>B1 workplace vocabulary</small>
-                    </article>
-                    <article>
-                      <span data-icon="file-text" data-size="15"></span>
-                      <strong>CV polish</strong>
-                      <small>Employer-ready structure</small>
-                    </article>
-                  </div>
-                </section>
-
-                <section class="timeline-panel" data-timeline-preview="visa" aria-label="Visa and documentation UI preview">
-                  <div class="visa-track-card">
-                    <div class="visa-route" aria-hidden="true">
-                      <span class="visa-pin visa-pin-india">India</span>
-                      <span class="visa-pin visa-pin-germany">Germany</span>
-                      <i></i>
+                </button>
+              </li>
+              <li class="job-timeline-item">
+                <button
+                  class="job-timeline-step"
+                  style="--step-accent: #05a3e5"
+                  type="button"
+                  data-timeline-step="visa"
+                  data-timeline-status="Visa checklist in review"
+                >
+                  <span class="timeline-node"><span data-icon="file-check-2" data-size="17"></span></span>
+                  <span class="timeline-copy">
+                    <small>Step 04 · Visa checklist in review</small>
+                    <strong>Complete VISA documents</strong>
+                    <em>Organize visa files, travel tasks, and relocation support.</em>
+                  </span>
+                  <div class="timeline-asset timeline-asset-visa" aria-hidden="true">
+                    <div class="asset-ui-head">
+                      <span>Relocation file</span>
+                      <b>Review</b>
                     </div>
-                    <div class="visa-status">
-                      <strong>Document file</strong>
-                      <span>Review in progress</span>
+                    <div class="asset-route-minimal">
+                      <span>India</span>
+                      <i><span data-icon="plane" data-size="12"></span></i>
+                      <span>Germany</span>
                     </div>
-                  </div>
-                  <div class="visa-list-card">
-                    <ul class="timeline-checks">
-                      <li><span data-icon="check" data-size="13"></span>Visa documents reviewed</li>
-                      <li><span data-icon="check" data-size="13"></span>Offer letter attached</li>
-                      <li><span data-icon="plane" data-size="13"></span>Travel planning next</li>
+                    <ul class="asset-doc-list-modern">
+                      <li><span data-icon="check" data-size="13"></span>Visa documents<b>Reviewed</b></li>
+                      <li><span data-icon="check" data-size="13"></span>Offer file<b>Verified</b></li>
+                      <li class="asset-is-next"><span data-icon="check" data-size="13"></span>Travel plan<b>Next</b></li>
                     </ul>
-                    <div class="stamp-chip">
-                      <span data-icon="shield-check" data-size="15"></span>
-                      Skillcase verified
-                    </div>
                   </div>
-                </section>
-              </div>
-            </div>
+                </button>
+              </li>
+            </ol>
           </div>
         </section>
 
-        <section class="section testimonials-section">
-          <div class="section-heading">
-            <p class="eyebrow">Testimonials</p>
-            <h2>What our candidates are saying: real stories, real experiences</h2>
-          </div>
-          <div class="marquee-shell">
-            <div class="marquee-row">
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>A Smooth Process</h3>
-                <blockquote>I just gave my interview, and I have to say, Skillcase made everything so easy. From the start, they helped me set up my profile and guided me through each step. I’m really excited about what’s coming next and feel confident knowing they’re helping me.</blockquote>
-                <p>Priya S.<span>Nurse</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Preparing for the Next Step</h3>
-                <blockquote>Right now, I’m preparing for my language test and mock interview with Skillcase. They’ve been really supportive in helping me get ready. It feels great to have such a reliable team behind me as I take these important steps towards working abroad.</blockquote>
-                <p>Ravi M.<span>Healthcare Worker</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Helpful team</h3>
-                <blockquote>Skillcase has been really helpful. After my interview, they made sure everything was in order for the next steps. I’m feeling excited about the future and really grateful for all their support. It’s been a great experience so far.</blockquote>
-                <p>Anjali K.<span>Nurse</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>A Smooth Process</h3>
-                <blockquote>I just gave my interview, and I have to say, Skillcase made everything so easy. From the start, they helped me set up my profile and guided me through each step. I’m really excited about what’s coming next and feel confident knowing they’re helping me.</blockquote>
-                <p>Priya S.<span>Nurse</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Preparing for the Next Step</h3>
-                <blockquote>Right now, I’m preparing for my language test and mock interview with Skillcase. They’ve been really supportive in helping me get ready. It feels great to have such a reliable team behind me as I take these important steps towards working abroad.</blockquote>
-                <p>Ravi M.<span>Healthcare Worker</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Helpful team</h3>
-                <blockquote>Skillcase has been really helpful. After my interview, they made sure everything was in order for the next steps. I’m feeling excited about the future and really grateful for all their support. It’s been a great experience so far.</blockquote>
-                <p>Anjali K.<span>Nurse</span></p>
-              </article>
+        <section class="section testimonials-section" id="testimonials">
+          <div class="testimonials-shell">
+            <div class="testimonials-intro">
+              <div class="section-heading testimonials-heading">
+                <p class="eyebrow">Testimonials</p>
+                <h2>What our candidates are saying: real stories, real experiences</h2>
+                <p>
+                  Candid feedback from healthcare candidates using Skillcase for
+                  profile building, interview preparation, language planning, and
+                  Germany pathway support.
+                </p>
+              </div>
+              <div class="testimonial-proof-row" aria-label="Skillcase candidate support highlights">
+                <span>
+                  <strong>4 guided stages</strong>
+                  <small>Profile to relocation</small>
+                </span>
+                <span>
+                  <strong>1:1 prep</strong>
+                  <small>Interview and documents</small>
+                </span>
+                <span>
+                  <strong>Germany pathway</strong>
+                  <small>Role-ready guidance</small>
+                </span>
+              </div>
+            </div>
+
+            <div class="testimonial-layout">
+              <div class="testimonial-feature-column">
+                <article class="testimonial-card testimonial-card-feature">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Priya S."
+                      class="testimonial-avatar testimonial-avatar-lg"
+                      loading="lazy"
+                      src="/assets/images/testimonial-priya.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Priya S.</strong>
+                      <span>Registered Nurse · Kerala</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>From profile to interview with clarity</h3>
+                  <blockquote>
+                    I had the experience, but I did not know how to present it for
+                    Germany. Skillcase helped me rebuild my profile, prepare for the
+                    interview, and understand what would happen after each step.
+                  </blockquote>
+                  <div class="testimonial-tags" aria-label="Priya support highlights">
+                    <span>Profile review</span>
+                    <span>Mock interview</span>
+                    <span>Next-step guidance</span>
+                  </div>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Nikhil R."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-nikhil.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Nikhil R.</strong>
+                      <span>Healthcare Candidate · Karnataka</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>I knew exactly what to do next</h3>
+                  <blockquote>
+                    Skillcase helped me understand which documents were urgent, what
+                    to prepare before calls, and how to keep my application moving
+                    without feeling lost.
+                  </blockquote>
+                </article>
+              </div>
+
+              <div class="testimonial-stack">
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Ravi M."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-ravi.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Ravi M.</strong>
+                      <span>Healthcare Assistant · Maharashtra</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>Language prep felt structured</h3>
+                  <blockquote>
+                    The team broke my German practice into clear weekly goals and
+                    connected it with interview preparation. It finally felt manageable.
+                  </blockquote>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Anjali K."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-anjali.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Anjali K.</strong>
+                      <span>Staff Nurse · Tamil Nadu</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>Support after the interview</h3>
+                  <blockquote>
+                    After my interview, Skillcase checked every next requirement with
+                    me instead of leaving me confused about documents and timelines.
+                  </blockquote>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Meera P."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-meera.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Meera P.</strong>
+                      <span>Nursing Candidate · Punjab</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>Documents became easier</h3>
+                  <blockquote>
+                    I was worried about missing something important. Their checklist
+                    made the application and visa paperwork much easier to track.
+                  </blockquote>
+                </article>
+              </div>
             </div>
           </div>
         </section>
@@ -958,33 +1051,42 @@
           </div>
         </section>
 
-        <section class="podcast-section">
+        <section class="podcast-section" aria-labelledby="podcast-title">
           <div class="podcast-copy">
             <p class="eyebrow">Podcast</p>
-            <h2>Listen to Our Expert Podcast</h2>
+            <h2 id="podcast-title">Listen to Our Expert Podcast</h2>
             <p>
-              Learn about the growing demand for healthcare professionals in Germany, the key
-              skills employers seek, and how to stand out in the competitive job market.
+              Get practical guidance from Skillcase experts on healthcare careers in
+              Germany, employer expectations, documentation, and how to stand out with a
+              stronger international profile.
             </p>
-            <button class="btn btn-gold" type="button">
-              Watch more
-              <span data-icon="mic-2" data-size="16"></span>
-            </button>
-          </div>
-          <div class="podcast-player">
-            <div class="player-cover">
-              <span data-icon="sparkles" data-size="22"></span>
-              <span>Healthcare situation in Germany</span>
+            <div class="podcast-highlights" aria-label="Podcast highlights">
+              <span><span data-icon="stethoscope" data-size="13"></span>Healthcare careers</span>
+              <span><span data-icon="shield-check" data-size="13"></span>Expert guidance</span>
+              <span><span data-icon="file-check-2" data-size="13"></span>Germany pathway</span>
             </div>
-            <div class="wave-bars" aria-hidden="true">
-              <i style="height: 18px"></i><i style="height: 26px"></i><i style="height: 34px"></i><i style="height: 42px"></i>
-              <i style="height: 50px"></i><i style="height: 18px"></i><i style="height: 26px"></i><i style="height: 34px"></i>
-              <i style="height: 42px"></i><i style="height: 50px"></i><i style="height: 18px"></i><i style="height: 26px"></i>
-              <i style="height: 34px"></i><i style="height: 42px"></i><i style="height: 50px"></i><i style="height: 18px"></i>
-              <i style="height: 26px"></i><i style="height: 34px"></i><i style="height: 42px"></i><i style="height: 50px"></i>
-              <i style="height: 18px"></i><i style="height: 26px"></i><i style="height: 34px"></i><i style="height: 42px"></i>
-            </div>
+            <a
+              class="btn btn-outline podcast-secondary-cta"
+              href="https://www.youtube.com/watch?v=-1NrsTNPab4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Watch on YouTube
+              <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
+            </a>
           </div>
+          <article class="podcast-player" aria-label="Skillcase expert podcast video">
+            <div class="podcast-video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/-1NrsTNPab4?rel=0"
+                title="Listen to Our Expert Podcast on YouTube"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </article>
         </section>
 
         <section class="section faq-section" id="faq">
@@ -1028,7 +1130,7 @@
       <footer class="site-footer">
         <div>
           <a class="brand footer-brand" href="#top">
-            <img alt="Skillcase" class="brand-logo" src="assets/images/SKILLCASE_logo.svg" />
+            <img alt="Skillcase" class="brand-logo" src="assets/images/SKILLCASE_logo_footer.svg" />
           </a>
           <p>
             Empowering professionals for global careers. We simplify international
@@ -1062,7 +1164,6 @@
       </footer>
     </div>
 
-    <script src="vendor/lucide.min.js"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>

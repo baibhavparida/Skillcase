@@ -1,0 +1,18 @@
+---
+import LegalDocument from "../components/LegalDocument.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { legalPages } from "../data/legalContent";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacy Policy | Skillcase"
+  description="Skillcase privacy policy explaining data collection, use, security, storage, and user rights."
+>
+  <div class="site-shell">
+    <SiteHeader />
+    <LegalDocument page={legalPages.privacy} />
+    <SiteFooter />
+  </div>
+</BaseLayout>

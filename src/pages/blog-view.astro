@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Skillcase Blog">
+  <main class="redirect-page">
+    <p>Opening the requested Skillcase guide...</p>
+    <noscript>
+      <a href="/blog">View all Skillcase blogs</a>
+    </noscript>
+  </main>
+  <script is:inline>
+    const routes = {
+      "13": "/blog/nursing-in-germany-guide",
+      "14": "/blog/nursing-salaries-germany-foreign-professionals",
+      "15": "/blog/moving-to-germany-as-a-foreign-doctor",
+    };
+    const id = new URLSearchParams(window.location.search).get("id");
+    window.location.replace(routes[id] || "/blog");
+  </script>
+</BaseLayout>

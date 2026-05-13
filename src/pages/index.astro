@@ -2,66 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProcessWorkspace from "../components/ProcessWorkspace";
 import SearchTimeline from "../components/SearchTimeline";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
 ---
 
 <BaseLayout>
 <div class="site-shell">
-      <header class="site-header">
-        <a class="brand" href="#top" aria-label="Skillcase home">
-          <img alt="Skillcase" class="brand-logo" src="/assets/images/SKILLCASE_logo.svg" />
-        </a>
-        <nav class="desktop-nav" aria-label="Primary navigation">
-          <a href="#jobs">Candidate</a>
-          <a href="#process">About Us</a>
-          <a href="#blogs">Blog</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div class="header-actions">
-          <button class="btn btn-ghost btn-sm nav-login" type="button">Login</button>
-          <button class="btn btn-gold btn-sm nav-cta" type="button">Get Started</button>
-          <button
-            aria-controls="mobile-navigation"
-            aria-expanded="false"
-            aria-label="Open navigation menu"
-            class="mobile-menu-toggle"
-            type="button"
-          >
-            <span class="hamburger-icon" aria-hidden="true">
-              <span></span>
-              <span></span>
-            </span>
-          </button>
-        </div>
-        <nav
-          aria-label="Mobile navigation"
-          class="mobile-nav-panel"
-          hidden
-          id="mobile-navigation"
-        >
-          <div class="mobile-nav-links">
-            <a href="#jobs">
-              Candidate
-              <span data-icon="arrow-right" data-size="14" aria-hidden="true"></span>
-            </a>
-            <a href="#process">
-              About Us
-              <span data-icon="arrow-right" data-size="14" aria-hidden="true"></span>
-            </a>
-            <a href="#blogs">
-              Blog
-              <span data-icon="arrow-right" data-size="14" aria-hidden="true"></span>
-            </a>
-            <a href="#faq">
-              FAQ
-              <span data-icon="arrow-right" data-size="14" aria-hidden="true"></span>
-            </a>
-          </div>
-          <div class="mobile-nav-actions">
-            <button class="btn btn-outline btn-sm" type="button">Login</button>
-            <button class="btn btn-gold btn-sm" type="button">Get Started</button>
-          </div>
-        </nav>
-      </header>
+      <SiteHeader active="home" />
 
       <main>
         <section class="hero-section hero-background" id="top">
@@ -95,7 +42,7 @@ import SearchTimeline from "../components/SearchTimeline";
               </a>
               <a class="btn btn-outline" href="https://learner.skillcase.in/events/7cdknjvd">
                 Register Webinar
-                <span data-icon="play" data-size="15" aria-hidden="true"></span>
+                <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
               </a>
             </div>
           </div>
@@ -338,7 +285,7 @@ import SearchTimeline from "../components/SearchTimeline";
                 </div>
               </div>
               <div class="webinar-actions">
-                <a class="btn btn-gold webinar-primary-cta" href="https://learner.skillcase.in/events/7cdknjvd">
+                <a class="btn btn-outline webinar-secondary-cta" href="https://learner.skillcase.in/events/7cdknjvd">
                   Register Now for Free
                   <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
                 </a>
@@ -459,193 +406,365 @@ import SearchTimeline from "../components/SearchTimeline";
           <SearchTimeline client:load />
         </section>
 
-        <section class="section testimonials-section">
-          <div class="section-heading">
-            <p class="eyebrow">Testimonials</p>
-            <h2>What our candidates are saying: real stories, real experiences</h2>
-          </div>
-          <div class="marquee-shell">
-            <div class="marquee-row">
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>A Smooth Process</h3>
-                <blockquote>I just gave my interview, and I have to say, Skillcase made everything so easy. From the start, they helped me set up my profile and guided me through each step. I’m really excited about what’s coming next and feel confident knowing they’re helping me.</blockquote>
-                <p>Priya S.<span>Nurse</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Preparing for the Next Step</h3>
-                <blockquote>Right now, I’m preparing for my language test and mock interview with Skillcase. They’ve been really supportive in helping me get ready. It feels great to have such a reliable team behind me as I take these important steps towards working abroad.</blockquote>
-                <p>Ravi M.<span>Healthcare Worker</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Helpful team</h3>
-                <blockquote>Skillcase has been really helpful. After my interview, they made sure everything was in order for the next steps. I’m feeling excited about the future and really grateful for all their support. It’s been a great experience so far.</blockquote>
-                <p>Anjali K.<span>Nurse</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>A Smooth Process</h3>
-                <blockquote>I just gave my interview, and I have to say, Skillcase made everything so easy. From the start, they helped me set up my profile and guided me through each step. I’m really excited about what’s coming next and feel confident knowing they’re helping me.</blockquote>
-                <p>Priya S.<span>Nurse</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Preparing for the Next Step</h3>
-                <blockquote>Right now, I’m preparing for my language test and mock interview with Skillcase. They’ve been really supportive in helping me get ready. It feels great to have such a reliable team behind me as I take these important steps towards working abroad.</blockquote>
-                <p>Ravi M.<span>Healthcare Worker</span></p>
-              </article>
-              <article class="testimonial-card">
-                <span data-icon="badge-check" data-size="20"></span>
-                <h3>Helpful team</h3>
-                <blockquote>Skillcase has been really helpful. After my interview, they made sure everything was in order for the next steps. I’m feeling excited about the future and really grateful for all their support. It’s been a great experience so far.</blockquote>
-                <p>Anjali K.<span>Nurse</span></p>
-              </article>
+        <section class="section testimonials-section" id="testimonials">
+          <div class="testimonials-shell">
+            <div class="testimonials-intro">
+              <div class="section-heading testimonials-heading">
+                <p class="eyebrow">Testimonials</p>
+                <h2>What our candidates are saying: real stories, real experiences</h2>
+                <p>
+                  Candid feedback from healthcare candidates using Skillcase for
+                  profile building, interview preparation, language planning, and
+                  Germany pathway support.
+                </p>
+              </div>
+              <div class="testimonial-proof-row" aria-label="Skillcase candidate support highlights">
+                <span>
+                  <strong>4 guided stages</strong>
+                  <small>Profile to relocation</small>
+                </span>
+                <span>
+                  <strong>1:1 prep</strong>
+                  <small>Interview and documents</small>
+                </span>
+                <span>
+                  <strong>Germany pathway</strong>
+                  <small>Role-ready guidance</small>
+                </span>
+              </div>
+            </div>
+
+            <div class="testimonial-layout">
+              <div class="testimonial-feature-column">
+                <article class="testimonial-card testimonial-card-feature">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Priya S."
+                      class="testimonial-avatar testimonial-avatar-lg"
+                      loading="lazy"
+                      src="/assets/images/testimonial-priya.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Priya S.</strong>
+                      <span>Registered Nurse · Kerala</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>From profile to interview with clarity</h3>
+                  <blockquote>
+                    I had the experience, but I did not know how to present it for
+                    Germany. Skillcase helped me rebuild my profile, prepare for the
+                    interview, and understand what would happen after each step.
+                  </blockquote>
+                  <div class="testimonial-tags" aria-label="Priya support highlights">
+                    <span>Profile review</span>
+                    <span>Mock interview</span>
+                    <span>Next-step guidance</span>
+                  </div>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Nikhil R."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-nikhil.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Nikhil R.</strong>
+                      <span>Healthcare Candidate · Karnataka</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>I knew exactly what to do next</h3>
+                  <blockquote>
+                    Skillcase helped me understand which documents were urgent, what
+                    to prepare before calls, and how to keep my application moving
+                    without feeling lost.
+                  </blockquote>
+                </article>
+              </div>
+
+              <div class="testimonial-stack">
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Ravi M."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-ravi.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Ravi M.</strong>
+                      <span>Healthcare Assistant · Maharashtra</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>Language prep felt structured</h3>
+                  <blockquote>
+                    The team broke my German practice into clear weekly goals and
+                    connected it with interview preparation. It finally felt manageable.
+                  </blockquote>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Anjali K."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-anjali.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Anjali K.</strong>
+                      <span>Staff Nurse · Tamil Nadu</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>Support after the interview</h3>
+                  <blockquote>
+                    After my interview, Skillcase checked every next requirement with
+                    me instead of leaving me confused about documents and timelines.
+                  </blockquote>
+                </article>
+
+                <article class="testimonial-card">
+                  <div class="testimonial-card-head">
+                    <img
+                      alt="Candidate testimonial portrait for Meera P."
+                      class="testimonial-avatar"
+                      loading="lazy"
+                      src="/assets/images/testimonial-meera.webp"
+                    />
+                    <div class="testimonial-person">
+                      <strong>Meera P.</strong>
+                      <span>Nursing Candidate · Punjab</span>
+                    </div>
+                    <span class="testimonial-verified">
+                      <span data-icon="badge-check" data-size="14" aria-hidden="true"></span>
+                      Verified
+                    </span>
+                  </div>
+                  <div class="testimonial-rating" aria-label="5 out of 5 rating">
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                    <span data-icon="star" data-size="14" aria-hidden="true"></span>
+                  </div>
+                  <h3>Documents became easier</h3>
+                  <blockquote>
+                    I was worried about missing something important. Their checklist
+                    made the application and visa paperwork much easier to track.
+                  </blockquote>
+                </article>
+              </div>
             </div>
           </div>
         </section>
 
-        <section class="section blog-section" id="blogs">
-          <div class="section-heading">
+        <section class="section blog-section" id="blogs" aria-labelledby="blogs-title">
+          <div class="section-heading blog-section-heading">
             <p class="eyebrow">Blogs</p>
-            <h2>Read our blogs</h2>
+            <h2 id="blogs-title">Read our blogs</h2>
           </div>
           <div class="blog-grid">
             <article class="blog-card">
-              <img alt="" src="/assets/images/blog-opportunity.webp" />
-              <div>
-                <span>Skillcase</span>
+              <a class="blog-media" href="/blog/nursing-in-germany-guide" aria-label="Read Nursing in Germany guide">
+                <img
+                  loading="lazy"
+                  alt="Indian healthcare professional researching nursing opportunities in Germany"
+                  src="/assets/images/webinar-nurses.webp"
+                />
+                <span class="blog-media-badge">Career guide</span>
+              </a>
+              <div class="blog-card-body">
+                <div class="blog-meta">
+                  <span>Skillcase</span>
+                  <time datetime="2025-07-25">25 July 2025</time>
+                </div>
                 <h3>Nursing in Germany: A Comprehensive Guide for Aspiring Nurses</h3>
-                <p>Germany is a highly sought-after destination for nurses from around the world. With its world-class healthcare system, excellent work-life balance,</p>
-                <small>25 July 2025</small>
-                <a href="#top">Read more <span data-icon="arrow-right" data-size="14"></span></a>
+                <p>
+                  Germany is a highly sought-after destination for nurses from around the world.
+                  With its world-class healthcare system, excellent work-life balance,
+                </p>
+                <a href="/blog/nursing-in-germany-guide">Read more <span data-icon="arrow-right" data-size="13"></span></a>
               </div>
             </article>
             <article class="blog-card">
-              <img alt="" src="/assets/images/blog-training.webp" />
-              <div>
-                <span>Skillcase</span>
+              <a class="blog-media" href="/blog/nursing-salaries-germany-foreign-professionals" aria-label="Read nursing salary guide">
+                <img
+                  loading="lazy"
+                  alt="Nurse planning salary and career growth for Germany"
+                  src="/assets/images/benefit-earnings.webp"
+                />
+                <span class="blog-media-badge">Salary insights</span>
+              </a>
+              <div class="blog-card-body">
+                <div class="blog-meta">
+                  <span>Skillcase</span>
+                  <time datetime="2025-07-25">25 July 2025</time>
+                </div>
                 <h3>Nursing Salaries in Germany for Foreign Professionals</h3>
-                <p>Germany is a leading destination for nurses worldwide, offering competitive salaries, excellent working conditions, and plenty of opportunities for</p>
-                <small>25 July 2025</small>
-                <a href="#top">Read more <span data-icon="arrow-right" data-size="14"></span></a>
+                <p>
+                  Germany is a leading destination for nurses worldwide, offering competitive
+                  salaries, excellent working conditions, and plenty of opportunities for
+                </p>
+                <a href="/blog/nursing-salaries-germany-foreign-professionals">Read more <span data-icon="arrow-right" data-size="13"></span></a>
               </div>
             </article>
             <article class="blog-card">
-              <img alt="" src="/assets/images/blog-visa.webp" />
-              <div>
-                <span>Skillcase</span>
+              <a class="blog-media" href="/blog/moving-to-germany-as-a-foreign-doctor" aria-label="Read foreign doctor relocation guide">
+                <img
+                  loading="lazy"
+                  alt="Foreign medical professional preparing documents for Germany"
+                  src="/assets/images/benefit-residency.webp"
+                />
+                <span class="blog-media-badge">Relocation</span>
+              </a>
+              <div class="blog-card-body">
+                <div class="blog-meta">
+                  <span>Skillcase</span>
+                  <time datetime="2025-07-25">25 July 2025</time>
+                </div>
                 <h3>Moving to Germany as a Foreign Doctor: A Step-by-Step Guide</h3>
-                <p>Germany offers immense opportunities for medical professionals seeking career growth, attractive salaries, and exposure to an advanced healthcare system.</p>
-                <small>25 July 2025</small>
-                <a href="#top">Read more <span data-icon="arrow-right" data-size="14"></span></a>
+                <p>
+                  Germany offers immense opportunities for medical professionals seeking career
+                  growth, attractive salaries, and exposure to an advanced healthcare system.
+                </p>
+                <a href="/blog/moving-to-germany-as-a-foreign-doctor">Read more <span data-icon="arrow-right" data-size="13"></span></a>
               </div>
             </article>
           </div>
         </section>
 
-        <section class="podcast-section">
+        <section class="podcast-section" aria-labelledby="podcast-title">
           <div class="podcast-copy">
             <p class="eyebrow">Podcast</p>
-            <h2>Listen to Our Expert Podcast</h2>
+            <h2 id="podcast-title">Listen to Our Expert Podcast</h2>
             <p>
-              Learn about the growing demand for healthcare professionals in Germany, the key
-              skills employers seek, and how to stand out in the competitive job market.
+              Get practical guidance from Skillcase experts on healthcare careers in
+              Germany, employer expectations, documentation, and how to stand out with a
+              stronger international profile.
             </p>
-            <button class="btn btn-gold" type="button">
-              Watch more
-              <span data-icon="mic-2" data-size="16"></span>
-            </button>
-          </div>
-          <div class="podcast-player">
-            <div class="player-cover">
-              <span data-icon="sparkles" data-size="22"></span>
-              <span>Healthcare situation in Germany</span>
+            <div class="podcast-highlights" aria-label="Podcast highlights">
+              <span><span data-icon="stethoscope" data-size="13"></span>Healthcare careers</span>
+              <span><span data-icon="shield-check" data-size="13"></span>Expert guidance</span>
+              <span><span data-icon="file-check-2" data-size="13"></span>Germany pathway</span>
             </div>
-            <div class="wave-bars" aria-hidden="true">
-              <i style="height: 18px"></i><i style="height: 26px"></i><i style="height: 34px"></i><i style="height: 42px"></i>
-              <i style="height: 50px"></i><i style="height: 18px"></i><i style="height: 26px"></i><i style="height: 34px"></i>
-              <i style="height: 42px"></i><i style="height: 50px"></i><i style="height: 18px"></i><i style="height: 26px"></i>
-              <i style="height: 34px"></i><i style="height: 42px"></i><i style="height: 50px"></i><i style="height: 18px"></i>
-              <i style="height: 26px"></i><i style="height: 34px"></i><i style="height: 42px"></i><i style="height: 50px"></i>
-              <i style="height: 18px"></i><i style="height: 26px"></i><i style="height: 34px"></i><i style="height: 42px"></i>
-            </div>
+            <a
+              class="btn btn-outline podcast-secondary-cta"
+              href="https://www.youtube.com/watch?v=-1NrsTNPab4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Watch on YouTube
+              <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
+            </a>
           </div>
+          <article class="podcast-player" aria-label="Skillcase expert podcast video">
+            <div class="podcast-video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/-1NrsTNPab4?rel=0"
+                title="Listen to Our Expert Podcast on YouTube"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </article>
         </section>
 
-        <section class="section faq-section" id="faq">
-          <div class="section-heading">
-            <p class="eyebrow">FAQ</p>
-            <h2>Frequently asked questions</h2>
-          </div>
-          <div class="faq-list">
-            <details>
-              <summary>
-                How do I know if I’m eligible for a particular job?
-                <span data-icon="chevron-down" data-size="16"></span>
-              </summary>
-              <p>Each job listing on Skillcase includes detailed eligibility criteria. If you're unsure, our team is always available to discuss your qualifications and guide you on the best opportunities.</p>
-            </details>
-            <details>
-              <summary>
-                What documents do I need to apply for a job?
-                <span data-icon="chevron-down" data-size="16"></span>
-              </summary>
-              <p>You'll need your updated resume, professional certifications, language proficiency certificates, and educational qualifications documents. We will guide you through the exact requirements based on the job you apply for.</p>
-            </details>
-            <details>
-              <summary>
-                How long does the recruitment process take?
-                <span data-icon="chevron-down" data-size="16"></span>
-              </summary>
-              <p>The timeline can vary depending on the role and country. For nurses who've completed the language training, it usually takes 2-3 weeks to give your interview and receive an offer letter. You can expect the visa and documentation process to take another 7-8 weeks.</p>
-            </details>
-            <details>
-              <summary>
-                What countries can I apply to through Skillcase?
-                <span data-icon="chevron-down" data-size="16"></span>
-              </summary>
-              <p>Currently, we focus on global opportunities in Germany. We are continuously expanding our reach to bring more opportunities to our candidates.</p>
-            </details>
+        <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+          <div class="faq-shell">
+            <div class="faq-intro">
+              <p class="eyebrow">FAQ</p>
+              <h2 id="faq-title">Frequently asked questions</h2>
+              <p>
+                Quick clarity before you start your Germany healthcare pathway with
+                Skillcase.
+              </p>
+              <a class="faq-support-link" href="tel:+919731462667">
+                <span data-icon="phone-call" data-size="15"></span>
+                Talk to an advisor
+              </a>
+            </div>
+            <div class="faq-list">
+              <details open>
+                <summary>
+                  How do I know if I’m eligible for a particular job?
+                  <span data-icon="chevron-down" data-size="15"></span>
+                </summary>
+                <p>Each job listing on Skillcase includes detailed eligibility criteria. If you're unsure, our team is always available to discuss your qualifications and guide you on the best opportunities.</p>
+              </details>
+              <details>
+                <summary>
+                  What documents do I need to apply for a job?
+                  <span data-icon="chevron-down" data-size="15"></span>
+                </summary>
+                <p>You'll need your updated resume, professional certifications, language proficiency certificates, and educational qualifications documents. We will guide you through the exact requirements based on the job you apply for.</p>
+              </details>
+              <details>
+                <summary>
+                  How long does the recruitment process take?
+                  <span data-icon="chevron-down" data-size="15"></span>
+                </summary>
+                <p>The timeline can vary depending on the role and country. For nurses who've completed the language training, it usually takes 2-3 weeks to give your interview and receive an offer letter. You can expect the visa and documentation process to take another 7-8 weeks.</p>
+              </details>
+              <details>
+                <summary>
+                  What countries can I apply to through Skillcase?
+                  <span data-icon="chevron-down" data-size="15"></span>
+                </summary>
+                <p>Currently, we focus on global opportunities in Germany. We are continuously expanding our reach to bring more opportunities to our candidates.</p>
+              </details>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer class="site-footer">
-        <div>
-          <a class="brand footer-brand" href="#top">
-            <img alt="Skillcase" class="brand-logo" src="/assets/images/SKILLCASE_logo.svg" />
-          </a>
-          <p>
-            Empowering professionals for global careers. We simplify international
-            recruitment through expert guidance, language training, and end-to-end
-            relocation support.
-          </p>
-        </div>
-        <div>
-          <h3>Contact Us</h3>
-          <a href="tel:+919731462667">
-            <span data-icon="briefcase-business" data-size="15"></span>
-            Phone: +91 97314 62667
-          </a>
-          <a href="mailto:info@skillcase.in">
-            <span data-icon="mail" data-size="15"></span>
-            Email: info@skillcase.in
-          </a>
-          <a href="#top">
-            <span data-icon="map-pin" data-size="15"></span>
-            Hours: Mon - Sat | 10:00 AM - 8:00 PM
-          </a>
-        </div>
-        <div>
-          <h3>Quick Links</h3>
-          <a href="#process">About Us</a>
-          <a href="#top">Terms &amp; Conditions</a>
-          <a href="#top">Privacy Policy</a>
-          <a href="#blogs">Blog</a>
-        </div>
-        <p class="footer-note">© 2026 Skillcase All Rights Reserved.</p>
-      </footer>
+      <SiteFooter />
     </div>
 </BaseLayout>

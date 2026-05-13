@@ -1,0 +1,61 @@
+---
+import { formatInline } from "../utils/text";
+import type { LegalBlock } from "../data/legalContent";
+
+const { page } = Astro.props as {
+  page: {
+    title: string;
+    eyebrow: string;
+    blocks: readonly LegalBlock[];
+  };
+};
+const blocks = page.blocks.slice(1);
+---
+
+<main class="page-main legal-page">
+  <section class="page-hero legal-hero page-hero-rich">
+    <div class="page-hero-copy">
+      <p class="eyebrow">{page.eyebrow}</p>
+      <h1>{page.title}</h1>
+      <p>
+        The original Skillcase policy content has been preserved and formatted into
+        a cleaner, easier-to-scan document.
+      </p>
+    </div>
+    <div class="legal-command-card" aria-label="Skillcase policy overview">
+      <div class="legal-command-top">
+        <span data-icon="shield-check" data-size="20"></span>
+        <strong>Policy console</strong>
+      </div>
+      <div class="legal-command-grid">
+        <span><span data-icon="lock-key" data-size="15"></span>Security</span>
+        <span><span data-icon="database" data-size="15"></span>Data use</span>
+        <span><span data-icon="user-circle-check" data-size="15"></span>Candidate rights</span>
+        <span><span data-icon="file-check-2" data-size="15"></span>Platform terms</span>
+      </div>
+      <p>Official Skillcase content, redesigned for easier scanning without changing the source copy.</p>
+    </div>
+  </section>
+
+  <section class="section legal-shell">
+    <aside class="legal-sidebar" aria-label="Document details">
+      <span>Document</span>
+      <strong>{page.title}</strong>
+      <small>Source: skillcase.in</small>
+    </aside>
+    <article class="legal-content">
+      {blocks.map((block) => {
+        if (block.type === "h1") {
+          return <h2 set:html={formatInline(block.text)} />;
+        }
+        if (block.type === "h2" || block.type === "h3" || block.type === "h4") {
+          return <h3 set:html={formatInline(block.text)} />;
+        }
+        if (block.type === "li") {
+          return <p class="legal-list-item" set:html={formatInline(block.text)} />;
+        }
+        return <p set:html={formatInline(block.text)} />;
+      })}
+    </article>
+  </section>
+</main>

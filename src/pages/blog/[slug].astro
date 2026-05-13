@@ -1,0 +1,117 @@
+---
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import { blogPosts } from "../../data/siteContent";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { formatInline } from "../../utils/text";
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const relatedPosts = blogPosts.filter((item) => item.slug !== post.slug);
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+const articleBlocks = post.content.map((block, index) =>
+  block.type === "heading" || block.type === "subheading"
+    ? { ...block, id: `${slugify(block.text)}-${index}` }
+    : block
+);
+const tocItems = articleBlocks.filter(
+  (block) => block.type === "heading" || block.type === "subheading"
+);
+---
+
+<BaseLayout title={`${post.title} | Skillcase Blog`} description={post.excerpt}>
+  <div class="site-shell">
+    <SiteHeader active="blog" />
+    <main class="page-main">
+      <article class="article-page">
+        <header class="article-hero">
+          <a class="article-back" href="/blog">
+            <span data-icon="arrow-left" data-size="14"></span>
+            Back to blogs
+          </a>
+          <div class="article-hero-grid article-hero-rich">
+            <div class="article-title-block">
+              <p class="eyebrow">{post.category}</p>
+              <h1>{post.title}</h1>
+              <p>{post.excerpt}</p>
+              <div class="article-meta">
+                <span>{post.author}</span>
+                <time datetime={post.datetime}>{post.date}</time>
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+            <div class="article-image-card article-thumbnail-card">
+              <img alt={post.imageAlt} src={post.image} />
+            </div>
+          </div>
+        </header>
+
+        <div class="article-layout">
+          <aside class="article-aside article-toc" aria-label="Table of contents">
+            <strong>Table of contents</strong>
+            <nav>
+              {tocItems.map((item, index) => (
+                <a
+                  class:list={[item.type === "subheading" && "is-subheading", index === 0 && "is-active"]}
+                  data-toc-link={item.id}
+                  href={`#${item.id}`}
+                >
+                  {item.text}
+                </a>
+              ))}
+            </nav>
+            <a href="/#jobs">
+              Start pathway
+              <span data-icon="arrow-right" data-size="12"></span>
+            </a>
+          </aside>
+          <div class="article-content">
+            {articleBlocks.map((block) => {
+              if (block.type === "heading") {
+                return <h2 data-toc-section id={block.id}>{block.text}</h2>;
+              }
+              if (block.type === "subheading") {
+                return <h3 data-toc-section id={block.id}>{block.text}</h3>;
+              }
+              if (block.type === "list") {
+                return (
+                  <ul>
+                    {block.items.map((item) => <li set:html={formatInline(item)} />)}
+                  </ul>
+                );
+              }
+              return <p set:html={formatInline(block.text)} />;
+            })}
+          </div>
+        </div>
+      </article>
+
+      <section class="section related-section">
+        <div class="section-heading">
+          <p class="eyebrow">More guides</p>
+          <h2>Keep exploring the Germany pathway</h2>
+        </div>
+        <div class="related-grid">
+          {relatedPosts.map((item) => (
+            <a class="related-card" href={`/blog/${item.slug}`}>
+              <span>{item.category}</span>
+              <strong>{item.title}</strong>
+              <small>{item.readTime}</small>
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>

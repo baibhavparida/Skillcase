@@ -1,17 +1,17 @@
-import React, { useState, type CSSProperties, type KeyboardEvent } from "react";
+import React, { useEffect, useState, type CSSProperties, type KeyboardEvent } from "react";
 import {
-  ArrowUpRight,
-  BadgeCheck,
-  Building2,
-  Check,
-  ClipboardCheck,
-  GraduationCap,
-  HeartHandshake,
-  PlaneTakeoff,
-  Stethoscope,
-  TicketCheck,
-  Video,
-} from "lucide-react";
+  AirplaneTakeoffIcon as AirplaneTakeoff,
+  ArrowUpRightIcon as ArrowUpRight,
+  BuildingsIcon as Buildings,
+  CheckIcon as Check,
+  ClipboardTextIcon as ClipboardText,
+  GraduationCapIcon as GraduationCap,
+  HandshakeIcon as Handshake,
+  SealCheckIcon as SealCheck,
+  StethoscopeIcon as Stethoscope,
+  TicketIcon as Ticket,
+  VideoCameraIcon as VideoCamera,
+} from "@phosphor-icons/react/ssr";
 
 const steps = [
   {
@@ -19,14 +19,14 @@ const steps = [
     label: "Profile & Assessment",
     summary: "Readiness map, documents, pathway fit",
     status: "Profile readiness in progress",
-    icon: ClipboardCheck,
+    icon: ClipboardText,
   },
   {
     id: "matching",
     label: "Job Matching",
     summary: "Shortlisted roles around your profile",
     status: "Employer matching in progress",
-    icon: HeartHandshake,
+    icon: Handshake,
   },
   {
     id: "training",
@@ -40,11 +40,12 @@ const steps = [
     label: "Immigration & Relocation",
     summary: "Visa, travel, and settlement planning",
     status: "Relocation file getting organized",
-    icon: PlaneTakeoff,
+    icon: AirplaneTakeoff,
   },
 ] as const;
 
 type StepId = (typeof steps)[number]["id"];
+const AUTO_ROTATE_DELAY = 4200;
 
 function meter(value: string): CSSProperties {
   return { "--value": value } as CSSProperties;
@@ -52,8 +53,29 @@ function meter(value: string): CSSProperties {
 
 export default function ProcessWorkspace() {
   const [activeId, setActiveId] = useState<StepId>("profile");
+  const [isPointerInside, setIsPointerInside] = useState(false);
+  const [isFocusInside, setIsFocusInside] = useState(false);
   const activeIndex = steps.findIndex((step) => step.id === activeId);
   const activeStep = steps[activeIndex] ?? steps[0];
+  const isAutoPaused = isPointerInside || isFocusInside;
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion || isAutoPaused || steps.length < 2) {
+      return undefined;
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveId((currentId) => {
+        const currentIndex = steps.findIndex((step) => step.id === currentId);
+        const nextIndex = (currentIndex + 1) % steps.length;
+        return steps[nextIndex].id;
+      });
+    }, AUTO_ROTATE_DELAY);
+
+    return () => window.clearInterval(timer);
+  }, [isAutoPaused]);
 
   const activateByKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
@@ -67,11 +89,20 @@ export default function ProcessWorkspace() {
   };
 
   return (
-    <div className="process-workspace">
+    <div
+      className="process-workspace"
+      onMouseEnter={() => setIsPointerInside(true)}
+      onMouseLeave={() => setIsPointerInside(false)}
+      onFocus={() => setIsFocusInside(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setIsFocusInside(false);
+        }
+      }}
+    >
       <div className="journey-topbar">
         <div className="journey-logo-lockup">
           <img alt="Skillcase" src="/assets/images/SKILLCASE_logo.svg" />
-          <span>Career pathway workspace</span>
         </div>
         <div className="journey-progress-wrap" aria-hidden="true">
           <span>{activeStep.status}</span>
@@ -81,7 +112,7 @@ export default function ProcessWorkspace() {
         </div>
         <a className="journey-cta" href="#jobs">
           Get started
-          <ArrowUpRight size={15} aria-hidden="true" />
+          <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
         </a>
       </div>
 
@@ -103,7 +134,7 @@ export default function ProcessWorkspace() {
                 onKeyDown={(event) => activateByKeyboard(event, index)}
               >
                 <span className="journey-index">
-                  <Icon size={16} aria-hidden="true" />
+                  <Icon size={18} weight="bold" aria-hidden="true" />
                 </span>
                 <strong>{step.label}</strong>
                 <small>{step.summary}</small>
@@ -113,7 +144,7 @@ export default function ProcessWorkspace() {
         </div>
 
         <div className="journey-preview">
-          <section className={`journey-asset${activeId === "profile" ? " is-active" : ""}`} aria-label="Profile and assessment preview">
+          <section className={`journey-asset journey-asset-profile${activeId === "profile" ? " is-active" : ""}`} aria-label="Profile and assessment preview">
             <div className="asset-rail">
               <span>Documents</span>
               <strong>8/10</strong>
@@ -133,22 +164,22 @@ export default function ProcessWorkspace() {
               </div>
               <div className="asset-meter"><i style={meter("92%")} /></div>
               <ul className="asset-checklist">
-                <li><Check size={13} aria-hidden="true" />Education mapped</li>
-                <li><Check size={13} aria-hidden="true" />Experience verified</li>
-                <li><Check size={13} aria-hidden="true" />Profile gaps highlighted</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Education mapped</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Experience verified</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Profile gaps highlighted</li>
               </ul>
             </div>
             <div className="asset-mini-card asset-mini-card-top">
-              <BadgeCheck size={16} aria-hidden="true" />
+              <SealCheck size={17} weight="fill" aria-hidden="true" />
               <strong>Assessment complete</strong>
               <small>Clear action plan</small>
             </div>
           </section>
 
-          <section className={`journey-asset${activeId === "matching" ? " is-active" : ""}`} aria-label="Job matching preview">
+          <section className={`journey-asset journey-asset-matching${activeId === "matching" ? " is-active" : ""}`} aria-label="Job matching preview">
             <div className="asset-match-stack">
               <article>
-                <span><Stethoscope size={14} aria-hidden="true" /></span>
+                <span><Stethoscope size={16} weight="bold" aria-hidden="true" /></span>
                 <div>
                   <strong>Registered Nurse</strong>
                   <small>Hamburg · Hospital network</small>
@@ -156,7 +187,7 @@ export default function ProcessWorkspace() {
                 <b>96%</b>
               </article>
               <article>
-                <span><Building2 size={14} aria-hidden="true" /></span>
+                <span><Buildings size={16} weight="bold" aria-hidden="true" /></span>
                 <div>
                   <strong>Care Specialist</strong>
                   <small>Berlin · Senior care</small>
@@ -164,7 +195,7 @@ export default function ProcessWorkspace() {
                 <b>91%</b>
               </article>
               <article>
-                <span><GraduationCap size={14} aria-hidden="true" /></span>
+                <span><GraduationCap size={16} weight="bold" aria-hidden="true" /></span>
                 <div>
                   <strong>Ausbildung Track</strong>
                   <small>Munich · Training partner</small>
@@ -186,7 +217,7 @@ export default function ProcessWorkspace() {
             </div>
           </section>
 
-          <section className={`journey-asset${activeId === "training" ? " is-active" : ""}`} aria-label="Training and preparation preview">
+          <section className={`journey-asset journey-asset-training${activeId === "training" ? " is-active" : ""}`} aria-label="Training and preparation preview">
             <div className="asset-panel asset-training-panel">
               <div className="asset-panel-header">
                 <span>Preparation plan</span>
@@ -202,7 +233,7 @@ export default function ProcessWorkspace() {
               </div>
             </div>
             <div className="asset-mini-card asset-training-note">
-              <Video size={16} aria-hidden="true" />
+              <VideoCamera size={18} weight="bold" aria-hidden="true" />
               <strong>Mock interview</strong>
               <small>Friday · 6:30 PM</small>
             </div>
@@ -213,12 +244,13 @@ export default function ProcessWorkspace() {
             </div>
           </section>
 
-          <section className={`journey-asset${activeId === "relocation" ? " is-active" : ""}`} aria-label="Immigration and relocation preview">
+          <section className={`journey-asset journey-asset-relocation${activeId === "relocation" ? " is-active" : ""}`} aria-label="Immigration and relocation preview">
             <div className="asset-route-card">
               <div className="asset-route-map" aria-hidden="true">
                 <span className="route-dot route-dot-india">India</span>
                 <span className="route-dot route-dot-germany">Germany</span>
-                <i />
+                <span className="route-line" />
+                <AirplaneTakeoff className="route-plane" size={16} weight="fill" aria-hidden="true" />
               </div>
               <div className="asset-panel-header">
                 <span>Relocation file</span>
@@ -227,12 +259,12 @@ export default function ProcessWorkspace() {
             </div>
             <div className="asset-panel asset-visa-panel">
               <ul className="asset-checklist">
-                <li><Check size={13} aria-hidden="true" />Visa documentation</li>
-                <li><Check size={13} aria-hidden="true" />Travel planning</li>
-                <li><Check size={13} aria-hidden="true" />Family support checklist</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Visa documentation</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Travel planning</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Family support checklist</li>
               </ul>
               <div className="asset-ticket">
-                <TicketCheck size={17} aria-hidden="true" />
+                <Ticket size={18} weight="bold" aria-hidden="true" />
                 <div>
                   <strong>Offer to arrival</strong>
                   <small>Structured by Skillcase</small>

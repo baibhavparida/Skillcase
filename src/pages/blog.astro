@@ -1,0 +1,76 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { blogPosts } from "../data/siteContent";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Skillcase Blog | Healthcare Jobs in Germany"
+  description="Read Skillcase guides on nursing jobs in Germany, salary expectations, documentation, relocation, and pathways for healthcare professionals."
+>
+  <div class="site-shell">
+    <SiteHeader active="blog" />
+    <main class="page-main">
+      <section class="page-hero blog-subscribe-hero page-hero-rich">
+        <div class="page-hero-copy">
+          <p class="eyebrow">Skillcase insights</p>
+          <h1>Practical guides for healthcare careers in Germany.</h1>
+          <p>
+            Clear, useful reads on salaries, eligibility, language preparation,
+            relocation, recognition, and long-term career planning.
+          </p>
+          <div class="blog-topic-row" aria-label="Blog topics">
+            <span><span data-icon="stethoscope" data-size="14"></span>Nursing jobs</span>
+            <span><span data-icon="chart-line-up" data-size="14"></span>Salary insights</span>
+            <span><span data-icon="plane-takeoff" data-size="14"></span>Relocation</span>
+          </div>
+        </div>
+        <form class="blog-subscribe-card" action="#" aria-label="Subscribe to Skillcase guides" data-subscribe-form>
+          <span data-icon="mail" data-size="20"></span>
+          <strong>Get Germany pathway updates</strong>
+          <p>Monthly Skillcase guidance on language prep, documents, jobs, salaries, and relocation.</p>
+          <label>
+            <span>Email address</span>
+            <input name="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+          </label>
+          <button class="btn btn-gold" type="submit">
+            Subscribe
+            <span data-icon="arrow-right" data-size="13"></span>
+          </button>
+          <small data-subscribe-status>No spam. Just practical candidate guidance.</small>
+        </form>
+      </section>
+
+      <section class="section blog-list-section">
+        <div class="section-heading blog-page-heading">
+          <p class="eyebrow">Latest articles</p>
+          <h2>Everything you need before starting your Germany pathway.</h2>
+        </div>
+        <div class="blog-grid blog-page-grid">
+          {blogPosts.map((post) => (
+            <article class="blog-card">
+              <a class="blog-media" href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`}>
+                <img loading="lazy" alt={post.imageAlt} src={post.image} />
+                <span class="blog-media-badge">{post.category}</span>
+              </a>
+              <div class="blog-card-body">
+                <div class="blog-meta">
+                  <span>{post.author}</span>
+                  <time datetime={post.datetime}>{post.date}</time>
+                </div>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <a href={`/blog/${post.slug}`}>
+                  Read more
+                  <span data-icon="arrow-right" data-size="13"></span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+    <SiteFooter />
+  </div>
+</BaseLayout>
