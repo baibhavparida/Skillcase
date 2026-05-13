@@ -592,6 +592,9 @@ img {
   display: flex;
   width: max-content;
   gap: 34px;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
   animation: offerMarquee 42s linear infinite;
 }
 
@@ -3450,11 +3453,11 @@ img {
 
 @keyframes offerMarquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(calc(-50% - 5px));
+    transform: translate3d(calc(-50% - 5px), 0, 0);
   }
 }
 
@@ -3582,11 +3585,11 @@ img {
 
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(calc(-50% - 7px));
+    transform: translate3d(calc(-50% - 7px), 0, 0);
   }
 }
 
@@ -4411,7 +4414,7 @@ img {
 
   .offer-marquee-track {
     gap: 24px;
-    animation-duration: 38s;
+    animation-duration: 26s;
   }
 
   .offer-chip {

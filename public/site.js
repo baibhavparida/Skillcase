@@ -248,6 +248,15 @@ async function initGlobe() {
       paused: false,
       phi: Math.PI,
     };
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const compactViewportQuery = window.matchMedia("(max-width: 760px)");
+    const getRotationSpeed = () => {
+      if (reducedMotionQuery.matches) {
+        return 0;
+      }
+
+      return compactViewportQuery.matches ? 0.00135 : 0.0005;
+    };
 
     canvas.addEventListener("pointerdown", (event) => {
       state.pointer = { x: event.clientX, y: event.clientY };
@@ -336,7 +345,7 @@ async function initGlobe() {
       }
 
       if (!state.paused) {
-        state.phi += 0.0005;
+        state.phi += getRotationSpeed();
 
         if (Math.abs(state.velocity.phi) > 0.0001 || Math.abs(state.velocity.theta) > 0.0001) {
           state.phiOffset += state.velocity.phi;
