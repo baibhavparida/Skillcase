@@ -7,10 +7,10 @@
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0",
     "check": "astro check",
-    "cf:dev": "npm run build && wrangler pages dev dist --port 3000 --compatibility-date=2026-05-12",
-    "cf:publish": "wrangler pages deploy dist --project-name skillcase-web",
-    "cf:deploy": "npm run build && wrangler pages deploy dist --project-name skillcase-web",
-    "cf:deploy:preview": "npm run build && wrangler pages deploy dist --project-name skillcase-web --branch preview"
+    "cf:dev": "npm run build && wrangler dev --port 3000",
+    "cf:publish": "wrangler deploy",
+    "cf:deploy": "npm run build && wrangler deploy",
+    "cf:deploy:dry-run": "npm run build && wrangler deploy --dry-run"
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,8 @@
-name = "skillcase-web"
-compatibility_date = "2026-05-12"
-pages_build_output_dir = "dist"
+name = "skillcase"
+main = "src/worker.js"
+compatibility_date = "2026-05-13"
 
-# This is a Cloudflare Pages project. Use:
-#   wrangler pages deploy dist --project-name skillcase-web
-# Do not use `wrangler deploy`; that command is for Workers and will fail here.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
