@@ -104,9 +104,14 @@ const tocItems = articleBlocks.filter(
         <div class="related-grid">
           {relatedPosts.map((item) => (
             <a class="related-card" href={`/blog/${item.slug}`}>
-              <span>{item.category}</span>
-              <strong>{item.title}</strong>
-              <small>{item.readTime}</small>
+              <div class="related-media">
+                <img loading="lazy" alt={item.imageAlt} src={item.image} />
+              </div>
+              <div class="related-card-copy">
+                <span>{item.category}</span>
+                <strong>{item.title}</strong>
+                <small>{item.readTime}</small>
+              </div>
             </a>
           ))}
         </div>

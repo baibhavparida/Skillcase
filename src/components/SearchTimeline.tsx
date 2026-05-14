@@ -1,4 +1,4 @@
-import React, { useEffect, useState, type CSSProperties, type KeyboardEvent } from "react";
+import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import {
   AirplaneIcon as Airplane,
   CheckIcon as Check,
@@ -54,6 +54,12 @@ function meter(value: string): CSSProperties {
 
 function accent(value: string): CSSProperties {
   return { "--step-accent": value } as CSSProperties;
+}
+
+function getNextStepId(currentId: StepId): StepId {
+  const currentIndex = steps.findIndex((step) => step.id === currentId);
+  const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % steps.length;
+  return steps[nextIndex].id;
 }
 
 function renderAsset(id: StepId) {
@@ -149,25 +155,57 @@ function renderAsset(id: StepId) {
 }
 
 export default function SearchTimeline() {
+  const timelineRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<StepId>("profile");
+  const [isVisible, setIsVisible] = useState(false);
   const activeIndex = steps.findIndex((step) => step.id === activeId);
   const progressStyle = { "--timeline-progress": `${((activeIndex + 1) / steps.length) * 100}%` } as CSSProperties;
+
+  useEffect(() => {
+    const timeline = timelineRef.current;
+
+    if (!timeline) {
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: "0px 0px -18% 0px", threshold: 0.24 },
+    );
+
+    observer.observe(timeline);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      setActiveId(steps[0].id);
+    }
+  }, [isVisible]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
+    if (!isVisible) {
+      return;
+    }
+
     const timer = window.setTimeout(() => {
-      setActiveId((currentId) => {
-        const currentIndex = steps.findIndex((step) => step.id === currentId);
-        const nextIndex = (currentIndex + 1) % steps.length;
-        return steps[nextIndex].id;
-      });
+      setActiveId((currentId) => getNextStepId(currentId));
     }, AUTO_ADVANCE_MS);
 
     return () => window.clearTimeout(timer);
-  }, [activeId]);
+  }, [activeId, isVisible]);
 
   const activateByKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
@@ -181,7 +219,7 @@ export default function SearchTimeline() {
   };
 
   return (
-    <div className="job-timeline-shell">
+    <div className="job-timeline-shell" ref={timelineRef}>
       <span className="timeline-rail" aria-hidden="true"><i style={progressStyle} /></span>
       <ol className="job-timeline-steps" aria-label="International job search process">
         {steps.map((step, index) => {

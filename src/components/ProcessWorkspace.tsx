@@ -1,4 +1,4 @@
-import React, { useEffect, useState, type CSSProperties, type KeyboardEvent } from "react";
+import React, { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import {
   AirplaneTakeoffIcon as AirplaneTakeoff,
   ArrowUpRightIcon as ArrowUpRight,
@@ -51,8 +51,16 @@ function meter(value: string): CSSProperties {
   return { "--value": value } as CSSProperties;
 }
 
+function getNextStepId(currentId: StepId): StepId {
+  const currentIndex = steps.findIndex((step) => step.id === currentId);
+  const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % steps.length;
+  return steps[nextIndex].id;
+}
+
 export default function ProcessWorkspace() {
+  const workspaceRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<StepId>("profile");
+  const [isVisible, setIsVisible] = useState(false);
   const [isPointerInside, setIsPointerInside] = useState(false);
   const [isFocusInside, setIsFocusInside] = useState(false);
   const activeIndex = steps.findIndex((step) => step.id === activeId);
@@ -60,22 +68,48 @@ export default function ProcessWorkspace() {
   const isAutoPaused = isPointerInside || isFocusInside;
 
   useEffect(() => {
+    const workspace = workspaceRef.current;
+
+    if (!workspace) {
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { rootMargin: "0px 0px -18% 0px", threshold: 0.24 },
+    );
+
+    observer.observe(workspace);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      setActiveId(steps[0].id);
+    }
+  }, [isVisible]);
+
+  useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (reducedMotion || isAutoPaused || steps.length < 2) {
+    if (reducedMotion || !isVisible || isAutoPaused || steps.length < 2) {
       return undefined;
     }
 
     const timer = window.setInterval(() => {
-      setActiveId((currentId) => {
-        const currentIndex = steps.findIndex((step) => step.id === currentId);
-        const nextIndex = (currentIndex + 1) % steps.length;
-        return steps[nextIndex].id;
-      });
+      setActiveId((currentId) => getNextStepId(currentId));
     }, AUTO_ROTATE_DELAY);
 
     return () => window.clearInterval(timer);
-  }, [isAutoPaused]);
+  }, [isAutoPaused, isVisible]);
 
   const activateByKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
@@ -91,6 +125,7 @@ export default function ProcessWorkspace() {
   return (
     <div
       className="process-workspace"
+      ref={workspaceRef}
       onMouseEnter={() => setIsPointerInside(true)}
       onMouseLeave={() => setIsPointerInside(false)}
       onFocus={() => setIsFocusInside(true)}

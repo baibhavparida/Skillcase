@@ -571,6 +571,7 @@ async function initGlobe() {
     let globe = null;
     let animationId = 0;
     let resizeObserver = null;
+    let viewportObserver = null;
 
     const config = {
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
@@ -595,28 +596,9 @@ async function initGlobe() {
       opacity: 0.9,
     };
 
-    const animate = () => {
+    const renderFrame = () => {
       if (!globe) {
         return;
-      }
-
-      if (!state.paused) {
-        state.phi += getRotationSpeed();
-
-        if (Math.abs(state.velocity.phi) > 0.0001 || Math.abs(state.velocity.theta) > 0.0001) {
-          state.phiOffset += state.velocity.phi;
-          state.thetaOffset += state.velocity.theta;
-          state.velocity.phi *= 0.95;
-          state.velocity.theta *= 0.95;
-        }
-
-        const thetaMin = -0.34;
-        const thetaMax = 0.34;
-        if (state.thetaOffset < thetaMin) {
-          state.thetaOffset += (thetaMin - state.thetaOffset) * 0.1;
-        } else if (state.thetaOffset > thetaMax) {
-          state.thetaOffset += (thetaMax - state.thetaOffset) * 0.1;
-        }
       }
 
       globe.update({
@@ -639,8 +621,73 @@ async function initGlobe() {
         markers,
         arcs,
       });
+    };
+
+    const animate = () => {
+      if (!globe) {
+        animationId = 0;
+        return;
+      }
+
+      if (!state.paused) {
+        state.phi += getRotationSpeed();
+
+        if (Math.abs(state.velocity.phi) > 0.0001 || Math.abs(state.velocity.theta) > 0.0001) {
+          state.phiOffset += state.velocity.phi;
+          state.thetaOffset += state.velocity.theta;
+          state.velocity.phi *= 0.95;
+          state.velocity.theta *= 0.95;
+        }
+
+        const thetaMin = -0.34;
+        const thetaMax = 0.34;
+        if (state.thetaOffset < thetaMin) {
+          state.thetaOffset += (thetaMin - state.thetaOffset) * 0.1;
+        } else if (state.thetaOffset > thetaMax) {
+          state.thetaOffset += (thetaMax - state.thetaOffset) * 0.1;
+        }
+      }
+
+      renderFrame();
 
       animationId = requestAnimationFrame(animate);
+    };
+
+    const startAnimation = () => {
+      if (!globe || animationId || reducedMotionQuery.matches) {
+        return;
+      }
+
+      animationId = requestAnimationFrame(animate);
+    };
+
+    const stopAnimation = () => {
+      if (!animationId) {
+        return;
+      }
+
+      cancelAnimationFrame(animationId);
+      animationId = 0;
+    };
+
+    const observeGlobeVisibility = () => {
+      if (!("IntersectionObserver" in window)) {
+        startAnimation();
+        return;
+      }
+
+      viewportObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            startAnimation();
+          } else {
+            stopAnimation();
+          }
+        },
+        { rootMargin: "0px 0px -18% 0px", threshold: 0.18 },
+      );
+
+      viewportObserver.observe(container.closest(".globe-feature") || container);
     };
 
     const mountGlobe = () => {
@@ -651,7 +698,8 @@ async function initGlobe() {
       }
 
       globe = createGlobe(canvas, { ...config, width, height: width });
-      animate();
+      renderFrame();
+      observeGlobeVisibility();
       window.setTimeout(() => {
         canvas.style.opacity = "1";
       });
@@ -673,6 +721,7 @@ async function initGlobe() {
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
+      viewportObserver?.disconnect();
       resizeObserver?.disconnect();
       globe?.destroy();
     });
