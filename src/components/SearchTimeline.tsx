@@ -8,146 +8,143 @@ import {
   TranslateIcon as Translate,
   UserCircleCheckIcon as UserCircleCheck,
 } from "@phosphor-icons/react/ssr";
+import type { Icon } from "@phosphor-icons/react";
 
-const steps = [
+type StepId = "profile" | "jobs" | "prepare" | "visa";
+
+type Step = {
+  id: StepId;
+  num: string;
+  label: string;
+  short: string;
+  summary: string;
+  status: string;
+  icon: Icon;
+};
+
+const steps: Step[] = [
   {
     id: "profile",
-    label: "Create Profile",
-    summary: "Add education, experience, language files, and preferred pathway.",
-    status: "Profile builder active",
-    accent: "#05a3e5",
+    num: "01",
+    label: "Create your profile",
+    short: "Profile",
+    summary: "Education, experience, German level and the cities or roles you want.",
+    status: "Profile builder",
     icon: UserCircleCheck,
   },
   {
     id: "jobs",
-    label: "Apply for eligible jobs",
-    summary: "Shortlist eligible roles and apply with an employer-ready profile.",
-    status: "Eligible matches ready",
-    accent: "#05a3e5",
+    num: "02",
+    label: "Get matched to roles",
+    short: "Match",
+    summary: "Skillcase shortlists eligible Germany roles for your level and qualification.",
+    status: "Eligible matches",
     icon: FirstAid,
   },
   {
     id: "prepare",
+    num: "03",
     label: "Prepare for interviews",
-    summary: "Review your CV, practice B1 answers, and rehearse with role context.",
-    status: "Interview prep scheduled",
-    accent: "#05a3e5",
+    short: "Prep",
+    summary: "CV polish, mock interviews in German and English, and recruiter-style practice.",
+    status: "Coach-led prep",
     icon: Chats,
   },
   {
     id: "visa",
-    label: "Complete VISA documents",
-    summary: "Organize visa files, travel tasks, and relocation support.",
-    status: "Visa checklist in review",
-    accent: "#05a3e5",
+    num: "04",
+    label: "Documents, visa, move",
+    short: "Move",
+    summary: "Anerkennung, embassy, family relocation and the first 30 days in Germany.",
+    status: "End-to-end support",
     icon: FileText,
   },
-] as const;
+];
 
-const AUTO_ADVANCE_MS = 4500;
-
-type StepId = (typeof steps)[number]["id"];
+const AUTO_ADVANCE_MS = 5200;
 
 function meter(value: string): CSSProperties {
   return { "--value": value } as CSSProperties;
 }
 
-function accent(value: string): CSSProperties {
-  return { "--step-accent": value } as CSSProperties;
-}
-
-function getNextStepId(currentId: StepId): StepId {
-  const currentIndex = steps.findIndex((step) => step.id === currentId);
-  const nextIndex = ((currentIndex >= 0 ? currentIndex : 0) + 1) % steps.length;
-  return steps[nextIndex].id;
-}
-
-function renderAsset(id: StepId) {
+function MiniAsset({ id }: { id: StepId }) {
   switch (id) {
     case "profile":
       return (
-        <div className="timeline-asset timeline-asset-profile" aria-hidden="true">
-          <div className="asset-ui-head">
-            <span>Candidate file</span>
-            <b>72%</b>
+        <div className="sc-tl-asset" aria-hidden="true">
+          <div className="sc-tl-asset-row">
+            <span className="sc-tl-asset-label">Candidate file</span>
+            <span className="sc-tl-asset-tag">72%</span>
           </div>
-          <div className="asset-readiness-track">
-            <i style={meter("72%")} />
-          </div>
-          <div className="asset-status-grid">
-            <span><Check size={13} weight="bold" />Education<b>Mapped</b></span>
-            <span><Check size={13} weight="bold" />Experience<b>Added</b></span>
-            <span className="asset-is-next"><Check size={13} weight="bold" />Language<b>Queued</b></span>
-          </div>
-          <div className="asset-file-strip">
-            <span>CV</span>
-            <span>Certs</span>
-            <span className="asset-is-next">B1 file</span>
-          </div>
+          <div className="sc-tl-bar"><i style={meter("72%")} /></div>
+          <ul className="sc-tl-stack">
+            <li className="is-done"><Check size={10} weight="bold" />Qualification<em>BSc</em></li>
+            <li className="is-done"><Check size={10} weight="bold" />Experience<em>3 yrs</em></li>
+            <li className="is-next"><Check size={10} weight="bold" />Language<em>A2</em></li>
+          </ul>
         </div>
       );
     case "jobs":
       return (
-        <div className="timeline-asset timeline-asset-jobs" aria-hidden="true">
-          <div className="asset-ui-head">
-            <span>Role shortlist</span>
-            <b>Fit</b>
+        <div className="sc-tl-asset" aria-hidden="true">
+          <div className="sc-tl-asset-row">
+            <span className="sc-tl-asset-label">Shortlist</span>
+            <span className="sc-tl-asset-tag is-cyan">5 fits</span>
           </div>
-          <div className="asset-match-table">
-            <span className="asset-match-row">
-              <strong>Registered Nurse<small>Clinical route</small></strong>
-              <b>96%</b>
-              <i style={meter("96%")} />
-            </span>
-            <span className="asset-match-row">
-              <strong>Care Facility<small>Employer ready</small></strong>
-              <b>91%</b>
-              <i style={meter("91%")} />
-            </span>
-            <span className="asset-match-row">
-              <strong>Ausbildung<small>Training route</small></strong>
-              <b>86%</b>
-              <i style={meter("86%")} />
-            </span>
-          </div>
-          <p className="asset-note">Screening keeps the shortlist focused.</p>
+          <ul className="sc-tl-match">
+            <li>
+              <strong>Hamburg Care</strong>
+              <span><i style={meter("96%")} /></span>
+              <b>96</b>
+            </li>
+            <li>
+              <strong>Aachen City</strong>
+              <span><i style={meter("91%")} /></span>
+              <b>91</b>
+            </li>
+            <li>
+              <strong>Berlin Elder Care</strong>
+              <span><i style={meter("84%")} /></span>
+              <b>84</b>
+            </li>
+          </ul>
         </div>
       );
     case "prepare":
       return (
-        <div className="timeline-asset timeline-asset-prepare" aria-hidden="true">
-          <div className="asset-ui-head">
-            <span>Prep schedule</span>
-            <b>Fri</b>
+        <div className="sc-tl-asset" aria-hidden="true">
+          <div className="sc-tl-asset-row">
+            <span className="sc-tl-asset-label">This week</span>
+            <span className="sc-tl-asset-tag is-gold">Fri 6:30</span>
           </div>
-          <div className="asset-session-strip">
-            <span>6:30 PM</span>
-            <strong>Mock interview</strong>
+          <div className="sc-tl-prep">
+            <span className="sc-tl-prep-icon"><Chats size={14} weight="fill" /></span>
+            <div>
+              <strong>Mock interview</strong>
+              <small>Hamburg Care · 30 min</small>
+            </div>
           </div>
-          <div className="asset-prep-list">
-            <span><FileText size={14} weight="bold" />CV review<b>Done</b></span>
-            <span className="asset-is-next"><Translate size={14} weight="bold" />B1 practice<b>Active</b></span>
-            <span>Role notes<b>Ready</b></span>
-          </div>
-          <p className="asset-note">Prep stays in sequence.</p>
+          <ul className="sc-tl-stack">
+            <li className="is-done"><Check size={10} weight="bold" />CV review<em>Done</em></li>
+            <li className="is-next"><Translate size={10} weight="bold" />B1 drill<em>Active</em></li>
+          </ul>
         </div>
       );
     case "visa":
       return (
-        <div className="timeline-asset timeline-asset-visa" aria-hidden="true">
-          <div className="asset-ui-head">
-            <span>Relocation file</span>
-            <b>Review</b>
+        <div className="sc-tl-asset" aria-hidden="true">
+          <div className="sc-tl-asset-row">
+            <span className="sc-tl-asset-label">Relocation</span>
+            <span className="sc-tl-asset-tag">In motion</span>
           </div>
-          <div className="asset-route-minimal">
-            <span>India</span>
-            <i><Airplane size={13} weight="fill" /></i>
-            <span>Germany</span>
+          <div className="sc-tl-route">
+            <span>Kochi</span>
+            <i aria-hidden="true"><Airplane size={11} weight="fill" /></i>
+            <span>Aachen</span>
           </div>
-          <ul className="asset-doc-list-modern">
-            <li><Check size={13} weight="bold" />Visa documents<b>Reviewed</b></li>
-            <li><Check size={13} weight="bold" />Offer file<b>Verified</b></li>
-            <li className="asset-is-next"><Check size={13} weight="bold" />Travel plan<b>Next</b></li>
+          <ul className="sc-tl-stack">
+            <li className="is-done"><Check size={10} weight="bold" />Anerkennung<em>24 May</em></li>
+            <li className="is-next"><Check size={10} weight="bold" />Visa appt<em>12 Jun</em></li>
           </ul>
         </div>
       );
@@ -155,96 +152,109 @@ function renderAsset(id: StepId) {
 }
 
 export default function SearchTimeline() {
-  const timelineRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [activeId, setActiveId] = useState<StepId>("profile");
   const [isVisible, setIsVisible] = useState(false);
-  const activeIndex = steps.findIndex((step) => step.id === activeId);
-  const progressStyle = { "--timeline-progress": `${((activeIndex + 1) / steps.length) * 100}%` } as CSSProperties;
 
   useEffect(() => {
-    const timeline = timelineRef.current;
-
-    if (!timeline) {
-      return undefined;
-    }
-
+    const node = containerRef.current;
+    if (!node) return;
     if (!("IntersectionObserver" in window)) {
       setIsVisible(true);
-      return undefined;
+      return;
     }
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { rootMargin: "0px 0px -18% 0px", threshold: 0.24 },
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "0px 0px -20% 0px", threshold: 0.2 },
     );
-
-    observer.observe(timeline);
-
+    observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
-      setActiveId(steps[0].id);
-    }
+    if (isVisible) setActiveId(steps[0].id);
   }, [isVisible]);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    if (!isVisible) {
-      return;
-    }
-
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!isVisible) return;
     const timer = window.setTimeout(() => {
-      setActiveId((currentId) => getNextStepId(currentId));
+      setActiveId((current) => {
+        const i = steps.findIndex((s) => s.id === current);
+        return steps[(i + 1) % steps.length].id;
+      });
     }, AUTO_ADVANCE_MS);
-
     return () => window.clearTimeout(timer);
   }, [activeId, isVisible]);
 
-  const activateByKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
-      return;
-    }
-
+  const handleKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
-    const direction = ["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1;
-    const nextStep = steps[(index + direction + steps.length) % steps.length];
-    setActiveId(nextStep.id);
+    let next: number;
+    if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = steps.length - 1;
+    else {
+      const direction = ["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1;
+      next = (index + direction + steps.length) % steps.length;
+    }
+    setActiveId(steps[next].id);
   };
 
+  const activeIndex = steps.findIndex((s) => s.id === activeId);
+  const railFill: CSSProperties = {
+    "--rail-progress": `${(activeIndex / Math.max(1, steps.length - 1)) * 75}%`,
+  } as CSSProperties;
+
   return (
-    <div className="job-timeline-shell" ref={timelineRef}>
-      <span className="timeline-rail" aria-hidden="true"><i style={progressStyle} /></span>
-      <ol className="job-timeline-steps" aria-label="International job search process">
+    <div className="sc-tl" ref={containerRef}>
+      <div className="sc-tl-rail" style={railFill} aria-hidden="true">
+        <span className="sc-tl-rail-line" />
+        <span className="sc-tl-rail-fill" />
+        {steps.map((step, index) => (
+          <span
+            key={step.id}
+            className={`sc-tl-rail-node ${index <= activeIndex ? "is-done" : ""} ${index === activeIndex ? "is-current" : ""}`}
+          >
+            {index < activeIndex ? <Check size={11} weight="bold" /> : <i>{step.num}</i>}
+          </span>
+        ))}
+      </div>
+
+      <ol className="sc-tl-cards" aria-label="Skillcase pathway">
         {steps.map((step, index) => {
           const Icon = step.icon;
-          const isActive = activeId === step.id;
+          const isActive = step.id === activeId;
+          const isPast = index < activeIndex;
           return (
-            <li className="job-timeline-item" key={step.id}>
+            <li
+              className={`sc-tl-card-wrap ${isActive ? "is-active" : ""} ${isPast ? "is-past" : ""}`}
+              key={step.id}
+            >
               <button
-                className={`job-timeline-step${isActive ? " is-active" : ""}`}
-                style={accent(step.accent)}
                 type="button"
+                className="sc-tl-card"
                 aria-current={isActive ? "step" : undefined}
-                aria-label={`${step.label}: ${step.summary}`}
                 onMouseEnter={() => setActiveId(step.id)}
                 onFocus={() => setActiveId(step.id)}
                 onClick={() => setActiveId(step.id)}
-                onKeyDown={(event) => activateByKeyboard(event, index)}
+                onKeyDown={(event) => handleKey(event, index)}
               >
-                <span className="timeline-node"><Icon size={18} weight="bold" aria-hidden="true" /></span>
-                <span className="timeline-copy">
-                  <small>Step {String(index + 1).padStart(2, "0")} · {step.status}</small>
-                  <strong>{step.label}</strong>
-                  <em>{step.summary}</em>
-                </span>
-                {renderAsset(step.id)}
+                <header className="sc-tl-card-head">
+                  <span className="sc-tl-card-num">{step.num}</span>
+                  <span className="sc-tl-card-status">
+                    <Icon size={12} weight="bold" aria-hidden="true" />
+                    {step.status}
+                  </span>
+                </header>
+                <h3>{step.label}</h3>
+                <p>{step.summary}</p>
+                <MiniAsset id={step.id} />
+                <footer className="sc-tl-card-foot">
+                  <span className="sc-tl-card-progress">
+                    <span style={{ animationDuration: isActive && isVisible ? `${AUTO_ADVANCE_MS}ms` : "0ms" }} data-active={isActive ? "true" : "false"} />
+                  </span>
+                </footer>
               </button>
             </li>
           );

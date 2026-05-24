@@ -16,36 +16,32 @@ import {
 const steps = [
   {
     id: "profile",
-    label: "Profile & Assessment",
-    summary: "Readiness map, documents, pathway fit",
-    status: "Profile readiness in progress",
+    label: "Profile Builder",
+    summary: "Readiness map, document review, pathway fit",
     icon: ClipboardText,
   },
   {
     id: "matching",
     label: "Job Matching",
     summary: "Shortlisted roles around your profile",
-    status: "Employer matching in progress",
     icon: Handshake,
   },
   {
     id: "training",
-    label: "Training & Preparation",
+    label: "Training & Prep",
     summary: "Language, CV, and interview support",
-    status: "Training plan being prepared",
     icon: GraduationCap,
   },
   {
     id: "relocation",
-    label: "Immigration & Relocation",
+    label: "Relocation",
     summary: "Visa, travel, and settlement planning",
-    status: "Relocation file getting organized",
     icon: AirplaneTakeoff,
   },
 ] as const;
 
 type StepId = (typeof steps)[number]["id"];
-const AUTO_ROTATE_DELAY = 4200;
+const AUTO_ROTATE_DELAY = 4800;
 
 function meter(value: string): CSSProperties {
   return { "--value": value } as CSSProperties;
@@ -64,58 +60,38 @@ export default function ProcessWorkspace() {
   const [isPointerInside, setIsPointerInside] = useState(false);
   const [isFocusInside, setIsFocusInside] = useState(false);
   const activeIndex = steps.findIndex((step) => step.id === activeId);
-  const activeStep = steps[activeIndex] ?? steps[0];
   const isAutoPaused = isPointerInside || isFocusInside;
 
   useEffect(() => {
     const workspace = workspaceRef.current;
-
-    if (!workspace) {
-      return undefined;
-    }
-
+    if (!workspace) return undefined;
     if (!("IntersectionObserver" in window)) {
       setIsVisible(true);
       return undefined;
     }
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { rootMargin: "0px 0px -18% 0px", threshold: 0.24 },
     );
-
     observer.observe(workspace);
-
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    if (isVisible) {
-      setActiveId(steps[0].id);
-    }
+    if (isVisible) setActiveId(steps[0].id);
   }, [isVisible]);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (reducedMotion || !isVisible || isAutoPaused || steps.length < 2) {
-      return undefined;
-    }
-
+    if (reducedMotion || !isVisible || isAutoPaused || steps.length < 2) return undefined;
     const timer = window.setInterval(() => {
       setActiveId((currentId) => getNextStepId(currentId));
     }, AUTO_ROTATE_DELAY);
-
     return () => window.clearInterval(timer);
   }, [isAutoPaused, isVisible]);
 
   const activateByKeyboard = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
-      return;
-    }
-
+    if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) return;
     event.preventDefault();
     const direction = ["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1;
     const nextStep = steps[(index + direction + steps.length) % steps.length];
@@ -124,7 +100,7 @@ export default function ProcessWorkspace() {
 
   return (
     <div
-      className="process-workspace"
+      className="workspace-shell"
       ref={workspaceRef}
       onMouseEnter={() => setIsPointerInside(true)}
       onMouseLeave={() => setIsPointerInside(false)}
@@ -135,177 +111,194 @@ export default function ProcessWorkspace() {
         }
       }}
     >
-      <div className="journey-topbar">
-        <div className="journey-logo-lockup">
+      <header className="workspace-topbar">
+        <div className="workspace-brand">
           <img alt="Skillcase" src="/assets/images/SKILLCASE_logo.svg" />
+          <span className="workspace-divider" aria-hidden="true" />
+          <span className="workspace-brand-label">Workspace preview</span>
         </div>
-        <div className="journey-progress-wrap" aria-hidden="true">
-          <span>{activeStep.status}</span>
-          <div className="journey-progress">
-            <i style={{ width: `${((activeIndex + 1) / steps.length) * 100}%` }} />
-          </div>
+        <div className="workspace-status" aria-hidden="true">
+          <span className="workspace-dot" />
+          Live
         </div>
-        <a className="journey-cta" href="#jobs">
+        <a className="workspace-cta" href="#jobs">
           Get started
-          <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+          <ArrowUpRight size={14} weight="bold" aria-hidden="true" />
         </a>
-      </div>
+      </header>
 
-      <div className="journey-body">
-        <div className="journey-nav" role="tablist" aria-label="Skillcase guided process">
+      <div className="workspace-body">
+        <nav className="workspace-tabs" role="tablist" aria-label="Skillcase features">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isActive = step.id === activeId;
             return (
               <button
-                className={`journey-step${isActive ? " is-active" : ""}`}
-                key={step.id}
-                type="button"
-                role="tab"
                 aria-selected={isActive}
-                onMouseEnter={() => setActiveId(step.id)}
-                onFocus={() => setActiveId(step.id)}
+                className={`workspace-tab${isActive ? " is-active" : ""}`}
+                key={step.id}
                 onClick={() => setActiveId(step.id)}
+                onFocus={() => setActiveId(step.id)}
                 onKeyDown={(event) => activateByKeyboard(event, index)}
+                onMouseEnter={() => setActiveId(step.id)}
+                role="tab"
+                type="button"
               >
-                <span className="journey-index">
-                  <Icon size={18} weight="bold" aria-hidden="true" />
+                <span className="workspace-tab-icon" aria-hidden="true">
+                  <Icon size={18} weight="bold" />
                 </span>
-                <strong>{step.label}</strong>
-                <small>{step.summary}</small>
+                <span className="workspace-tab-body">
+                  <strong>{step.label}</strong>
+                  <small>{step.summary}</small>
+                </span>
+                <span className="workspace-tab-index" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
               </button>
             );
           })}
-        </div>
+        </nav>
 
-        <div className="journey-preview">
-          <section className={`journey-asset journey-asset-profile${activeId === "profile" ? " is-active" : ""}`} aria-label="Profile and assessment preview">
-            <div className="asset-rail">
-              <span>Documents</span>
-              <strong>8/10</strong>
-              <small>Ready for review</small>
-            </div>
-            <div className="asset-panel asset-panel-main">
-              <div className="asset-panel-header">
+        <div className="workspace-stage">
+          <section
+            aria-hidden={activeId !== "profile"}
+            aria-label="Profile builder preview"
+            className={`workspace-asset${activeId === "profile" ? " is-active" : ""}`}
+          >
+            <article className="workspace-panel">
+              <header className="workspace-panel-head">
                 <span>Skillcase profile</span>
                 <strong>92%</strong>
-              </div>
-              <div className="asset-profile-row">
-                <span className="asset-avatar">RN</span>
+              </header>
+              <div className="workspace-profile-row">
+                <span className="workspace-avatar">PR</span>
                 <div>
-                  <strong>Nursing Jobs</strong>
-                  <small>Germany pathway</small>
+                  <strong>Priya R.</strong>
+                  <small>Registered Nurse · Kerala</small>
                 </div>
               </div>
-              <div className="asset-meter"><i style={meter("92%")} /></div>
-              <ul className="asset-checklist">
+              <label className="workspace-meter-label">
+                Profile readiness
+                <span className="workspace-meter"><i style={meter("92%")} /></span>
+              </label>
+              <ul className="workspace-checklist">
                 <li><Check size={14} weight="bold" aria-hidden="true" />Education mapped</li>
                 <li><Check size={14} weight="bold" aria-hidden="true" />Experience verified</li>
-                <li><Check size={14} weight="bold" aria-hidden="true" />Profile gaps highlighted</li>
+                <li><Check size={14} weight="bold" aria-hidden="true" />Documents uploaded</li>
               </ul>
-            </div>
-            <div className="asset-mini-card asset-mini-card-top">
-              <SealCheck size={17} weight="fill" aria-hidden="true" />
-              <strong>Assessment complete</strong>
-              <small>Clear action plan</small>
-            </div>
+            </article>
+            <aside className="workspace-badge">
+              <SealCheck size={18} weight="fill" aria-hidden="true" />
+              <div>
+                <strong>Verified profile</strong>
+                <small>Ready for review</small>
+              </div>
+            </aside>
           </section>
 
-          <section className={`journey-asset journey-asset-matching${activeId === "matching" ? " is-active" : ""}`} aria-label="Job matching preview">
-            <div className="asset-match-stack">
-              <article>
-                <span><Stethoscope size={16} weight="bold" aria-hidden="true" /></span>
-                <div>
-                  <strong>Registered Nurse</strong>
-                  <small>Hamburg · Hospital network</small>
-                </div>
-                <b>96%</b>
-              </article>
-              <article>
-                <span><Buildings size={16} weight="bold" aria-hidden="true" /></span>
-                <div>
-                  <strong>Care Specialist</strong>
-                  <small>Berlin · Senior care</small>
-                </div>
-                <b>91%</b>
-              </article>
-              <article>
-                <span><GraduationCap size={16} weight="bold" aria-hidden="true" /></span>
-                <div>
-                  <strong>Ausbildung Track</strong>
-                  <small>Munich · Training partner</small>
-                </div>
-                <b>86%</b>
-              </article>
-            </div>
-            <div className="asset-panel asset-match-panel">
-              <div className="asset-panel-header">
-                <span>Employer fit</span>
-                <strong>High</strong>
+          <section
+            aria-hidden={activeId !== "matching"}
+            aria-label="Job matching preview"
+            className={`workspace-asset${activeId === "matching" ? " is-active" : ""}`}
+          >
+            <article className="workspace-panel">
+              <header className="workspace-panel-head">
+                <span>Recommended roles</span>
+                <strong>3 matches</strong>
+              </header>
+              <ul className="workspace-roles">
+                <li>
+                  <span className="workspace-role-icon"><Stethoscope size={16} weight="bold" aria-hidden="true" /></span>
+                  <div>
+                    <strong>Registered Nurse</strong>
+                    <small>Hamburg · Hospital network</small>
+                  </div>
+                  <b>96%</b>
+                </li>
+                <li>
+                  <span className="workspace-role-icon"><Buildings size={16} weight="bold" aria-hidden="true" /></span>
+                  <div>
+                    <strong>Care Specialist</strong>
+                    <small>Berlin · Senior care</small>
+                  </div>
+                  <b>91%</b>
+                </li>
+                <li>
+                  <span className="workspace-role-icon"><GraduationCap size={16} weight="bold" aria-hidden="true" /></span>
+                  <div>
+                    <strong>Ausbildung Track</strong>
+                    <small>Munich · Training partner</small>
+                  </div>
+                  <b>86%</b>
+                </li>
+              </ul>
+            </article>
+            <aside className="workspace-badge">
+              <Handshake size={18} weight="fill" aria-hidden="true" />
+              <div>
+                <strong>Strong employer fit</strong>
+                <small>Profile-led matches</small>
               </div>
-              <div className="asset-match-orbit" aria-hidden="true">
-                <span>Profile</span>
-                <i />
-                <b>Role</b>
-              </div>
-              <p>Relevant roles are shortlisted around your profile, preferred pathway, and employer requirements.</p>
-            </div>
+            </aside>
           </section>
 
-          <section className={`journey-asset journey-asset-training${activeId === "training" ? " is-active" : ""}`} aria-label="Training and preparation preview">
-            <div className="asset-panel asset-training-panel">
-              <div className="asset-panel-header">
+          <section
+            aria-hidden={activeId !== "training"}
+            aria-label="Training and preparation preview"
+            className={`workspace-asset${activeId === "training" ? " is-active" : ""}`}
+          >
+            <article className="workspace-panel">
+              <header className="workspace-panel-head">
                 <span>Preparation plan</span>
                 <strong>A2 → B1</strong>
-              </div>
-              <div className="asset-calendar" aria-hidden="true">
+              </header>
+              <div className="workspace-week" aria-hidden="true">
                 <span>M</span><span>T</span><span className="is-booked">W</span><span>T</span><span className="is-live">F</span>
               </div>
-              <div className="asset-bars">
+              <div className="workspace-bars">
                 <label>Language milestones<i style={meter("68%")} /></label>
                 <label>CV guidance<i style={meter("82%")} /></label>
                 <label>Interview practice<i style={meter("58%")} /></label>
               </div>
-            </div>
-            <div className="asset-mini-card asset-training-note">
+            </article>
+            <aside className="workspace-badge">
               <VideoCamera size={18} weight="bold" aria-hidden="true" />
-              <strong>Mock interview</strong>
-              <small>Friday · 6:30 PM</small>
-            </div>
-            <div className="asset-mini-card asset-word-card">
-              <span>B1</span>
-              <strong>Workplace German</strong>
-              <small>Healthcare vocabulary</small>
-            </div>
+              <div>
+                <strong>Mock interview</strong>
+                <small>Friday · 6:30 PM</small>
+              </div>
+            </aside>
           </section>
 
-          <section className={`journey-asset journey-asset-relocation${activeId === "relocation" ? " is-active" : ""}`} aria-label="Immigration and relocation preview">
-            <div className="asset-route-card">
-              <div className="asset-route-map" aria-hidden="true">
-                <span className="route-dot route-dot-india">India</span>
-                <span className="route-dot route-dot-germany">Germany</span>
-                <span className="route-line" />
-                <AirplaneTakeoff className="route-plane" size={16} weight="fill" aria-hidden="true" />
-              </div>
-              <div className="asset-panel-header">
+          <section
+            aria-hidden={activeId !== "relocation"}
+            aria-label="Immigration and relocation preview"
+            className={`workspace-asset${activeId === "relocation" ? " is-active" : ""}`}
+          >
+            <article className="workspace-panel">
+              <header className="workspace-panel-head">
                 <span>Relocation file</span>
                 <strong>On track</strong>
+              </header>
+              <div className="workspace-route" aria-hidden="true">
+                <span className="workspace-route-dot is-india">India</span>
+                <span className="workspace-route-line" />
+                <AirplaneTakeoff className="workspace-route-plane" size={14} weight="fill" aria-hidden="true" />
+                <span className="workspace-route-dot is-germany">Germany</span>
               </div>
-            </div>
-            <div className="asset-panel asset-visa-panel">
-              <ul className="asset-checklist">
+              <ul className="workspace-checklist">
                 <li><Check size={14} weight="bold" aria-hidden="true" />Visa documentation</li>
                 <li><Check size={14} weight="bold" aria-hidden="true" />Travel planning</li>
                 <li><Check size={14} weight="bold" aria-hidden="true" />Family support checklist</li>
               </ul>
-              <div className="asset-ticket">
-                <Ticket size={18} weight="bold" aria-hidden="true" />
-                <div>
-                  <strong>Offer to arrival</strong>
-                  <small>Structured by Skillcase</small>
-                </div>
+            </article>
+            <aside className="workspace-badge">
+              <Ticket size={18} weight="bold" aria-hidden="true" />
+              <div>
+                <strong>Offer to arrival</strong>
+                <small>Structured by Skillcase</small>
               </div>
-            </div>
+            </aside>
           </section>
         </div>
       </div>
