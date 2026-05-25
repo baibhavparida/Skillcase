@@ -203,7 +203,7 @@ export default function SearchTimeline() {
 
   const activeIndex = steps.findIndex((s) => s.id === activeId);
   const railFill: CSSProperties = {
-    "--rail-progress": `${(activeIndex / Math.max(1, steps.length - 1)) * 75}%`,
+    "--rail-progress": `${(activeIndex / Math.max(1, steps.length - 1)) * 100}%`,
   } as CSSProperties;
 
   return (
