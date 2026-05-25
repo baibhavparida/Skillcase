@@ -2041,22 +2041,22 @@ img {
 .process-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 48px;
 }
 
 .process-intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   max-width: 780px;
-  text-align: center;
+  text-align: left;
 }
 
 .process-intro p:not(.eyebrow) {
   max-width: 580px;
-  margin: 18px auto 0;
+  margin: 18px 0 0;
   color: #5d6c81;
   font-size: 15px;
   line-height: 1.65;
@@ -2065,7 +2065,7 @@ img {
 .process-proof {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   margin-top: 24px;
 }
@@ -2748,17 +2748,17 @@ img {
 .pathway-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 46px;
 }
 
 .pathway-intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   max-width: 820px;
-  text-align: center;
+  text-align: left;
 }
 
 .pathway-intro h2 {
@@ -2771,7 +2771,7 @@ img {
 
 .pathway-intro p:not(.eyebrow) {
   max-width: 660px;
-  margin: 16px auto 0;
+  margin: 16px 0 0;
   color: #607083;
   font-size: 15px;
   line-height: 1.68;
@@ -2780,7 +2780,7 @@ img {
 .pathway-proof {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   margin-top: 24px;
 }
