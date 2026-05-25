@@ -202,8 +202,10 @@ export default function SearchTimeline() {
   };
 
   const activeIndex = steps.findIndex((s) => s.id === activeId);
+  const progressScale = activeIndex / Math.max(1, steps.length - 1);
   const railFill: CSSProperties = {
-    "--rail-progress": `${(activeIndex / Math.max(1, steps.length - 1)) * 100}%`,
+    "--rail-progress": `${progressScale * 100}%`,
+    "--rail-progress-scale": progressScale,
   } as CSSProperties;
 
   return (
@@ -235,6 +237,9 @@ export default function SearchTimeline() {
                 type="button"
                 className="sc-tl-card"
                 aria-current={isActive ? "step" : undefined}
+                style={{
+                  "--sc-tl-card-progress-duration": isActive && isVisible ? `${AUTO_ADVANCE_MS}ms` : "0ms",
+                } as CSSProperties}
                 onMouseEnter={() => setActiveId(step.id)}
                 onFocus={() => setActiveId(step.id)}
                 onClick={() => setActiveId(step.id)}
@@ -250,11 +255,6 @@ export default function SearchTimeline() {
                 <h3>{step.label}</h3>
                 <p>{step.summary}</p>
                 <MiniAsset id={step.id} />
-                <footer className="sc-tl-card-foot">
-                  <span className="sc-tl-card-progress">
-                    <span style={{ animationDuration: isActive && isVisible ? `${AUTO_ADVANCE_MS}ms` : "0ms" }} data-active={isActive ? "true" : "false"} />
-                  </span>
-                </footer>
               </button>
             </li>
           );
