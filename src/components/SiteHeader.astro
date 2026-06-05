@@ -3,8 +3,8 @@ const { active = "home" } = Astro.props;
 
 const navItems = [
   { href: "/#jobs", label: "Candidate", key: "candidate" },
-  { href: "/about", label: "About Us", key: "about" },
-  { href: "/blog", label: "Blog", key: "blog" },
+  { href: "/about/", label: "About Us", key: "about" },
+  { href: "/blog/", label: "Blog", key: "blog" },
   { href: "/#faq", label: "FAQ", key: "faq" },
 ];
 ---
@@ -19,8 +19,8 @@ const navItems = [
     ))}
   </nav>
   <div class="header-actions">
-    <button class="btn btn-ghost btn-sm nav-login" type="button">Login</button>
-    <button class="btn btn-gold btn-sm nav-cta" type="button">Get Started</button>
+    <a class="btn btn-ghost btn-sm nav-login" href="/dashboard/nurse/">Login</a>
+    <a class="btn btn-gold btn-sm nav-cta" href="/signup/">Get Started</a>
     <button
       aria-controls="mobile-navigation"
       aria-expanded="false"
@@ -49,8 +49,8 @@ const navItems = [
       ))}
     </div>
     <div class="mobile-nav-actions">
-      <button class="btn btn-outline btn-sm" type="button">Login</button>
-      <button class="btn btn-gold btn-sm" type="button">Get Started</button>
+      <a class="btn btn-outline btn-sm" href="/dashboard/nurse/">Login</a>
+      <a class="btn btn-gold btn-sm" href="/signup/">Get Started</a>
     </div>
   </nav>
 </header>
