@@ -1,5 +1,5 @@
 ---
-import "../styles/home-c.css";
+import "../styles/home-b.css";
 import { Globe } from "@/components/ui/cobe-globe";
 
 const title = "Skillcase | Healthcare Jobs in Germany";
@@ -121,7 +121,7 @@ const blogs = [
     dateLabel: "25 July 2025",
     title: "Nursing in Germany: A Comprehensive Guide for Aspiring Nurses",
     excerpt:
-      "Germany is a highly sought-after destination for nurses from around the world, with a world-class healthcare system and excellent work-life balance.",
+      "Germany is a highly sought-after destination for nurses from around the world. With its world-class healthcare system, excellent work-life balance,",
   },
   {
     href: "/blog/nursing-salaries-germany-foreign-professionals",
@@ -132,7 +132,7 @@ const blogs = [
     dateLabel: "25 July 2025",
     title: "Nursing Salaries in Germany for Foreign Professionals",
     excerpt:
-      "Germany is a leading destination for nurses worldwide, offering competitive salaries, excellent working conditions, and real room to grow.",
+      "Germany is a leading destination for nurses worldwide, offering competitive salaries, excellent working conditions, and plenty of opportunities for",
   },
   {
     href: "/blog/moving-to-germany-as-a-foreign-doctor",
@@ -154,20 +154,16 @@ const blogs = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
     <title>{title}</title>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content="/assets/images/b/hero.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Outfit:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/vendor/phosphor/bold/style.css" />
+    <link rel="stylesheet" href="/vendor/phosphor/fill/style.css" />
   </head>
   <body>
     <a class="vb-skip-link" href="#vb-main">Skip to content</a>
@@ -175,8 +171,7 @@ const blogs = [
     <header class="vb-header" id="vb-header">
       <div class="vb-header-inner">
         <a class="vb-brand" href="/" aria-label="Skillcase home">
-          <img class="vb-brand-logo is-light" alt="" src="/assets/images/SKILLCASE_logo_footer.svg" />
-          <img class="vb-brand-logo is-dark" alt="" src="/assets/images/SKILLCASE_logo.svg" />
+          <img alt="Skillcase" src="/assets/images/SKILLCASE_logo_footer.svg" />
         </a>
         <nav class="vb-nav" aria-label="Primary navigation">
           {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
@@ -215,10 +210,6 @@ const blogs = [
         <img
           class="vb-hero-bg"
           src="/assets/images/b/hero.jpg"
-          srcset="/assets/images/b/hero-750.jpg 750w, /assets/images/b/hero.jpg 1400w"
-          sizes="100vw"
-          width="1400"
-          height="933"
           alt="Indian nurse at golden hour in Hamburg, Germany"
           fetchpriority="high"
         />
@@ -264,7 +255,7 @@ const blogs = [
             </div>
             <div class="vb-proof-item">
               <strong>2,400+ nurses placed</strong>
-              <span class="vb-proof-stars" role="img" aria-label="Rated 5 out of 5 by candidates">★★★★★</span>
+              <span class="vb-proof-stars" aria-label="Rated 5 out of 5 by candidates">★★★★★</span>
             </div>
             <div class="vb-proof-item">
               <strong>₹0</strong>
@@ -281,8 +272,8 @@ const blogs = [
       <!-- ============ SERVICES MARQUEE ============ -->
       <section class="vb-marquee" aria-label="Skillcase support services">
         <div class="vb-marquee-track">
-          {[...services, ...services].map((s, i) => (
-            <span class="vb-marquee-chip" aria-hidden={i >= services.length ? "true" : undefined}>
+          {[...services, ...services].map((s) => (
+            <span class="vb-marquee-chip">
               <i class={`ph-bold ph-${s.icon}`} aria-hidden="true"></i>
               {s.label}
             </span>
@@ -305,14 +296,18 @@ const blogs = [
               markers={[
                 { id: "india", location: [21.15, 79.09], label: "India" },
                 { id: "germany", location: [51.16, 10.45], label: "Germany" },
+                { id: "uae", location: [25.2, 55.27], label: "UAE" },
+                { id: "uk", location: [51.5, -0.12], label: "UK" },
+                { id: "japan", location: [35.68, 139.65], label: "Japan" },
+                { id: "australia", location: [-25.27, 133.77], label: "Australia" },
               ]}
               arcs={[
                 { id: "in-de", from: [21.15, 79.09], to: [51.16, 10.45], label: "India → Germany" },
               ]}
-              markerColor={[0.01, 0.34, 0.61]}
+              markerColor={[0.07, 0.16, 0.27]}
               baseColor={[1, 1, 1]}
-              arcColor={[0.02, 0.64, 0.9]}
-              glowColor={[0.93, 0.96, 1]}
+              arcColor={[0.85, 0.63, 0.24]}
+              glowColor={[0.97, 0.95, 0.9]}
               dark={0}
               mapBrightness={10}
               markerSize={0.05}
@@ -320,7 +315,6 @@ const blogs = [
               arcWidth={0.6}
               arcHeight={0.32}
               speed={0.0035}
-              initialPhi={1.0}
             />
             <p class="vb-globe-caption">
               <i class="ph-bold ph-globe-hemisphere-east" aria-hidden="true"></i>
@@ -380,9 +374,6 @@ const blogs = [
                 <span class="vb-benefit-num" aria-hidden="true">01</span>
                 <img
                   src="/assets/images/b/earnings.jpg"
-                  width="1400"
-                  height="933"
-                  decoding="async"
                   alt="Indian nurse reviewing overseas salary documents with confidence"
                   loading="lazy"
                 />
@@ -396,11 +387,11 @@ const blogs = [
                 </div>
               </div>
               <div class="vb-benefit-copy vb-reveal" style="--d: 140ms">
-                <h3>Multiply your earning potential</h3>
+                <h3>10x your earning potential</h3>
                 <p>
-                  Earn several times your current salary as a healthcare professional
-                  in Germany — ₹3.2L–₹3.8L gross per month — along with performance
-                  bonuses, allowances, pension contributions and 30 paid leave days.
+                  Earn up to 10 times more than your current salary as a healthcare
+                  professional in Germany, along with performance bonuses and additional
+                  allowances, allowing you to significantly enhance your financial future.
                 </p>
                 <div class="vb-benefit-points" aria-label="Earning potential highlights">
                   <span><i class="ph-bold ph-check-circle" aria-hidden="true"></i>German salary range</span>
@@ -419,9 +410,6 @@ const blogs = [
                 <span class="vb-benefit-num" aria-hidden="true">02</span>
                 <img
                   src="/assets/images/b/family.jpg"
-                  width="1400"
-                  height="933"
-                  decoding="async"
                   alt="Indian healthcare professional walking with family in a German park"
                   loading="lazy"
                 />
@@ -450,9 +438,6 @@ const blogs = [
                 <span class="vb-benefit-num" aria-hidden="true">03</span>
                 <img
                   src="/assets/images/b/education.jpg"
-                  width="1400"
-                  height="933"
-                  decoding="async"
                   alt="Indian nurses in a training and mentorship session in a German teaching hospital"
                   loading="lazy"
                 />
@@ -481,9 +466,6 @@ const blogs = [
                 <span class="vb-benefit-num" aria-hidden="true">04</span>
                 <img
                   src="/assets/images/b/residency.jpg"
-                  width="1400"
-                  height="933"
-                  decoding="async"
                   alt="German residence permit and visa documents arranged on a desk"
                   loading="lazy"
                 />
@@ -514,7 +496,7 @@ const blogs = [
       <section class="vb-section vb-path" id="pathway">
         <div class="vb-container vb-path-grid">
           <div class="vb-path-intro vb-reveal">
-            <p class="vb-eyebrow">Your pathway</p>
+            <p class="vb-eyebrow">Why choose Skillcase</p>
             <h2 class="vb-h2">International nursing jobs, made step by step.</h2>
             <p class="vb-lede">
               One coach, one path. Profile to relocation, every stage tracked inside
@@ -587,10 +569,7 @@ const blogs = [
                 </div>
               </div>
               <div class="vb-job-media" aria-hidden="true">
-                <img src="/assets/images/b/jobnurse.jpg"
-                  width="933"
-                  height="1400"
-                  decoding="async" alt="" loading="lazy" />
+                <img src="/assets/images/b/jobnurse.jpg" alt="" loading="lazy" />
               </div>
             </article>
 
@@ -618,10 +597,7 @@ const blogs = [
                 </div>
               </div>
               <div class="vb-job-media" aria-hidden="true">
-                <img src="/assets/images/b/ausbildung.jpg"
-                  width="933"
-                  height="1400"
-                  decoding="async" alt="" loading="lazy" />
+                <img src="/assets/images/b/ausbildung.jpg" alt="" loading="lazy" />
               </div>
             </article>
           </div>
@@ -869,7 +845,7 @@ const blogs = [
             <div class="vb-webinar-details" aria-label="Webinar details">
               <div class="vb-webinar-detail">
                 <small><i class="ph-bold ph-video-camera" aria-hidden="true"></i>Live session</small>
-                <strong>Weekly · evenings IST</strong>
+                <strong>Today · 8:00 PM IST</strong>
               </div>
               <div class="vb-webinar-detail">
                 <small><i class="ph-bold ph-seal-check" aria-hidden="true"></i>Access</small>
@@ -899,18 +875,15 @@ const blogs = [
           >
             <img
               src="/assets/images/b/webinar.jpg"
-                  width="1400"
-                  height="933"
-                  decoding="async"
               alt="Skillcase expert presenting a live webinar on Germany nursing careers"
               loading="lazy"
             />
             <span class="vb-webinar-live">
               <span class="vb-live-dot" aria-hidden="true"></span>
-              Live webinar
+              Going live tonight
             </span>
             <span class="vb-play-orb" aria-hidden="true">
-              <i class="ph-bold ph-play"></i>
+              <i class="ph-fill ph-play"></i>
             </span>
           </a>
         </div>
@@ -965,7 +938,7 @@ const blogs = [
 
             {testimonials.map((t, idx) => (
               <article class="vb-testi-card vb-reveal" style={`--d: ${(idx + 1) * 90}ms`}>
-                <div class="vb-testi-stars" role="img" aria-label="5 out of 5 rating">★★★★★</div>
+                <div class="vb-testi-stars" aria-label="5 out of 5 rating">★★★★★</div>
                 <h3>{t.title}</h3>
                 <blockquote>{t.quote}</blockquote>
                 <div class="vb-testi-person">
@@ -1192,6 +1165,7 @@ const blogs = [
       </div>
     </footer>
 
+    <span class="vb-variant-tag" aria-hidden="true">Variant B</span>
 
     <script>
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1217,9 +1191,7 @@ const blogs = [
       mobileNav?.querySelectorAll("a").forEach((a) =>
         a.addEventListener("click", () => {
           burger?.setAttribute("aria-expanded", "false");
-          burger?.setAttribute("aria-label", "Open navigation menu");
           mobileNav.classList.remove("is-open");
-          onScrollHeader();
         })
       );
 
@@ -1347,46 +1319,17 @@ const blogs = [
             step.classList.toggle("is-passed", sRect.top + 40 < viewportMid);
           });
         };
-        // rAF-throttled: the handler forces layout, so run it at most once a frame
-        let pathTicking = false;
-        const requestPathUpdate = () => {
-          if (pathTicking) return;
-          pathTicking = true;
-          requestAnimationFrame(() => {
-            pathTicking = false;
-            onScrollPath();
-          });
-        };
         onScrollPath();
-        window.addEventListener("scroll", requestPathUpdate, { passive: true });
+        window.addEventListener("scroll", onScrollPath, { passive: true });
       }
 
       // FAQ accordion
-      // Open items settle at max-height:none so late font swaps or device
-      // rotation can never clip the answer text.
-      const openAnswer = (answer: HTMLElement) => {
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        answer.addEventListener(
-          "transitionend",
-          () => {
-            if (answer.style.maxHeight !== "0px") answer.style.maxHeight = "none";
-          },
-          { once: true }
-        );
-      };
-      const closeAnswer = (answer: HTMLElement) => {
-        if (answer.style.maxHeight === "none") {
-          answer.style.maxHeight = answer.scrollHeight + "px";
-          void answer.offsetHeight; // flush so the 0px transition animates
-        }
-        answer.style.maxHeight = "0px";
-      };
       document.querySelectorAll(".vb-faq-item").forEach((item) => {
         const btn = item.querySelector<HTMLElement>(".vb-faq-q");
         const answer = item.querySelector<HTMLElement>(".vb-faq-a");
         if (!btn || !answer) return;
         if (item.classList.contains("is-open")) {
-          answer.style.maxHeight = "none";
+          answer.style.maxHeight = answer.scrollHeight + "px";
         }
         btn.addEventListener("click", () => {
           const isOpen = item.classList.contains("is-open");
@@ -1395,13 +1338,12 @@ const blogs = [
               other.classList.remove("is-open");
               other.querySelector(".vb-faq-q")?.setAttribute("aria-expanded", "false");
               const otherAnswer = other.querySelector<HTMLElement>(".vb-faq-a");
-              if (otherAnswer) closeAnswer(otherAnswer);
+              if (otherAnswer) otherAnswer.style.maxHeight = "0px";
             }
           });
           item.classList.toggle("is-open", !isOpen);
           btn.setAttribute("aria-expanded", String(!isOpen));
-          if (isOpen) closeAnswer(answer);
-          else openAnswer(answer);
+          answer.style.maxHeight = isOpen ? "0px" : answer.scrollHeight + "px";
         });
       });
     </script>
