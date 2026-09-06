@@ -164,110 +164,6 @@ function initSubscribeForms() {
   });
 }
 
-function initProcessWorkspace() {
-  const workspace = document.querySelector("[data-journey-workspace]");
-
-  if (!workspace) {
-    return;
-  }
-
-  const steps = Array.from(workspace.querySelectorAll("[data-journey-step]"));
-  const assets = Array.from(workspace.querySelectorAll("[data-journey-asset]"));
-  const status = workspace.querySelector("[data-journey-status]");
-  const progress = workspace.querySelector("[data-journey-progress]");
-  const autoAdvanceDelay = 4200;
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let autoAdvanceTimer;
-  let isPointerInside = false;
-  let isFocusInside = false;
-
-  if (!steps.length || !assets.length) {
-    return;
-  }
-
-  const isAutoPaused = () => isPointerInside || isFocusInside;
-
-  const scheduleAutoAdvance = () => {
-    window.clearTimeout(autoAdvanceTimer);
-
-    if (reducedMotion || isAutoPaused() || steps.length < 2) {
-      return;
-    }
-
-    autoAdvanceTimer = window.setTimeout(() => {
-      const activeIndex = steps.findIndex((item) => item.classList.contains("is-active"));
-      const nextIndex = ((activeIndex >= 0 ? activeIndex : 0) + 1) % steps.length;
-      activate(steps[nextIndex]);
-    }, autoAdvanceDelay);
-  };
-
-  const activate = (step) => {
-    const id = step.dataset.journeyStep;
-    const index = steps.indexOf(step);
-
-    steps.forEach((item) => {
-      const isActive = item === step;
-      item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-selected", String(isActive));
-    });
-
-    assets.forEach((asset) => {
-      asset.classList.toggle("is-active", asset.dataset.journeyAsset === id);
-    });
-
-    if (status) {
-      status.textContent = step.dataset.journeyStatus || status.textContent;
-    }
-
-    if (progress && index >= 0) {
-      progress.style.width = `${((index + 1) / steps.length) * 100}%`;
-    }
-
-    scheduleAutoAdvance();
-  };
-
-  workspace.addEventListener("mouseenter", () => {
-    isPointerInside = true;
-    window.clearTimeout(autoAdvanceTimer);
-  });
-
-  workspace.addEventListener("mouseleave", () => {
-    isPointerInside = false;
-    scheduleAutoAdvance();
-  });
-
-  workspace.addEventListener("focusin", () => {
-    isFocusInside = true;
-    window.clearTimeout(autoAdvanceTimer);
-  });
-
-  workspace.addEventListener("focusout", (event) => {
-    if (!workspace.contains(event.relatedTarget)) {
-      isFocusInside = false;
-      scheduleAutoAdvance();
-    }
-  });
-
-  steps.forEach((step) => {
-    step.addEventListener("mouseenter", () => activate(step));
-    step.addEventListener("focus", () => activate(step));
-    step.addEventListener("click", () => activate(step));
-    step.addEventListener("keydown", (event) => {
-      if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
-        return;
-      }
-
-      event.preventDefault();
-      const direction = ["ArrowRight", "ArrowDown"].includes(event.key) ? 1 : -1;
-      const nextIndex = (steps.indexOf(step) + direction + steps.length) % steps.length;
-      steps[nextIndex].focus();
-      activate(steps[nextIndex]);
-    });
-  });
-
-  scheduleAutoAdvance();
-}
-
 function initSearchTimeline() {
   const timeline = document.querySelector("[data-search-timeline]");
 
@@ -872,7 +768,6 @@ async function initGlobe() {
 hydrateIcons();
 initArticleToc();
 initSubscribeForms();
-initProcessWorkspace();
 initSearchTimeline();
 initFaqAccordion();
 // Mount immediately so production browsers cannot miss the one-time lazy-load

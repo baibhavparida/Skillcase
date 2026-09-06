@@ -181,7 +181,6 @@ main [id] {
   .page-main,
   main,
   .site-shell,
-  .workspace-body,
   .article-content,
   .legal-content {
     min-width: 0;
@@ -196,7 +195,6 @@ main [id] {
   .candidate-stories-header h2,
   .globe-card-header h2,
   .webinar-copy h2,
-  .process-intro h2,
   .podcast-copy h2,
   .globe-copy h3,
   .pathway-intro h2,
@@ -211,7 +209,6 @@ main [id] {
   .benefit-copy p,
   .job-card p,
   .webinar-copy p:not(.eyebrow),
-  .process-intro p:not(.eyebrow),
   .podcast-copy p:not(.eyebrow),
   .pathway-intro p:not(.eyebrow),
   .globe-copy p,
@@ -408,35 +405,6 @@ main [id] {
     grid-row: 1 / 3;
     grid-column: 2;
     align-self: center;
-  }
-  .workspace-cta {
-    min-height: 40px;
-    height: 40px;
-    font-size: 13px;
-  }
-  .workspace-tab {
-    min-height: 60px;
-    padding: 12px 10px;
-  }
-  .workspace-tab-body strong {
-    font-size: 14px;
-    line-height: 1.4;
-    overflow-wrap: normal;
-  }
-  .workspace-asset {
-    padding: 20px 14px;
-  }
-  .workspace-panel {
-    padding: 14px;
-  }
-  .workspace-asset h3 {
-    font-size: 21px;
-    line-height: 1.3;
-  }
-  .workspace-asset p,
-  .workspace-points li {
-    font-size: 14px;
-    line-height: 1.6;
   }
   .sc-tl-cards {
     gap: 14px;
@@ -1023,18 +991,6 @@ main [id] {
   .hero-background .hero-copy > p {
     max-width: 25ch;
   }
-  .workspace-tabs {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-  }
-  .workspace-tab {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-  .workspace-tab-icon {
-    width: 26px;
-    height: 26px;
-  }
   .testimonial-proof-row {
     grid-template-columns: 1fr;
   }
@@ -1062,7 +1018,6 @@ main [id] {
     font-size: 16px;
   }
   .sc-tl-card:hover,
-  .workspace-tab:hover,
   .btn:hover {
     transform: none;
   }
@@ -1106,7 +1061,6 @@ main [id] {
     scroll-behavior: auto;
   }
   .btn,
-  .workspace-tab,
   .sc-tl-card {
     transition: none;
   }

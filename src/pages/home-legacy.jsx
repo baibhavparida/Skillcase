@@ -1,6 +1,6 @@
 import ResponsiveImage from "../components/ResponsiveImage.jsx";
 import BaseLayout from "../layouts/BaseLayout.jsx";
-import ProcessWorkspace from "../components/ProcessWorkspace";
+import AppJourneyShowcase from "../components/AppJourneyShowcase.jsx";
 import SearchTimeline from "../components/SearchTimeline";
 import CandidateStories from "../components/CandidateStories.jsx";
 import LearnerMarquee from "../components/LearnerMarquee.jsx";
@@ -244,7 +244,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         Financial planning
                       </span>
                     </div>
-                    <a href="#process">
+                    <a href="#pathway">
                       See the pathway
                       <span
                         data-icon="arrow-right"
@@ -306,7 +306,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         Work rights guidance
                       </span>
                     </div>
-                    <a href="#process">
+                    <a href="#pathway">
                       See the pathway
                       <span
                         data-icon="arrow-right"
@@ -347,7 +347,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         Ongoing mentorship
                       </span>
                     </div>
-                    <a href="#process">
+                    <a href="#pathway">
                       See the pathway
                       <span
                         data-icon="arrow-right"
@@ -388,7 +388,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         PR pathway guidance
                       </span>
                     </div>
-                    <a href="#process">
+                    <a href="#pathway">
                       See the pathway
                       <span
                         data-icon="arrow-right"
@@ -582,25 +582,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
 
             <CandidateStories />
 
-            <section className="section process-section" id="process">
-              <div className="process-intro">
-                <p className="eyebrow">Inside Skillcase</p>
-                <h2>One workspace for every part of your global career.</h2>
-                <p>
-                  Build your profile, match with roles, prepare for interviews,
-                  and plan your move—all in one place.
-                </p>
-                <div
-                  className="process-proof"
-                  aria-label="Skillcase workspace highlights"
-                >
-                  <span>4 connected tools</span>
-                  <span>Profile-first</span>
-                  <span>Built for healthcare</span>
-                </div>
-              </div>
-              <ProcessWorkspace />
-            </section>
+            <AppJourneyShowcase />
 
             <section className="section pathway-section" id="pathway">
               <div className="pathway-intro">
