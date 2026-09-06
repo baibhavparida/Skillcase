@@ -540,9 +540,9 @@
   align-items: center;
   gap: 6px;
   margin: 0;
-  padding: 4px 8px;
-  background: var(--sc-surface-cool);
-  border-radius: var(--sc-r-pill);
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
   color: var(--color-cyan);
   font-size: 10px;
   font-weight: 600;
