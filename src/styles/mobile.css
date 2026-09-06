@@ -1071,6 +1071,7 @@ main [id] {
   }
   .offer-marquee-track,
   .vb-marquee-track {
+    -webkit-animation-duration: 32s;
     animation-duration: 32s;
   }
 }
@@ -1093,9 +1094,12 @@ main [id] {
   html {
     scroll-behavior: auto;
   }
-  .offer-marquee-track,
   .vb-marquee-track {
     animation: none;
+  }
+  .offer-marquee-track {
+    -webkit-animation-duration: 56s;
+    animation-duration: 56s;
   }
   .testimonial-layout,
   .sc-tl-cards {

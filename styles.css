@@ -642,14 +642,18 @@ img {
   display: flex;
   width: max-content;
   gap: 34px;
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   will-change: transform;
+  -webkit-animation: offerMarquee 42s linear infinite;
   animation: offerMarquee 42s linear infinite;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .offer-strip:hover .offer-marquee-track {
+    -webkit-animation-play-state: paused;
     animation-play-state: paused;
   }
 }
@@ -739,6 +743,7 @@ img {
 /* Learner photo marquee */
 .learner-marquee-section {
   --learner-marquee-gap: 18px;
+  --learner-marquee-half-gap: 9px;
   position: relative;
   width: 100%;
   padding: 40px 0 52px;
@@ -769,6 +774,13 @@ img {
 .learner-marquee-window {
   width: 100%;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 5%,
+    #000 95%,
+    transparent 100%
+  );
   mask-image: linear-gradient(
     90deg,
     transparent 0,
@@ -782,12 +794,20 @@ img {
   display: flex;
   width: max-content;
   gap: var(--learner-marquee-gap);
+  -webkit-animation: learnerPhotoMarquee 38s linear infinite;
   animation: learnerPhotoMarquee 38s linear infinite;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
-.learner-marquee-window:hover .learner-marquee-track {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .learner-marquee-window:hover .learner-marquee-track {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
 }
 
 .learner-marquee-group {
@@ -856,13 +876,28 @@ img {
 
 @keyframes learnerPhotoMarquee {
   to {
-    transform: translateX(calc(-50% - (var(--learner-marquee-gap) / 2)));
+    transform: translate3d(
+      calc(-50% - var(--learner-marquee-half-gap)),
+      0,
+      0
+    );
+  }
+}
+
+@-webkit-keyframes learnerPhotoMarquee {
+  to {
+    -webkit-transform: translate3d(
+      calc(-50% - var(--learner-marquee-half-gap)),
+      0,
+      0
+    );
   }
 }
 
 @media (max-width: 760px) {
   .learner-marquee-section {
     --learner-marquee-gap: 11px;
+    --learner-marquee-half-gap: 5.5px;
     padding: 32px 0 38px;
   }
 
@@ -875,6 +910,13 @@ img {
   }
 
   .learner-marquee-window {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 3%,
+      #000 97%,
+      transparent 100%
+    );
     mask-image: linear-gradient(
       90deg,
       transparent 0,
@@ -885,6 +927,7 @@ img {
   }
 
   .learner-marquee-track {
+    -webkit-animation-duration: 30s;
     animation-duration: 30s;
   }
 
@@ -910,22 +953,9 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .learner-marquee-window {
-    overflow-x: auto;
-    mask-image: none;
-    scrollbar-width: none;
-  }
-
-  .learner-marquee-window::-webkit-scrollbar {
-    display: none;
-  }
-
   .learner-marquee-track {
-    animation: none;
-  }
-
-  .learner-marquee-group[aria-hidden="true"] {
-    display: none;
+    -webkit-animation-duration: 48s;
+    animation-duration: 48s;
   }
 }
 
@@ -4348,6 +4378,16 @@ img {
 
   to {
     transform: translate3d(calc(-50% - 5px), 0, 0);
+  }
+}
+
+@-webkit-keyframes offerMarquee {
+  from {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(calc(-50% - 5px), 0, 0);
   }
 }
 
@@ -9453,7 +9493,6 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .offer-marquee-track,
   .route-line,
   .route-hub::after,
   .marquee-row,
@@ -9475,6 +9514,11 @@ img {
   .asset-line-meter i::after,
   .asset-route-minimal i {
     animation: none;
+  }
+
+  .offer-marquee-track {
+    -webkit-animation-duration: 56s;
+    animation-duration: 56s;
   }
 
   .faq-list details {

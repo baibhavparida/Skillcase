@@ -555,7 +555,7 @@ async function initGlobe() {
     const compactViewportQuery = window.matchMedia("(max-width: 760px)");
     const getRotationSpeed = () => {
       if (reducedMotionQuery.matches) {
-        return 0;
+        return compactViewportQuery.matches ? 0.0007 : 0.00028;
       }
 
       return compactViewportQuery.matches ? 0.00135 : 0.0005;
@@ -617,6 +617,7 @@ async function initGlobe() {
     let animationId = 0;
     let resizeObserver = null;
     let viewportObserver = null;
+    let isGlobeVisible = true;
 
     const config = {
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
@@ -699,7 +700,7 @@ async function initGlobe() {
     };
 
     const startAnimation = () => {
-      if (!globe || animationId || reducedMotionQuery.matches) {
+      if (!globe || animationId) {
         return;
       }
 
@@ -723,7 +724,8 @@ async function initGlobe() {
 
       viewportObserver = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
+          isGlobeVisible = entry.isIntersecting;
+          if (isGlobeVisible) {
             startAnimation();
           } else {
             stopAnimation();
@@ -744,6 +746,9 @@ async function initGlobe() {
 
       globe = createGlobe(canvas, { ...config, width, height: width });
       renderFrame();
+      // Start immediately. Some iOS WebKit versions can delay the first
+      // IntersectionObserver callback after a page restore.
+      startAnimation();
       observeGlobeVisibility();
       window.setTimeout(() => {
         canvas.style.opacity = "1";
@@ -762,12 +767,29 @@ async function initGlobe() {
       resizeObserver.observe(canvas);
     }
 
+    const restartVisibleAnimation = () => {
+      if (document.hidden || !isGlobeVisible) {
+        stopAnimation();
+        return;
+      }
+
+      // iOS may discard a pending animation frame while the tab is suspended.
+      // Clear the stale id before starting a fresh loop.
+      stopAnimation();
+      startAnimation();
+    };
+
+    document.addEventListener("visibilitychange", restartVisibleAnimation);
+    window.addEventListener("pageshow", restartVisibleAnimation);
+
     window.addEventListener("beforeunload", () => {
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
       viewportObserver?.disconnect();
       resizeObserver?.disconnect();
+      document.removeEventListener("visibilitychange", restartVisibleAnimation);
+      window.removeEventListener("pageshow", restartVisibleAnimation);
       globe?.destroy();
     });
   } catch (error) {
