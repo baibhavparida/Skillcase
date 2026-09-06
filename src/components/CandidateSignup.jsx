@@ -1,4 +1,5 @@
 import ResponsiveImage from "./ResponsiveImage.jsx";
+import LearnerReviewCard from "./LearnerReviewCard.jsx";
 import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowLeftIcon as ArrowLeft,
@@ -14,6 +15,43 @@ import {
   WhatsappLogoIcon as WhatsappLogo,
 } from "@phosphor-icons/react/ssr";
 const STORAGE_KEY = "skillcase_candidate_profile";
+const PLAY_STORE_URL =
+  "https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN";
+const WEB_APP_URL = "https://learner.skillcase.in/start-now";
+const PLAY_STORE_SCREENSHOTS = [
+  {
+    src: "/assets/images/app-screens/play-store-start-german-journey.webp",
+    alt: "Start your German journey today with Skillcase",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-learn-german-a1-b2.webp",
+    alt: "Learn German from A1 to B2 with guided Skillcase lessons",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-daily-learning-goals.webp",
+    alt: "See your German learning growth and daily goals",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-german-flashcards.webp",
+    alt: "Build German vocabulary with Skillcase flashcards",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-vocabulary-progress.webp",
+    alt: "Track German words learned in Skillcase",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-germany-job-progress.webp",
+    alt: "Track each stage of a Germany healthcare job application",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-german-exam-practice.webp",
+    alt: "Practise real German exam papers in Skillcase",
+  },
+  {
+    src: "/assets/images/app-screens/play-store-speak-german-confidence.webp",
+    alt: "Build confidence speaking German with detailed feedback",
+  },
+];
 const defaultProfile = {
   fullName: "",
   email: "",
@@ -39,7 +77,7 @@ const stepTitles = {
   qualification: "Qualification",
   experience: "Experience",
   german: "German",
-  roadmap: "Roadmap",
+  complete: "Start",
 };
 const qualificationOptions = [
   {
@@ -161,12 +199,6 @@ function onlyDigits(value, max = 10) {
 function getFirstName(name) {
   return name.trim().split(" ")[0] || "there";
 }
-function getGermanLabel(level) {
-  return (
-    germanLevelOptions.find((option) => option.value === level)?.label ??
-    "Not started"
-  );
-}
 export default function CandidateSignup() {
   // Users arrive here straight from the homepage CTA, already sold. Start them
   // on the first real step (phone) instead of behind a redundant welcome gate.
@@ -200,7 +232,7 @@ export default function CandidateSignup() {
     return undefined;
   }, [step]);
   const stepIndex =
-    step === "roadmap"
+    step === "complete"
       ? onboardingSteps.length
       : onboardingSteps.includes(step)
         ? onboardingSteps.indexOf(step) + 1
@@ -305,7 +337,7 @@ export default function CandidateSignup() {
     setErrors({});
     setStep(nextStep);
   };
-  // Save this device's progress and show the next step with an advisor.
+  // Save this device's progress and move directly into the app handoff.
   const finishOnboarding = () => {
     const clean = {
       ...profile,
@@ -316,7 +348,7 @@ export default function CandidateSignup() {
     };
     writeStoredProfile(clean);
     setProfile(clean);
-    setStep("roadmap");
+    setStep("complete");
   };
   return (
     <div className="sc-onb">
@@ -344,37 +376,34 @@ export default function CandidateSignup() {
 
       <main className="sc-onb-flow" aria-live="polite">
         <div className="sc-onb-main">
-          <div
-            className="sc-onb-flow-rail"
-            aria-label={`Step ${stepIndex} of ${onboardingSteps.length}`}
-          >
-            <button
-              className="sc-onb-back"
-              type="button"
-              onClick={goBack}
-              disabled={step === "roadmap"}
+          {step !== "complete" && (
+            <div
+              className="sc-onb-flow-rail"
+              aria-label={`Step ${stepIndex} of ${onboardingSteps.length}`}
             >
-              <ArrowLeft size={16} weight="bold" aria-hidden="true" />
-              <span>Back</span>
-            </button>
-            <div className="sc-onb-stepper">
-              {onboardingSteps.map((item, index) => {
-                const isDone = index + 1 < stepIndex;
-                const isCurrent = index + 1 === stepIndex;
-                return (
-                  <span
-                    key={item}
-                    className={`sc-onb-stepper-dot ${isDone ? "is-done" : isCurrent ? "is-current" : ""}`}
-                    aria-label={stepTitles[item]}
-                  />
-                );
-              })}
+              <button className="sc-onb-back" type="button" onClick={goBack}>
+                <ArrowLeft size={16} weight="bold" aria-hidden="true" />
+                <span>Back</span>
+              </button>
+              <div className="sc-onb-stepper">
+                {onboardingSteps.map((item, index) => {
+                  const isDone = index + 1 < stepIndex;
+                  const isCurrent = index + 1 === stepIndex;
+                  return (
+                    <span
+                      key={item}
+                      className={`sc-onb-stepper-dot ${isDone ? "is-done" : isCurrent ? "is-current" : ""}`}
+                      aria-label={stepTitles[item]}
+                    />
+                  );
+                })}
+              </div>
+              <strong className="sc-onb-step-count">
+                <span>{stepIndex}</span>
+                <em>of {onboardingSteps.length}</em>
+              </strong>
             </div>
-            <strong className="sc-onb-step-count">
-              <span>{stepIndex}</span>
-              <em>of {onboardingSteps.length}</em>
-            </strong>
-          </div>
+          )}
 
           <div className="sc-onb-canvas">
             <section className="sc-onb-panel" ref={panelRef}>
@@ -427,9 +456,15 @@ export default function CandidateSignup() {
                   </label>
 
                   <button className="sc-onb-cta" type="submit">
-                    Send OTP on WhatsApp
+                    Send OTP
                     <ArrowRight size={17} weight="bold" aria-hidden="true" />
                   </button>
+                  <p className="sc-onb-login-prompt">
+                    Already signed up?{" "}
+                    <a href={WEB_APP_URL} rel="noreferrer" target="_blank">
+                      Log in instead
+                    </a>
+                  </p>
                   <p className="sc-onb-fineprint">
                     We never share your number.{" "}
                     <a href="/privacy-policy/">Privacy policy</a>.
@@ -596,12 +631,12 @@ export default function CandidateSignup() {
                   options={germanLevelOptions}
                   selectedValue={profile.germanLevel}
                   error={errors.germanLevel}
-                  continueLabel="Build my roadmap"
+                  continueLabel="Complete my profile"
                   onSelect={(value) => updateProfile("germanLevel", value)}
                   onContinue={finishOnboarding}
                 />
               )}
-              {step === "roadmap" && <RoadmapReveal profile={profile} />}
+              {step === "complete" && <AppDownloadReveal profile={profile} />}
             </section>
           </div>
         </div>
@@ -613,7 +648,7 @@ export default function CandidateSignup() {
 
       {hasLoaded &&
         profile.fullName &&
-        step !== "roadmap" &&
+        step !== "complete" &&
         step !== "welcome" && (
           <div className="sc-onb-return" role="status">
             <SealCheck size={14} weight="bold" aria-hidden="true" />
@@ -816,86 +851,123 @@ function ChoiceStep({
     </div>
   );
 }
-function RoadmapReveal({ profile }) {
-  const milestones = [
-    {
-      title: "Today — you’re in",
-      detail: `${profile.qualification || "Nursing"} · ${profile.experience || "Experience"} · ${getGermanLabel(profile.germanLevel)}`,
-      state: "done",
-    },
-    {
-      title: "German A1 → A2",
-      detail: "3 months · live online classes",
-      state: "current",
-    },
-    {
-      title: "German B1",
-      detail: "3 months · 13+ jobs unlock here",
-      state: "next",
-    },
-    {
-      title: "Documents & recognition",
-      detail: "2 months · we handle most paperwork",
-      state: "next",
-    },
-    {
-      title: "Interview & job offer",
-      detail: "1 month · coach-led practice",
-      state: "next",
-    },
-    {
-      title: "Visa, flight, first day",
-      detail: "≈3 months · end-to-end support",
-      state: "next",
-    },
-  ];
+function AppDownloadReveal({ profile }) {
+  const sliderRef = useRef(null);
+
+  const moveSlider = (direction) => {
+    const slider = sliderRef.current;
+    const slide = slider?.querySelector(".sc-onb-app-slide");
+    if (!slider || !slide) return;
+
+    const gap = Number.parseFloat(window.getComputedStyle(slider).columnGap) || 12;
+    slider.scrollBy({
+      left: direction * (slide.getBoundingClientRect().width + gap),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth",
+    });
+  };
+
   return (
-    <div className="sc-onb-roadmap" aria-live="polite">
-      <div className="sc-onb-roadmap-burst" aria-hidden="true">
-        {Array.from({ length: 14 }, (_, index) => (
-          <span key={index} />
-        ))}
-      </div>
-      <Eyebrow icon={<Sparkle size={13} weight="bold" />}>
-        Roadmap ready
+    <div className="sc-onb-complete" aria-live="polite">
+      <Eyebrow icon={<SealCheck size={13} weight="fill" />}>
+        Profile ready
       </Eyebrow>
-      <h1>Welcome, {getFirstName(profile.fullName)}!</h1>
+      <h1>You’re in, {getFirstName(profile.fullName)}. Start in the app.</h1>
       <p className="sc-onb-lede">
-        Here’s your personalised path to Germany. Your details are saved on this
-        device. Talk to a Skillcase advisor to discuss your next steps.
+        Learn German, prepare for interviews, and track your Germany job in one
+        app.
       </p>
 
-      <div className="sc-onb-roadmap-card">
-        <div className="sc-onb-roadmap-head">
-          <span>Estimated journey</span>
-          <strong>12–14 months</strong>
+      <section className="sc-onb-app-handoff" aria-label="Choose your device">
+        <div className="sc-onb-app-actions">
+          <a
+            className="sc-onb-app-action sc-onb-app-action-primary"
+            href={PLAY_STORE_URL}
+            rel="noreferrer"
+            target="_blank"
+            aria-label="Download the Skillcase app from Google Play"
+          >
+            <img
+              className="sc-onb-app-brand-logo"
+              src="/assets/images/google-play-mark.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>
+              <small>Android</small>
+              <strong>Download on Google Play</strong>
+            </span>
+          </a>
+          <a
+            className="sc-onb-app-action sc-onb-app-action-secondary"
+            href={WEB_APP_URL}
+            rel="noreferrer"
+            target="_blank"
+            aria-label="Open the Skillcase web app for Apple users"
+          >
+            <img
+              className="sc-onb-app-brand-logo"
+              src="/assets/images/apple-mark.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>
+              <small>Apple user</small>
+              <strong>Open the web app</strong>
+            </span>
+          </a>
         </div>
-        <ol className="sc-onb-roadmap-list">
-          {milestones.map((m, index) => (
-            <li key={m.title} className={`is-${m.state}`}>
-              <span className="sc-onb-roadmap-marker" aria-hidden="true">
-                {m.state === "done" ? (
-                  <Check size={12} weight="bold" />
-                ) : (
-                  <em>{index + 1}</em>
-                )}
-              </span>
-              <div>
-                <strong>{m.title}</strong>
-                <small>{m.detail}</small>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
+        <p className="sc-onb-app-reassurance">
+          Free to start. Your learning and job progress stay together.
+        </p>
+      </section>
 
-      <p className="sc-onb-roadmap-proof">
-        78 nurses are at a similar starting point this month. You’ll learn
-        together in batches.
-      </p>
-      <a className="sc-onb-cta" href="tel:+919731462667">
+      <section
+        className="sc-onb-app-slider-section"
+        aria-label="Skillcase app screenshots"
+      >
+        <div className="sc-onb-app-slider-frame">
+          <button
+            className="sc-onb-app-slider-arrow sc-onb-app-slider-arrow-prev"
+            type="button"
+            aria-label="View previous app screen"
+            onClick={() => moveSlider(-1)}
+          >
+            <ArrowLeft size={17} weight="bold" aria-hidden="true" />
+          </button>
+          <div className="sc-onb-app-slider" ref={sliderRef}>
+            {PLAY_STORE_SCREENSHOTS.map((screen) => (
+              <figure className="sc-onb-app-slide" key={screen.src}>
+                <ResponsiveImage alt={screen.alt} src={screen.src} />
+              </figure>
+            ))}
+          </div>
+          <button
+            className="sc-onb-app-slider-arrow sc-onb-app-slider-arrow-next"
+            type="button"
+            aria-label="View next app screen"
+            onClick={() => moveSlider(1)}
+          >
+            <ArrowRight size={17} weight="bold" aria-hidden="true" />
+          </button>
+        </div>
+      </section>
+
+      <LearnerReviewCard
+        avatarAlt="Portrait of Nikhil R."
+        avatarSrc="/assets/images/testimonial-nikhil.webp"
+        className="sc-onb-app-testimonial"
+        name="Nikhil R."
+        quote="Skillcase helped me understand what to prepare and how to keep my application moving without feeling lost."
+        showGoogle={false}
+        source="Healthcare candidate · Karnataka"
+        verifiedLabel="Verified Skillcase learner"
+      />
+
+      <a className="btn btn-outline sc-onb-advisor-cta" href="tel:+919731462667">
+        <PhoneCall size={16} weight="bold" aria-hidden="true" />
         Talk to an advisor
-        <ArrowRight size={17} weight="bold" aria-hidden="true" />
       </a>
     </div>
   );

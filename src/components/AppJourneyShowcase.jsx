@@ -1,10 +1,8 @@
 import { useRef } from "react";
 import {
-  AppleLogoIcon as AppleLogo,
   ArrowLeftIcon as ArrowLeft,
   ArrowRightIcon as ArrowRight,
   ArrowUpRightIcon as ArrowUpRight,
-  GooglePlayLogoIcon as GooglePlayLogo,
 } from "@phosphor-icons/react/ssr";
 
 const playStoreUrl =
@@ -179,7 +177,12 @@ export default function AppJourneyShowcase() {
             rel="noreferrer"
             target="_blank"
           >
-            <GooglePlayLogo size={24} weight="fill" aria-hidden="true" />
+            <img
+              className="app-cta-brand-logo"
+              src="/assets/images/google-play-mark.svg"
+              alt=""
+              aria-hidden="true"
+            />
             <span>
               <small>Download on</small>
               <strong>Google Play</strong>
@@ -192,7 +195,12 @@ export default function AppJourneyShowcase() {
             rel="noreferrer"
             target="_blank"
           >
-            <AppleLogo size={24} weight="fill" aria-hidden="true" />
+            <img
+              className="app-cta-brand-logo"
+              src="/assets/images/apple-mark.svg"
+              alt=""
+              aria-hidden="true"
+            />
             <span>
               <small>Apple user</small>
               <strong>Use web app</strong>

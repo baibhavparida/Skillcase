@@ -566,6 +566,14 @@ img {
   margin-top: 32px;
 }
 
+.hero-app-cta img {
+  display: block;
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
 .offer-strip {
   position: relative;
   display: grid;
@@ -2355,6 +2363,14 @@ img {
   background: var(--color-navy);
   color: #ffffff;
   box-shadow: 0 12px 24px rgba(0, 40, 86, 0.18);
+}
+
+.app-cta-brand-logo {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .app-store-cta > span,
@@ -9940,6 +9956,12 @@ img {
   color: var(--color-navy);
   font-size: 10px;
   font-weight: 700;
+}
+
+.learner-review-avatar-image {
+  display: block;
+  object-fit: cover;
+  object-position: center 24%;
 }
 
 .learner-review-person {

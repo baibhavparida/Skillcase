@@ -44,13 +44,26 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                   every step.
                 </p>
                 <div className="hero-actions">
-                  <a className="btn btn-gold" href="#jobs">
+                  <a className="btn btn-gold" href="/signup/">
                     See Jobs
                     <span
                       data-icon="arrow-right"
                       data-size="16"
                       aria-hidden="true"
                     ></span>
+                  </a>
+                  <a
+                    className="btn btn-outline hero-app-cta"
+                    href="https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      src="/assets/images/google-play-mark.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    Download Skillcase app
                   </a>
                 </div>
               </div>
@@ -227,7 +240,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       bonuses and allowances in Germany.
                     </p>
                     <div
-                      className="benefit-points"
+                      className="benefit-points benefit-points-grid"
                       aria-label="10x your earning potential highlights"
                     >
                       <span>
@@ -291,7 +304,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       family reunification and work rights.
                     </p>
                     <div
-                      className="benefit-points"
+                      className="benefit-points benefit-points-grid"
                       aria-label="Settle abroad with your family highlights"
                     >
                       <span>
@@ -377,7 +390,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       required for permanent residency.
                     </p>
                     <div
-                      className="benefit-points"
+                      className="benefit-points benefit-points-grid"
                       aria-label="Pathway to permanent residency highlights"
                     >
                       <span>

@@ -649,6 +649,33 @@
   text-underline-offset: 2px;
 }
 
+.sc-onb-login-prompt {
+  margin: -4px 0;
+  color: var(--color-muted);
+  font-size: 12.5px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.sc-onb-login-prompt a {
+  color: var(--color-navy);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 40, 86, 0.22);
+  text-underline-offset: 3px;
+}
+
+.sc-onb-login-prompt a:hover {
+  color: var(--color-cyan);
+  text-decoration-color: currentColor;
+}
+
+.sc-onb-login-prompt a:focus-visible {
+  border-radius: 3px;
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
 .sc-onb-consent {
   display: flex;
   align-items: flex-start;
@@ -734,15 +761,15 @@
 /* ---- Choice cards ---- */
 .sc-onb-choice-grid {
   display: grid;
-  gap: 10px;
+  gap: 7px;
 }
 
 .sc-onb-choice-card {
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 9px;
+  padding: 10px 12px;
   border: 1.5px solid var(--sc-border-soft);
   border-radius: var(--sc-r-md);
   background: var(--sc-surface);
@@ -751,7 +778,7 @@
   font: inherit;
   color: var(--color-ink);
   transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
-  min-height: 64px;
+  min-height: 56px;
 }
 
 .sc-onb-choice-card:hover { border-color: rgba(5, 163, 229, 0.55); background: #fafcff; }
@@ -761,24 +788,24 @@
   background: var(--sc-surface-cool);
 }
 
-.sc-onb-choice-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.sc-onb-choice-text strong { font-size: 15px; font-weight: 600; color: var(--color-ink); line-height: 1.2; }
-.sc-onb-choice-text small { font-size: 12px; color: var(--color-muted); line-height: 1.4; }
+.sc-onb-choice-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.sc-onb-choice-text strong { font-size: 14px; font-weight: 600; color: var(--color-ink); line-height: 1.2; }
+.sc-onb-choice-text small { font-size: 11.5px; color: var(--color-muted); line-height: 1.3; }
 
 .sc-onb-choice-tag {
-  padding: 4px 8px;
+  padding: 3px 7px;
   background: var(--color-gold);
   color: #211500;
   border-radius: var(--sc-r-pill);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   font-style: normal;
   letter-spacing: 0.02em;
 }
 
 .sc-onb-choice-radio {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: var(--sc-r-pill);
   border: 1.5px solid var(--sc-border-soft);
   display: inline-flex;
@@ -983,19 +1010,18 @@
   .sc-onb-field-grid .sc-onb-field:nth-child(3) { grid-column: 1 / -1; }
 }
 
-/* ---- Roadmap reveal ---- */
-.sc-onb-roadmap {
+/* ---- App activation reveal ---- */
+.sc-onb-complete {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 15px;
   width: 100%;
   max-width: 560px;
   margin: 0 auto;
-  position: relative;
   animation: sc-fade-up 480ms ease-out;
 }
 
-.sc-onb-roadmap h1 {
+.sc-onb-complete h1 {
   margin: 0;
   font-size: 26px;
   font-weight: 500;
@@ -1003,121 +1029,232 @@
   color: var(--color-ink);
 }
 
-.sc-onb-roadmap-burst {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.sc-onb-complete h1[tabindex="-1"]:focus,
+.sc-onb-complete h1[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
+.sc-onb-app-slider-section {
+  min-width: 0;
+  margin-top: 14px;
+}
+
+.sc-onb-app-slider-frame {
+  position: relative;
+  min-width: 0;
+}
+
+.sc-onb-app-slider {
+  display: flex;
+  gap: 12px;
+  width: calc(100% + 18px);
+  margin-right: -18px;
+  padding: 0 18px 2px 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sc-onb-app-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.sc-onb-app-slide {
+  flex: 0 0 min(72vw, 258px);
+  margin: 0;
   overflow: hidden;
+  border: 1px solid rgba(0, 40, 86, 0.12);
+  border-radius: 16px;
+  background: transparent;
+  box-sizing: border-box;
+  scroll-snap-align: start;
 }
 
-.sc-onb-roadmap-burst span {
+.sc-onb-app-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+}
+
+.sc-onb-app-slider-arrow {
   position: absolute;
-  width: 8px;
-  height: 12px;
-  background: var(--color-gold);
-  border-radius: 1px;
-  top: 0;
-  left: 50%;
-  opacity: 0;
-  animation: sc-burst 2.6s ease-out forwards;
-}
-
-.sc-onb-roadmap-burst span:nth-child(1) { background: var(--color-cyan); animation-delay: 0.05s; transform: translateX(-130px); }
-.sc-onb-roadmap-burst span:nth-child(2) { background: var(--color-gold); animation-delay: 0.1s; transform: translateX(-90px); }
-.sc-onb-roadmap-burst span:nth-child(3) { background: var(--color-navy); animation-delay: 0.15s; transform: translateX(-50px); }
-.sc-onb-roadmap-burst span:nth-child(4) { background: var(--color-gold); animation-delay: 0.05s; transform: translateX(-20px); }
-.sc-onb-roadmap-burst span:nth-child(5) { background: var(--color-cyan); animation-delay: 0.12s; transform: translateX(20px); }
-.sc-onb-roadmap-burst span:nth-child(6) { background: var(--color-gold); animation-delay: 0.18s; transform: translateX(50px); }
-.sc-onb-roadmap-burst span:nth-child(7) { background: var(--color-navy); animation-delay: 0.08s; transform: translateX(90px); }
-.sc-onb-roadmap-burst span:nth-child(8) { background: var(--color-cyan); animation-delay: 0.22s; transform: translateX(130px); }
-.sc-onb-roadmap-burst span:nth-child(9) { background: var(--color-gold); animation-delay: 0.3s; transform: translateX(-110px); }
-.sc-onb-roadmap-burst span:nth-child(10) { background: var(--color-navy); animation-delay: 0.35s; transform: translateX(-70px); }
-.sc-onb-roadmap-burst span:nth-child(11) { background: var(--color-cyan); animation-delay: 0.4s; transform: translateX(70px); }
-.sc-onb-roadmap-burst span:nth-child(12) { background: var(--color-gold); animation-delay: 0.45s; transform: translateX(110px); }
-.sc-onb-roadmap-burst span:nth-child(13) { background: var(--color-navy); animation-delay: 0.55s; transform: translateX(0); }
-.sc-onb-roadmap-burst span:nth-child(14) { background: var(--color-cyan); animation-delay: 0.6s; transform: translateX(40px); }
-
-@keyframes sc-burst {
-  0% { opacity: 0; transform: translateX(var(--tx, 0)) translateY(-20px) rotate(0deg); }
-  20% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(var(--tx, 0)) translateY(380px) rotate(360deg); }
-}
-
-.sc-onb-roadmap-card {
-  background: var(--color-navy);
-  color: white;
-  border-radius: var(--sc-r-lg);
-  padding: 20px;
-  box-shadow: var(--sc-shadow-2);
-}
-
-.sc-onb-roadmap-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.sc-onb-roadmap-head span {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-}
-
-.sc-onb-roadmap-head strong {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-gold);
-}
-
-.sc-onb-roadmap-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.sc-onb-roadmap-list li {
+  top: 50%;
+  z-index: 3;
   display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 12px;
-  align-items: start;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-navy);
+  box-shadow: 0 6px 18px rgba(0, 40, 86, 0.14);
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
 }
 
-.sc-onb-roadmap-marker {
-  width: 24px;
-  height: 24px;
-  border-radius: var(--sc-r-pill);
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-  display: inline-flex;
+.sc-onb-app-slider-arrow-prev {
+  left: 6px;
+}
+
+.sc-onb-app-slider-arrow-next {
+  right: 2px;
+}
+
+.sc-onb-app-slider-arrow:hover {
+  border-color: rgba(5, 163, 229, 0.5);
+  color: var(--color-cyan);
+}
+
+.sc-onb-app-slider-arrow:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+/* ---- Final app handoff ---- */
+.sc-onb-app-handoff {
+  display: grid;
+  gap: 9px;
+}
+
+.sc-onb-app-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.sc-onb-app-action {
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  gap: 9px;
   align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 600;
-  flex-shrink: 0;
-  margin-top: 2px;
+  min-height: 74px;
+  padding: 10px 11px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-family: inherit;
+  transition:
+    transform 180ms var(--vbc-ease),
+    box-shadow 180ms var(--vbc-ease),
+    border-color 180ms ease;
 }
 
-.sc-onb-roadmap-marker em { font-style: normal; }
+.sc-onb-app-brand-logo {
+  display: block;
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
 
-.sc-onb-roadmap-list .is-done .sc-onb-roadmap-marker { background: var(--color-gold); color: #211500; }
-.sc-onb-roadmap-list .is-current .sc-onb-roadmap-marker { background: var(--color-cyan); color: white; }
+.sc-onb-app-action small,
+.sc-onb-app-action strong {
+  display: block;
+}
 
-.sc-onb-roadmap-list strong { display: block; font-size: 14px; color: white; font-weight: 600; line-height: 1.3; }
-.sc-onb-roadmap-list small { display: block; font-size: 12px; color: rgba(255, 255, 255, 0.72); line-height: 1.5; margin-top: 2px; }
+.sc-onb-app-action small {
+  margin-bottom: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
-.sc-onb-roadmap-proof {
-  font-size: 13px;
+.sc-onb-app-action strong {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.28;
+}
+
+.sc-onb-app-action-primary {
+  background: var(--color-navy);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 40, 86, 0.18);
+}
+
+.sc-onb-app-action-primary small {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.sc-onb-app-action-secondary {
+  border-color: rgba(0, 40, 86, 0.14);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--color-navy);
+  box-shadow: 0 6px 16px rgba(0, 40, 86, 0.06);
+}
+
+.sc-onb-app-action-secondary small {
   color: var(--color-muted);
-  margin: 0;
+}
+
+.sc-onb-app-action:hover {
+  transform: translateY(-2px);
+}
+
+.sc-onb-app-action-primary:hover {
+  box-shadow: 0 14px 28px rgba(0, 40, 86, 0.24);
+}
+
+.sc-onb-app-action-secondary:hover {
+  border-color: rgba(5, 163, 229, 0.45);
+  box-shadow: 0 10px 22px rgba(0, 40, 86, 0.1);
+}
+
+.sc-onb-app-action:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+.sc-onb-app-reassurance {
+  margin: -1px 0 0;
+  color: var(--color-muted);
+  font-size: 10.5px;
+  line-height: 1.45;
   text-align: center;
+}
+
+.learner-review.sc-onb-app-testimonial {
+  min-height: 0;
+  margin: 0;
+  gap: 14px;
+  justify-content: flex-start;
+  padding: 17px;
+  border-radius: var(--sc-r-md);
+  box-shadow: 0 10px 28px rgba(0, 40, 86, 0.07);
+}
+
+.sc-onb-app-testimonial blockquote {
+  font-size: 12.5px;
+  line-height: 1.62;
+}
+
+.sc-onb-app-testimonial figcaption {
+  margin-top: 0;
+}
+
+.sc-onb-app-testimonial .learner-review-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.sc-onb-advisor-cta {
+  width: 100%;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  min-height: 44px;
+  border-radius: 12px;
+  font-size: 12.5px;
+}
+
+.sc-onb-advisor-cta svg {
+  flex: 0 0 auto;
 }
 
 /* ---- Return toast ---- */
@@ -1159,7 +1296,6 @@
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .sc-onb-stage-pulse::after,
-  .sc-onb-roadmap-burst span,
   .sc-onb-form,
   .sc-onb-return { animation: none !important; }
   .sc-onb-cta { transition: none !important; }
@@ -1741,12 +1877,12 @@
     0 1px 0 rgba(255, 255, 255, 0.52) inset;
 }
 
-/* Choice cards: bigger tap targets + a clearer, calmer selected state. */
-.sc-onb-choice-card { min-height: 68px; padding: 15px 16px; }
+/* Choice cards stay compact while preserving a comfortable tap target. */
+.sc-onb-choice-card { min-height: 56px; padding: 9px 12px; }
 .sc-onb-choice-card.is-selected {
   border-color: var(--color-navy);
   background: var(--sc-surface-cool);
-  box-shadow: 0 0 0 3px rgba(0, 40, 86, 0.08);
+  box-shadow: 0 0 0 2px rgba(0, 40, 86, 0.08);
 }
 
 /* -------------------------------------------------------------------------
@@ -2108,5 +2244,6 @@
 
 /* ---- Reduced motion: no lifts ---- */
 @media (prefers-reduced-motion: reduce) {
-  .sc-onb-cta:hover { transform: none; }
+  .sc-onb-cta:hover,
+  .sc-onb-app-action:hover { transform: none; }
 }
