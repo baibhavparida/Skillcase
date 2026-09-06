@@ -4,7 +4,17 @@ export default function SiteHeader(props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef(null);
   const toggleRef = useRef(null);
+
+  const refreshBackdropOffset = () => {
+    if (!headerRef.current) return;
+    headerRef.current.style.setProperty(
+      "--mobile-nav-backdrop-top",
+      `${Math.ceil(headerRef.current.offsetHeight)}px`
+    );
+  };
+
   useEffect(() => {
+    refreshBackdropOffset();
     const media = window.matchMedia("(min-width: 901px)");
     const closeOnResize = () => {
       if (media.matches) setMenuOpen(false);
@@ -18,10 +28,12 @@ export default function SiteHeader(props) {
         toggleRef.current?.focus();
       }
     };
+    window.addEventListener("resize", refreshBackdropOffset);
     media.addEventListener("change", closeOnResize);
     document.addEventListener("pointerdown", closeOnOutside);
     document.addEventListener("keydown", closeOnEscape);
     return () => {
+      window.removeEventListener("resize", refreshBackdropOffset);
       media.removeEventListener("change", closeOnResize);
       document.removeEventListener("pointerdown", closeOnOutside);
       document.removeEventListener("keydown", closeOnEscape);
@@ -94,6 +106,12 @@ export default function SiteHeader(props) {
             </span>
           </button>
         </div>
+        <div
+          aria-hidden="true"
+          className="mobile-nav-backdrop"
+          hidden={!menuOpen}
+          onClick={() => setMenuOpen(false)}
+        />
         <nav
           aria-label="Mobile navigation"
           className="mobile-nav-panel"

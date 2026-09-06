@@ -13,9 +13,8 @@ export default function SiteFooter(props) {
                 />
               </a>
               <p>
-                Empowering professionals for global careers. We simplify
-                international recruitment through expert guidance, language
-                training, and end-to-end relocation support.
+                Helping healthcare professionals build careers in Germany with
+                language, recruitment, and relocation support.
               </p>
               <a className="footer-cta" href="/signup/">
                 Get Started
@@ -43,13 +42,6 @@ export default function SiteFooter(props) {
               <a href="/blog/">Blog</a>
               <a href="/#faq">FAQ</a>
               <a href="/privacy-policy/">Privacy Policy</a>
-            </div>
-            <div className="footer-column footer-pathways">
-              <h2>Skillcase Pathway</h2>
-              <span>Language training</span>
-              <span>Profile assessment</span>
-              <span>Interview preparation</span>
-              <span>Visa documentation</span>
             </div>
           </div>
           <div className="footer-bottom">
