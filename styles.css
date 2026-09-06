@@ -1592,6 +1592,13 @@ img {
   padding: 10px;
 }
 
+.salary-ui strong {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  white-space: nowrap;
+}
+
 .salary-ui strong span {
   color: #607083;
   font-size: 0.62em;

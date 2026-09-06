@@ -60,6 +60,7 @@ const defaultProfile = {
   qualification: "",
   germanLevel: "not_started",
   experience: "",
+  whatsappOptIn: true,
 };
 const onboardingSteps = [
   "phone",
@@ -448,7 +449,13 @@ export default function CandidateSignup() {
                   </label>
 
                   <label className="sc-onb-consent">
-                    <input checked readOnly type="checkbox" />
+                    <input
+                      checked={profile.whatsappOptIn}
+                      type="checkbox"
+                      onChange={(event) =>
+                        updateProfile("whatsappOptIn", event.target.checked)
+                      }
+                    />
                     <span>
                       Yes, send me free class invites, job alerts and visa news
                       on WhatsApp. I can stop anytime.

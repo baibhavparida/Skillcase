@@ -505,7 +505,7 @@
 .sc-onb-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
@@ -519,7 +519,7 @@
 
 .sc-onb-form h1 {
   margin: 0;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1.2;
@@ -527,9 +527,9 @@
 }
 
 .sc-onb-lede {
-  margin: -8px 0 0;
-  font-size: 14px;
-  line-height: 1.55;
+  margin: -6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.48;
   color: var(--color-muted);
 }
 
@@ -540,11 +540,11 @@
   align-items: center;
   gap: 6px;
   margin: 0;
-  padding: 5px 10px;
+  padding: 4px 8px;
   background: var(--sc-surface-cool);
   border-radius: var(--sc-r-pill);
   color: var(--color-cyan);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -761,15 +761,15 @@
 /* ---- Choice cards ---- */
 .sc-onb-choice-grid {
   display: grid;
-  gap: 7px;
+  gap: 5px;
 }
 
 .sc-onb-choice-card {
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 9px;
-  padding: 10px 12px;
+  gap: 7px;
+  padding: 7px 10px;
   border: 1.5px solid var(--sc-border-soft);
   border-radius: var(--sc-r-md);
   background: var(--sc-surface);
@@ -778,7 +778,7 @@
   font: inherit;
   color: var(--color-ink);
   transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
-  min-height: 56px;
+  min-height: 50px;
 }
 
 .sc-onb-choice-card:hover { border-color: rgba(5, 163, 229, 0.55); background: #fafcff; }
@@ -789,23 +789,23 @@
 }
 
 .sc-onb-choice-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.sc-onb-choice-text strong { font-size: 14px; font-weight: 600; color: var(--color-ink); line-height: 1.2; }
-.sc-onb-choice-text small { font-size: 11.5px; color: var(--color-muted); line-height: 1.3; }
+.sc-onb-choice-text strong { font-size: 13px; font-weight: 600; color: var(--color-ink); line-height: 1.2; }
+.sc-onb-choice-text small { font-size: 11px; color: var(--color-muted); line-height: 1.25; }
 
 .sc-onb-choice-tag {
-  padding: 3px 7px;
+  padding: 2px 6px;
   background: var(--color-gold);
   color: #211500;
   border-radius: var(--sc-r-pill);
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   font-style: normal;
   letter-spacing: 0.02em;
 }
 
 .sc-onb-choice-radio {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: var(--sc-r-pill);
   border: 1.5px solid var(--sc-border-soft);
   display: inline-flex;
@@ -1878,11 +1878,11 @@
 }
 
 /* Choice cards stay compact while preserving a comfortable tap target. */
-.sc-onb-choice-card { min-height: 56px; padding: 9px 12px; }
+.sc-onb-choice-card { min-height: 50px; padding: 7px 10px; }
 .sc-onb-choice-card.is-selected {
   border-color: var(--color-navy);
   background: var(--sc-surface-cool);
-  box-shadow: 0 0 0 2px rgba(0, 40, 86, 0.08);
+  box-shadow: 0 0 0 1px rgba(0, 40, 86, 0.08);
 }
 
 /* -------------------------------------------------------------------------
@@ -1919,11 +1919,11 @@
   /* Form fills the panel; the CTA is pushed to the bottom of the screen. */
   .sc-onb-form {
     max-width: none;
-    gap: 16px;
+    gap: 12px;
     min-height: 100%;
   }
-  .sc-onb-form h1 { font-size: 27px; line-height: 1.18; }
-  .sc-onb-lede { font-size: 14.5px; margin-top: -4px; }
+  .sc-onb-form h1 { font-size: 23px; line-height: 1.15; }
+  .sc-onb-lede { font-size: 13.5px; line-height: 1.48; margin-top: -3px; }
 
   /* Larger, friendlier inputs for touch. */
   .sc-onb-text,

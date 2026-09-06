@@ -265,7 +265,7 @@ main [id] {
     min-width: 0;
     margin-left: var(--container-gutter);
     margin-right: 0;
-    transform: translateY(-45px);
+    transform: translateY(-13px);
   }
   .hero-background .hero-copy h1 {
     font-size: clamp(30px, 8.2vw, 38px);
@@ -854,15 +854,15 @@ main [id] {
     gap: 4px;
   }
   .sc-onb-panel {
-    padding-top: 12px;
+    padding-top: 6px;
   }
   .sc-onb-form h1 {
-    font-size: clamp(28px, 8.2vw, 32px);
-    line-height: 1.22;
+    font-size: 22px;
+    line-height: 1.15;
   }
   .sc-onb-lede {
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: 13px;
+    line-height: 1.45;
   }
   .sc-onb-consent {
     min-height: 48px;
@@ -888,20 +888,20 @@ main [id] {
     min-height: 52px;
   }
   .sc-onb-choice-card {
-    min-height: 76px;
-    padding: 14px;
+    min-height: 50px;
+    padding: 7px 10px;
   }
   .sc-onb-choice-text strong {
-    font-size: 16px;
-    line-height: 1.4;
+    font-size: 13px;
+    line-height: 1.2;
   }
   .sc-onb-choice-text small {
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 11px;
+    line-height: 1.25;
   }
   .sc-onb-choice-tag {
     max-width: 78px;
-    font-size: 10px;
+    font-size: 9px;
     white-space: normal;
     text-align: center;
   }

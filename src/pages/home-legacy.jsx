@@ -63,7 +63,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       alt=""
                       aria-hidden="true"
                     />
-                    Download Skillcase app
+                    Download App
                   </a>
                 </div>
               </div>
