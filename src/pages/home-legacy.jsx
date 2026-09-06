@@ -150,53 +150,28 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 <div className="globe-card-header">
                   <p className="eyebrow">Global opportunities</p>
                   <h2>
-                    India's Healthcare Talent: Ready for Global Opportunities
+                    India’s healthcare talent, ready for global opportunities
                   </h2>
                 </div>
                 <div className="globe-copy">
                   <div className="opportunity-metrics">
                     <article className="metric-card opportunity-metric">
-                      <div className="metric-icon">
-                        <span
-                          data-icon="users-round"
-                          data-size="16"
-                          aria-hidden="true"
-                        ></span>
-                      </div>
                       <span className="metric-label">Healthcare demand</span>
-                      <strong>500,000 +</strong>
-                      <p>Health professionals require in Germany by 2030</p>
+                      <strong>500,000+</strong>
+                      <p>Healthcare professionals needed in Germany by 2030</p>
                     </article>
                     <article className="metric-card opportunity-metric">
-                      <div className="metric-icon">
-                        <span
-                          data-icon="briefcase-business"
-                          data-size="16"
-                          aria-hidden="true"
-                        ></span>
-                      </div>
                       <span className="metric-label">Average gross salary</span>
-                      <strong>₹3.2 - ₹3.8L</strong>
-                      <p>
-                        Average gross salary for registered nurses in Germany
-                      </p>
+                      <strong>₹3.2–₹3.8L</strong>
+                      <p>Typical gross salary for registered nurses</p>
                     </article>
                     <article className="metric-card opportunity-metric">
-                      <div className="metric-icon">
-                        <span
-                          data-icon="shield-check"
-                          data-size="16"
-                          aria-hidden="true"
-                        ></span>
-                      </div>
                       <span className="metric-label">Transparent support</span>
                       <strong>Free</strong>
-                      <p>
-                        No agent or recruitment charges with fully transparency
-                      </p>
+                      <p>No agent or recruitment fees. Fully transparent.</p>
                     </article>
                   </div>
-                  <a className="btn btn-gold globe-action" href="#jobs">
+                  <a className="btn btn-gold globe-action" href="/signup/">
                     Create Profile
                     <span
                       data-icon="arrow-right"
@@ -238,24 +213,19 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
               <div className="section-heading">
                 <p className="eyebrow">Why choose Skillcase</p>
                 <h2>A practical move with long-term upside.</h2>
-                <p>
-                  Explore the long-term benefits of working in Germany as a
-                  healthcare professional.
-                </p>
+                <p>See what a healthcare career in Germany can offer you.</p>
               </div>
               <div className="benefit-grid">
                 <article className="benefit-card benefit-card-earnings">
                   <div className="benefit-copy">
-                    <h3>10x Your Earning Potential</h3>
+                    <h3>10x your earning potential</h3>
                     <p>
-                      Earn Up to 10 Times More Than Your Current Salary as a
-                      Healthcare Professional in Germany, along with performance
-                      bonuses and additional allowances, allowing you to
-                      significantly enhance your financial future.
+                      Earn up to 10x your current salary, plus performance
+                      bonuses and allowances in Germany.
                     </p>
                     <div
                       className="benefit-points"
-                      aria-label="10x Your Earning Potential highlights"
+                      aria-label="10x your earning potential highlights"
                     >
                       <span>
                         <span data-icon="check-circle-2" data-size="13"></span>
@@ -271,7 +241,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                     </div>
                     <a href="#process">
-                      Get started
+                      See the pathway
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -285,7 +255,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       src="/assets/images/benefit-earnings.webp"
                     />
                     <div className="benefit-ui salary-ui" aria-hidden="true">
-                      <strong>₹3.2L - ₹3.8L</strong>
+                      <strong>₹3.2L–₹3.8L</strong>
                       <div className="salary-bars">
                         <div>
                           <small>Current</small>
@@ -310,16 +280,14 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
 
                 <article className="benefit-card benefit-card-family">
                   <div className="benefit-copy">
-                    <h3>Settle Abroad with Your Family</h3>
+                    <h3>Settle abroad with your family</h3>
                     <p>
-                      Germany’s family reunification policy allows you to bring
-                      your spouse and minor children with you. They can join you
-                      in Germany, and in most cases, also have the right to work
-                      during their stay.
+                      Bring your spouse and children to Germany with guidance on
+                      family reunification and work rights.
                     </p>
                     <div
                       className="benefit-points"
-                      aria-label="Settle Abroad with Your Family highlights"
+                      aria-label="Settle abroad with your family highlights"
                     >
                       <span>
                         <span data-icon="check-circle-2" data-size="13"></span>
@@ -335,7 +303,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                     </div>
                     <a href="#process">
-                      Get started
+                      See the pathway
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -353,15 +321,14 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
 
                 <article className="benefit-card benefit-card-education">
                   <div className="benefit-copy">
-                    <h3>World-Class Healthcare and Education</h3>
+                    <h3>World-class healthcare and education</h3>
                     <p>
-                      Germany provides free or heavily subsidized healthcare and
-                      education for all residents, ensuring your family's
-                      well-being and access to quality learning opportunities.
+                      Access high-quality healthcare and affordable education
+                      for your family while living in Germany.
                     </p>
                     <div
                       className="benefit-points"
-                      aria-label="World-Class Healthcare and Education highlights"
+                      aria-label="World-class healthcare and education highlights"
                     >
                       <span>
                         <span data-icon="check-circle-2" data-size="13"></span>
@@ -377,7 +344,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                     </div>
                     <a href="#process">
-                      Get started
+                      See the pathway
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -395,16 +362,14 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
 
                 <article className="benefit-card benefit-card-residency">
                   <div className="benefit-copy">
-                    <h3>Pathway to Permanent Residency</h3>
+                    <h3>Pathway to permanent residency</h3>
                     <p>
-                      As a healthcare professional in Germany, you can typically
-                      apply for permanent residency after 3 years of living and
-                      working in the country, provided you meet the language and
-                      integration requirements.
+                      Get guidance on the work, language, and integration steps
+                      required for permanent residency.
                     </p>
                     <div
                       className="benefit-points"
-                      aria-label="Pathway to Permanent Residency highlights"
+                      aria-label="Pathway to permanent residency highlights"
                     >
                       <span>
                         <span data-icon="check-circle-2" data-size="13"></span>
@@ -416,11 +381,11 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                       <span>
                         <span data-icon="check-circle-2" data-size="13"></span>
-                        3-year PR track
+                        PR pathway guidance
                       </span>
                     </div>
                     <a href="#process">
-                      Get started
+                      See the pathway
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -441,29 +406,27 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
             <section className="section webinar-section" id="register-webinar">
               <div className="webinar-card">
                 <div className="webinar-copy">
-                  <a
-                    className="webinar-status"
-                    href="https://learner.skillcase.in/events/7cdknjvd"
-                  >
-                    <span className="webinar-status-icon" aria-hidden="true">
-                      <span data-icon="video" data-size="15"></span>
+                  <div className="webinar-kicker-row">
+                    <p className="eyebrow webinar-eyebrow">Free live webinar</p>
+                    <span className="webinar-note webinar-note-top">
+                      <span
+                        data-icon="badge-check"
+                        data-size="14"
+                        aria-hidden="true"
+                      ></span>
+                      Limited live seats
                     </span>
-                    <span>
-                      <small>Free live webinar</small>
-                      <strong>Nursing jobs in Germany</strong>
-                    </span>
-                  </a>
-                  <h2>Live Webinar - Nursing Jobs In Germany</h2>
+                  </div>
+                  <h2>Live webinar – nursing jobs in Germany</h2>
                   <p className="webinar-lede">
-                    Join Skillcase experts for a practical walkthrough of
-                    eligibility, documents, interviews, salary range, and the
-                    next steps to work in Germany.
+                    Get clear guidance on eligibility, documents, interviews,
+                    salary, and your next steps.
                   </p>
                   <div className="webinar-details" aria-label="Webinar details">
                     <div className="webinar-detail">
                       <span
                         data-icon="video"
-                        data-size="17"
+                        data-size="22"
                         aria-hidden="true"
                       ></span>
                       <span>Live session</span>
@@ -472,7 +435,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                     <div className="webinar-detail">
                       <span
                         data-icon="badge-check"
-                        data-size="17"
+                        data-size="22"
                         aria-hidden="true"
                       ></span>
                       <span>Access</span>
@@ -481,7 +444,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                     <div className="webinar-detail">
                       <span
                         data-icon="map-pin"
-                        data-size="17"
+                        data-size="22"
                         aria-hidden="true"
                       ></span>
                       <span>Pathway</span>
@@ -500,14 +463,6 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         aria-hidden="true"
                       ></span>
                     </a>
-                    <span className="webinar-note">
-                      <span
-                        data-icon="badge-check"
-                        data-size="15"
-                        aria-hidden="true"
-                      ></span>
-                      Limited live seats
-                    </span>
                   </div>
                 </div>
                 <div className="webinar-media">
@@ -515,10 +470,6 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                     alt="Indian nurses attending a Germany healthcare webinar"
                     src="/assets/images/webinar-nurses.webp"
                   />
-                  <div className="webinar-media-topbar" aria-hidden="true">
-                    <span className="webinar-live-dot"></span>
-                    Going live tonight
-                  </div>
                   <div className="play-orb" aria-hidden="true">
                     <span data-icon="play-filled" data-size="18"></span>
                   </div>
@@ -531,8 +482,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 <p className="eyebrow">Job seeker?</p>
                 <h2>Who can apply?</h2>
                 <p>
-                  Explore diverse job opportunities outside India with expert
-                  support at every stage—from application to relocation.
+                  Explore Germany pathways for nurses, with support from
+                  application to relocation.
                 </p>
               </div>
               <div className="job-grid">
@@ -548,9 +499,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                     </span>
                     <h3>Nurses (Jobs)</h3>
                     <p>
-                      For qualified nurses ready to move into paid clinical
-                      roles in Germany with Skillcase support from profile to
-                      relocation.
+                      Paid clinical roles in Germany for qualified nurses, with
+                      support through relocation.
                     </p>
                     <div className="job-meta">
                       <span>
@@ -566,9 +516,9 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                     </div>
                     <div className="job-card-actions">
-                      <button className="btn btn-gold" type="button">
+                      <a className="btn btn-gold" href="/signup/">
                         Apply Now
-                      </button>
+                      </a>
                       <small>No recruitment charges</small>
                     </div>
                   </div>
@@ -592,9 +542,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                     </span>
                     <h3>Nurses (Ausbildung)</h3>
                     <p>
-                      A guided training route for early-career candidates who
-                      want to build a healthcare career in Germany through
-                      structured apprenticeship.
+                      A structured apprenticeship route for early-career
+                      nursing candidates in Germany.
                     </p>
                     <div className="job-meta">
                       <span>
@@ -610,9 +559,9 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                     </div>
                     <div className="job-card-actions">
-                      <button className="btn btn-gold" type="button">
+                      <a className="btn btn-gold" href="/signup/">
                         Apply Now
-                      </button>
+                      </a>
                       <small>Guided pathway support</small>
                     </div>
                   </div>
@@ -632,9 +581,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 <p className="eyebrow">Inside Skillcase</p>
                 <h2>One workspace for every part of your global career.</h2>
                 <p>
-                  Profile building, role matching, language and interview prep,
-                  and relocation support — every Skillcase feature, in one
-                  place.
+                  Build your profile, match with roles, prepare for interviews,
+                  and plan your move—all in one place.
                 </p>
                 <div
                   className="process-proof"
@@ -653,9 +601,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 <p className="eyebrow">Why choose Skillcase</p>
                 <h2>International nursing jobs, made step by step.</h2>
                 <p>
-                  One coach, one path. Profile to relocation, every stage
-                  tracked throughout your Skillcase journey. No agent fees, no
-                  guesswork.
+                  One coach guides every stage, from profile to relocation,
+                  with no recruitment fees.
                 </p>
                 <div
                   className="pathway-proof"
@@ -679,9 +626,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       experiences
                     </h2>
                     <p>
-                      Candid feedback from healthcare candidates using Skillcase
-                      for profile building, interview preparation, language
-                      planning, and Germany pathway support.
+                      See how candidates use Skillcase for profiles, interviews,
+                      language prep, and Germany pathway support.
                     </p>
                   </div>
                   <div
@@ -1061,9 +1007,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       Nurses
                     </h3>
                     <p>
-                      Germany is a highly sought-after destination for nurses
-                      from around the world. With its world-class healthcare
-                      system, excellent work-life balance,
+                      A practical guide to qualifications, work conditions, and
+                      building your nursing career in Germany.
                     </p>
                     <a href="/blog/nursing-in-germany-guide">
                       Read more{" "}
@@ -1093,9 +1038,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       Nursing Salaries in Germany for Foreign Professionals
                     </h3>
                     <p>
-                      Germany is a leading destination for nurses worldwide,
-                      offering competitive salaries, excellent working
-                      conditions, and plenty of opportunities for
+                      See expected nursing salaries, working conditions, and
+                      career opportunities for foreign professionals.
                     </p>
                     <a href="/blog/nursing-salaries-germany-foreign-professionals">
                       Read more{" "}
@@ -1126,9 +1070,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       Guide
                     </h3>
                     <p>
-                      Germany offers immense opportunities for medical
-                      professionals seeking career growth, attractive salaries,
-                      and exposure to an advanced healthcare system.
+                      Learn the documents, licensing steps, and relocation
+                      process for practising medicine in Germany.
                     </p>
                     <a href="/blog/moving-to-germany-as-a-foreign-doctor">
                       Read more{" "}
@@ -1145,11 +1088,10 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
             >
               <div className="podcast-copy">
                 <p className="eyebrow">Podcast</p>
-                <h2 id="podcast-title">Listen to Our Expert Podcast</h2>
+                <h2 id="podcast-title">Listen to our expert podcast</h2>
                 <p>
-                  Get practical guidance from Skillcase experts on healthcare
-                  careers in Germany, employer expectations, documentation, and
-                  how to stand out with a stronger international profile.
+                  Get practical guidance on healthcare careers in Germany,
+                  employer expectations, and stronger applications.
                 </p>
                 <div
                   className="podcast-highlights"
@@ -1189,7 +1131,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 <div className="podcast-video-frame">
                   <iframe
                     src="https://www.youtube.com/embed/-1NrsTNPab4?rel=0"
-                    title="Listen to Our Expert Podcast on YouTube"
+                    title="Listen to our expert podcast on YouTube"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -1209,8 +1151,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                   <p className="eyebrow">FAQ</p>
                   <h2 id="faq-title">Frequently asked questions</h2>
                   <p>
-                    Quick clarity before you start your Germany healthcare
-                    pathway with Skillcase.
+                    Get clear answers before starting your Germany healthcare
+                    journey.
                   </p>
                   <a className="faq-support-link" href="tel:+919731462667">
                     <span data-icon="phone-call" data-size="15"></span>
@@ -1224,10 +1166,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       <span data-icon="chevron-down" data-size="15"></span>
                     </summary>
                     <p>
-                      Each job listing on Skillcase includes detailed
-                      eligibility criteria. If you're unsure, our team is always
-                      available to discuss your qualifications and guide you on
-                      the best opportunities.
+                      Not sure you qualify? We’ll review your profile and
+                      suggest suitable roles.
                     </p>
                   </details>
                   <details>
@@ -1236,11 +1176,9 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       <span data-icon="chevron-down" data-size="15"></span>
                     </summary>
                     <p>
-                      You'll need your updated resume, professional
-                      certifications, language proficiency certificates, and
-                      educational qualifications documents. We will guide you
-                      through the exact requirements based on the job you apply
-                      for.
+                      Usually, you’ll need a resume, qualifications,
+                      professional certificates, and language proof. We’ll
+                      confirm your exact list.
                     </p>
                   </details>
                   <details>
@@ -1249,11 +1187,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       <span data-icon="chevron-down" data-size="15"></span>
                     </summary>
                     <p>
-                      The timeline can vary depending on the role and country.
-                      For nurses who've completed the language training, it
-                      usually takes 2-3 weeks to give your interview and receive
-                      an offer letter. You can expect the visa and documentation
-                      process to take another 7-8 weeks.
+                      Timelines depend on the role and your documents. We’ll
+                      guide you from interview through visa processing.
                     </p>
                   </details>
                   <details>
@@ -1262,9 +1197,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       <span data-icon="chevron-down" data-size="15"></span>
                     </summary>
                     <p>
-                      Currently, we focus on global opportunities in Germany. We
-                      are continuously expanding our reach to bring more
-                      opportunities to our candidates.
+                      We currently focus on healthcare opportunities in Germany.
                     </p>
                   </details>
                 </div>

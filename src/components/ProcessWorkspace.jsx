@@ -125,7 +125,7 @@ export default function ProcessWorkspace() {
           Live
         </div>
         <a className="workspace-cta" href="#jobs">
-          Get started
+          Get Started
           <ArrowUpRight size={14} weight="bold" aria-hidden="true" />
         </a>
       </header>

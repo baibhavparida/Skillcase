@@ -4,7 +4,7 @@ export default function TermsAndConditions(props) {
     <>
       <BaseLayout title="Terms and Conditions | Skillcase">
         <main className="redirect-page">
-          <p>Opening Skillcase terms and conditions...</p>
+          <p>Opening Skillcase terms and conditions…</p>
           <a href="/terms-and-condition">Continue to terms</a>
         </main>
       </BaseLayout>

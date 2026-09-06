@@ -4,7 +4,7 @@ export default function BlogView(props) {
     <>
       <BaseLayout title="Skillcase Blog">
         <main className="redirect-page">
-          <p>Opening the requested Skillcase guide...</p>
+          <p>Opening the requested Skillcase guide…</p>
           <noscript>
             <a href="/blog">View all Skillcase blogs</a>
           </noscript>

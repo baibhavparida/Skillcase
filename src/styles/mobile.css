@@ -102,22 +102,33 @@ main [id] {
     gap: 8px;
   }
   .header-actions .btn {
-    min-height: 44px;
-    height: auto;
-    padding: 10px 14px;
+    min-height: 40px;
+    height: 40px;
+    padding: 0 13px;
     font-size: 13px;
   }
   .header-actions .mobile-menu-toggle {
+    position: relative;
     display: grid;
     flex: 0 0 44px;
     width: 44px;
     height: 44px;
     padding: 0;
     place-items: center;
+    border: 0;
+    background: transparent;
+    color: var(--color-navy);
+  }
+  .header-actions .mobile-menu-toggle::before {
+    position: absolute;
+    inset: 2px;
     border: 1px solid var(--color-border);
     border-radius: 8px;
+    content: "";
     background: var(--color-fog);
-    color: var(--color-navy);
+  }
+  .header-actions .mobile-menu-toggle .hamburger-icon {
+    z-index: 1;
   }
   .mobile-nav-panel:not([hidden]) {
     display: grid;
@@ -158,8 +169,8 @@ main [id] {
     border-top: 1px solid var(--color-border);
   }
   .mobile-nav-actions .btn {
-    min-height: 48px;
-    height: auto;
+    min-height: 42px;
+    height: 42px;
   }
 }
 
@@ -187,7 +198,8 @@ main [id] {
   .process-intro h2,
   .podcast-copy h2,
   .globe-copy h3,
-  .pathway-intro h2 {
+  .pathway-intro h2,
+  .faq-intro h2 {
     font-size: clamp(26px, 7.2vw, 32px);
     line-height: 1.2;
     letter-spacing: -0.025em;
@@ -196,24 +208,24 @@ main [id] {
   .section-heading p:not(.eyebrow),
   .benefit-copy p,
   .job-card p,
-  .webinar-copy p,
-  .process-intro p,
-  .podcast-copy p,
+  .webinar-copy p:not(.eyebrow),
+  .process-intro p:not(.eyebrow),
+  .podcast-copy p:not(.eyebrow),
   .pathway-intro p:not(.eyebrow),
   .globe-copy p,
-  .faq-intro p {
-    font-size: 16px;
-    line-height: 1.65;
+  .faq-intro p:not(.eyebrow) {
+    font-size: 15px;
+    line-height: 1.6;
   }
   .btn,
   .btn-gold,
   .btn-outline,
   .btn-sm {
-    min-height: 44px;
-    height: auto;
-    padding: 10px 15px;
-    line-height: 1.3;
-    font-size: 14px;
+    min-height: 40px;
+    height: 40px;
+    padding: 0 14px;
+    line-height: 1.2;
+    font-size: 13px;
   }
   .hero-background {
     height: auto;
@@ -248,7 +260,7 @@ main [id] {
   }
   .hero-background .hero-copy > p {
     font-size: 15px;
-    line-height: 1.65;
+    line-height: 1.55;
     max-width: 27ch;
   }
   .hero-background .hero-bg-image {
@@ -263,11 +275,19 @@ main [id] {
     min-height: 44px;
     max-width: calc(100vw - (2 * var(--container-gutter)));
     margin-bottom: 22px;
-    padding: 8px 10px;
+    padding: 4px 6px 4px 4px;
+  }
+  .webinar-pill-icon {
+    width: 34px;
+    height: 34px;
   }
   .webinar-pill-copy strong {
     font-size: 12px;
     white-space: nowrap;
+  }
+  .webinar-pill-copy span {
+    font-size: 10px;
+    line-height: 1.3;
   }
   .webinar-pill-copy {
     min-width: 0;
@@ -281,21 +301,45 @@ main [id] {
   .benefit-copy {
     padding: 22px 20px;
   }
+  .salary-bars small {
+    font-size: 10px;
+  }
   .benefit-copy h3,
   .job-card h3,
+  .blog-card h2,
   .blog-card h3 {
     font-size: 21px;
     line-height: 1.3;
   }
-  .benefit-points span,
   .job-tags span {
     font-size: 13px;
     line-height: 1.5;
+  }
+  .benefit-points {
+    gap: 6px 14px;
+    margin-top: 12px;
+  }
+  .benefit-points > span {
+    min-height: 18px;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+  .benefit-points > span > .icon-svg {
+    width: 12px;
+    height: 12px;
   }
   .job-card .btn,
   .webinar-actions .btn {
     width: auto;
     max-width: 100%;
+    min-height: 40px;
+    height: 40px;
+    padding-block: 0;
     align-self: flex-start;
   }
   .webinar-actions {
@@ -327,12 +371,42 @@ main [id] {
     aspect-ratio: 1;
   }
   .opportunity-metric p {
-    font-size: 14px;
-    line-height: 1.55;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .opportunity-metrics {
+    gap: 0;
+    margin: 12px 0 16px;
+  }
+  .opportunity-metric {
+    grid-template-columns: minmax(128px, 0.82fr) minmax(0, 1fr);
+    gap: 4px 16px;
+    min-height: 0;
+    padding: 14px 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .opportunity-metric .metric-label,
+  .opportunity-metric strong {
+    grid-column: 1;
+  }
+  .opportunity-metric .metric-label {
+    grid-row: 1;
+    font-size: 11px;
+  }
+  .opportunity-metric strong {
+    grid-row: 2;
+    font-size: clamp(1.15rem, 5.35vw, 1.25rem);
+  }
+  .opportunity-metric p {
+    grid-row: 1 / 3;
+    grid-column: 2;
+    align-self: center;
   }
   .workspace-cta {
-    min-height: 44px;
-    height: auto;
+    min-height: 40px;
+    height: 40px;
     font-size: 13px;
   }
   .workspace-tab {
@@ -432,8 +506,8 @@ main [id] {
     line-height: 1.35;
   }
   .testimonial-layout .testimonial-card blockquote {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.65;
   }
   .testimonial-person strong {
     font-size: 15px;
@@ -460,17 +534,23 @@ main [id] {
     line-height: 1.5;
   }
   .faq-list details p {
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.6;
   }
   .faq-support-link {
-    min-height: 44px;
+    min-height: 40px;
+    height: 40px;
   }
   .podcast-section {
     padding: 28px 20px;
   }
+  .podcast-copy .eyebrow {
+    font-size: 11px;
+    line-height: 1.5;
+  }
   .podcast-copy a {
-    min-height: 44px;
+    min-height: 40px;
+    height: 40px;
     display: inline-flex;
     align-items: center;
   }
@@ -481,8 +561,8 @@ main [id] {
     gap: 28px 16px;
   }
   .footer-brand-panel p {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.65;
   }
   .footer-brand {
     min-height: 44px;
@@ -490,8 +570,8 @@ main [id] {
     align-items: center;
   }
   .footer-cta {
-    min-height: 44px;
-    height: auto;
+    min-height: 40px;
+    height: 40px;
   }
   .footer-column a,
   .footer-bottom a {
@@ -509,7 +589,7 @@ main [id] {
   .footer-column {
     gap: 4px;
   }
-  .footer-column h3 {
+  .footer-column h2 {
     margin-bottom: 10px;
     font-size: 15px;
   }
@@ -540,8 +620,8 @@ main [id] {
   .page-hero-copy > p:not(.eyebrow),
   .article-title-block > p:not(.eyebrow),
   .about-hero-content .page-hero-text p {
-    font-size: 16px;
-    line-height: 1.7;
+    font-size: 15px;
+    line-height: 1.6;
   }
   .about-hero-photo > img {
     height: clamp(240px, 65vw, 360px);
@@ -556,9 +636,10 @@ main [id] {
   }
   .value-pillar > p,
   .value-mini-grid span,
-  .mission-copy p {
-    font-size: 15px;
-    line-height: 1.65;
+  .mission-copy p:not(.eyebrow),
+  .mission-image-card p {
+    font-size: 14px;
+    line-height: 1.6;
   }
   .blog-subscribe-card {
     padding: 20px;
@@ -566,8 +647,8 @@ main [id] {
   }
   .blog-subscribe-card p,
   .blog-card-body p {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.65;
   }
   .blog-subscribe-card input {
     font-size: 16px;
@@ -585,11 +666,13 @@ main [id] {
     gap: 6px 12px;
     font-size: 12px;
   }
+  .benefit-copy > a,
   .blog-card-body > a {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
     font-size: 15px;
+    font-weight: 600;
   }
   .article-page {
     padding-top: 24px;
@@ -772,7 +855,7 @@ main [id] {
     padding-top: 12px;
   }
   .sc-onb-form h1 {
-    font-size: clamp(27px, 7.7vw, 32px);
+    font-size: clamp(28px, 8.2vw, 32px);
     line-height: 1.22;
   }
   .sc-onb-lede {

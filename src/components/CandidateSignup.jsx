@@ -383,9 +383,9 @@ export default function CandidateSignup() {
                   <Eyebrow icon={<WhatsappLogo size={13} weight="bold" />}>
                     WhatsApp OTP
                   </Eyebrow>
-                  <h1>Let's start with your number</h1>
+                  <h1>Let’s start with your number</h1>
                   <p className="sc-onb-lede">
-                    We'll send a quick code on WhatsApp. Your coach uses this
+                    We’ll send a quick code on WhatsApp. Your coach uses this
                     number for class reminders and job alerts.
                   </p>
 
@@ -538,7 +538,7 @@ export default function CandidateSignup() {
                           errors.email ? "email-error" : undefined
                         }
                         aria-invalid={Boolean(errors.email)}
-                        placeholder="you@example.com"
+                        placeholder="you@example.com…"
                         value={profile.email}
                         onChange={(event) =>
                           updateProfile("email", event.target.value)
@@ -564,7 +564,7 @@ export default function CandidateSignup() {
                   eyebrow="Qualification"
                   eyebrowIcon={<SealCheck size={13} weight="bold" />}
                   title="Your nursing qualification"
-                  copy="Pick what's closest. All Indian nursing degrees can be checked for Germany."
+                  copy="Pick what’s closest. All Indian nursing degrees can be checked for Germany."
                   options={qualificationOptions}
                   selectedValue={profile.qualification}
                   error={errors.qualification}
@@ -592,7 +592,7 @@ export default function CandidateSignup() {
                   eyebrow="German level"
                   eyebrowIcon={<Globe size={13} weight="bold" />}
                   title="Where are you with German?"
-                  copy="Most Skillcase nurses start from zero. You're not behind."
+                  copy="Most Skillcase nurses start from zero. You’re not behind."
                   options={germanLevelOptions}
                   selectedValue={profile.germanLevel}
                   error={errors.germanLevel}
@@ -819,7 +819,7 @@ function ChoiceStep({
 function RoadmapReveal({ profile }) {
   const milestones = [
     {
-      title: "Today — you're in",
+      title: "Today — you’re in",
       detail: `${profile.qualification || "Nursing"} · ${profile.experience || "Experience"} · ${getGermanLabel(profile.germanLevel)}`,
       state: "done",
     },
@@ -861,7 +861,7 @@ function RoadmapReveal({ profile }) {
       </Eyebrow>
       <h1>Welcome, {getFirstName(profile.fullName)}!</h1>
       <p className="sc-onb-lede">
-        Here's your personalised path to Germany. Your details are saved on this
+        Here’s your personalised path to Germany. Your details are saved on this
         device. Talk to a Skillcase advisor to discuss your next steps.
       </p>
 
@@ -890,7 +890,7 @@ function RoadmapReveal({ profile }) {
       </div>
 
       <p className="sc-onb-roadmap-proof">
-        78 nurses are at a similar starting point this month. You'll learn
+        78 nurses are at a similar starting point this month. You’ll learn
         together in batches.
       </p>
       <a className="sc-onb-cta" href="tel:+919731462667">

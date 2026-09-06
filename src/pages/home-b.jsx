@@ -102,15 +102,15 @@ export default function HomeB(props) {
   const faqs = [
     {
       q: "How do I know if I’m eligible for a particular job?",
-      a: "Each job listing on Skillcase includes detailed eligibility criteria. If you're unsure, our team is always available to discuss your qualifications and guide you on the best opportunities.",
+      a: "Each job listing on Skillcase includes detailed eligibility criteria. If you’re unsure, our team is always available to discuss your qualifications and guide you on the best opportunities.",
     },
     {
       q: "What documents do I need to apply for a job?",
-      a: "You'll need your updated resume, professional certifications, language proficiency certificates, and educational qualifications documents. We will guide you through the exact requirements based on the job you apply for.",
+      a: "You’ll need your updated resume, professional certifications, language proficiency certificates, and educational qualifications documents. We will guide you through the exact requirements based on the job you apply for.",
     },
     {
       q: "How long does the recruitment process take?",
-      a: "The timeline can vary depending on the role and country. For nurses who've completed the language training, it usually takes 2-3 weeks to give your interview and receive an offer letter. You can expect the visa and documentation process to take another 7-8 weeks.",
+      a: "The timeline varies by role and country. Nurses who have completed language training usually interview and receive an offer within 2–3 weeks. Visa and documentation can take another 7–8 weeks.",
     },
     {
       q: "What countries can I apply to through Skillcase?",
@@ -395,7 +395,7 @@ export default function HomeB(props) {
             <div className="vb-stats-copy vb-reveal">
               <p className="vb-eyebrow">Global opportunities</p>
               <h2 className="vb-h2">
-                India's healthcare talent: ready for global opportunities
+                India’s healthcare talent: ready for global opportunities
               </h2>
             </div>
             <div
@@ -622,7 +622,7 @@ export default function HomeB(props) {
                     </span>
                   </div>
                   <a className="vb-textlink" href="#pathway">
-                    Get started
+                    Get Started
                     <i
                       className="ph-bold ph-arrow-right"
                       aria-hidden="true"
@@ -682,7 +682,7 @@ export default function HomeB(props) {
                     </span>
                   </div>
                   <a className="vb-textlink" href="#pathway">
-                    Get started
+                    Get Started
                     <i
                       className="ph-bold ph-arrow-right"
                       aria-hidden="true"
@@ -711,7 +711,7 @@ export default function HomeB(props) {
                   <h3>World-class healthcare and education</h3>
                   <p>
                     Germany provides free or heavily subsidized healthcare and
-                    education for all residents, ensuring your family's
+                    education for all residents, ensuring your family’s
                     well-being and access to quality learning opportunities.
                   </p>
                   <div
@@ -741,7 +741,7 @@ export default function HomeB(props) {
                     </span>
                   </div>
                   <a className="vb-textlink" href="#pathway">
-                    Get started
+                    Get Started
                     <i
                       className="ph-bold ph-arrow-right"
                       aria-hidden="true"
@@ -801,7 +801,7 @@ export default function HomeB(props) {
                     </span>
                   </div>
                   <a className="vb-textlink" href="#pathway">
-                    Get started
+                    Get Started
                     <i
                       className="ph-bold ph-arrow-right"
                       aria-hidden="true"
@@ -1736,7 +1736,7 @@ export default function HomeB(props) {
             >
               <iframe
                 src="https://www.youtube.com/embed/-1NrsTNPab4?rel=0"
-                title="Listen to Our Expert Podcast on YouTube"
+                title="Listen to our expert podcast on YouTube"
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
@@ -1803,7 +1803,7 @@ export default function HomeB(props) {
         {/* ============ FINAL CTA ============ */}
         <section className="vb-section vb-on-dark vb-final">
           <div className="vb-container">
-            <p className="vb-eyebrow vb-reveal">Start today — it's free</p>
+            <p className="vb-eyebrow vb-reveal">Start today — it’s free</p>
             <h2
               className="vb-reveal"
               style={{
@@ -1877,7 +1877,7 @@ export default function HomeB(props) {
                 training, and end-to-end relocation support.
               </p>
               <a className="vb-textlink" href="/signup/">
-                Get started
+                Get Started
                 <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
               </a>
             </div>
@@ -1896,7 +1896,7 @@ export default function HomeB(props) {
               </a>
               <span>
                 <i className="ph-bold ph-map-pin" aria-hidden="true"></i>
-                Mon - Sat | 10:00 AM - 8:00 PM
+                Mon–Sat | 10:00 AM–8:00 PM
               </span>
             </div>
             <div className="vb-footer-col">
@@ -1915,7 +1915,7 @@ export default function HomeB(props) {
             </div>
           </div>
           <div className="vb-footer-bottom">
-            <p>© 2026 Skillcase All Rights Reserved.</p>
+            <p>© 2026 Skillcase. All rights reserved.</p>
             <div>
               <a href="/terms-and-condition/">Terms &amp; Conditions</a>
               <a href="/privacy-policy/">Privacy Policy</a>

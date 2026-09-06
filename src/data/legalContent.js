@@ -366,7 +366,7 @@ export const legalPages = {
       },
       {
         type: "p",
-        text: "You shall indemnify and hold harmless the Company and the Company's parent, subsidiaries, its Personnel, Affiliates, service providers and their respective officers, shareholders, directors, agents, and employees, from and against any and all Losses, liabilities, actions, suits, claims, proceedings, costs, damages, judgments, amounts paid in settlement and expenses (including without limitation attorneys' fees and disbursements) (“Losses”), made by any third party or penalty imposed due to or arising out of Your breach of the User Agreement or resulting from untrue, inaccurate, misleading not current or incomplete information provided or verified by You.",
+        text: "You shall indemnify and hold harmless the Company and the Company’s parent, subsidiaries, its Personnel, Affiliates, service providers and their respective officers, shareholders, directors, agents, and employees, from and against any and all Losses, liabilities, actions, suits, claims, proceedings, costs, damages, judgments, amounts paid in settlement and expenses (including without limitation attorneys’ fees and disbursements) (“Losses”), made by any third party or penalty imposed due to or arising out of Your breach of the User Agreement or resulting from untrue, inaccurate, misleading not current or incomplete information provided or verified by You.",
       },
       {
         type: "h3",
@@ -873,7 +873,7 @@ export const legalPages = {
       },
       {
         type: "p",
-        text: "Users shall indemnify, defend and hold Us harmless from and against any and all losses, liabilities, claims, damages, demands, costs and expenses (including attorney's fees and disbursements in connection therewith and interest chargeable thereon) asserted against or incurred by Us that arise out of, result from, or may be payable by virtue of any breach or non-performance by Users of any of the terms of this Privacy Policy or of the Application.",
+        text: "Users shall indemnify, defend and hold Us harmless from and against any and all losses, liabilities, claims, damages, demands, costs and expenses (including attorney’s fees and disbursements in connection therewith and interest chargeable thereon) asserted against or incurred by Us that arise out of, result from, or may be payable by virtue of any breach or non-performance by Users of any of the terms of this Privacy Policy or of the Application.",
       },
       {
         type: "h3",

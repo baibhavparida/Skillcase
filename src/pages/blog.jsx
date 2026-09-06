@@ -54,7 +54,7 @@ export default function Blog(props) {
                   <input
                     name="email"
                     type="email"
-                    placeholder="you@example.com"
+                    placeholder="you@example.com…"
                     autoComplete="email"
                     required
                   />
@@ -90,7 +90,7 @@ export default function Blog(props) {
                         <span>{post.author}</span>
                         <time dateTime={post.datetime}>{post.date}</time>
                       </div>
-                      <h3>{post.title}</h3>
+                      <h2>{post.title}</h2>
                       <p>{post.excerpt}</p>
                       <a href={`/blog/${post.slug}`}>
                         Read more

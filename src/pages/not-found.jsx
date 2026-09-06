@@ -13,7 +13,7 @@ export default function NotFound() {
             <h1>We couldn’t find that page.</h1>
             <p>Head back to Skillcase to explore your Germany pathway.</p>
             <a className="btn btn-gold" href="/">
-              Back to home
+              Back to Home
             </a>
           </section>
         </main>

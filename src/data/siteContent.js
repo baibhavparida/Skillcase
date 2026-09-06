@@ -1,8 +1,8 @@
 export const aboutPage = {
   eyebrow: "About us",
-  title: "Bringing India’s Skilled Workforce to the Global Map",
+  title: "Bringing India’s skilled workforce to the global map",
   intro: [
-    "At Skillcase, we believe in the power of skilled talent — and we're on a mission to connect India’s healthcare professionals with global opportunities.",
+    "At Skillcase, we believe in the power of skilled talent — and we’re on a mission to connect India’s healthcare professionals with global opportunities.",
     "From qualified nurses to allied health workers, we help candidates navigate the complex journey of international placements with transparency, care, and speed.",
     "Our platform simplifies everything — from language training and documentation to relocation and onboarding — so talent can focus on what they do best: caring for others.",
   ],
@@ -144,7 +144,7 @@ export const blogPosts = [
       },
       {
         type: "paragraph",
-        text: "The duration for credential recognition varies by state in Germany. It typically takes **2 months**, but in some regions, it may take up to **6-8 months**.",
+        text: "The duration for credential recognition varies by state in Germany. It typically takes **2 months**, but in some regions, it may take up to **6–8 months**.",
       },
       {
         type: "paragraph",
@@ -201,8 +201,8 @@ export const blogPosts = [
     excerpt:
       "Germany is a leading destination for nurses worldwide, offering competitive salaries, excellent working conditions, and plenty of opportunities for career growth.",
     highlights: [
-      "€3,300-€3,600 gross",
-      "30-40% deductions",
+      "€3,300–€3,600 gross",
+      "30–40% deductions",
       "Specialization upside",
     ],
     readTime: "6 min read",
@@ -238,15 +238,15 @@ export const blogPosts = [
       {
         type: "list",
         items: [
-          "**ICU Nurses**: Earn an additional €300-€500 per month.",
-          "**Geriatric Nurses**: May earn €200-€400 more monthly.",
+          "**ICU Nurses**: Earn an additional €300–€500 per month.",
+          "**Geriatric Nurses**: May earn €200–€400 more monthly.",
           "**Pediatric Nurses**: Earn bonuses for working in childcare units.",
         ],
       },
       { type: "heading", text: "Taxation and Take-Home Pay" },
       {
         type: "paragraph",
-        text: "Nurses in Germany are subject to taxes, social security contributions, and health insurance deductions, which can reduce gross income by **30-40%**. A fresher earning €3,900 per month can expect a take-home salary of around **€2,500 to €2,800 per month** after deductions.",
+        text: "Nurses in Germany are subject to taxes, social security contributions, and health insurance deductions, which can reduce gross income by **30–40%**. A fresher earning €3,900 per month can expect a take-home salary of around **€2,500 to €2,800 per month** after deductions.",
       },
       { type: "heading", text: "Additional Benefits" },
       {
@@ -254,7 +254,7 @@ export const blogPosts = [
         items: [
           "**Overtime Pay**: Paid at higher hourly rates.",
           "**Pension Contributions**: Significant employer contributions to retirement funds.",
-          "**Paid Leave**: Minimum of 20-30 days per year.",
+          "**Paid Leave**: Minimum of 20–30 days per year.",
         ],
       },
       { type: "heading", text: "Career Opportunities for Nurses in Germany" },
@@ -355,7 +355,7 @@ export const blogPosts = [
       },
       {
         type: "paragraph",
-        text: "It usually takes 6-7 months to complete language proficiency and FSP preparation. Upon successfully passing the FSP, you obtain your medical license to work as a junior doctor in Germany.",
+        text: "It usually takes 6–7 months to complete language proficiency and FSP preparation. Upon successfully passing the FSP, you obtain your medical license to work as a junior doctor in Germany.",
       },
       { type: "heading", text: "Step 4: Securing Employment" },
       {
