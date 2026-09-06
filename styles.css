@@ -2454,99 +2454,7 @@ img {
 .app-showcase-shell {
   position: relative;
   width: 100%;
-  overflow: hidden;
-  padding: 24px 0 30px;
-  border: 1px solid rgba(5, 163, 229, 0.2);
-  border-radius: 22px;
-  background:
-    radial-gradient(circle at 8% 0%, rgba(5, 163, 229, 0.24), transparent 34%),
-    radial-gradient(circle at 92% 16%, rgba(237, 184, 67, 0.13), transparent 30%),
-    linear-gradient(145deg, #063f73 0%, var(--color-navy) 48%, #001d40 100%);
-  box-shadow: 0 26px 64px rgba(0, 40, 86, 0.18);
-  isolation: isolate;
-}
-
-.app-showcase-shell::before {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 34px 34px;
-  content: "";
-  mask-image: linear-gradient(to bottom, #000, transparent 88%);
-}
-
-.app-journey-flow {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  margin: 0 26px 28px;
-  padding: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.075);
-  backdrop-filter: blur(16px);
-}
-
-.app-journey-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 10px;
-  align-items: center;
-  min-width: 0;
-  padding: 10px 11px;
-  border-radius: 10px;
-}
-
-.app-journey-step:first-child {
-  background: rgba(255, 255, 255, 0.09);
-}
-
-.app-journey-step-icon {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 10px;
-  background: rgba(5, 163, 229, 0.18);
-  color: #8edaff;
-}
-
-.app-journey-step:nth-child(4) .app-journey-step-icon {
-  background: rgba(237, 184, 67, 0.18);
-  color: var(--color-gold);
-}
-
-.app-journey-step > span:nth-child(2) {
-  display: grid;
-  gap: 2px;
-  min-width: 0;
-}
-
-.app-journey-step strong {
-  color: #ffffff;
-  font-size: 12.5px;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.app-journey-step small {
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 10.5px;
-  line-height: 1.25;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.app-journey-step-arrow {
-  color: rgba(255, 255, 255, 0.32);
+  overflow: visible;
 }
 
 .app-gallery-head {
@@ -2554,14 +2462,15 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 0 26px 16px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid rgba(0, 40, 86, 0.09);
 }
 
 .app-gallery-head > div:first-child {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  color: rgba(255, 255, 255, 0.72);
+  color: #66758a;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.07em;
@@ -2572,8 +2481,8 @@ img {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--color-gold);
-  box-shadow: 0 0 0 4px rgba(237, 184, 67, 0.13);
+  background: var(--color-cyan);
+  box-shadow: 0 0 0 4px rgba(5, 163, 229, 0.12);
 }
 
 .app-gallery-controls {
@@ -2587,10 +2496,10 @@ img {
   height: 38px;
   place-items: center;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(0, 40, 86, 0.14);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.09);
-  color: #ffffff;
+  background: #ffffff;
+  color: var(--color-navy);
   cursor: pointer;
   transition:
     background 180ms ease,
@@ -2600,9 +2509,9 @@ img {
 }
 
 .app-gallery-controls button:hover {
-  border-color: var(--color-gold);
-  background: var(--color-gold);
-  color: #1f1700;
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
@@ -2612,9 +2521,9 @@ img {
   width: 100%;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  padding: 6px 26px 18px;
+  padding: 24px 4px 28px;
   scroll-behavior: smooth;
-  scroll-padding-inline: 26px;
+  scroll-padding-inline: 4px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -2638,12 +2547,12 @@ img {
   position: relative;
   overflow: hidden;
   width: 100%;
-  border: 6px solid rgba(255, 255, 255, 0.86);
+  border: 6px solid var(--color-navy);
   border-radius: 28px;
   background: #ffffff;
   box-shadow:
-    0 22px 46px rgba(0, 13, 35, 0.36),
-    0 0 0 1px rgba(255, 255, 255, 0.12);
+    0 22px 46px rgba(0, 40, 86, 0.16),
+    0 0 0 1px rgba(0, 40, 86, 0.05);
 }
 
 .app-phone-frame::after {
@@ -2669,7 +2578,7 @@ img {
 }
 
 .app-screen-card figcaption > span {
-  color: var(--color-gold);
+  color: var(--color-cyan);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.09em;
@@ -2679,7 +2588,7 @@ img {
 
 .app-screen-card h3 {
   margin: 0;
-  color: #ffffff;
+  color: var(--color-ink);
   font-size: 15px;
   font-weight: 600;
   line-height: 1.3;
@@ -2688,7 +2597,7 @@ img {
 
 .app-screen-card p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.61);
+  color: #66758a;
   font-size: 11.5px;
   line-height: 1.55;
 }
@@ -2699,13 +2608,6 @@ img {
     gap: 32px;
   }
 
-  .app-journey-flow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .app-journey-step:nth-child(2) .app-journey-step-arrow {
-    display: none;
-  }
 }
 
 @media (max-width: 760px) {
@@ -2746,43 +2648,11 @@ img {
   }
 
   .app-showcase-shell {
-    padding: 16px 0 22px;
-    border-radius: 17px;
-  }
-
-  .app-journey-flow {
-    gap: 4px;
-    margin: 0 14px 22px;
-    padding: 6px;
-    border-radius: 12px;
-  }
-
-  .app-journey-step {
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 8px;
-    padding: 8px;
-  }
-
-  .app-journey-step-icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-  }
-
-  .app-journey-step strong {
-    font-size: 11.5px;
-  }
-
-  .app-journey-step small {
-    font-size: 9.5px;
-  }
-
-  .app-journey-step-arrow {
-    display: none;
+    overflow: visible;
   }
 
   .app-gallery-head {
-    padding: 0 14px 14px;
+    padding: 0 0 14px;
   }
 
   .app-gallery-head > div:first-child {
@@ -2798,8 +2668,8 @@ img {
 
   .app-screen-reel {
     gap: 14px;
-    padding: 4px 14px 14px;
-    scroll-padding-inline: 14px;
+    padding: 18px 2px 20px;
+    scroll-padding-inline: 2px;
   }
 
   .app-screen-card {

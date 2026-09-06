@@ -4,40 +4,13 @@ import {
   ArrowLeftIcon as ArrowLeft,
   ArrowRightIcon as ArrowRight,
   ArrowUpRightIcon as ArrowUpRight,
-  BookOpenIcon as BookOpen,
-  BriefcaseIcon as Briefcase,
   BrowserIcon as Browser,
   GooglePlayLogoIcon as GooglePlayLogo,
-  GraduationCapIcon as GraduationCap,
-  MicrophoneIcon as Microphone,
 } from "@phosphor-icons/react/ssr";
 
 const playStoreUrl =
   "https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN";
 const webAppUrl = "https://learner.skillcase.in/start-now";
-
-const journeySteps = [
-  {
-    label: "Learn",
-    detail: "German A1–B2",
-    icon: BookOpen,
-  },
-  {
-    label: "Practise",
-    detail: "Speaking and exams",
-    icon: Microphone,
-  },
-  {
-    label: "Prepare",
-    detail: "Job readiness",
-    icon: GraduationCap,
-  },
-  {
-    label: "Apply",
-    detail: "Track every step",
-    icon: Briefcase,
-  },
-];
 
 const screens = [
   {
@@ -170,28 +143,6 @@ export default function AppJourneyShowcase() {
       </div>
 
       <div className="app-showcase-shell">
-        <div className="app-journey-flow" aria-label="Your journey in the Skillcase app">
-          {journeySteps.map(({ label, detail, icon: Icon }, index) => (
-            <div className="app-journey-step" key={label}>
-              <span className="app-journey-step-icon" aria-hidden="true">
-                <Icon size={19} weight="bold" />
-              </span>
-              <span>
-                <strong>{label}</strong>
-                <small>{detail}</small>
-              </span>
-              {index < journeySteps.length - 1 ? (
-                <ArrowRight
-                  className="app-journey-step-arrow"
-                  size={16}
-                  weight="bold"
-                  aria-hidden="true"
-                />
-              ) : null}
-            </div>
-          ))}
-        </div>
-
         <div className="app-gallery-head">
           <div>
             <span className="app-gallery-dot" aria-hidden="true" />
