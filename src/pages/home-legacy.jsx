@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.jsx";
 import ProcessWorkspace from "../components/ProcessWorkspace";
 import SearchTimeline from "../components/SearchTimeline";
 import CandidateStories from "../components/CandidateStories.jsx";
+import LearnerMarquee from "../components/LearnerMarquee.jsx";
 import SiteFooter from "../components/SiteFooter.jsx";
 import SiteHeader from "../components/SiteHeader.jsx";
 export default function HomeLegacy({ isPrimaryHome = false }) {
@@ -209,6 +210,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 </div>
               </section>
             </section>
+
+            <LearnerMarquee />
 
             <section className="section benefits-section">
               <div className="section-heading">
