@@ -259,7 +259,9 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       src="/assets/images/benefit-earnings.webp"
                     />
                     <div className="benefit-ui salary-ui" aria-hidden="true">
-                      <strong>₹3.2L–₹3.8L</strong>
+                      <strong>
+                        ₹3.2L–₹3.8L <span>per month</span>
+                      </strong>
                       <div className="salary-bars">
                         <div>
                           <small>Current</small>
