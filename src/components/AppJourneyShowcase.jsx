@@ -4,7 +4,6 @@ import {
   ArrowLeftIcon as ArrowLeft,
   ArrowRightIcon as ArrowRight,
   ArrowUpRightIcon as ArrowUpRight,
-  BrowserIcon as Browser,
   GooglePlayLogoIcon as GooglePlayLogo,
 } from "@phosphor-icons/react/ssr";
 
@@ -128,16 +127,13 @@ export default function AppJourneyShowcase() {
               rel="noreferrer"
               target="_blank"
             >
-              <Browser size={19} weight="bold" aria-hidden="true" />
-              Use the web app
-              <ArrowRight size={15} weight="bold" aria-hidden="true" />
+              <AppleLogo size={24} weight="fill" aria-hidden="true" />
+              <span>
+                <small>Apple user</small>
+                <strong>Use web app</strong>
+              </span>
+              <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
             </a>
-          </div>
-          <div className="app-iphone-note">
-            <AppleLogo size={18} weight="fill" aria-hidden="true" />
-            <span>
-              <strong>Using an iPhone?</strong> Access Skillcase on the web.
-            </span>
           </div>
         </div>
       </div>
