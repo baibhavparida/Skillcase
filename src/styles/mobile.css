@@ -316,12 +316,14 @@ main [id] {
   }
   .benefit-points {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
+    width: 100%;
     margin-top: 12px;
   }
   .benefit-points > span {
-    width: fit-content;
+    width: 100%;
+    max-width: 100%;
     min-height: 18px;
     gap: 4px;
     padding: 0;
@@ -330,8 +332,12 @@ main [id] {
     background: transparent;
     font-size: 11px;
     line-height: 1.35;
+    overflow-wrap: normal;
+    white-space: nowrap;
+    word-break: normal;
   }
   .benefit-points > span > .icon-svg {
+    flex: 0 0 auto;
     width: 12px;
     height: 12px;
   }
