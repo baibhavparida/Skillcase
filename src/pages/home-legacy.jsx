@@ -1,7 +1,6 @@
 import ResponsiveImage from "../components/ResponsiveImage.jsx";
 import BaseLayout from "../layouts/BaseLayout.jsx";
 import AppJourneyShowcase from "../components/AppJourneyShowcase.jsx";
-import SearchTimeline from "../components/SearchTimeline";
 import CandidateStories from "../components/CandidateStories.jsx";
 import LearnerMarquee from "../components/LearnerMarquee.jsx";
 import SiteFooter from "../components/SiteFooter.jsx";
@@ -244,8 +243,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         Financial planning
                       </span>
                     </div>
-                    <a href="#pathway">
-                      See the pathway
+                    <a href="#jobs">
+                      Explore nursing jobs
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -308,8 +307,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         Work rights guidance
                       </span>
                     </div>
-                    <a href="#pathway">
-                      See the pathway
+                    <a href="#jobs">
+                      Explore nursing jobs
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -333,7 +332,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       for your family while living in Germany.
                     </p>
                     <div
-                      className="benefit-points"
+                      className="benefit-points benefit-points-grid"
                       aria-label="World-class healthcare and education highlights"
                     >
                       <span>
@@ -346,11 +345,15 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                       </span>
                       <span>
                         <span data-icon="check-circle-2" data-size="13"></span>
+                        Affordable schooling
+                      </span>
+                      <span>
+                        <span data-icon="check-circle-2" data-size="13"></span>
                         Ongoing mentorship
                       </span>
                     </div>
-                    <a href="#pathway">
-                      See the pathway
+                    <a href="#jobs">
+                      Explore nursing jobs
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -390,8 +393,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                         PR pathway guidance
                       </span>
                     </div>
-                    <a href="#pathway">
-                      See the pathway
+                    <a href="#jobs">
+                      Explore nursing jobs
                       <span
                         data-icon="arrow-right"
                         data-size="14"
@@ -585,26 +588,6 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
             <CandidateStories />
 
             <AppJourneyShowcase />
-
-            <section className="section pathway-section" id="pathway">
-              <div className="pathway-intro">
-                <p className="eyebrow">Why choose Skillcase</p>
-                <h2>International nursing jobs, made step by step.</h2>
-                <p>
-                  One coach guides every stage, from profile to relocation,
-                  with no recruitment fees.
-                </p>
-                <div
-                  className="pathway-proof"
-                  aria-label="Skillcase pathway highlights"
-                >
-                  <span>4 guided stages</span>
-                  <span>2,400+ nurses placed</span>
-                  <span>Zero recruitment fees</span>
-                </div>
-              </div>
-              <SearchTimeline />
-            </section>
 
             <section
               className="section blog-section"

@@ -2287,10 +2287,7 @@ img {
 }
 
 .app-journey-intro {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(340px, 0.75fr);
-  gap: 56px;
-  align-items: end;
+  width: 100%;
 }
 
 .app-journey-heading {
@@ -2317,7 +2314,8 @@ img {
 }
 
 .app-download-panel {
-  align-self: end;
+  width: min(100%, 560px);
+  align-self: center;
 }
 
 .app-download-kicker {
@@ -2509,7 +2507,8 @@ img {
 
 .app-screen-card {
   display: flex;
-  flex: 0 0 clamp(216px, 21.5vw, 252px);
+  width: var(--app-screen-card-width);
+  flex: 0 0 var(--app-screen-card-width);
   flex-direction: column;
   gap: 15px;
   min-width: 0;
@@ -2521,6 +2520,9 @@ img {
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: clamp(486px, 46vw, 566px);
+  align-self: flex-start;
+  aspect-ratio: var(--app-screen-ratio);
   border: 6px solid var(--color-navy);
   border-radius: 28px;
   background: #ffffff;
@@ -2541,7 +2543,8 @@ img {
 .app-phone-frame img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: fill;
   background: #f7fbff;
 }
 
@@ -2576,22 +2579,9 @@ img {
   line-height: 1.55;
 }
 
-@media (max-width: 1040px) {
-  .app-journey-intro {
-    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
-    gap: 32px;
-  }
-
-}
-
 @media (max-width: 760px) {
   .app-journey-section {
     gap: 26px;
-  }
-
-  .app-journey-intro {
-    grid-template-columns: 1fr;
-    gap: 22px;
   }
 
   .app-journey-heading h2 {
@@ -2637,16 +2627,32 @@ img {
 
   .app-screen-reel {
     gap: 14px;
-    padding: 18px 2px 20px;
-    scroll-padding-inline: 2px;
+    width: calc(100% + (var(--container-gutter) * 2));
+    margin-inline: calc(var(--container-gutter) * -1);
+    padding: 18px var(--container-gutter) 26px;
+    scroll-padding-inline: var(--container-gutter);
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 var(--container-gutter),
+      #000 calc(100% - var(--container-gutter)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 var(--container-gutter),
+      #000 calc(100% - var(--container-gutter)),
+      transparent 100%
+    );
   }
 
   .app-screen-card {
-    flex-basis: min(252px, 76vw);
     gap: 13px;
   }
 
   .app-phone-frame {
+    height: clamp(510px, 150vw, 566px);
     border-width: 5px;
     border-radius: 25px;
   }
@@ -4449,27 +4455,31 @@ img {
 }
 
 .podcast-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 18px;
 }
 
 .podcast-highlights > span {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
+  min-width: 0;
+  min-height: 24px;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.podcast-highlights > span {
-  min-height: 32px;
-  padding: 0 11px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 12px;
-  font-weight: 600;
+.podcast-highlights > span:first-child {
+  padding-left: 0;
+}
+
+.podcast-highlights > span + span {
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .podcast-highlights svg,
@@ -10126,10 +10136,28 @@ img {
     grid-auto-flow: column;
     grid-template-columns: none;
     gap: 10px;
+    width: calc(100% + (var(--container-gutter) * 2));
+    margin-inline: calc(var(--container-gutter) * -1);
+    padding: 8px var(--container-gutter) 22px;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
+    scroll-padding-inline: var(--container-gutter);
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 var(--container-gutter),
+      #000 calc(100% - var(--container-gutter)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 var(--container-gutter),
+      #000 calc(100% - var(--container-gutter)),
+      transparent 100%
+    );
   }
 
   .learner-review-grid::-webkit-scrollbar {

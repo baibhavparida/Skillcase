@@ -104,38 +104,6 @@ export default function AppJourneyShowcase() {
             job journey—all from the same Skillcase account.
           </p>
         </div>
-
-        <div className="app-download-panel">
-          <p className="app-download-kicker">Start on the device you use</p>
-          <div className="app-download-actions">
-            <a
-              className="app-store-cta"
-              href={playStoreUrl}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <GooglePlayLogo size={24} weight="fill" aria-hidden="true" />
-              <span>
-                <small>Download on</small>
-                <strong>Google Play</strong>
-              </span>
-              <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
-            </a>
-            <a
-              className="app-web-cta"
-              href={webAppUrl}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <AppleLogo size={24} weight="fill" aria-hidden="true" />
-              <span>
-                <small>Apple user</small>
-                <strong>Use web app</strong>
-              </span>
-              <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
       </div>
 
       <div className="app-showcase-shell">
@@ -168,8 +136,19 @@ export default function AppJourneyShowcase() {
           aria-label="Skillcase app screen gallery"
         >
           {screens.map((screen, index) => (
-            <figure className="app-screen-card" key={screen.src}>
-              <div className="app-phone-frame">
+            <figure
+              className="app-screen-card"
+              key={screen.src}
+              style={{
+                "--app-screen-card-width": `${Math.round(
+                  (561 * screen.width) / 1266,
+                )}px`,
+              }}
+            >
+              <div
+                className="app-phone-frame"
+                style={{ "--app-screen-ratio": `${screen.width} / 1266` }}
+              >
                 <img
                   alt={screen.alt}
                   decoding="async"
@@ -188,6 +167,38 @@ export default function AppJourneyShowcase() {
               </figcaption>
             </figure>
           ))}
+        </div>
+      </div>
+
+      <div className="app-download-panel">
+        <p className="app-download-kicker">Start on the device you use</p>
+        <div className="app-download-actions">
+          <a
+            className="app-store-cta"
+            href={playStoreUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <GooglePlayLogo size={24} weight="fill" aria-hidden="true" />
+            <span>
+              <small>Download on</small>
+              <strong>Google Play</strong>
+            </span>
+            <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+          </a>
+          <a
+            className="app-web-cta"
+            href={webAppUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <AppleLogo size={24} weight="fill" aria-hidden="true" />
+            <span>
+              <small>Apple user</small>
+              <strong>Use web app</strong>
+            </span>
+            <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>
