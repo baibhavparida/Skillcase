@@ -625,8 +625,10 @@ img {
   animation: offerMarquee 42s linear infinite;
 }
 
-.offer-strip:hover .offer-marquee-track {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .offer-strip:hover .offer-marquee-track {
+    animation-play-state: paused;
+  }
 }
 
 .offer-chip {

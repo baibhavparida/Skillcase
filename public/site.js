@@ -782,15 +782,6 @@ initSubscribeForms();
 initProcessWorkspace();
 initSearchTimeline();
 initFaqAccordion();
-const globeContainer = document.querySelector("[data-globe]");
-if (globeContainer && "IntersectionObserver" in window) {
-  const loader = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-      loader.disconnect();
-      initGlobe();
-    }
-  }, { rootMargin: "0px", threshold: 0.01 });
-  loader.observe(globeContainer);
-} else {
-  initGlobe();
-}
+// Mount immediately so production browsers cannot miss the one-time lazy-load
+// observer callback. The globe's own observer still pauses rendering offscreen.
+initGlobe();
