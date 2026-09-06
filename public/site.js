@@ -354,26 +354,55 @@ function initSearchTimeline() {
   scheduleAutoAdvance();
 }
 
-function setLabelStyles(container) {
+function prepareGlobeLabels(container) {
   const positionById = {
-    japan: { marginBottom: 8, translate: "-88% 0" },
-    australia: { marginBottom: 8, translate: "-88% 0" },
-    uk: { marginBottom: 22, translate: "-50% 0" },
+    india: { marginBottom: 9, translateX: "-8%" },
+    germany: { marginBottom: 5, translateX: "-55%" },
+    japan: { marginBottom: 8, translateX: "-88%" },
+    uae: { marginBottom: 7, translateX: "-100%" },
+    australia: { marginBottom: 8, translateX: "-88%" },
+    uk: { marginBottom: 22, translateX: "-92%" },
   };
+  const labels = new Map();
 
   container.querySelectorAll(".cobe-marker-label").forEach((label) => {
     const id = label.dataset.marker;
-    const position = positionById[id] || { marginBottom: 8, translate: "-50% 0" };
+    const position = positionById[id] || { marginBottom: 8, translateX: "-50%" };
 
     label.style.position = "absolute";
-    label.style.positionAnchor = `--cobe-${id}`;
-    label.style.bottom = "anchor(top)";
-    label.style.left = "anchor(center)";
-    label.style.marginBottom = `${position.marginBottom}px`;
-    label.style.opacity = `var(--cobe-visible-${id}, 0)`;
-    label.style.filter = `blur(calc((1 - var(--cobe-visible-${id}, 0)) * 8px))`;
-    label.style.translate = position.translate;
+    label.style.right = "auto";
+    label.style.bottom = "auto";
+    label.style.margin = "0";
+    label.style.transform = `translate3d(${position.translateX}, calc(-100% - ${position.marginBottom}px), 0)`;
+    label.style.opacity = "0";
+    label.style.filter = "blur(8px)";
+    labels.set(id, label);
   });
+
+  return labels;
+}
+
+function projectGlobeLabel(location, phi, theta) {
+  const latitude = (location[0] * Math.PI) / 180;
+  const longitude = (location[1] * Math.PI) / 180 - Math.PI;
+  const latitudeCos = Math.cos(latitude);
+  const radius = 0.814;
+  const x = -latitudeCos * Math.cos(longitude) * radius;
+  const y = Math.sin(latitude) * radius;
+  const z = latitudeCos * Math.sin(longitude) * radius;
+  const thetaCos = Math.cos(theta);
+  const thetaSin = Math.sin(theta);
+  const phiCos = Math.cos(phi);
+  const phiSin = Math.sin(phi);
+  const projectedX = phiCos * x + phiSin * z;
+  const projectedY = phiSin * thetaSin * x + thetaCos * y - phiCos * thetaSin * z;
+  const depth = -phiSin * thetaCos * x + thetaSin * y + phiCos * thetaCos * z;
+
+  return {
+    left: ((projectedX + 1) / 2) * 100,
+    top: ((1 - projectedY) / 2) * 100,
+    visibility: Math.max(0, Math.min(1, (depth + 0.025) / 0.09)),
+  };
 }
 
 function initFaqAccordion() {
@@ -511,7 +540,7 @@ async function initGlobe() {
     return;
   }
 
-  setLabelStyles(container);
+  const labels = prepareGlobeLabels(container);
 
   try {
     const { default: createGlobe } = await import("./vendor/cobe.esm.js");
@@ -553,6 +582,9 @@ async function initGlobe() {
     };
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const compactViewportQuery = window.matchMedia("(max-width: 760px)");
+    const isIOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     const getRotationSpeed = () => {
       if (reducedMotionQuery.matches) {
         return compactViewportQuery.matches ? 0.0007 : 0.00028;
@@ -615,6 +647,7 @@ async function initGlobe() {
 
     let globe = null;
     let animationId = 0;
+    let animationTimer = 0;
     let resizeObserver = null;
     let viewportObserver = null;
     let isGlobeVisible = true;
@@ -647,11 +680,14 @@ async function initGlobe() {
         return;
       }
 
+      const phi = state.phi + state.phiOffset + state.dragOffset.phi;
+      const theta = 0.22 + state.thetaOffset + state.dragOffset.theta;
+
       globe.update({
         width: canvas.offsetWidth,
         height: canvas.offsetWidth,
-        phi: state.phi + state.phiOffset + state.dragOffset.phi,
-        theta: 0.22 + state.thetaOffset + state.dragOffset.theta,
+        phi,
+        theta,
         dark: 0,
         diffuse: 1.22,
         mapBrightness: 2.8,
@@ -667,11 +703,23 @@ async function initGlobe() {
         markers,
         arcs,
       });
+
+      markers.forEach((marker) => {
+        const label = labels.get(marker.id);
+        if (!label) {
+          return;
+        }
+
+        const point = projectGlobeLabel(marker.location, phi, theta);
+        label.style.left = `${point.left.toFixed(3)}%`;
+        label.style.top = `${point.top.toFixed(3)}%`;
+        label.style.opacity = point.visibility.toFixed(3);
+        label.style.filter = `blur(${((1 - point.visibility) * 8).toFixed(2)}px)`;
+      });
     };
 
-    const animate = () => {
+    const runAnimationStep = () => {
       if (!globe) {
-        animationId = 0;
         return;
       }
 
@@ -695,28 +743,53 @@ async function initGlobe() {
       }
 
       renderFrame();
+    };
 
+    const animate = () => {
+      runAnimationStep();
       animationId = requestAnimationFrame(animate);
     };
 
     const startAnimation = () => {
-      if (!globe || animationId) {
+      if (!globe) {
         return;
       }
 
+      // On iPhone and iPad, WebKit can retain a stale requestAnimationFrame
+      // handle after scrolling. A small timer keeps the WebGL canvas moving.
+      if (isIOS) {
+        if (animationTimer) {
+          return;
+        }
+        runAnimationStep();
+        animationTimer = window.setInterval(runAnimationStep, 1000 / 30);
+        return;
+      }
+
+      if (animationId) {
+        return;
+      }
       animationId = requestAnimationFrame(animate);
     };
 
     const stopAnimation = () => {
-      if (!animationId) {
-        return;
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = 0;
       }
 
-      cancelAnimationFrame(animationId);
-      animationId = 0;
+      if (animationTimer) {
+        window.clearInterval(animationTimer);
+        animationTimer = 0;
+      }
     };
 
     const observeGlobeVisibility = () => {
+      if (isIOS) {
+        startAnimation();
+        return;
+      }
+
       if (!("IntersectionObserver" in window)) {
         startAnimation();
         return;
@@ -768,7 +841,7 @@ async function initGlobe() {
     }
 
     const restartVisibleAnimation = () => {
-      if (document.hidden || !isGlobeVisible) {
+      if (document.hidden || (!isIOS && !isGlobeVisible)) {
         stopAnimation();
         return;
       }
@@ -783,9 +856,7 @@ async function initGlobe() {
     window.addEventListener("pageshow", restartVisibleAnimation);
 
     window.addEventListener("beforeunload", () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
+      stopAnimation();
       viewportObserver?.disconnect();
       resizeObserver?.disconnect();
       document.removeEventListener("visibilitychange", restartVisibleAnimation);
