@@ -1,7 +1,7 @@
 /* ============================================================
    Skillcase — Live homepage (/)
    Skillcase brand colors + Poppins. Self-contained stylesheet,
-   loaded only by src/pages/index.astro.
+   loaded only by src/pages/index.jsx.
    ============================================================ */
 
 :root {
@@ -311,22 +311,11 @@ p { margin: 0; text-wrap: pretty; }
 .vb-nav a.is-active::after { transform: scaleX(1); }
 
 .vb-header-actions { display: flex; align-items: center; gap: 12px; }
-.vb-login {
-  color: var(--vb-cream-dim);
-  font-size: 14.5px;
-  font-weight: 600;
-  padding: 10px 14px;
-  border-radius: 10px;
-  transition: color 200ms, background 200ms;
-}
-.vb-login:hover { color: #fff; background: rgba(234, 242, 251, 0.1); }
 
 /* ---- Scrolled: white bar, so flip chrome to dark ink ---- */
 .vb-header.is-scrolled .vb-nav a { color: var(--vb-ink-2); }
 .vb-header.is-scrolled .vb-nav a:hover,
 .vb-header.is-scrolled .vb-nav a.is-active { color: var(--vb-ink); }
-.vb-header.is-scrolled .vb-login { color: var(--vb-ink-2); }
-.vb-header.is-scrolled .vb-login:hover { color: var(--vb-ink); background: rgba(0, 40, 86, 0.06); }
 .vb-header.is-scrolled .vb-burger { border-color: var(--vb-line); background: rgba(0, 40, 86, 0.04); }
 .vb-header.is-scrolled .vb-burger span { background: var(--vb-ink); }
 
@@ -1747,7 +1736,6 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 920px) {
   .vb-nav { display: none; }
   .vb-burger { display: flex; }
-  .vb-login { display: none; }
   /* Keep the compact Get Started next to the burger, and NEVER hide the
      .vb-mobile-cta buttons inside the menu — 90% of visitors are mobile and
      this is their only header path into the funnel. */

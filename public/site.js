@@ -538,7 +538,7 @@ async function initGlobe() {
     canvas.style.borderRadius = "50%";
     canvas.style.cursor = "grab";
     canvas.style.opacity = "0";
-    canvas.style.touchAction = "none";
+    canvas.style.touchAction = "pan-y";
     canvas.style.transition = "opacity 1.2s ease";
 
     const state = {
@@ -598,22 +598,20 @@ async function initGlobe() {
       { passive: true },
     );
 
-    window.addEventListener(
-      "pointerup",
-      () => {
-        if (state.pointer) {
-          state.phiOffset += state.dragOffset.phi;
-          state.thetaOffset += state.dragOffset.theta;
-          state.dragOffset = { phi: 0, theta: 0 };
-          state.lastPointer = null;
-        }
+    const releasePointer = () => {
+      if (state.pointer) {
+        state.phiOffset += state.dragOffset.phi;
+        state.thetaOffset += state.dragOffset.theta;
+        state.dragOffset = { phi: 0, theta: 0 };
+        state.lastPointer = null;
+      }
 
-        state.pointer = null;
-        state.paused = false;
-        canvas.style.cursor = "grab";
-      },
-      { passive: true },
-    );
+      state.pointer = null;
+      state.paused = false;
+      canvas.style.cursor = "grab";
+    };
+    window.addEventListener("pointerup", releasePointer, { passive: true });
+    window.addEventListener("pointercancel", releasePointer, { passive: true });
 
     let globe = null;
     let animationId = 0;
@@ -628,7 +626,7 @@ async function initGlobe() {
       theta: 0.22,
       dark: 0,
       diffuse: 1.22,
-      mapSamples: 16000,
+      mapSamples: compactViewportQuery.matches ? 8000 : 16000,
       mapBrightness: 2.8,
       mapBaseBrightness: 0,
       baseColor: [1, 1, 1],
@@ -779,10 +777,20 @@ async function initGlobe() {
 }
 
 hydrateIcons();
-initMobileNavigation();
 initArticleToc();
 initSubscribeForms();
 initProcessWorkspace();
 initSearchTimeline();
 initFaqAccordion();
-initGlobe();
+const globeContainer = document.querySelector("[data-globe]");
+if (globeContainer && "IntersectionObserver" in window) {
+  const loader = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      loader.disconnect();
+      initGlobe();
+    }
+  }, { rootMargin: "0px", threshold: 0.01 });
+  loader.observe(globeContainer);
+} else {
+  initGlobe();
+}

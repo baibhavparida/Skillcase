@@ -13,11 +13,18 @@ Skillcase is configured for Cloudflare Workers with Static Assets. This matches 
 
 ## Current Architecture
 
-- Astro renders the public website as static pages.
-- React powers interactive islands on the marketing site and future dashboard areas.
+- React components use JavaScript/JSX, HTML, and CSS, with Vite for development and builds.
+- The build pre-renders each public route into HTML, including blog articles and page metadata.
+- React hydrates those pages in the browser for interactive features and signup.
+- Nurse and recruiter dashboards have been removed. Signup ends with an advisor contact step.
 - Cloudflare Workers serves the static output from `dist` through Static Assets.
 - `src/worker.js` handles edge/API routes before static assets, including `/api/health`.
 
-## Future App Direction
+## Development
 
-When the nurse and recruiter dashboards need real data, add Worker API routes in `src/worker.js` or split them into modules, then bind Cloudflare services such as D1, KV, R2, or Workers AI in `wrangler.toml`.
+- Start the site locally with `npm run dev` (port 4321).
+- Run `npm run check` to build all pages and validate routes, metadata, assets, and API behavior.
+- Preview the built site with `npm run preview`, or use `npm run cf:dev` to test Cloudflare behavior.
+- Page components live in `src/pages`; routes are listed in `src/routes.js`.
+- Signup currently saves progress in the visitor's browser. It does not submit details to a backend.
+- API routes can be added in `src/worker.js` when backend services are needed.

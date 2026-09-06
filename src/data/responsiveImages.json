@@ -1,0 +1,690 @@
+{
+  "/assets/images/about-global-pathway.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/about-global-pathway-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/about-global-pathway-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/about-global-pathway-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/about-global-pathway-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/about-global-pathway-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/about-indian-teacher-guidance.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/about-indian-teacher-guidance-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/about-indian-teacher-guidance-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/about-indian-teacher-guidance-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/about-indian-teacher-guidance-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/about-indian-teacher-guidance-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/about-mission-bridge.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/about-mission-bridge-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-bridge-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-bridge-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-bridge-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-bridge-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/about-mission-empower.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/about-mission-empower-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-empower-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-empower-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-empower-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-empower-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/about-mission-trust.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/about-mission-trust-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-trust-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-trust-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-trust-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/about-mission-trust-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/app-guided-german.jpg": {
+    "width": 266,
+    "height": 592,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/app-guided-german-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/app-guided-german-266.webp",
+        "width": 266
+      }
+    ]
+  },
+  "/assets/images/app-overview.jpg": {
+    "width": 445,
+    "height": 592,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/app-overview-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/app-overview-445.webp",
+        "width": 445
+      }
+    ]
+  },
+  "/assets/images/benefit-earnings.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-earnings-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-earnings-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-earnings-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-earnings-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-earnings-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/benefit-education.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-education-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-education-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-education-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-education-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-education-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/benefit-residency.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-residency-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-residency-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-residency-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-residency-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-residency-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/blog-doctor-relocation-germany.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-doctor-relocation-germany-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-doctor-relocation-germany-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-doctor-relocation-germany-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-doctor-relocation-germany-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-doctor-relocation-germany-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/blog-hero-guides.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-hero-guides-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-hero-guides-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-hero-guides-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-hero-guides-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-hero-guides-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/blog-nursing-germany-guide.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-nursing-germany-guide-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-nursing-germany-guide-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-nursing-germany-guide-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-nursing-germany-guide-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-nursing-germany-guide-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/blog-opportunity.webp": {
+    "width": 1360,
+    "height": 907,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-opportunity-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-opportunity-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-opportunity-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-opportunity-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-opportunity-1360.webp",
+        "width": 1360
+      }
+    ]
+  },
+  "/assets/images/blog-salary-germany.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-salary-germany-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-salary-germany-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-salary-germany-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-salary-germany-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-salary-germany-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/blog-training.webp": {
+    "width": 1360,
+    "height": 907,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-training-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-training-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-training-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-training-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-training-1360.webp",
+        "width": 1360
+      }
+    ]
+  },
+  "/assets/images/blog-visa.webp": {
+    "width": 1360,
+    "height": 907,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/blog-visa-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/blog-visa-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/blog-visa-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/blog-visa-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/blog-visa-1360.webp",
+        "width": 1360
+      }
+    ]
+  },
+  "/assets/images/card-mock-interview.jpg": {
+    "width": 1100,
+    "height": 733,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/card-mock-interview-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/card-mock-interview-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/card-mock-interview-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/card-mock-interview-1100.webp",
+        "width": 1100
+      }
+    ]
+  },
+  "/assets/images/card-practice-german.jpg": {
+    "width": 1100,
+    "height": 733,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/card-practice-german-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/card-practice-german-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/card-practice-german-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/card-practice-german-1100.webp",
+        "width": 1100
+      }
+    ]
+  },
+  "/assets/images/card-structured-course.jpg": {
+    "width": 1100,
+    "height": 733,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/card-structured-course-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/card-structured-course-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/card-structured-course-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/card-structured-course-1100.webp",
+        "width": 1100
+      }
+    ]
+  },
+  "/assets/images/family-settlement.webp": {
+    "width": 1360,
+    "height": 907,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/family-settlement-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/family-settlement-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/family-settlement-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/family-settlement-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/family-settlement-1360.webp",
+        "width": 1360
+      }
+    ]
+  },
+  "/assets/images/hero.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hero-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hero-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hero-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hero-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/hero-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/job-nurse-ausbildung.webp": {
+    "width": 722,
+    "height": 1019,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/job-nurse-ausbildung-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/job-nurse-ausbildung-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/job-nurse-ausbildung-722.webp",
+        "width": 722
+      }
+    ]
+  },
+  "/assets/images/job-nurse-jobs.webp": {
+    "width": 723,
+    "height": 1018,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/job-nurse-jobs-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/job-nurse-jobs-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/job-nurse-jobs-723.webp",
+        "width": 723
+      }
+    ]
+  },
+  "/assets/images/testimonial-anjali.webp": {
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/testimonial-anjali-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-anjali-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-anjali-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/images/testimonial-meera.webp": {
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/testimonial-meera-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-meera-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-meera-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/images/testimonial-nikhil.webp": {
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/testimonial-nikhil-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-nikhil-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-nikhil-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/images/testimonial-priya.webp": {
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/testimonial-priya-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-priya-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-priya-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/images/testimonial-ravi.webp": {
+    "width": 640,
+    "height": 640,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/testimonial-ravi-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-ravi-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/testimonial-ravi-640.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/images/webinar-nurses.webp": {
+    "width": 1360,
+    "height": 907,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/webinar-nurses-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/webinar-nurses-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/webinar-nurses-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/webinar-nurses-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/webinar-nurses-1360.webp",
+        "width": 1360
+      }
+    ]
+  }
+}

@@ -294,15 +294,6 @@ p { margin: 0; text-wrap: pretty; }
 .vb-nav a.is-active::after { transform: scaleX(1); }
 
 .vb-header-actions { display: flex; align-items: center; gap: 12px; }
-.vb-login {
-  color: var(--vb-cream-dim);
-  font-size: 14.5px;
-  font-weight: 600;
-  padding: 10px 14px;
-  border-radius: 10px;
-  transition: color 200ms, background 200ms;
-}
-.vb-login:hover { color: #fff; background: rgba(244, 239, 227, 0.1); }
 
 .vb-burger {
   display: none;
@@ -1688,7 +1679,6 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 920px) {
   .vb-nav { display: none; }
   .vb-burger { display: flex; }
-  .vb-login { display: none; }
   .vb-header .vb-btn-sm { display: none; }
   .vb-hero { padding-top: 120px; }
 
