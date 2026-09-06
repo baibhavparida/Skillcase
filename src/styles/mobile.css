@@ -193,6 +193,7 @@ main [id] {
     margin-bottom: 24px;
   }
   .section-heading h2,
+  .candidate-stories-header h2,
   .globe-card-header h2,
   .webinar-copy h2,
   .process-intro h2,
@@ -206,6 +207,7 @@ main [id] {
     text-wrap: pretty;
   }
   .section-heading p:not(.eyebrow),
+  .candidate-stories-header p:not(.eyebrow),
   .benefit-copy p,
   .job-card p,
   .webinar-copy p:not(.eyebrow),
