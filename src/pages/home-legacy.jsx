@@ -39,9 +39,8 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                 </a>
                 <h1>Land your healthcare job in Germany</h1>
                 <p>
-                  Discover exciting job openings abroad and get the expert help
-                  you need to navigate the entire process, from application to
-                  relocation.
+                  Explore healthcare jobs in Germany with expert support at
+                  every step.
                 </p>
                 <div className="hero-actions">
                   <a className="btn btn-gold" href="#jobs">
