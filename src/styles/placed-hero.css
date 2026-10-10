@@ -337,33 +337,18 @@
   }
 }
 
-/* Without motion the row becomes a swipeable strip and the copy is dropped. */
+/* Same convention as the learner marquee: with Reduce Motion on (common on
+   iPhones), the row keeps moving, just more slowly, instead of stopping. */
 @media (prefers-reduced-motion: reduce) {
-  .ph-window {
-    overflow-x: auto;
-    padding-inline: var(--container-gutter);
-    scroll-padding-inline: var(--container-gutter);
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .ph-window::-webkit-scrollbar {
-    display: none;
-  }
-
   .ph-track {
-    -webkit-animation: none;
-    animation: none;
-    will-change: auto;
+    -webkit-animation-duration: 72s;
+    animation-duration: 72s;
   }
+}
 
-  .ph-group[aria-hidden="true"] {
-    display: none;
-  }
-
-  .ph-card {
-    scroll-snap-align: start;
+@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
+  .ph-track {
+    -webkit-animation-duration: 90s;
+    animation-duration: 90s;
   }
 }

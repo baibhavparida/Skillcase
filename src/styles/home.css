@@ -20,7 +20,6 @@
 @media (max-width: 760px) {
   .site-shell.home-page .globe-action,
   .site-shell.home-page .webinar-actions .btn,
-  .site-shell.home-page .job-card-actions .btn,
   .site-shell.home-page .podcast-copy .podcast-secondary-cta,
   .site-shell.home-page .faq-support-link,
   .site-shell.home-page .footer-cta {
@@ -29,8 +28,31 @@
     justify-content: center;
   }
 
-  .site-shell.home-page .webinar-actions,
-  .site-shell.home-page .job-card-actions {
+  .site-shell.home-page .webinar-actions {
     width: 100%;
+  }
+
+  /* Job cards: a larger portrait fills the right side, the text column
+     narrows so copy never runs over it, and Apply Now keeps its natural width. */
+  .site-shell.home-page .job-card-content {
+    width: 54%;
+  }
+
+  .site-shell.home-page .job-visual {
+    width: 62%;
+  }
+
+  .site-shell.home-page .job-visual::before {
+    display: none;
+  }
+
+  /* 212px on 390px+ phones, shrinking on narrower screens so the photo
+     never sits under the text column. */
+  .site-shell.home-page .job-cutout,
+  .site-shell.home-page .job-cutout-jobs,
+  .site-shell.home-page .job-cutout-ausbildung {
+    right: -26px;
+    bottom: -28px;
+    width: clamp(164px, calc(100vw - 178px), 212px);
   }
 }
