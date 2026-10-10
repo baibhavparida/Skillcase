@@ -7,6 +7,44 @@
    whatever order the stylesheets load in (dev and production builds inject
    CSS in different orders). */
 
+/* Flat backgrounds: no light gradient washes or faded grid textures on the
+   homepage. Navy panels and the dark shades that keep text readable on
+   photos are unchanged. */
+body:has(.site-shell.home-page) {
+  background: #ffffff;
+}
+
+.site-shell.home-page::before,
+.site-shell.home-page .globe-feature::before,
+.site-shell.home-page .benefit-card::before,
+.site-shell.home-page .job-card::before,
+.site-shell.home-page .candidate-stories-section::before {
+  display: none;
+}
+
+.site-shell.home-page .apply-section,
+.site-shell.home-page .candidate-stories-section {
+  background: none;
+}
+
+.site-shell.home-page .benefit-card,
+.site-shell.home-page .learner-review,
+.site-shell.home-page .blog-card,
+.site-shell.home-page .webinar-pill {
+  background: #ffffff;
+}
+
+.site-shell.home-page .benefit-copy {
+  background: none;
+}
+
+/* Cards that used tinted gradients keep a flat light fill so they still read
+   as panels on the white page. */
+.site-shell.home-page .globe-feature,
+.site-shell.home-page .job-card {
+  background: #f6f9fc;
+}
+
 /* The new benefit photos have faces in the upper half; bias the wide crops
    upward so heads never touch the top edge. */
 .site-shell.home-page .benefit-card-earnings .benefit-media img {

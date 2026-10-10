@@ -12,11 +12,7 @@
   isolation: isolate;
   overflow: hidden;
   padding: 20px 0 14px;
-  background:
-    radial-gradient(28rem 16rem at 0% 0%, rgba(5, 163, 229, 0.14), transparent 72%),
-    /* Kept high so it fades out before the hero's bottom edge (no seam). */
-    radial-gradient(22rem 14rem at 100% 32%, rgba(237, 184, 67, 0.12), transparent 72%),
-    linear-gradient(180deg, #f3f7fb 0%, #ffffff 100%);
+  background: #ffffff;
 }
 
 .ph-copy {
