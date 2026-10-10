@@ -38,6 +38,45 @@ body:has(.site-shell.home-page) {
   background: none;
 }
 
+/* Learner video labels: the same quiet pill as the hero's city tags instead
+   of a white, gold-bordered uppercase badge. */
+.site-shell.home-page .candidate-video-label {
+  top: 10px;
+  left: 10px;
+  gap: 4px;
+  min-height: 22px;
+  padding: 0 8px 0 6px;
+  border: 0;
+  background: rgba(0, 18, 40, 0.42);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-shell.home-page .candidate-video-label .icon-svg {
+  width: 12px;
+  height: 12px;
+  flex-basis: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .site-shell.home-page .candidate-video-label {
+    top: 8px;
+    left: 8px;
+    min-height: 20px;
+    padding: 0 7px 0 5px;
+    font-size: 10px;
+  }
+}
+
 /* Cards that used tinted gradients keep a flat light fill so they still read
    as panels on the white page. */
 .site-shell.home-page .globe-feature,
