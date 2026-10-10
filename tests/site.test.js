@@ -16,6 +16,9 @@ const routes = [
   "blog-view",
   "home-b",
   "home-legacy",
+  "option-1",
+  "option-2",
+  "option-3",
   ...blogPosts.map((post) => `blog/${post.slug}`),
 ];
 

@@ -49,7 +49,10 @@ const learnerReviews = [
   },
 ];
 
-export default function CandidateStories() {
+export default function CandidateStories({
+  title = "Real nurses. Real progress toward Germany.",
+  intro = "Hear directly from nurses building their language skills and preparing for healthcare careers in Germany with Skillcase.",
+}) {
   const storyTrackRef = useRef(null);
 
   const navigateStories = (direction) => {
@@ -74,13 +77,8 @@ export default function CandidateStories() {
       <div className="candidate-stories-header">
         <div>
           <p className="eyebrow">Real learner stories</p>
-          <h2 id="candidate-stories-title">
-            Real nurses. Real progress toward Germany.
-          </h2>
-          <p>
-            Hear directly from nurses building their language skills and
-            preparing for healthcare careers in Germany with Skillcase.
-          </p>
+          <h2 id="candidate-stories-title">{title}</h2>
+          <p>{intro}</p>
         </div>
         <span className="candidate-stories-proof">
           <span data-icon="badge-check" data-size="18" aria-hidden="true"></span>

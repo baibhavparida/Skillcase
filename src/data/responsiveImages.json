@@ -209,6 +209,84 @@
       }
     ]
   },
+  "/assets/images/benefit-family.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-family-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-family-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-family-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-family-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-family-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/benefit-home-keys.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-home-keys-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-home-keys-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-home-keys-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-home-keys-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-home-keys-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/benefit-offer.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-offer-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-offer-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-offer-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-offer-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-offer-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
   "/assets/images/benefit-residency.webp": {
     "width": 1536,
     "height": 1024,
@@ -231,6 +309,32 @@
       },
       {
         "src": "/assets/images/responsive/benefit-residency-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/benefit-school.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/benefit-school-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/benefit-school-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/benefit-school-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/benefit-school-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/benefit-school-1536.webp",
         "width": 1536
       }
     ]
@@ -509,6 +613,54 @@
       }
     ]
   },
+  "/assets/images/hero-team-mobile.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hero-team-mobile-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-mobile-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-mobile-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-mobile-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/hero-team-wide.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hero-team-wide-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-wide-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-wide-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-wide-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/hero-team-wide-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
   "/assets/images/hero.webp": {
     "width": 1536,
     "height": 1024,
@@ -568,6 +720,832 @@
       {
         "src": "/assets/images/responsive/job-nurse-jobs-723.webp",
         "width": 723
+      }
+    ]
+  },
+  "/assets/images/o4-benefit-contract.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-benefit-contract-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-contract-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-contract-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-contract-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-contract-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-benefit-home.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-benefit-home-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-home-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-home-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-home-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-home-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-benefit-reunion.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-benefit-reunion-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-reunion-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-reunion-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-reunion-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-reunion-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-benefit-school.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-benefit-school-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-school-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-school-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-school-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-benefit-school-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-blog-doctor.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-blog-doctor-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-doctor-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-doctor-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-doctor-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-doctor-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-blog-guide.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-blog-guide-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-guide-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-guide-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-guide-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-guide-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-blog-salary.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-blog-salary-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-salary-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-salary-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-salary-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-blog-salary-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/o4-job-nurse.webp": {
+    "width": 941,
+    "height": 1300,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-job-nurse-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-job-nurse-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-job-nurse-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-job-nurse-941.webp",
+        "width": 941
+      }
+    ]
+  },
+  "/assets/images/o4-job-trainee.webp": {
+    "width": 1024,
+    "height": 1395,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-job-trainee-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-job-trainee-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-job-trainee-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-job-trainee-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/o4-webinar.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/o4-webinar-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/o4-webinar-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/o4-webinar-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/o4-webinar-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/o4-webinar-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/placed-anaesthesia-dresden.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-anaesthesia-dresden-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-anaesthesia-dresden-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-anaesthesia-dresden-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-anaesthesia-dresden-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-doctor-berlin.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-doctor-berlin-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-berlin-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-berlin-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-berlin-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-doctor-dusseldorf.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-doctor-dusseldorf-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-dusseldorf-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-dusseldorf-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-dusseldorf-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-doctor-munich.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-doctor-munich-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-munich-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-munich-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-doctor-munich-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-labtech-stuttgart.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-labtech-stuttgart-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-labtech-stuttgart-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-labtech-stuttgart-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-labtech-stuttgart-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-nurse-aachen.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-nurse-aachen-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-aachen-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-aachen-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-aachen-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-nurse-frankfurt.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-nurse-frankfurt-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-frankfurt-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-frankfurt-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-frankfurt-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-nurse-hamburg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-nurse-hamburg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-hamburg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-hamburg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-hamburg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-nurse-leipzig.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-nurse-leipzig-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-leipzig-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-leipzig-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-nurse-leipzig-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-ottech-heidelberg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-ottech-heidelberg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-ottech-heidelberg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-ottech-heidelberg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-ottech-heidelberg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-physio-cologne.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-physio-cologne-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-physio-cologne-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-physio-cologne-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-physio-cologne-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-physio-hannover.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-physio-hannover-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-physio-hannover-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-physio-hannover-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-physio-hannover-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-radiographer-freiburg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-radiographer-freiburg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-radiographer-freiburg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-radiographer-freiburg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-radiographer-freiburg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/placed-trainee-nuremberg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/placed-trainee-nuremberg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/placed-trainee-nuremberg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/placed-trainee-nuremberg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/placed-trainee-nuremberg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/portrait-doctor.webp": {
+    "width": 1024,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/portrait-doctor-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/portrait-doctor-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/portrait-doctor-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/portrait-doctor-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/portrait-labtech.webp": {
+    "width": 1024,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/portrait-labtech-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/portrait-labtech-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/portrait-labtech-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/portrait-labtech-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/portrait-nurse.webp": {
+    "width": 1024,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/portrait-nurse-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/portrait-nurse-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/portrait-nurse-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/portrait-nurse-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/portrait-physio.webp": {
+    "width": 1024,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/portrait-physio-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/portrait-physio-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/portrait-physio-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/portrait-physio-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/portrait-radiographer.webp": {
+    "width": 1024,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/portrait-radiographer-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/portrait-radiographer-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/portrait-radiographer-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/portrait-radiographer-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/scene-ausbildung.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/scene-ausbildung-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/scene-ausbildung-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/scene-ausbildung-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/scene-ausbildung-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/scene-ausbildung-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/scene-doctor.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/scene-doctor-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/scene-doctor-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/scene-doctor-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/scene-doctor-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/scene-doctor-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/scene-labtech.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/scene-labtech-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/scene-labtech-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/scene-labtech-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/scene-labtech-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/scene-labtech-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/scene-nurse.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/scene-nurse-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/scene-nurse-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/scene-nurse-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/scene-nurse-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/scene-nurse-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/scene-physio.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/scene-physio-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/scene-physio-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/scene-physio-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/scene-physio-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/scene-physio-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/images/scene-radiographer.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/scene-radiographer-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/scene-radiographer-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/scene-radiographer-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/scene-radiographer-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/scene-radiographer-1536.webp",
+        "width": 1536
       }
     ]
   },
@@ -658,6 +1636,32 @@
       {
         "src": "/assets/images/responsive/testimonial-ravi-640.webp",
         "width": 640
+      }
+    ]
+  },
+  "/assets/images/webinar-mixed.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/webinar-mixed-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/webinar-mixed-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/webinar-mixed-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/webinar-mixed-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/webinar-mixed-1536.webp",
+        "width": 1536
       }
     ]
   },

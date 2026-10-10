@@ -1,0 +1,369 @@
+/* Placed-professionals hero (Option 4). Mobile-first: base rules target
+   phones, min-width queries enhance for larger screens. The marquee mirrors
+   the learner marquee's translate3d + webkit setup, which is smooth on iOS. */
+
+.ph-hero {
+  --ph-gap: 10px;
+  --ph-half-gap: 5px;
+  /* Compact cards: ~156px on a 390px screen, so two and a half people show at once. */
+  --ph-card-width: clamp(136px, 40vw, 168px);
+  --ph-wrap: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 20px 0 14px;
+  background:
+    radial-gradient(28rem 16rem at 0% 0%, rgba(5, 163, 229, 0.14), transparent 72%),
+    /* Kept high so it fades out before the hero's bottom edge (no seam). */
+    radial-gradient(22rem 14rem at 100% 32%, rgba(237, 184, 67, 0.12), transparent 72%),
+    linear-gradient(180deg, #f3f7fb 0%, #ffffff 100%);
+}
+
+.ph-copy {
+  width: var(--ph-wrap);
+  margin-inline: auto;
+}
+
+.ph-hero .webinar-pill {
+  margin-bottom: 16px;
+}
+
+/* On phones the headline is two lines: "Land your healthcare / job in Germany".
+   "Land your healthcare" measures 10.14em in Poppins 600, so the size follows
+   the column width with a 4% margin and the first line always fits. */
+.ph-hero h1 {
+  max-width: none;
+  margin: 0;
+  color: var(--color-navy-deep);
+  font-size: clamp(24px, calc((100vw - (var(--container-gutter) * 2)) * 0.0948), 40px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.ph-copy-side p {
+  max-width: 34ch;
+  margin: 12px 0 0;
+  color: #3b5268;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* styles.css stacks .hero-actions into a 230px grid on phones; this hero
+   keeps both buttons side by side at full width instead. */
+.ph-hero .hero-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  max-width: none;
+  margin-top: 18px;
+}
+
+/* Same height, type and padding as the live homepage's phone buttons. */
+.ph-hero .hero-actions .btn {
+  width: auto;
+  min-width: 0;
+  height: 40px;
+  min-height: 40px;
+  flex: 1 1 0;
+  padding: 0 14px;
+  font-size: 13px;
+}
+
+/* The window clips horizontally for the marquee, so it carries extra
+   vertical padding for the card shadows (~38px below each card) and gives it
+   back with negative margins; spacing around the row stays the same. */
+.ph-window {
+  margin-top: 10px;
+  margin-bottom: -24px;
+  overflow: hidden;
+  padding-block: 16px 44px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+}
+
+.ph-track {
+  display: flex;
+  width: max-content;
+  gap: var(--ph-gap);
+  -webkit-animation: phMarquee 56s linear infinite;
+  animation: phMarquee 56s linear infinite;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.ph-group {
+  display: flex;
+  flex: none;
+  gap: var(--ph-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ph-card {
+  position: relative;
+  width: var(--ph-card-width);
+  flex: none;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #d9e4ee;
+  box-shadow:
+    0 2px 4px rgba(0, 40, 86, 0.06),
+    0 12px 26px rgba(0, 40, 86, 0.14);
+}
+
+.ph-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+/* Bottom shade keeps white type readable on any photo. */
+.ph-card::after {
+  position: absolute;
+  inset: 52% 0 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 18, 40, 0) 0%, rgba(0, 18, 40, 0.58) 48%, rgba(0, 18, 40, 0.88) 100%);
+}
+
+.ph-city {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 20px;
+  padding: 0 7px 0 5px;
+  border-radius: 999px;
+  background: rgba(0, 18, 40, 0.42);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.ph-city .icon-svg {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.ph-info {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.ph-role {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.ph-pay {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 3px;
+  margin: 3px 0 0;
+}
+
+.ph-pay strong {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.ph-pay span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.ph-note {
+  position: relative;
+  z-index: 1;
+  width: var(--ph-wrap);
+  margin: 0 auto;
+  color: #7a889a;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@keyframes phMarquee {
+  to {
+    transform: translate3d(calc(-50% - var(--ph-half-gap)), 0, 0);
+  }
+}
+
+@-webkit-keyframes phMarquee {
+  to {
+    -webkit-transform: translate3d(calc(-50% - var(--ph-half-gap)), 0, 0);
+  }
+}
+
+/* Very narrow phones (320px): keep both buttons on one row. */
+@media (max-width: 359px) {
+  .ph-hero .hero-actions .btn {
+    padding: 0 8px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 761px) {
+  .ph-hero {
+    --ph-gap: 14px;
+    --ph-half-gap: 7px;
+    --ph-card-width: 208px;
+    padding: 52px 0 24px;
+  }
+
+  .ph-hero .webinar-pill {
+    margin-bottom: 26px;
+  }
+
+  .ph-copy-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 48px;
+    align-items: end;
+  }
+
+  .ph-hero h1 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 5.4vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .ph-copy-side {
+    padding-bottom: 8px;
+  }
+
+  .ph-copy-side p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .ph-hero .hero-actions {
+    margin-top: 24px;
+  }
+
+  .ph-hero .hero-actions .btn {
+    flex: none;
+    height: 46px;
+    min-height: 46px;
+    padding: 0 20px;
+  }
+
+  .ph-window {
+    margin-top: 28px;
+    margin-bottom: -20px;
+    padding-bottom: 48px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+
+  .ph-track {
+    -webkit-animation-duration: 70s;
+    animation-duration: 70s;
+  }
+
+  .ph-card {
+    border-radius: 16px;
+  }
+
+  .ph-city {
+    top: 10px;
+    left: 10px;
+    min-height: 22px;
+    font-size: 11px;
+  }
+
+  .ph-info {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  .ph-role {
+    font-size: 14px;
+  }
+
+  .ph-pay strong {
+    font-size: 17px;
+  }
+
+  .ph-pay span {
+    font-size: 11px;
+  }
+
+  .ph-note {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1040px) {
+  .ph-copy-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .ph-hero h1 {
+    max-width: 14ch;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ph-window:hover .ph-track {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+}
+
+/* Without motion the row becomes a swipeable strip and the copy is dropped. */
+@media (prefers-reduced-motion: reduce) {
+  .ph-window {
+    overflow-x: auto;
+    padding-inline: var(--container-gutter);
+    scroll-padding-inline: var(--container-gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .ph-window::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ph-track {
+    -webkit-animation: none;
+    animation: none;
+    will-change: auto;
+  }
+
+  .ph-group[aria-hidden="true"] {
+    display: none;
+  }
+
+  .ph-card {
+    scroll-snap-align: start;
+  }
+}

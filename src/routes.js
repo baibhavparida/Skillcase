@@ -4,8 +4,8 @@ import { blogPosts } from "./data/siteContent.js";
 // Each route imports only its own React components and CSS.
 const pages = {
   "/": {
-    source: "src/pages/home-legacy.jsx",
-    load: () => import("./pages/home-legacy.jsx"),
+    source: "src/pages/home.jsx",
+    load: () => import("./pages/home.jsx"),
     props: { isPrimaryHome: true },
   },
   "/about": {
@@ -40,9 +40,23 @@ const pages = {
     source: "src/pages/home-b.jsx",
     load: () => import("./pages/home-b.jsx"),
   },
+  // The previous homepage, kept (noindex) in case it is needed again.
   "/home-legacy": {
     source: "src/pages/home-legacy.jsx",
     load: () => import("./pages/home-legacy.jsx"),
+  },
+  // Broadened healthcare homepage options, previewed side by side (noindex).
+  "/option-1": {
+    source: "src/pages/option-1.jsx",
+    load: () => import("./pages/option-1.jsx"),
+  },
+  "/option-2": {
+    source: "src/pages/option-2.jsx",
+    load: () => import("./pages/option-2.jsx"),
+  },
+  "/option-3": {
+    source: "src/pages/option-3.jsx",
+    load: () => import("./pages/option-3.jsx"),
   },
 };
 

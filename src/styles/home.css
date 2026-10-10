@@ -1,0 +1,36 @@
+/* Homepage phone CTAs. Heights, type, padding and colours come from the same
+   shared styles as the live homepage (styles.css / mobile.css), so buttons
+   look identical; the only change is that section CTAs span the column on
+   phones, which makes them easier to hit with a thumb.
+
+   Selectors start with .site-shell.home-page so they outrank the shared rules
+   whatever order the stylesheets load in (dev and production builds inject
+   CSS in different orders). */
+
+/* The new benefit photos have faces in the upper half; bias the wide crops
+   upward so heads never touch the top edge. */
+.site-shell.home-page .benefit-card-earnings .benefit-media img {
+  object-position: 50% 26%;
+}
+
+.site-shell.home-page .benefit-card-family .benefit-media img {
+  object-position: 50% 30%;
+}
+
+@media (max-width: 760px) {
+  .site-shell.home-page .globe-action,
+  .site-shell.home-page .webinar-actions .btn,
+  .site-shell.home-page .job-card-actions .btn,
+  .site-shell.home-page .podcast-copy .podcast-secondary-cta,
+  .site-shell.home-page .faq-support-link,
+  .site-shell.home-page .footer-cta {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+  }
+
+  .site-shell.home-page .webinar-actions,
+  .site-shell.home-page .job-card-actions {
+    width: 100%;
+  }
+}

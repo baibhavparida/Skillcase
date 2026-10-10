@@ -1,6 +1,6 @@
 # Existing Skillcase design
 
-The current primary homepage is `src/pages/home-legacy.jsx`, served at `/` through `src/routes.js`.
+The current primary homepage is `src/pages/home.jsx`, served at `/` through `src/routes.js`. It reuses the previous homepage's sections (`src/pages/home-legacy.jsx`) with a hero whose imagery is a moving row of healthcare professionals (`src/components/PlacedHero.jsx`, data in `src/data/placements.js`). The previous homepage is kept, noindex, at `/home-legacy`.
 
 ## Visual identity
 

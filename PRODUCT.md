@@ -6,11 +6,11 @@ brand
 
 ## Users
 
-Indian nurses and healthcare professionals exploring jobs and relocation to Germany. The owner reports that approximately 80% of visitors use mobile phones. Prioritize touch, readable information, variable connection quality, and short browsing sessions.
+Indian healthcare professionals exploring jobs and relocation to Germany: nurses (historically the core audience), doctors, physiotherapists, medical lab and radiology technologists, and students starting an Ausbildung. Since October 2026 the brand is positioned for all of these professions, with medical German as the common thread; avoid copy or imagery that reads as nurses-only. The owner reports that approximately 90% of visitors use mobile phones, so design phone-first and treat desktop as the enhancement. Prioritize touch, readable information, variable connection quality, and short browsing sessions.
 
 ## Product Purpose
 
-Explain the Germany career pathway, eligibility, language preparation and recruitment support. Help visitors explore roles, read guides, and contact an advisor or complete the existing signup flow.
+Explain the Germany career pathway for each profession, eligibility, medical German preparation and recruitment support. Help visitors explore roles, read guides, and contact an advisor or complete the existing signup flow.
 
 ## Existing Brand
 
