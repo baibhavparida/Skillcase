@@ -95,7 +95,6 @@ export default function PlacedHero() {
           </ul>
         </div>
       </div>
-      <p className="ph-note">Typical gross monthly pay. Photos are illustrative.</p>
     </section>
   );
 }
