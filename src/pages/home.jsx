@@ -12,10 +12,12 @@ import { formatLakhRange } from "../data/placements.js";
 import { salaryRange } from "../data/roles.js";
 import "../styles/home.css";
 
-// The live homepage, written for every healthcare profession: a hero of
-// professionals working across Germany, a role list so each visitor finds
-// their pathway, a plain "how it works", then proof and answers. The previous
-// homepage stays untouched at /home-legacy.
+// The live homepage, written for every healthcare profession. Sections follow
+// the questions a visitor asks in turn: what is this (hero), is it for me
+// (roles), how do I get there (how it works), is it worth it (benefits, then
+// the numbers), can I trust it (learners, stories), can I start now (app), and
+// finally a free webinar, reading, podcast and FAQ. The previous homepage
+// stays untouched at /home-legacy.
 
 const payRange = formatLakhRange(salaryRange);
 
@@ -138,47 +140,6 @@ export default function Home({ isPrimaryHome = false }) {
 
           <HowItWorks />
 
-          <section className="section metric-section">
-            <section className="globe-feature">
-              <div className="globe-card-header">
-                <p className="eyebrow">Global opportunities</p>
-                <h2>India’s healthcare talent, ready for global opportunities</h2>
-              </div>
-              <div className="globe-copy">
-                <div className="opportunity-metrics">
-                  <article className="metric-card opportunity-metric">
-                    <span className="metric-label">Healthcare demand</span>
-                    <strong>500,000+</strong>
-                    <p>Healthcare professionals needed in Germany by 2030</p>
-                  </article>
-                  <article className="metric-card opportunity-metric">
-                    <span className="metric-label">Typical monthly salary</span>
-                    <strong>{payRange}</strong>
-                    <p>Gross pay for nurses, doctors, physios and technicians</p>
-                  </article>
-                  <article className="metric-card opportunity-metric">
-                    <span className="metric-label">Transparent support</span>
-                    <strong>Free</strong>
-                    <p>No agent or recruitment fees. Fully transparent.</p>
-                  </article>
-                </div>
-              </div>
-              <div className="globe-stage" aria-label="Global healthcare routes from India">
-                <div className="opportunity-cobe-globe" data-globe="">
-                  <canvas></canvas>
-                  {globeMarkers.map(([marker, label]) => (
-                    <div className="cobe-marker-label" data-marker={marker} key={marker}>
-                      {label}
-                      <span aria-hidden="true"></span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-          </section>
-
-          <LearnerMarquee />
-
           <section className="section benefits-section">
             <div className="section-heading">
               <p className="eyebrow">Why choose Skillcase</p>
@@ -227,6 +188,54 @@ export default function Home({ isPrimaryHome = false }) {
               ))}
             </div>
           </section>
+
+          <section className="section metric-section">
+            <section className="globe-feature">
+              <div className="globe-card-header">
+                <p className="eyebrow">Global opportunities</p>
+                <h2>India’s healthcare talent, ready for global opportunities</h2>
+              </div>
+              <div className="globe-copy">
+                <div className="opportunity-metrics">
+                  <article className="metric-card opportunity-metric">
+                    <span className="metric-label">Healthcare demand</span>
+                    <strong>500,000+</strong>
+                    <p>Healthcare professionals needed in Germany by 2030</p>
+                  </article>
+                  <article className="metric-card opportunity-metric">
+                    <span className="metric-label">Typical monthly salary</span>
+                    <strong>{payRange}</strong>
+                    <p>Gross pay for nurses, doctors, physios and technicians</p>
+                  </article>
+                  <article className="metric-card opportunity-metric">
+                    <span className="metric-label">Transparent support</span>
+                    <strong>Free</strong>
+                    <p>No agent or recruitment fees. Fully transparent.</p>
+                  </article>
+                </div>
+              </div>
+              <div className="globe-stage" aria-label="Global healthcare routes from India">
+                <div className="opportunity-cobe-globe" data-globe="">
+                  <canvas></canvas>
+                  {globeMarkers.map(([marker, label]) => (
+                    <div className="cobe-marker-label" data-marker={marker} key={marker}>
+                      {label}
+                      <span aria-hidden="true"></span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </section>
+
+          <LearnerMarquee />
+
+          <CandidateStories
+            title="Real learners. Real progress toward Germany."
+            intro="Hear directly from Skillcase learners building their German and preparing for healthcare careers in Germany."
+          />
+
+          <AppJourneyShowcase />
 
           <section className="section webinar-section" id="register-webinar">
             <div className="webinar-card">
@@ -281,13 +290,6 @@ export default function Home({ isPrimaryHome = false }) {
               </div>
             </div>
           </section>
-
-          <CandidateStories
-            title="Real learners. Real progress toward Germany."
-            intro="Hear directly from Skillcase learners building their German and preparing for healthcare careers in Germany."
-          />
-
-          <AppJourneyShowcase />
 
           <section className="section blog-section" id="blogs" aria-labelledby="blogs-title">
             <div className="section-heading blog-section-heading">

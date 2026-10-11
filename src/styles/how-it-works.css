@@ -1,88 +1,73 @@
-/* Homepage "How it works" as a photo journey. Mobile-first: circular photos
-   down the left joined by a dashed path, text beside each; from 900px the
-   steps run across four columns and the path turns horizontal. Flat colours
-   only, no gradients. */
+/* Homepage "How it works": four step cards, each with a small product-style
+   UI mock (hm-*) built in code. Mobile-first: a swipeable row with the next
+   card peeking in and step dots below; a 2x2 grid from 600px and four across
+   from 1040px. Flat colours only, no gradients. */
 
 .hiw-steps {
   display: grid;
-  margin: 0;
-  padding: 0;
+  grid-auto-columns: 84%;
+  grid-auto-flow: column;
+  gap: 12px;
+  margin: 0 calc(var(--container-gutter) * -1);
+  padding: 2px var(--container-gutter) 4px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--container-gutter);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   list-style: none;
 }
 
-.hiw-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: 96px minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
-  padding-bottom: 40px;
+.hiw-steps::-webkit-scrollbar {
+  display: none;
 }
 
-/* One continuous dashed path: each segment runs from this photo's centre to
-   the next photo's centre, behind the photos. */
-.hiw-step:not(:last-child)::before {
-  position: absolute;
-  top: 48px;
-  bottom: -48px;
-  left: 47px;
-  border-left: 2px dashed rgba(0, 40, 86, 0.22);
-  content: "";
+.hiw-steps:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+.hiw-card {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0, 40, 86, 0.1);
+  border-radius: 16px;
+  background: #ffffff;
 }
 
 .hiw-visual {
-  position: relative;
-  z-index: 1;
-  width: 96px;
-  height: 96px;
-}
-
-/* A small plane on the path into "Move to Germany", centred in the gap
-   between the two photos. */
-.hiw-plane {
-  position: absolute;
-  top: calc(50% + 48px);
-  left: 48px;
-  z-index: 2;
   display: grid;
-  width: 24px;
-  height: 24px;
+  flex: 1;
   place-items: center;
-  border-radius: 999px;
-  background: #ffffff;
-  color: var(--color-cyan);
-  transform: translate(-50%, -50%) rotate(180deg);
+  padding: 18px 18px 16px;
+  background: #f2f6fa;
 }
 
-/* A soft flat ring around each photo, as in a timeline of portraits. */
-.hiw-photo {
-  width: 100%;
-  height: 100%;
-  border-radius: 999px;
-  background: #e3ebf2;
-  object-fit: cover;
-  object-position: center 30%;
-  box-shadow: 0 0 0 6px #eef4f9;
+.hiw-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px 16px;
 }
 
 .hiw-number {
-  position: absolute;
-  right: -6px;
-  bottom: -4px;
   display: grid;
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
+  flex: none;
   place-items: center;
-  border: 3px solid #ffffff;
+  margin-top: 1px;
   border-radius: 999px;
   background: var(--color-navy);
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   line-height: 1;
 }
 
-.hiw-step h3 {
+.hiw-card h3 {
   margin: 0;
   color: var(--color-ink);
   font-size: 16px;
@@ -91,11 +76,46 @@
   letter-spacing: -0.01em;
 }
 
-.hiw-step p {
+.hiw-card p {
   margin: 3px 0 0;
   color: #607083;
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.5;
+}
+
+/* Step dots: phones only. 28px buttons around an 8px dot for easy tapping. */
+.hiw-dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.hiw-dots button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.hiw-dots button::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 40, 86, 0.2);
+  content: "";
+  transition:
+    width 200ms ease,
+    background 200ms ease;
+}
+
+.hiw-dots button.is-active::before {
+  width: 20px;
+  background: var(--color-navy);
 }
 
 .hiw-actions {
@@ -103,7 +123,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 10px 16px;
-  margin-top: 4px;
+  margin-top: 14px;
 }
 
 .hiw-note {
@@ -119,61 +139,318 @@
   color: var(--color-cyan);
 }
 
-@media (min-width: 900px) {
+/* ---- UI mocks ---------------------------------------------------------- */
+
+.hm-card {
+  display: grid;
+  width: 100%;
+  max-width: 264px;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(0, 40, 86, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(0, 40, 86, 0.08);
+  color: var(--color-ink);
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.hm-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hm-head strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hm-between {
+  justify-content: space-between;
+}
+
+.hm-avatar,
+.hm-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  background: #e8f1f8;
+  color: var(--color-navy);
+}
+
+.hm-avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+}
+
+.hm-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+}
+
+/* Profile */
+.hm-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.hm-chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+  padding: 0 9px;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 999px;
+  color: #4b6075;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.hm-chips .is-on {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.hm-chips .is-on .icon-svg {
+  color: var(--hc-sky, #8fd8f8);
+}
+
+.hm-status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: #eaf6fd;
+  color: #0a6a9e;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hm-status .icon-svg {
+  color: var(--color-cyan);
+}
+
+/* German level */
+.hm-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #fdf3d8;
+  color: #85620a;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hm-levels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hm-levels li {
+  display: grid;
+  height: 30px;
+  place-items: center;
+  border-radius: 8px;
+  background: #eef3f8;
+  color: #8193a6;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.hm-levels .is-done {
+  background: rgba(5, 163, 229, 0.14);
+  color: var(--color-navy);
+}
+
+.hm-levels .is-now {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.hm-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b6075;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.hm-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #e5484d;
+}
+
+/* Job offer */
+.hm-title {
+  display: grid;
+  gap: 1px;
+}
+
+.hm-title small {
+  color: #6a7a8d;
+  font-size: 11px;
+}
+
+.hm-offer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 40, 86, 0.08);
+}
+
+.hm-pay {
+  color: var(--color-navy);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.hm-btn {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: var(--color-gold);
+  color: #211500;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Boarding pass */
+.hm-route {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hm-city {
+  display: grid;
+  gap: 1px;
+}
+
+.hm-city strong {
+  color: var(--color-navy);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.hm-city small {
+  color: #6a7a8d;
+  font-size: 10px;
+}
+
+.hm-city-end {
+  text-align: right;
+}
+
+/* Dashed flight path with the plane riding on it. */
+.hm-flight {
+  position: relative;
+  display: grid;
+  flex: 1;
+  place-items: center;
+  color: var(--color-cyan);
+}
+
+.hm-flight::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  border-top: 1.5px dashed rgba(0, 40, 86, 0.25);
+  content: "";
+}
+
+.hm-flight .icon-svg {
+  position: relative;
+  padding: 0 4px;
+  background: #ffffff;
+  transform: rotate(90deg);
+}
+
+.hm-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(0, 40, 86, 0.18);
+}
+
+.hm-checks span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #eaf6fd;
+  color: #0a6a9e;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.hm-checks .icon-svg {
+  color: var(--color-cyan);
+}
+
+@media (min-width: 600px) {
+  .hiw-steps {
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .hiw-dots {
+    display: none;
+  }
+
+  .hiw-actions {
+    margin-top: 22px;
+  }
+}
+
+@media (min-width: 1040px) {
   .hiw-steps {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 28px;
-  }
-
-  /* Top-align each column so a two-line caption doesn't shift the photos. */
-  .hiw-step {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    align-content: start;
-    align-items: start;
-    padding-bottom: 0;
-  }
-
-  .hiw-step:not(:last-child)::before {
-    top: 84px;
-    right: -112px;
-    bottom: auto;
-    left: 84px;
-    border-top: 2px dashed rgba(0, 40, 86, 0.22);
-    border-left: 0;
-  }
-
-  .hiw-plane {
-    top: 84px;
-    left: calc(50% + 98px);
-    width: 28px;
-    height: 28px;
-    transform: translate(-50%, -50%) rotate(90deg);
+    gap: 16px;
   }
 
   .hiw-visual {
-    width: 168px;
-    height: 168px;
+    min-height: 168px;
+    padding: 20px 16px;
   }
 
-  .hiw-photo {
-    box-shadow: 0 0 0 8px #eef4f9;
-  }
-
-  .hiw-number {
-    right: 2px;
-    bottom: 2px;
-    width: 42px;
-    height: 42px;
-    border-width: 4px;
-    font-size: 16px;
-  }
-
-  .hiw-step h3 {
+  .hiw-card h3 {
     font-size: 17px;
   }
 
   .hiw-actions {
-    margin-top: 36px;
+    margin-top: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hiw-dots button::before {
+    transition: none;
   }
 }
