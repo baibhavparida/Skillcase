@@ -905,50 +905,6 @@
       }
     ]
   },
-  "/assets/images/o4-job-nurse.webp": {
-    "width": 941,
-    "height": 1300,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/o4-job-nurse-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/o4-job-nurse-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/o4-job-nurse-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/o4-job-nurse-941.webp",
-        "width": 941
-      }
-    ]
-  },
-  "/assets/images/o4-job-trainee.webp": {
-    "width": 1024,
-    "height": 1395,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/o4-job-trainee-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/o4-job-trainee-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/o4-job-trainee-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/o4-job-trainee-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
   "/assets/images/o4-webinar.webp": {
     "width": 1536,
     "height": 1024,

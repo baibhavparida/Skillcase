@@ -1,18 +1,14 @@
 import "../styles/placed-hero.css";
 import ResponsiveImage from "./ResponsiveImage.jsx";
 import Icon from "./healthcare/Icon.jsx";
-import { INR_PER_EUR, placements } from "../data/placements.js";
+import { formatLakhRange, placements } from "../data/placements.js";
 
 // Homepage hero whose imagery is a moving row of healthcare professionals
 // working across Germany, each card carrying city, role and typical pay.
 // Copy matches the live hero word for word. Built phone-first: on a 390px
 // screen the headline, both buttons and the moving row share the first view.
 
-// Pay is stored in euros (German pay scales) and shown in lakh rupees.
-const lakhs = (value) => (Math.round((value * INR_PER_EUR) / 10000) / 10).toFixed(1);
-
 function HeroCard({ item, index, duplicate }) {
-  const [low, high] = item.salary;
   const eager = !duplicate && index < 2;
   return (
     <li className="ph-card">
@@ -30,9 +26,7 @@ function HeroCard({ item, index, duplicate }) {
       <div className="ph-info">
         <p className="ph-role">{item.role}</p>
         <p className="ph-pay">
-          <strong>
-            ₹{lakhs(low)}–{lakhs(high)}L
-          </strong>
+          <strong>{formatLakhRange(item.salary)}</strong>
           <span>/month</span>
         </p>
       </div>
@@ -63,7 +57,7 @@ export default function PlacedHero() {
           <div className="ph-copy-side">
             <p>Explore healthcare jobs in Germany with expert support at every step.</p>
             <div className="hero-actions">
-              <a className="btn btn-gold" href="/signup/">
+              <a className="btn btn-gold" href="#jobs">
                 See Jobs
                 <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
               </a>

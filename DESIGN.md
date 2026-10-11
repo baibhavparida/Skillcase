@@ -1,6 +1,6 @@
 # Existing Skillcase design
 
-The current primary homepage is `src/pages/home.jsx`, served at `/` through `src/routes.js`. It reuses the previous homepage's sections (`src/pages/home-legacy.jsx`) with a hero whose imagery is a moving row of healthcare professionals (`src/components/PlacedHero.jsx`, data in `src/data/placements.js`). The previous homepage is kept, noindex, at `/home-legacy`.
+The current primary homepage is `src/pages/home.jsx`, served at `/` through `src/routes.js`, and is written for every healthcare profession. Its hero imagery is a moving row of professionals (`src/components/PlacedHero.jsx`, data in `src/data/placements.js`), followed by a role list (`src/components/RoleList.jsx`, data in `src/data/roles.js`) and "How it works" (`src/components/HowItWorks.jsx`). Backgrounds are flat (no light gradient washes) and phone CTAs keep the shared 40px button style. The previous homepage is kept unchanged, noindex, at `/home-legacy`.
 
 ## Visual identity
 

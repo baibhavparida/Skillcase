@@ -17,12 +17,10 @@ body:has(.site-shell.home-page) {
 .site-shell.home-page::before,
 .site-shell.home-page .globe-feature::before,
 .site-shell.home-page .benefit-card::before,
-.site-shell.home-page .job-card::before,
 .site-shell.home-page .candidate-stories-section::before {
   display: none;
 }
 
-.site-shell.home-page .apply-section,
 .site-shell.home-page .candidate-stories-section {
   background: none;
 }
@@ -36,6 +34,14 @@ body:has(.site-shell.home-page) {
 
 .site-shell.home-page .benefit-copy {
   background: none;
+}
+
+/* In-page links (See Jobs, FAQ): mobile.css sets both html scroll-padding
+   (88px) and a scroll-margin on every main [id] (88px), which stacked to
+   176px. Keep only the scroll-padding so sections land just below the
+   sticky header. */
+.site-shell.home-page main [id] {
+  scroll-margin-top: 0;
 }
 
 /* Learner video labels: the same quiet pill as the hero's city tags instead
@@ -77,10 +83,9 @@ body:has(.site-shell.home-page) {
   }
 }
 
-/* Cards that used tinted gradients keep a flat light fill so they still read
-   as panels on the white page. */
-.site-shell.home-page .globe-feature,
-.site-shell.home-page .job-card {
+/* The globe card used a tinted gradient; a flat light fill keeps it reading
+   as a panel on the white page. */
+.site-shell.home-page .globe-feature {
   background: #f6f9fc;
 }
 
@@ -95,7 +100,7 @@ body:has(.site-shell.home-page) {
 }
 
 @media (max-width: 760px) {
-  .site-shell.home-page .globe-action,
+  .site-shell.home-page .hiw-actions .btn,
   .site-shell.home-page .webinar-actions .btn,
   .site-shell.home-page .podcast-copy .podcast-secondary-cta,
   .site-shell.home-page .faq-support-link,
@@ -109,27 +114,8 @@ body:has(.site-shell.home-page) {
     width: 100%;
   }
 
-  /* Job cards: a larger portrait fills the right side, the text column
-     narrows so copy never runs over it, and Apply Now keeps its natural width. */
-  .site-shell.home-page .job-card-content {
-    width: 54%;
-  }
-
-  .site-shell.home-page .job-visual {
-    width: 62%;
-  }
-
-  .site-shell.home-page .job-visual::before {
-    display: none;
-  }
-
-  /* 212px on 390px+ phones, shrinking on narrower screens so the photo
-     never sits under the text column. */
-  .site-shell.home-page .job-cutout,
-  .site-shell.home-page .job-cutout-jobs,
-  .site-shell.home-page .job-cutout-ausbildung {
-    right: -26px;
-    bottom: -28px;
-    width: clamp(164px, calc(100vw - 178px), 212px);
+  .site-shell.home-page .hiw-note {
+    width: 100%;
+    justify-content: center;
   }
 }

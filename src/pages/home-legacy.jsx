@@ -5,215 +5,159 @@ import CandidateStories from "../components/CandidateStories.jsx";
 import LearnerMarquee from "../components/LearnerMarquee.jsx";
 import SiteFooter from "../components/SiteFooter.jsx";
 import SiteHeader from "../components/SiteHeader.jsx";
-
-// Images a preview version can swap through the `images` prop. The defaults
-// are the live homepage's own files and alt text.
-const defaultImages = {
-  earnings: {
-    src: "/assets/images/benefit-earnings.webp",
-    alt: "Indian nurse reviewing overseas career documents with a Skillcase advisor",
-  },
-  family: {
-    src: "/assets/images/family-settlement.webp",
-    alt: "Indian healthcare professional with family preparing for relocation to Germany",
-  },
-  education: {
-    src: "/assets/images/benefit-education.webp",
-    alt: "Indian nurses in a training and mentorship session",
-  },
-  residency: {
-    src: "/assets/images/benefit-residency.webp",
-    alt: "Visa and documentation support for an Indian healthcare professional",
-  },
-  webinar: {
-    src: "/assets/images/webinar-nurses.webp",
-    alt: "Indian nurses attending a Germany healthcare webinar",
-  },
-  blogGuide: {
-    src: "/assets/images/webinar-nurses.webp",
-    alt: "Indian healthcare professional researching nursing opportunities in Germany",
-  },
-  blogSalary: {
-    src: "/assets/images/benefit-earnings.webp",
-    alt: "Nurse planning salary and career growth for Germany",
-  },
-  blogDoctor: {
-    src: "/assets/images/benefit-residency.webp",
-    alt: "Foreign medical professional preparing documents for Germany",
-  },
-  jobNurse: { src: "/assets/images/job-nurse-jobs.webp" },
-  jobTrainee: { src: "/assets/images/job-nurse-ausbildung.webp" },
-};
-
-// The previous homepage, kept at /home-legacy. The live homepage
-// (src/pages/home.jsx) reuses it: `hero` swaps in a different hero,
-// `showOfferStrip` hides the services band below it, `shellClassName` scopes
-// page-specific styles and `images` replaces photos. /home-legacy passes none
-// of these and renders exactly as the old homepage did.
-export default function HomeLegacy({
-  isPrimaryHome = false,
-  hero = null,
-  showOfferStrip = true,
-  shellClassName = "",
-  images = {},
-}) {
-  const img = { ...defaultImages, ...images };
+export default function HomeLegacy({ isPrimaryHome = false }) {
   return (
     <>
       <BaseLayout robots={isPrimaryHome ? undefined : "noindex"}>
-        <div className={["site-shell", shellClassName].filter(Boolean).join(" ")}>
+        <div className="site-shell">
           <SiteHeader active="home" />
 
           <main>
-            {hero ?? (
-              <section className="hero-section hero-background" id="top">
-                <ResponsiveImage
-                  alt="Indian nurse walking through Berlin in a Germany healthcare career setting"
-                  className="hero-bg-image"
-                  loading="eager"
-                  fetchPriority="high"
-                  sizes="(max-width: 760px) 900px, 100vw"
-                  src="/assets/images/hero.webp"
-                />
-                <div className="hero-copy">
-                  <a
-                    className="webinar-pill"
-                    href="https://learner.skillcase.in/events/7cdknjvd"
-                  >
-                    <span className="webinar-pill-icon" aria-hidden="true">
-                      <span data-icon="video" data-size="15"></span>
-                    </span>
-                    <span className="webinar-pill-copy">
-                      <span>Live webinar</span>
-                      <strong>Nursing jobs in Germany</strong>
-                    </span>
-                    <span className="webinar-pill-arrow" aria-hidden="true">
-                      <span data-icon="arrow-right" data-size="13"></span>
-                    </span>
+            <section className="hero-section hero-background" id="top">
+              <ResponsiveImage
+                alt="Indian nurse walking through Berlin in a Germany healthcare career setting"
+                className="hero-bg-image"
+                loading="eager"
+                fetchPriority="high"
+                sizes="(max-width: 760px) 900px, 100vw"
+                src="/assets/images/hero.webp"
+              />
+              <div className="hero-copy">
+                <a
+                  className="webinar-pill"
+                  href="https://learner.skillcase.in/events/7cdknjvd"
+                >
+                  <span className="webinar-pill-icon" aria-hidden="true">
+                    <span data-icon="video" data-size="15"></span>
+                  </span>
+                  <span className="webinar-pill-copy">
+                    <span>Live webinar</span>
+                    <strong>Nursing jobs in Germany</strong>
+                  </span>
+                  <span className="webinar-pill-arrow" aria-hidden="true">
+                    <span data-icon="arrow-right" data-size="13"></span>
+                  </span>
+                </a>
+                <h1>Land your healthcare job in Germany</h1>
+                <p>
+                  Explore healthcare jobs in Germany with expert support at
+                  every step.
+                </p>
+                <div className="hero-actions">
+                  <a className="btn btn-gold" href="/signup/">
+                    See Jobs
+                    <span
+                      data-icon="arrow-right"
+                      data-size="16"
+                      aria-hidden="true"
+                    ></span>
                   </a>
-                  <h1>Land your healthcare job in Germany</h1>
-                  <p>
-                    Explore healthcare jobs in Germany with expert support at
-                    every step.
-                  </p>
-                  <div className="hero-actions">
-                    <a className="btn btn-gold" href="/signup/">
-                      See Jobs
-                      <span
-                        data-icon="arrow-right"
-                        data-size="16"
-                        aria-hidden="true"
-                      ></span>
-                    </a>
-                    <a
-                      className="btn btn-outline hero-app-cta"
-                      href="https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN"
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      <img
-                        src="/assets/images/google-play-mark.svg"
-                        alt=""
-                        aria-hidden="true"
-                      />
-                      Download App
-                    </a>
-                  </div>
+                  <a
+                    className="btn btn-outline hero-app-cta"
+                    href="https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <img
+                      src="/assets/images/google-play-mark.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                    Download App
+                  </a>
                 </div>
-              </section>
-            )}
+              </div>
+            </section>
 
-            {showOfferStrip && (
-              <section
-                className="offer-strip"
-                aria-label="Skillcase support services"
-              >
-                <div className="offer-marquee">
-                  <div className="offer-marquee-track">
-                    <span className="offer-chip">
-                      <span data-icon="graduation-cap" data-size="15"></span>
-                      German language training
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="shield-check" data-size="15"></span>Visa
-                      support
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="badge-check" data-size="15"></span>
-                      Interview preparation
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="file-check-2" data-size="15"></span>
-                      Documentation review
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="clipboard-check" data-size="15"></span>
-                      Profile assessment
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="heart-handshake" data-size="15"></span>Job
-                      matching
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="briefcase-business" data-size="15"></span>
-                      CV guidance
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="plane-takeoff" data-size="15"></span>
-                      Relocation planning
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="stethoscope" data-size="15"></span>Employer
-                      coordination
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="users-round" data-size="15"></span>Family
-                      settlement guidance
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="graduation-cap" data-size="15"></span>
-                      German language training
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="shield-check" data-size="15"></span>Visa
-                      support
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="badge-check" data-size="15"></span>
-                      Interview preparation
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="file-check-2" data-size="15"></span>
-                      Documentation review
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="clipboard-check" data-size="15"></span>
-                      Profile assessment
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="heart-handshake" data-size="15"></span>Job
-                      matching
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="briefcase-business" data-size="15"></span>
-                      CV guidance
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="plane-takeoff" data-size="15"></span>
-                      Relocation planning
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="stethoscope" data-size="15"></span>Employer
-                      coordination
-                    </span>
-                    <span className="offer-chip">
-                      <span data-icon="users-round" data-size="15"></span>Family
-                      settlement guidance
-                    </span>
-                  </div>
+            <section
+              className="offer-strip"
+              aria-label="Skillcase support services"
+            >
+              <div className="offer-marquee">
+                <div className="offer-marquee-track">
+                  <span className="offer-chip">
+                    <span data-icon="graduation-cap" data-size="15"></span>
+                    German language training
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="shield-check" data-size="15"></span>Visa
+                    support
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="badge-check" data-size="15"></span>
+                    Interview preparation
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="file-check-2" data-size="15"></span>
+                    Documentation review
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="clipboard-check" data-size="15"></span>
+                    Profile assessment
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="heart-handshake" data-size="15"></span>Job
+                    matching
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="briefcase-business" data-size="15"></span>
+                    CV guidance
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="plane-takeoff" data-size="15"></span>
+                    Relocation planning
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="stethoscope" data-size="15"></span>Employer
+                    coordination
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="users-round" data-size="15"></span>Family
+                    settlement guidance
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="graduation-cap" data-size="15"></span>
+                    German language training
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="shield-check" data-size="15"></span>Visa
+                    support
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="badge-check" data-size="15"></span>
+                    Interview preparation
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="file-check-2" data-size="15"></span>
+                    Documentation review
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="clipboard-check" data-size="15"></span>
+                    Profile assessment
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="heart-handshake" data-size="15"></span>Job
+                    matching
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="briefcase-business" data-size="15"></span>
+                    CV guidance
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="plane-takeoff" data-size="15"></span>
+                    Relocation planning
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="stethoscope" data-size="15"></span>Employer
+                    coordination
+                  </span>
+                  <span className="offer-chip">
+                    <span data-icon="users-round" data-size="15"></span>Family
+                    settlement guidance
+                  </span>
                 </div>
-              </section>
-            )}
+              </div>
+            </section>
 
             <section className="section metric-section">
               <section className="globe-feature">
@@ -323,8 +267,8 @@ export default function HomeLegacy({
                   </div>
                   <div className="benefit-media">
                     <ResponsiveImage
-                      alt={img.earnings.alt}
-                      src={img.earnings.src}
+                      alt="Indian nurse reviewing overseas career documents with a Skillcase advisor"
+                      src="/assets/images/benefit-earnings.webp"
                     />
                     <div className="benefit-ui salary-ui" aria-hidden="true">
                       <strong>
@@ -387,8 +331,8 @@ export default function HomeLegacy({
                   </div>
                   <div className="benefit-media">
                     <ResponsiveImage
-                      alt={img.family.alt}
-                      src={img.family.src}
+                      alt="Indian healthcare professional with family preparing for relocation to Germany"
+                      src="/assets/images/family-settlement.webp"
                     />
                   </div>
                 </article>
@@ -432,8 +376,8 @@ export default function HomeLegacy({
                   </div>
                   <div className="benefit-media">
                     <ResponsiveImage
-                      alt={img.education.alt}
-                      src={img.education.src}
+                      alt="Indian nurses in a training and mentorship session"
+                      src="/assets/images/benefit-education.webp"
                     />
                   </div>
                 </article>
@@ -473,8 +417,8 @@ export default function HomeLegacy({
                   </div>
                   <div className="benefit-media">
                     <ResponsiveImage
-                      alt={img.residency.alt}
-                      src={img.residency.src}
+                      alt="Visa and documentation support for an Indian healthcare professional"
+                      src="/assets/images/benefit-residency.webp"
                     />
                   </div>
                 </article>
@@ -545,8 +489,8 @@ export default function HomeLegacy({
                 </div>
                 <div className="webinar-media">
                   <ResponsiveImage
-                    alt={img.webinar.alt}
-                    src={img.webinar.src}
+                    alt="Indian nurses attending a Germany healthcare webinar"
+                    src="/assets/images/webinar-nurses.webp"
                   />
                   <div className="play-orb" aria-hidden="true">
                     <span data-icon="play-filled" data-size="18"></span>
@@ -604,7 +548,7 @@ export default function HomeLegacy({
                     <ResponsiveImage
                       alt=""
                       className="job-cutout job-cutout-jobs"
-                      src={img.jobNurse.src}
+                      src="/assets/images/job-nurse-jobs.webp"
                     />
                   </div>
                 </article>
@@ -647,7 +591,7 @@ export default function HomeLegacy({
                     <ResponsiveImage
                       alt=""
                       className="job-cutout job-cutout-ausbildung"
-                      src={img.jobTrainee.src}
+                      src="/assets/images/job-nurse-ausbildung.webp"
                     />
                   </div>
                 </article>
@@ -676,8 +620,8 @@ export default function HomeLegacy({
                   >
                     <ResponsiveImage
                       loading="lazy"
-                      alt={img.blogGuide.alt}
-                      src={img.blogGuide.src}
+                      alt="Indian healthcare professional researching nursing opportunities in Germany"
+                      src="/assets/images/webinar-nurses.webp"
                     />
                     <span className="blog-media-badge">Career guide</span>
                   </a>
@@ -708,8 +652,8 @@ export default function HomeLegacy({
                   >
                     <ResponsiveImage
                       loading="lazy"
-                      alt={img.blogSalary.alt}
-                      src={img.blogSalary.src}
+                      alt="Nurse planning salary and career growth for Germany"
+                      src="/assets/images/benefit-earnings.webp"
                     />
                     <span className="blog-media-badge">Salary insights</span>
                   </a>
@@ -739,8 +683,8 @@ export default function HomeLegacy({
                   >
                     <ResponsiveImage
                       loading="lazy"
-                      alt={img.blogDoctor.alt}
-                      src={img.blogDoctor.src}
+                      alt="Foreign medical professional preparing documents for Germany"
+                      src="/assets/images/benefit-residency.webp"
                     />
                     <span className="blog-media-badge">Relocation</span>
                   </a>

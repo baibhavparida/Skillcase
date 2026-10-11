@@ -14,6 +14,11 @@
 // Used for the rupee figures. Update when the exchange rate moves.
 export const INR_PER_EUR = 97;
 
+// A euro range shown in lakh rupees, e.g. [3300, 3900] -> "₹3.2–3.8L".
+// Formatted by hand so server and browser output match for hydration.
+const toLakhs = (euros) => (Math.round((euros * INR_PER_EUR) / 10000) / 10).toFixed(1);
+export const formatLakhRange = ([low, high]) => `₹${toLakhs(low)}–${toLakhs(high)}L`;
+
 export const placements = [
   {
     key: "nurse-hamburg",
