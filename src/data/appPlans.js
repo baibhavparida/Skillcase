@@ -78,12 +78,7 @@ function guidedPlan(code) {
   return {
     key: "guided",
     badge: isNew ? "New to German" : `${code} · ${levelNames[code]}`,
-    headline: isNew
-      ? "your first German lesson is waiting in the app"
-      : "your guided lessons are waiting in the app",
-    lede: isNew
-      ? "Maya, your guide in the app, teaches you German one short lesson at a time, starting from your very first word."
-      : `Maya takes you through German one short lesson at a time, and your ${code} practice tools are in the same app.`,
+    goal: isNew ? "start your first German lesson" : "start your guided German lessons",
     preview: { kind: "path", level: code || "A1", tabs: "learn", activeTab: 0 },
     highlightsTitle: "What your lessons look like",
     highlights: [
@@ -126,7 +121,7 @@ function practicePlan(code) {
   const base = {
     key: `practice-${code.toLowerCase()}`,
     badge: `${code} · ${levelNames[code]}`,
-    headline: `your ${code} practice is waiting in the app`,
+    goal: `start your ${code} practice`,
     preview: {
       kind: code === "B2" ? "b2" : "grid",
       level: code,
@@ -141,7 +136,6 @@ function practicePlan(code) {
   if (code === "A1") {
     return {
       ...base,
-      lede: "Six practice modules, all set to A1. A few minutes a day keeps your streak going.",
       highlights: [
         {
           icon: "cards",
@@ -165,7 +159,6 @@ function practicePlan(code) {
   if (code === "A2") {
     return {
       ...base,
-      lede: "Six practice modules, all set to A2, with real German emails and messages to read.",
       highlights: [
         {
           icon: "cards",
@@ -189,7 +182,6 @@ function practicePlan(code) {
   if (code === "B1") {
     return {
       ...base,
-      lede: "Real exam papers, an AI tutor to talk to, and German jobs open to you at B1.",
       highlights: [
         {
           icon: "exam",
@@ -212,7 +204,6 @@ function practicePlan(code) {
   }
   return {
     ...base,
-    lede: "Sharpen all four exam skills, and apply for German jobs whenever you’re ready.",
     highlights: [
       {
         icon: "test",
@@ -238,8 +229,7 @@ function jobsPlan(code) {
   return {
     key: "jobs",
     badge: `${code} · ${levelNames[code]}`,
-    headline: "your job screening is waiting in the app",
-    lede: `With ${code} German you can start your Germany job application now. Here’s how it works in the app.`,
+    goal: "start your job screening",
     // The lobby's first steps, with the app's own step descriptions.
     preview: {
       kind: "jobs",
@@ -284,8 +274,7 @@ function jobsPlan(code) {
 const scholarshipPlan = {
   key: "scholarship",
   badge: "Scholarship exam",
-  headline: "your scholarship exam is waiting in the app",
-  lede: "Take the exam in the app whenever you’re ready. Your score decides your scholarship.",
+  goal: "take your scholarship exam",
   preview: { kind: "scholarship", tabs: "exam", activeTab: 0 },
   highlightsTitle: "How the exam works",
   highlights: [

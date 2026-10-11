@@ -40,10 +40,6 @@
   line-height: 1.18;
 }
 
-.sc-plan .sc-onb-lede {
-  margin: 0;
-}
-
 /* ---- Stage: the phone rises into a light band and fades out ----
    --phone is the device width; --visible is how many app pixels of the
    850 px screen show before the band crops the phone. */
@@ -931,30 +927,6 @@
 
 .sc-plan-signin strong {
   color: var(--color-ink);
-  font-weight: 600;
-}
-
-.sc-plan-trial {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin: 0;
-  padding: 11px 12px;
-  border: 1px solid rgba(237, 184, 67, 0.5);
-  border-radius: 12px;
-  background: #fff8e6;
-  color: var(--color-ink);
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-.sc-plan-trial .icon-svg {
-  flex: none;
-  margin-top: 1px;
-  color: #a67a0c;
-}
-
-.sc-plan-trial strong {
   font-weight: 600;
 }
 

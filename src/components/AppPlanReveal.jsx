@@ -46,10 +46,7 @@ export default function AppPlanReveal({ profile, plan }) {
           </p>
           <span className="sc-plan-badge">{plan.badge}</span>
         </div>
-        <h1>
-          {profile.firstName || "You’re in"}, {plan.headline}
-        </h1>
-        <p className="sc-onb-lede">{plan.lede}</p>
+        <h1>Download the app to {plan.goal}</h1>
       </div>
 
       <AppStage plan={plan} variant="inline" />
@@ -96,15 +93,6 @@ export default function AppPlanReveal({ profile, plan }) {
         {profile.phone && (
           <p className="sc-plan-signin">
             Sign in with <strong>+91 {formatPhone(profile.phone)}</strong>
-          </p>
-        )}
-        {plan.trial && (
-          <p className="sc-plan-trial">
-            <Icon name="gift" size={16} />
-            <span>
-              <strong>Free 7-day Premium trial</strong> for new accounts, with
-              unlimited practice. No charges during the trial.
-            </span>
           </p>
         )}
       </section>

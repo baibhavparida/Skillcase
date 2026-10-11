@@ -676,25 +676,6 @@
   outline-offset: 3px;
 }
 
-.sc-onb-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 14px;
-  background: var(--sc-surface-cool);
-  border-radius: var(--sc-r-md);
-  font-size: 13px;
-  color: var(--color-ink);
-  line-height: 1.45;
-}
-
-.sc-onb-consent input {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--color-navy);
-  margin-top: 2px;
-}
-
 .sc-onb-field-grid {
   display: grid;
   gap: 14px;
