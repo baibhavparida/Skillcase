@@ -1,23 +1,34 @@
 import "../styles/how-it-works.css";
+import ResponsiveImage from "./ResponsiveImage.jsx";
+import Icon from "./healthcare/Icon.jsx";
 
-// Four plain steps from sign-up to starting work, so visitors know what
-// happens after they apply. Each step maps to a service Skillcase offers.
+// Four steps from sign-up to starting work, told as a photo journey: at home
+// in India, learning German, interviewing, then arriving in Germany. Each
+// step maps to a service Skillcase offers.
 const steps = [
   {
     title: "Create your profile",
     copy: "Share your qualification and experience. An advisor checks which roles in Germany suit you.",
+    image: "/assets/images/hiw-profile.webp",
+    alt: "Young Indian nursing graduate filling in her profile on her phone at home",
   },
   {
     title: "Learn German",
     copy: "Go from A1 to B2 with live online classes, exam prep and the Skillcase app.",
+    image: "/assets/images/hiw-german.webp",
+    alt: "Indian learner with headphones in a live online German class on his laptop",
   },
   {
     title: "Interview and get your offer",
     copy: "Practise interviews, have your documents reviewed and get matched with employers in Germany.",
+    image: "/assets/images/hiw-interview.webp",
+    alt: "Indian healthcare professional smiling during a video job interview",
   },
   {
     title: "Move to Germany",
     copy: "Get support with your visa and relocation, and with bringing your family.",
+    image: "/assets/images/hiw-arrival.webp",
+    alt: "Indian woman with her suitcase on an old-town street after arriving in Germany",
   },
 ];
 
@@ -31,13 +42,26 @@ export default function HowItWorks() {
       <ol className="hiw-steps">
         {steps.map((step, index) => (
           <li className="hiw-step" key={step.title}>
-            <span className="hiw-number" aria-hidden="true">
-              {index + 1}
-            </span>
-            <div>
+            <div className="hiw-visual">
+              <ResponsiveImage
+                className="hiw-photo"
+                src={step.image}
+                alt={step.alt}
+                sizes="(max-width: 899px) 96px, 168px"
+              />
+              <span className="hiw-number" aria-hidden="true">
+                {index + 1}
+              </span>
+            </div>
+            <div className="hiw-text">
               <h3>{step.title}</h3>
               <p>{step.copy}</p>
             </div>
+            {index === steps.length - 2 && (
+              <span className="hiw-plane" aria-hidden="true">
+                <Icon name="airplane" size={13} weight="fill" />
+              </span>
+            )}
           </li>
         ))}
       </ol>

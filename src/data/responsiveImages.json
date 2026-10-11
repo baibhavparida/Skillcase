@@ -687,6 +687,94 @@
       }
     ]
   },
+  "/assets/images/hiw-arrival.webp": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hiw-arrival-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hiw-arrival-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hiw-arrival-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hiw-arrival-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/hiw-german.webp": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hiw-german-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hiw-german-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hiw-german-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hiw-german-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/hiw-interview.webp": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hiw-interview-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hiw-interview-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hiw-interview-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hiw-interview-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/hiw-profile.webp": {
+    "width": 1024,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/hiw-profile-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/hiw-profile-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/hiw-profile-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/hiw-profile-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
   "/assets/images/job-nurse-ausbildung.webp": {
     "width": 722,
     "height": 1019,

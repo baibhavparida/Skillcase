@@ -1,5 +1,7 @@
-/* Homepage "How it works". Mobile-first: a vertical numbered timeline;
-   four columns with a connecting line from 900px. Flat colours only. */
+/* Homepage "How it works" as a photo journey. Mobile-first: circular photos
+   down the left joined by a dashed path, text beside each; from 900px the
+   steps run across four columns and the path turns horizontal. Flat colours
+   only, no gradients. */
 
 .hiw-steps {
   display: grid;
@@ -11,37 +13,81 @@
 .hiw-step {
   position: relative;
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr);
-  gap: 14px;
-  padding-bottom: 22px;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding-bottom: 28px;
 }
 
-/* Line joining each number to the next one. */
+/* One continuous dashed path: each segment runs from this photo's centre to
+   the next photo's centre, behind the photos. */
 .hiw-step:not(:last-child)::before {
   position: absolute;
-  top: 40px;
-  bottom: 4px;
-  left: 17px;
-  width: 2px;
-  border-radius: 2px;
-  background: rgba(0, 40, 86, 0.1);
+  top: 48px;
+  bottom: -48px;
+  left: 47px;
+  border-left: 2px dashed rgba(0, 40, 86, 0.22);
   content: "";
 }
 
-.hiw-number {
+.hiw-visual {
+  position: relative;
+  z-index: 1;
+  width: 96px;
+  height: 96px;
+}
+
+/* A small plane on the path into "Move to Germany", centred in the gap
+   between the two photos. */
+.hiw-plane {
+  position: absolute;
+  top: calc(50% + 48px);
+  left: 48px;
+  z-index: 2;
   display: grid;
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   place-items: center;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--color-cyan);
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+/* A soft flat ring around each photo, as in a timeline of portraits. */
+.hiw-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: #e3ebf2;
+  object-fit: cover;
+  object-position: center 30%;
+  box-shadow: 0 0 0 6px #eef4f9;
+}
+
+.hiw-number {
+  position: absolute;
+  right: -6px;
+  bottom: -4px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 3px solid #ffffff;
   border-radius: 999px;
   background: var(--color-navy);
   color: #ffffff;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
+  line-height: 1;
+}
+
+.hiw-text {
+  padding-top: 10px;
 }
 
 .hiw-step h3 {
-  margin: 6px 0 0;
+  margin: 0;
   color: var(--color-ink);
   font-size: 16px;
   font-weight: 600;
@@ -50,7 +96,7 @@
 }
 
 .hiw-step p {
-  margin: 4px 0 0;
+  margin: 5px 0 0;
   color: #607083;
   font-size: 14px;
   line-height: 1.55;
@@ -80,35 +126,59 @@
 @media (min-width: 900px) {
   .hiw-steps {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 24px;
+    gap: 28px;
   }
 
   .hiw-step {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 22px;
     padding-bottom: 0;
   }
 
   .hiw-step:not(:last-child)::before {
-    top: 19px;
-    right: -16px;
+    top: 84px;
+    right: -112px;
     bottom: auto;
-    left: 52px;
-    width: auto;
-    height: 2px;
+    left: 84px;
+    border-top: 2px dashed rgba(0, 40, 86, 0.22);
+    border-left: 0;
+  }
+
+  .hiw-plane {
+    top: 84px;
+    left: calc(50% + 98px);
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .hiw-visual {
+    width: 168px;
+    height: 168px;
+  }
+
+  .hiw-photo {
+    box-shadow: 0 0 0 8px #eef4f9;
   }
 
   .hiw-number {
-    width: 40px;
-    height: 40px;
+    right: 2px;
+    bottom: 2px;
+    width: 42px;
+    height: 42px;
+    border-width: 4px;
+    font-size: 16px;
+  }
+
+  .hiw-text {
+    padding-top: 0;
   }
 
   .hiw-step h3 {
-    margin-top: 0;
     font-size: 17px;
   }
 
   .hiw-actions {
-    margin-top: 32px;
+    margin-top: 36px;
   }
 }
