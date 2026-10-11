@@ -521,6 +521,314 @@
       }
     ]
   },
+  "/assets/images/candidate-anaesthesia-dresden.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-anaesthesia-dresden-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-anaesthesia-dresden-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-anaesthesia-dresden-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-anaesthesia-dresden-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-doctor-berlin.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-doctor-berlin-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-berlin-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-berlin-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-berlin-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-doctor-dusseldorf.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-doctor-dusseldorf-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-dusseldorf-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-dusseldorf-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-dusseldorf-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-doctor-munich.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-doctor-munich-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-munich-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-munich-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-doctor-munich-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-labtech-stuttgart.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-labtech-stuttgart-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-labtech-stuttgart-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-labtech-stuttgart-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-labtech-stuttgart-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-nurse-aachen.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-aachen-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-aachen-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-aachen-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-aachen-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-nurse-frankfurt.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-frankfurt-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-frankfurt-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-frankfurt-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-frankfurt-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-nurse-hamburg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-hamburg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-hamburg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-hamburg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-hamburg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-nurse-leipzig.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-leipzig-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-leipzig-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-leipzig-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-leipzig-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-ottech-heidelberg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-ottech-heidelberg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-ottech-heidelberg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-ottech-heidelberg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-ottech-heidelberg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-physio-cologne.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-physio-cologne-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-physio-cologne-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-physio-cologne-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-physio-cologne-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-physio-hannover.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-physio-hannover-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-physio-hannover-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-physio-hannover-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-physio-hannover-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-radiographer-freiburg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-radiographer-freiburg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-radiographer-freiburg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-radiographer-freiburg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-radiographer-freiburg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-trainee-nuremberg.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-trainee-nuremberg-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-trainee-nuremberg-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-trainee-nuremberg-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-trainee-nuremberg-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
   "/assets/images/card-mock-interview.jpg": {
     "width": 1100,
     "height": 733,
@@ -1016,314 +1324,6 @@
       {
         "src": "/assets/images/responsive/o4-webinar-1536.webp",
         "width": 1536
-      }
-    ]
-  },
-  "/assets/images/placed-anaesthesia-dresden.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-anaesthesia-dresden-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-anaesthesia-dresden-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-anaesthesia-dresden-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-anaesthesia-dresden-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-doctor-berlin.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-doctor-berlin-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-berlin-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-berlin-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-berlin-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-doctor-dusseldorf.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-doctor-dusseldorf-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-dusseldorf-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-dusseldorf-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-dusseldorf-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-doctor-munich.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-doctor-munich-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-munich-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-munich-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-doctor-munich-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-labtech-stuttgart.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-labtech-stuttgart-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-labtech-stuttgart-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-labtech-stuttgart-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-labtech-stuttgart-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-nurse-aachen.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-nurse-aachen-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-aachen-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-aachen-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-aachen-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-nurse-frankfurt.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-nurse-frankfurt-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-frankfurt-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-frankfurt-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-frankfurt-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-nurse-hamburg.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-nurse-hamburg-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-hamburg-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-hamburg-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-hamburg-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-nurse-leipzig.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-nurse-leipzig-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-leipzig-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-leipzig-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-nurse-leipzig-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-ottech-heidelberg.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-ottech-heidelberg-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-ottech-heidelberg-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-ottech-heidelberg-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-ottech-heidelberg-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-physio-cologne.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-physio-cologne-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-physio-cologne-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-physio-cologne-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-physio-cologne-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-physio-hannover.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-physio-hannover-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-physio-hannover-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-physio-hannover-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-physio-hannover-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-radiographer-freiburg.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-radiographer-freiburg-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-radiographer-freiburg-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-radiographer-freiburg-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-radiographer-freiburg-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/images/placed-trainee-nuremberg.webp": {
-    "width": 1024,
-    "height": 1536,
-    "variants": [
-      {
-        "src": "/assets/images/responsive/placed-trainee-nuremberg-160.webp",
-        "width": 160
-      },
-      {
-        "src": "/assets/images/responsive/placed-trainee-nuremberg-480.webp",
-        "width": 480
-      },
-      {
-        "src": "/assets/images/responsive/placed-trainee-nuremberg-768.webp",
-        "width": 768
-      },
-      {
-        "src": "/assets/images/responsive/placed-trainee-nuremberg-1024.webp",
-        "width": 1024
       }
     ]
   },

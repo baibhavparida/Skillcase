@@ -25,7 +25,7 @@ export const placements = [
     role: "Nurse",
     city: "Hamburg",
     salary: [3300, 3900],
-    image: "/assets/images/placed-nurse-hamburg.webp",
+    image: "/assets/images/candidate-nurse-hamburg.webp",
     alt: "Indian nurse in light blue scrubs in a Hamburg hospital corridor",
   },
   {
@@ -33,7 +33,7 @@ export const placements = [
     role: "Doctor",
     city: "Munich",
     salary: [5000, 6000],
-    image: "/assets/images/placed-doctor-munich.webp",
+    image: "/assets/images/candidate-doctor-munich.webp",
     alt: "Indian doctor in a white coat on a hospital ward in Munich",
   },
   {
@@ -41,7 +41,7 @@ export const placements = [
     role: "Physiotherapist",
     city: "Cologne",
     salary: [2900, 3500],
-    image: "/assets/images/placed-physio-cologne.webp",
+    image: "/assets/images/candidate-physio-cologne.webp",
     alt: "Indian physiotherapist laughing in a rehabilitation gym in Cologne",
   },
   {
@@ -49,7 +49,7 @@ export const placements = [
     role: "Lab technician",
     city: "Stuttgart",
     salary: [3300, 3900],
-    image: "/assets/images/placed-labtech-stuttgart.webp",
+    image: "/assets/images/candidate-labtech-stuttgart.webp",
     alt: "Indian lab technician checking a blood sample in a Stuttgart hospital lab",
   },
   {
@@ -57,7 +57,7 @@ export const placements = [
     role: "Nurse",
     city: "Frankfurt",
     salary: [3300, 3900],
-    image: "/assets/images/placed-nurse-frankfurt.webp",
+    image: "/assets/images/candidate-nurse-frankfurt.webp",
     alt: "Indian nurse in teal scrubs holding a coffee on a Frankfurt hospital ward",
   },
   {
@@ -65,7 +65,7 @@ export const placements = [
     role: "OT technician",
     city: "Heidelberg",
     salary: [3200, 3800],
-    image: "/assets/images/placed-ottech-heidelberg.webp",
+    image: "/assets/images/candidate-ottech-heidelberg.webp",
     alt: "Indian operating theatre technician in scrubs beside a scrub sink in Heidelberg",
   },
   {
@@ -73,7 +73,7 @@ export const placements = [
     role: "Doctor",
     city: "Düsseldorf",
     salary: [5000, 6000],
-    image: "/assets/images/placed-doctor-dusseldorf.webp",
+    image: "/assets/images/candidate-doctor-dusseldorf.webp",
     alt: "Indian doctor in surgical scrubs outside the operating theatres in Düsseldorf",
   },
   {
@@ -81,7 +81,7 @@ export const placements = [
     role: "Nursing trainee",
     city: "Nuremberg",
     salary: [1300, 1600],
-    image: "/assets/images/placed-trainee-nuremberg.webp",
+    image: "/assets/images/candidate-trainee-nuremberg.webp",
     alt: "Indian nursing trainee outside a hospital training school in Nuremberg",
   },
   {
@@ -89,7 +89,7 @@ export const placements = [
     role: "Radiology technician",
     city: "Freiburg",
     salary: [3300, 3900],
-    image: "/assets/images/placed-radiographer-freiburg.webp",
+    image: "/assets/images/candidate-radiographer-freiburg.webp",
     alt: "Indian radiology technician beside a CT scanner in Freiburg",
   },
   {
@@ -97,7 +97,7 @@ export const placements = [
     role: "Nurse",
     city: "Leipzig",
     salary: [3200, 3800],
-    image: "/assets/images/placed-nurse-leipzig.webp",
+    image: "/assets/images/candidate-nurse-leipzig.webp",
     alt: "Indian nurse sharing tea with an elderly resident in a Leipzig care home",
   },
   {
@@ -105,7 +105,7 @@ export const placements = [
     role: "Anaesthesia technician",
     city: "Dresden",
     salary: [3200, 3800],
-    image: "/assets/images/placed-anaesthesia-dresden.webp",
+    image: "/assets/images/candidate-anaesthesia-dresden.webp",
     alt: "Indian anaesthesia technician beside an anaesthesia workstation in Dresden",
   },
   {
@@ -113,7 +113,7 @@ export const placements = [
     role: "Physiotherapist",
     city: "Hannover",
     salary: [2700, 3300],
-    image: "/assets/images/placed-physio-hannover.webp",
+    image: "/assets/images/candidate-physio-hannover.webp",
     alt: "Indian physiotherapist in a Hannover outpatient practice",
   },
   {
@@ -121,7 +121,7 @@ export const placements = [
     role: "Nurse",
     city: "Aachen",
     salary: [3300, 3900],
-    image: "/assets/images/placed-nurse-aachen.webp",
+    image: "/assets/images/candidate-nurse-aachen.webp",
     alt: "Indian nurse smiling on a colourful paediatric ward in Aachen",
   },
   {
@@ -129,7 +129,7 @@ export const placements = [
     role: "Doctor",
     city: "Berlin",
     salary: [5000, 6000],
-    image: "/assets/images/placed-doctor-berlin.webp",
-    alt: "Indian doctor leaving a Berlin hospital at golden hour, TV tower behind him",
+    image: "/assets/images/candidate-doctor-berlin.webp",
+    alt: "Indian doctor leaving a Berlin hospital, with the TV tower behind him",
   },
 ];

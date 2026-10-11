@@ -8,53 +8,44 @@ export const roles = [
     title: "Nurse",
     german: "B1–B2 German",
     salary: [3300, 3900],
-    image: "/assets/images/placed-nurse-hamburg.webp",
+    image: "/assets/images/candidate-nurse-hamburg.webp",
   },
   {
     key: "doctor",
     title: "Doctor",
     german: "C1 medical German",
     salary: [5000, 6000],
-    image: "/assets/images/placed-doctor-munich.webp",
+    image: "/assets/images/candidate-doctor-munich.webp",
   },
   {
     key: "physiotherapist",
     title: "Physiotherapist",
     german: "B2 German",
     salary: [2700, 3500],
-    image: "/assets/images/placed-physio-cologne.webp",
+    image: "/assets/images/candidate-physio-cologne.webp",
   },
   {
     key: "lab-technician",
     title: "Lab technician",
     german: "B2 German",
     salary: [3300, 3900],
-    image: "/assets/images/placed-labtech-stuttgart.webp",
+    image: "/assets/images/candidate-labtech-stuttgart.webp",
   },
   {
     key: "radiology-technician",
     title: "Radiology technician",
     german: "B2 German",
     salary: [3300, 3900],
-    image: "/assets/images/placed-radiographer-freiburg.webp",
+    image: "/assets/images/candidate-radiographer-freiburg.webp",
   },
   {
     key: "ot-anaesthesia-technician",
     title: "OT & anaesthesia technician",
     german: "B2 German",
     salary: [3200, 3800],
-    image: "/assets/images/placed-ottech-heidelberg.webp",
+    image: "/assets/images/candidate-ottech-heidelberg.webp",
   },
 ];
-
-export const ausbildung = {
-  key: "ausbildung",
-  title: "Students (Ausbildung)",
-  intro: "Finished 12th? Train in Germany with a monthly stipend",
-  german: "B1–B2 German",
-  salary: [1300, 1600],
-  image: "/assets/images/placed-trainee-nuremberg.webp",
-};
 
 // Lowest to highest typical pay across qualified roles, for summary figures.
 export const salaryRange = [

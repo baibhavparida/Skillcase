@@ -1,5 +1,6 @@
 /* Homepage "Who can apply?" role list. Mobile-first: one full-width row per
-   profession (the whole row is the tap target); two columns from 900px. */
+   profession (the whole row is the tap target), with the photo filling the
+   row's left edge; two columns from 900px. */
 
 .rl-list {
   display: grid;
@@ -12,9 +13,8 @@
 .rl-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-height: 72px;
-  padding: 12px 14px 12px 12px;
+  min-height: 96px;
+  overflow: hidden;
   border: 1px solid rgba(0, 40, 86, 0.1);
   border-radius: 14px;
   background: #ffffff;
@@ -34,12 +34,20 @@
   outline-offset: 2px;
 }
 
-.rl-face {
-  width: 48px;
-  height: 48px;
+/* The photo panel stretches to the row's full height; the image covers it. */
+.rl-media {
+  position: relative;
+  width: 96px;
   flex: none;
-  border-radius: 12px;
+  align-self: stretch;
   background: #e3ebf2;
+}
+
+.rl-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center 18%;
 }
@@ -49,6 +57,7 @@
   min-width: 0;
   flex: 1;
   gap: 3px;
+  padding: 12px 10px 12px 14px;
 }
 
 .rl-text strong {
@@ -79,6 +88,7 @@
   flex: none;
   align-items: center;
   gap: 4px;
+  padding-right: 16px;
   color: var(--color-navy);
   font-size: 13px;
   font-weight: 600;
@@ -93,24 +103,6 @@
   transform: translateX(2px);
 }
 
-/* Ausbildung (students) gets its own flat tinted row below the professions. */
-.rl-row-ausbildung {
-  margin-top: 10px;
-  border-color: rgba(237, 184, 67, 0.45);
-  background: #fdf7e8;
-}
-
-.rl-row-ausbildung:hover {
-  border-color: rgba(237, 184, 67, 0.9);
-}
-
-.rl-intro {
-  color: #85620a;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.35;
-}
-
 @media (min-width: 900px) {
   .rl-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -118,18 +110,19 @@
   }
 
   .rl-row {
-    min-height: 84px;
-    padding: 14px 20px 14px 14px;
-    gap: 16px;
+    min-height: 124px;
   }
 
-  .rl-face {
-    width: 56px;
-    height: 56px;
+  .rl-media {
+    width: 128px;
+  }
+
+  .rl-text {
+    padding: 16px 12px 16px 20px;
   }
 
   .rl-text strong {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .rl-meta {
@@ -139,8 +132,8 @@
     font-size: 13px;
   }
 
-  .rl-row-ausbildung {
-    margin-top: 12px;
+  .rl-apply {
+    padding-right: 22px;
   }
 }
 

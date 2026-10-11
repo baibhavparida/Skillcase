@@ -27,9 +27,35 @@ body:has(.site-shell.home-page) {
 
 .site-shell.home-page .benefit-card,
 .site-shell.home-page .learner-review,
-.site-shell.home-page .blog-card,
-.site-shell.home-page .webinar-pill {
+.site-shell.home-page .blog-card {
   background: #ffffff;
+}
+
+/* The webinar pill was frosted glass over a photo; on the flat white hero it
+   needs its own fill and edge so it reads as a separate, tappable element. */
+.site-shell.home-page .webinar-pill {
+  border: 1px solid rgba(5, 163, 229, 0.32);
+  background: #eaf6fd;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.site-shell.home-page .webinar-pill:hover {
+  border-color: rgba(5, 163, 229, 0.6);
+  background: #dff1fc;
+  box-shadow: none;
+}
+
+.site-shell.home-page .webinar-pill-icon {
+  border-color: rgba(5, 163, 229, 0.28);
+  background: #ffffff;
+  color: var(--color-navy);
+}
+
+.site-shell.home-page .webinar-pill-arrow {
+  background: var(--color-gold);
+  color: var(--color-navy-deep);
 }
 
 .site-shell.home-page .benefit-copy {
