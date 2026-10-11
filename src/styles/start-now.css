@@ -1,0 +1,1267 @@
+/* /start-now: the homepage's look applied to the trust page before the
+   program picker. Mobile-first: base rules target phones, min-width queries
+   enhance for larger screens. Flat white sections with a flat #f6f9fc panel;
+   only navy panels keep gradients, as on the homepage. Phone CTAs keep the
+   shared 40px button height.
+
+   Selectors start with .start-now-page where they override shared styles, so
+   they win whatever order the stylesheets load in. */
+
+body:has(.site-shell.start-now-page) {
+  background: #ffffff;
+}
+
+.site-shell.start-now-page::before {
+  display: none;
+}
+
+/* mobile.css adds a scroll-margin to every main [id] on top of the html
+   scroll-padding; keep only the padding so sections land below the header. */
+.site-shell.start-now-page main [id] {
+  scroll-margin-top: 0;
+}
+
+.sn-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Hero ------------------------------------------------------------ */
+
+.sn-hero {
+  padding: 20px 0 8px;
+  background: #ffffff;
+}
+
+.sn-hero-inner {
+  display: grid;
+  gap: 26px;
+  width: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
+  margin-inline: auto;
+}
+
+.sn-hero-copy {
+  min-width: 0;
+}
+
+/* Same as the homepage's hero webinar pill (home.css): white fill, cyan
+   edge, light cyan icon chip and a navy arrow. */
+.start-now-page .sn-pill {
+  margin-bottom: 16px;
+  border: 1px solid #a8daf3;
+  background: #ffffff;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.start-now-page .sn-pill:hover {
+  border-color: var(--color-cyan);
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.start-now-page .sn-pill .webinar-pill-icon {
+  border-color: transparent;
+  background: #eaf6fd;
+  color: var(--color-navy);
+}
+
+.start-now-page .sn-pill .webinar-pill-arrow {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+/* Two deliberate lines on every screen: "From Day 1 / to Germany". */
+.sn-hero h1 {
+  margin: 0;
+  color: var(--color-navy-deep);
+  font-size: clamp(34px, 11vw, 46px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.sn-hero h1 span {
+  display: block;
+}
+
+.sn-lede {
+  max-width: 36ch;
+  margin: 12px 0 0;
+  color: #3b5268;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.sn-hero-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Side by side at full width, the main action wider so its label fits. */
+.start-now-page .sn-hero-actions .btn {
+  min-width: 0;
+  height: 40px;
+  min-height: 40px;
+  flex: 1 1 0;
+  gap: 7px;
+  padding: 0 14px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.start-now-page .sn-hero-actions .btn-gold {
+  flex-grow: 1.55;
+}
+
+@media (max-width: 360px) {
+  .start-now-page .sn-hero-actions .btn {
+    padding: 0 10px;
+  }
+
+  .start-now-page .sn-hero-actions .btn-gold .icon-svg {
+    display: none;
+  }
+}
+
+.sn-proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.sn-proof-faces {
+  display: flex;
+  flex: none;
+  padding-left: 6px;
+}
+
+.sn-proof-faces img {
+  width: 34px;
+  height: 34px;
+  margin-left: -6px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 30%;
+  box-shadow: 0 1px 3px rgba(0, 40, 86, 0.14);
+}
+
+.sn-proof-copy {
+  display: grid;
+  gap: 1px;
+  line-height: 1.35;
+}
+
+.sn-proof-copy strong {
+  color: var(--color-navy-deep);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sn-proof-copy > span {
+  color: #607083;
+  font-size: 12px;
+}
+
+.sn-stars {
+  margin-right: 5px;
+  color: var(--color-gold);
+  letter-spacing: 0.06em;
+}
+
+/* Live class window (LiveClass.jsx). */
+.sn-live {
+  min-width: 0;
+  margin: 0;
+  padding: 8px;
+  border-radius: 18px;
+  background: var(--color-navy-deep);
+  box-shadow:
+    0 2px 4px rgba(0, 40, 86, 0.05),
+    0 18px 40px rgba(0, 40, 86, 0.14);
+  color: #ffffff;
+}
+
+.sn-live-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px 9px;
+}
+
+.sn-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sn-live-badge .sn-live-dot {
+  background: #ff6b6f;
+}
+
+.sn-live-dot {
+  width: 6px;
+  height: 6px;
+  flex: none;
+  border-radius: 999px;
+  background: currentColor;
+  animation: snLivePulse 1.6s ease-in-out infinite;
+}
+
+.sn-live-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sn-live-people {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sn-live-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sn-live-grid > li:nth-child(n + 10) {
+  display: none;
+}
+
+.sn-tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.sn-tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The speaking ring sits above the photo. Inside the window everything is
+   navy and white; the only other colour is the small red live dot. */
+.sn-tile::after {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  content: "";
+  transition: border-color 300ms ease;
+}
+
+.sn-tile.is-speaking::after {
+  border-color: rgba(255, 255, 255, 0.88);
+}
+
+.sn-tile.is-teacher::before {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  z-index: 1;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(0, 12, 28, 0.62);
+  color: #ffffff;
+  content: "Teacher";
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.sn-tile-name {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  z-index: 1;
+  display: inline-flex;
+  max-width: calc(100% - 8px);
+  align-items: center;
+  gap: 3px;
+  overflow: hidden;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(0, 12, 28, 0.62);
+  font-size: 9.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sn-tile-initials {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 15px;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+}
+
+.sn-live-tools {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0 4px;
+}
+
+.sn-live-tools span {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes snLivePulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ---- Shared: swipe rows, dots, video cards --------------------------- */
+
+.sn-row {
+  display: grid;
+  grid-auto-columns: 84%;
+  grid-auto-flow: column;
+  gap: 12px;
+  margin: 0 calc(var(--container-gutter) * -1);
+  padding: 2px var(--container-gutter) 6px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--container-gutter);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.sn-row::-webkit-scrollbar {
+  display: none;
+}
+
+.sn-row > li {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.sn-row:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Dots: 28px buttons around an 8px dot for easy tapping. */
+.sn-dots {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.sn-dots button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.sn-dots button::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0, 40, 86, 0.2);
+  content: "";
+  transition:
+    width 200ms ease,
+    background 200ms ease;
+}
+
+.sn-dots button.is-active::before {
+  width: 20px;
+  background: var(--color-navy);
+}
+
+/* VideoCard.jsx: a poster button over a video that loads on tap. */
+.sn-media {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0b1f3a;
+}
+
+.sn-media video,
+.sn-media-start img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--sn-focus, center);
+}
+
+.sn-media-contain video,
+.sn-media-contain .sn-media-start img {
+  object-fit: contain;
+}
+
+.sn-media-start {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.sn-media-start:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: -3px;
+  border-radius: inherit;
+}
+
+/* One quiet control in a corner, so thumbnails and faces stay clear: a
+   white pill with a navy play button and the video's length. Bottom left on
+   landscape cards; story cards move it to the top (names sit at the bottom). */
+.sn-play {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2;
+  display: inline-flex;
+  height: 32px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px 0 5px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 18, 40, 0.18);
+  color: var(--color-navy);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.sn-play-icon {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.sn-play-icon .icon-svg {
+  margin-left: 1px;
+}
+
+.sn-media-start:hover .sn-play {
+  box-shadow: 0 10px 22px rgba(0, 18, 40, 0.24);
+  transform: translateY(-1px);
+}
+
+/* Once a video starts, its own controls replace the poster and overlays. */
+.sn-media.is-started > :not(video) {
+  visibility: hidden;
+}
+
+/* ---- Learner stories ------------------------------------------------- */
+
+.sn-story-row {
+  grid-auto-columns: 62%;
+}
+
+.sn-story-media {
+  aspect-ratio: 3 / 4;
+}
+
+/* Bottom shade keeps white type readable on any frame. */
+.sn-story-media::after {
+  position: absolute;
+  inset: 45% 0 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(0, 18, 40, 0) 0%, rgba(0, 18, 40, 0.62) 52%, rgba(0, 18, 40, 0.9) 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.sn-story-media.is-started::after {
+  display: none;
+}
+
+.sn-story-media .sn-play {
+  top: 12px;
+  bottom: auto;
+}
+
+.sn-story-info {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  z-index: 3;
+  display: grid;
+  gap: 1px;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+.sn-story-info strong {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.sn-story-info > span:not(.sn-level) {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.sn-level {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  margin-top: 7px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sn-level.is-done {
+  background: #ffffff;
+  color: var(--color-navy);
+}
+
+.sn-level.is-done .icon-svg {
+  color: var(--color-cyan);
+}
+
+/* ---- Classroom ------------------------------------------------------- */
+
+.sn-class-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.sn-class-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0, 40, 86, 0.1);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+/* Both clips are screen recordings: the game is cropped to 4:3 and fills the
+   frame; the wider lesson letterboxes on white, the same as its slides. */
+.sn-class-media {
+  aspect-ratio: 4 / 3;
+  border-bottom: 1px solid rgba(0, 40, 86, 0.08);
+  border-radius: 0;
+  background: #fdfdfd;
+}
+
+.sn-class-body {
+  padding: 16px 18px 18px;
+}
+
+.sn-class-body h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.sn-class-body p {
+  margin: 6px 0 0;
+  color: #607083;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sn-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sn-checks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #eaf6fd;
+  color: #0a6a9e;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.sn-checks .icon-svg {
+  color: var(--color-cyan);
+}
+
+/* ---- Free notes ------------------------------------------------------ */
+
+.sn-notes-panel {
+  display: grid;
+  gap: 22px;
+  padding: 26px 16px 16px;
+  border: 1px solid rgba(0, 40, 86, 0.06);
+  border-radius: 20px;
+  background: #f6f9fc;
+}
+
+.sn-notes-copy {
+  min-width: 0;
+  padding-inline: 4px;
+}
+
+.sn-notes-copy h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(26px, 7.2vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.sn-notes-copy p:not(.eyebrow) {
+  margin: 12px 0 0;
+  color: #607083;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sn-notes-fan {
+  display: none;
+}
+
+.sn-note-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sn-note {
+  display: flex;
+  min-height: 74px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px 10px 10px;
+  border: 1px solid rgba(0, 40, 86, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--color-ink);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.sn-note:hover {
+  border-color: rgba(5, 163, 229, 0.55);
+  box-shadow: 0 10px 24px rgba(0, 40, 86, 0.08);
+}
+
+.sn-note:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* NoteDoc: a small document with a folded corner and the first letter of
+   the note's alphabet ("A" for A1). The clip-path cuts the top-right corner;
+   ::before is the folded flap showing through below the cut. */
+.sn-doc {
+  position: relative;
+  display: grid;
+  width: 46px;
+  height: 58px;
+  flex: none;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  padding: 8px 0 8px;
+  border-radius: 7px;
+  background: #eaf6fd;
+  color: var(--color-navy);
+  clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 0 100%);
+}
+
+.sn-doc::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  border-bottom-left-radius: 3px;
+  background: #c3e5f7;
+  content: "";
+}
+
+.sn-doc-letter {
+  grid-row: 1;
+  align-self: center;
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sn-doc-level {
+  grid-row: 2;
+  color: #0a6a9e;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.sn-doc-title,
+.sn-doc-lines {
+  display: none;
+}
+
+.sn-note-text {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+
+.sn-note-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.sn-note-head strong {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sn-note-size {
+  color: #6a7a8d;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.sn-note-title {
+  overflow: hidden;
+  color: #4b6075;
+  font-size: 13px;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sn-note-open {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--color-navy);
+  color: #ffffff;
+  transition: transform 180ms ease;
+}
+
+.sn-note:hover .sn-note-open {
+  transform: translate(1px, -1px);
+}
+
+/* ---- Guest sessions -------------------------------------------------- */
+
+.sn-lecture {
+  display: flex;
+  flex-direction: column;
+}
+
+.sn-lecture-media {
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  background: #0b1424;
+}
+
+/* Posters fill the frame; the videos letterbox so nothing is cut off. */
+.sn-lecture-media .sn-media-start img {
+  object-fit: cover;
+}
+
+.sn-lecture-body {
+  padding: 12px 2px 0;
+}
+
+.sn-lecture-role {
+  margin: 0;
+  color: #0a6a9e;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.sn-lecture h3 {
+  margin: 2px 0 0;
+  color: var(--color-ink);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.sn-lecture-body p:last-child {
+  margin: 4px 0 0;
+  color: #607083;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* ---- Reviews --------------------------------------------------------- */
+
+.sn-reviews-layout {
+  display: grid;
+  gap: 12px;
+}
+
+.sn-reviews-intro .learner-review-intro-copy h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.sn-review-row > li {
+  display: flex;
+}
+
+.start-now-page .learner-review {
+  width: 100%;
+  background: #ffffff;
+}
+
+/* ---- FAQ and final call to action ------------------------------------- */
+
+/* The shared FAQ section adds a top margin on top of the section padding. */
+.start-now-page .sn-faq {
+  margin-top: 0;
+}
+
+.sn-final-card {
+  display: grid;
+  gap: 22px;
+  padding: 30px 20px 20px;
+  overflow: hidden;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.28), transparent 58%),
+    linear-gradient(145deg, #063b70, #06294e 72%);
+  color: #ffffff;
+}
+
+.sn-final-copy h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(28px, 8vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.sn-final-copy h2 span {
+  display: block;
+  color: #8fdcff;
+}
+
+.sn-final-copy p {
+  max-width: 46ch;
+  margin: 12px 0 0;
+  color: rgba(239, 247, 255, 0.78);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.sn-final-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.start-now-page .sn-final-actions .btn {
+  height: 40px;
+  min-height: 40px;
+  gap: 7px;
+  font-size: 13px;
+}
+
+.sn-final-call {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.sn-final-call:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 760px) {
+  .start-now-page .faq-support-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sn-final {
+    padding-top: 16px;
+  }
+}
+
+/* ---- Larger screens --------------------------------------------------- */
+
+@media (min-width: 600px) {
+  .sn-live {
+    padding: 10px;
+  }
+
+  .sn-live-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sn-live-grid > li:nth-child(n + 10) {
+    display: block;
+  }
+
+  .sn-tile-name {
+    font-size: 10.5px;
+  }
+
+  .sn-story-row {
+    grid-auto-columns: 38%;
+  }
+
+  .sn-review-row {
+    grid-auto-columns: 46%;
+  }
+}
+
+@media (min-width: 761px) {
+  .sn-hero {
+    padding: 52px 0 24px;
+  }
+
+  .sn-hero h1 {
+    font-size: clamp(3rem, 5.4vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .sn-lede {
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .sn-hero-actions {
+    margin-top: 26px;
+  }
+
+  .start-now-page .sn-hero-actions .btn {
+    height: 46px;
+    min-height: 46px;
+    flex: none;
+    padding: 0 20px;
+  }
+
+  .sn-proof {
+    margin-top: 26px;
+  }
+
+  .sn-class-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .sn-lecture-row {
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .sn-lectures .sn-dots {
+    display: none;
+  }
+
+  .sn-notes-panel {
+    padding: 36px;
+  }
+
+  .sn-notes-copy h2 {
+    font-size: 2.4rem;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+  }
+
+  .sn-final-card {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 40px;
+    padding: 48px;
+  }
+
+  .sn-final-actions {
+    display: flex;
+    flex-direction: column;
+    min-width: 240px;
+  }
+
+  .start-now-page .sn-final-actions .btn {
+    height: 46px;
+    min-height: 46px;
+  }
+
+  .sn-final-call {
+    min-height: 46px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .sn-hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+    align-items: center;
+    gap: 56px;
+  }
+
+  .sn-story-row {
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .sn-stories .sn-dots {
+    display: none;
+  }
+
+  .sn-notes-panel {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: center;
+    gap: 48px;
+    padding: 48px;
+  }
+
+  /* Three note documents, fanned, under the heading. Each sits in a span that
+     carries the tilt and a drop shadow (the document's clip-path would cut
+     off a box-shadow). */
+  .sn-notes-fan {
+    position: relative;
+    display: block;
+    height: 232px;
+    margin-top: 34px;
+  }
+
+  .sn-notes-fan > span {
+    position: absolute;
+    top: 10px;
+    filter: drop-shadow(0 14px 22px rgba(0, 40, 86, 0.13));
+  }
+
+  .sn-notes-fan > span:nth-child(1) {
+    left: 0;
+    transform: rotate(-6deg);
+  }
+
+  .sn-notes-fan > span:nth-child(2) {
+    top: 0;
+    left: 116px;
+    z-index: 1;
+  }
+
+  .sn-notes-fan > span:nth-child(3) {
+    left: 232px;
+    transform: rotate(6deg);
+  }
+
+  .sn-doc-lg {
+    width: 156px;
+    height: 208px;
+    grid-template-rows: auto 1fr auto auto;
+    justify-items: start;
+    padding: 14px 14px 16px;
+    border-radius: 12px;
+    background: #ffffff;
+    clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%);
+  }
+
+  .sn-doc-lg::before {
+    width: 30px;
+    height: 30px;
+    border-bottom-left-radius: 7px;
+    background: #d4ebf8;
+  }
+
+  .sn-doc-lg .sn-doc-level {
+    grid-row: 1;
+    padding: 4px 7px;
+    border-radius: 999px;
+    background: #eaf6fd;
+    font-size: 10px;
+  }
+
+  .sn-doc-lg .sn-doc-letter {
+    grid-row: 2;
+    justify-self: center;
+    font-size: 62px;
+  }
+
+  .sn-doc-lg .sn-doc-title {
+    display: block;
+    grid-row: 3;
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--color-ink);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sn-doc-lg .sn-doc-lines {
+    display: grid;
+    grid-row: 4;
+    width: 100%;
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .sn-doc-lines i {
+    display: block;
+    height: 4px;
+    border-radius: 999px;
+    background: #e3edf5;
+  }
+
+  .sn-doc-lines i:nth-child(2) {
+    width: 80%;
+  }
+
+  .sn-doc-lines i:nth-child(3) {
+    width: 56%;
+  }
+
+  /* Two even rows of four: the navy intro card, then the seven reviews,
+     which join the same grid (the list itself generates no box here). */
+  .sn-reviews-layout {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .sn-review-row {
+    display: contents;
+  }
+
+  .sn-reviews .sn-dots {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The live dot keeps pulsing, slowly, like the homepage's moving rows. */
+  .sn-live-dot {
+    animation-duration: 3.2s;
+  }
+
+  .sn-dots button::before,
+  .sn-tile::after,
+  .sn-note,
+  .sn-note-open,
+  .sn-play {
+    transition: none;
+  }
+}

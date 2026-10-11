@@ -20,6 +20,12 @@ const pages = {
     source: "src/pages/signup.jsx",
     load: () => import("./pages/signup.jsx"),
   },
+  // Redesign of learner.skillcase.in/start-now, the trust page before the
+  // program picker.
+  "/start-now": {
+    source: "src/pages/start-now.jsx",
+    load: () => import("./pages/start-now.jsx"),
+  },
   "/privacy-policy": {
     source: "src/pages/privacy-policy.jsx",
     load: () => import("./pages/privacy-policy.jsx"),

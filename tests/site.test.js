@@ -10,6 +10,7 @@ const routes = [
   "about",
   "blog",
   "signup",
+  "start-now",
   "privacy-policy",
   "terms-and-condition",
   "terms-and-conditions",

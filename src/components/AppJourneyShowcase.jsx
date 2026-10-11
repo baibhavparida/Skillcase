@@ -7,7 +7,7 @@ import {
 
 const playStoreUrl =
   "https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN";
-const webAppUrl = "https://learner.skillcase.in/start-now";
+const defaultWebAppUrl = "https://learner.skillcase.in/start-now";
 
 const screens = [
   {
@@ -68,7 +68,9 @@ const screens = [
   },
 ];
 
-export default function AppJourneyShowcase() {
+// The start-now page passes the learner app's own URL, since the default
+// points back to the start-now page.
+export default function AppJourneyShowcase({ webAppUrl = defaultWebAppUrl }) {
   const reelRef = useRef(null);
 
   const moveReel = (direction) => {

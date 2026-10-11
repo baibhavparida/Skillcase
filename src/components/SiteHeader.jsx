@@ -46,6 +46,12 @@ export default function SiteHeader(props) {
       label: "Candidate",
       key: "candidate",
     },
+    // Real learners, their videos and reviews (src/pages/start-now.jsx).
+    {
+      href: "/start-now/",
+      label: "Learner Stories",
+      key: "stories",
+    },
     {
       href: "/about/",
       label: "About Us",
