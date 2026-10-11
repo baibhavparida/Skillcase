@@ -1,0 +1,1146 @@
+/* =========================================================================
+   APP PLAN — the last /signup screen (AppPlanReveal.jsx): what the learner
+   will find in the app at their German level, then the download.
+   The app preview is the live app's own screen, rebuilt in code at its
+   390 px width inside a realistic phone and scaled to fit.
+   ========================================================================= */
+
+.sc-onb-complete.sc-plan {
+  gap: 20px;
+  max-width: 520px;
+}
+
+.sc-plan-intro {
+  display: grid;
+  gap: 10px;
+}
+
+.sc-plan-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+
+.sc-plan-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--color-navy);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sc-onb-complete.sc-plan h1 {
+  font-size: 25px;
+  line-height: 1.18;
+}
+
+.sc-plan .sc-onb-lede {
+  margin: 0;
+}
+
+/* ---- Stage: the phone rises into a light band and fades out ----
+   --phone is the device width; --visible is how many app pixels of the
+   850 px screen show before the band crops the phone. */
+.sc-plan-stage-wrap {
+  container-type: inline-size;
+}
+
+.sc-plan-stage {
+  --phone: min(80cqw, 300px);
+  --visible: 610;
+  position: relative;
+  height: calc(28px + var(--phone) * var(--visible) / 410);
+  overflow: hidden;
+  border-radius: 24px;
+  background: #e6effb;
+}
+
+@supports not (width: 1cqw) {
+  .sc-plan-stage {
+    --phone: 280px;
+  }
+}
+
+.sc-plan-stage[data-kind="grid"] {
+  --visible: 520;
+}
+
+.sc-plan-stage[data-kind="b2"] {
+  --visible: 650;
+}
+
+.sc-plan-stage[data-kind="scholarship"] {
+  --visible: 690;
+}
+
+.sc-plan-stage::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 72px;
+  background: linear-gradient(rgba(230, 239, 251, 0), #e6effb 88%);
+  content: "";
+  pointer-events: none;
+}
+
+.sc-plan-stage .sc-device {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  width: var(--phone);
+  transform: translateX(-50%);
+}
+
+/* ---- Device: a modern phone, drawn in app pixels (--u) ---- */
+.sc-device {
+  container-type: inline-size;
+}
+
+.sc-device-frame {
+  --u: 0.68px;
+  position: relative;
+  padding: calc(10 * var(--u));
+  border-radius: calc(64 * var(--u));
+  background: #111419;
+  box-shadow:
+    inset 0 0 0 calc(1.5 * var(--u)) #3d434d,
+    inset 0 0 0 calc(3.5 * var(--u)) #16191f,
+    0 calc(30 * var(--u)) calc(60 * var(--u)) rgba(0, 28, 64, 0.3),
+    0 calc(8 * var(--u)) calc(18 * var(--u)) rgba(0, 28, 64, 0.16);
+}
+
+@supports (width: 1cqw) {
+  .sc-device-frame {
+    --u: calc(100cqw / 410);
+  }
+}
+
+.sc-device-key {
+  position: absolute;
+  width: calc(3 * var(--u));
+  border-radius: calc(2 * var(--u));
+  background: #2a2e36;
+}
+
+.sc-device-key.is-action { left: calc(-2.5 * var(--u)); top: calc(118 * var(--u)); height: calc(30 * var(--u)); }
+.sc-device-key.is-volume-up { left: calc(-2.5 * var(--u)); top: calc(172 * var(--u)); height: calc(58 * var(--u)); }
+.sc-device-key.is-volume-down { left: calc(-2.5 * var(--u)); top: calc(242 * var(--u)); height: calc(58 * var(--u)); }
+.sc-device-key.is-power { right: calc(-2.5 * var(--u)); top: calc(196 * var(--u)); height: calc(92 * var(--u)); }
+
+.sc-device-screen {
+  --app-page: #ffffff;
+  position: relative;
+  height: calc(850 * var(--u));
+  overflow: hidden;
+  border-radius: calc(54 * var(--u));
+  background: var(--app-page);
+  color: #000000;
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.sc-device-screen.is-path { --app-page: #dbeafe; }
+.sc-device-screen.is-jobs { --app-page: #e0f2fe; }
+
+.sc-device-screen i,
+.sc-device-screen em,
+.sc-device-screen b {
+  font-style: normal;
+}
+
+.sc-device-island {
+  position: absolute;
+  top: calc(11 * var(--u));
+  left: 50%;
+  width: calc(122 * var(--u));
+  height: calc(36 * var(--u));
+  border-radius: calc(18 * var(--u));
+  background: #000000;
+  transform: translateX(-50%);
+}
+
+/* ---- App top: status bar, NewNavbar and TopModeSwitcher (navy) ---- */
+.sc-app-top {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.sc-app-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(54 * var(--u));
+  padding: calc(4 * var(--u)) calc(30 * var(--u)) 0 calc(48 * var(--u));
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  font-size: calc(17 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sc-app-status svg {
+  width: calc(68 * var(--u));
+  height: calc(12 * var(--u));
+  fill: currentColor;
+}
+
+.sc-app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(12 * var(--u));
+  height: calc(64 * var(--u));
+  padding: 0 calc(16 * var(--u));
+}
+
+.sc-app-nav-title {
+  display: grid;
+  min-width: 0;
+}
+
+.sc-app-nav-title b {
+  font-size: calc(16 * var(--u));
+  font-weight: 600;
+  line-height: calc(20 * var(--u));
+  white-space: nowrap;
+}
+
+.sc-app-nav-title small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: calc(12 * var(--u));
+  line-height: calc(16 * var(--u));
+}
+
+.sc-app-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+}
+
+.sc-app-plan-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(4 * var(--u));
+  padding: calc(2 * var(--u)) calc(8 * var(--u)) calc(2 * var(--u)) calc(2 * var(--u));
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: calc(10 * var(--u));
+  font-weight: 500;
+  line-height: calc(12 * var(--u));
+  white-space: nowrap;
+}
+
+.sc-app-trial-ring,
+.sc-app-gift {
+  display: grid;
+  width: calc(24 * var(--u));
+  height: calc(24 * var(--u));
+  place-items: center;
+  border-radius: 50%;
+}
+
+.sc-app-trial-ring {
+  box-shadow:
+    inset 0 0 0 calc(2 * var(--u)) #fbbf24,
+    inset 0 0 0 calc(3 * var(--u)) var(--color-navy);
+  font-size: calc(10 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-gift {
+  background: var(--color-navy);
+  font-size: calc(14 * var(--u));
+}
+
+.sc-app-avatar {
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+}
+
+.sc-app-tabs {
+  display: flex;
+  align-items: flex-end;
+  gap: calc(8 * var(--u));
+  padding: calc(4 * var(--u)) calc(8 * var(--u)) 0;
+}
+
+.sc-app-tab {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: calc(6 * var(--u));
+  height: calc(44 * var(--u));
+  margin-bottom: calc(8 * var(--u));
+  border-radius: calc(8 * var(--u));
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: calc(10 * var(--u));
+  font-weight: 500;
+  line-height: calc(11 * var(--u));
+}
+
+.sc-app-tab img {
+  width: calc(28 * var(--u));
+  height: calc(28 * var(--u));
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.sc-app-tab > span {
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-app-tab.is-single > span {
+  text-align: center;
+}
+
+/* The active tab is a folder tab that melts into the page below. */
+.sc-app-tab.is-active {
+  height: calc(53 * var(--u));
+  margin-bottom: 0;
+  border-radius: calc(12 * var(--u)) calc(12 * var(--u)) 0 0;
+  background: var(--app-page);
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+.sc-app-tab.is-active img {
+  opacity: 1;
+}
+
+.sc-app-tab.is-active::before,
+.sc-app-tab.is-active::after {
+  position: absolute;
+  bottom: 0;
+  width: calc(12 * var(--u));
+  height: calc(12 * var(--u));
+  content: "";
+}
+
+.sc-app-tab.is-active::before {
+  left: calc(-12 * var(--u));
+  background: radial-gradient(circle at 0 0, transparent calc(12 * var(--u)), var(--app-page) calc(12.5 * var(--u)));
+}
+
+.sc-app-tab.is-active::after {
+  right: calc(-12 * var(--u));
+  background: radial-gradient(circle at 100% 0, transparent calc(12 * var(--u)), var(--app-page) calc(12.5 * var(--u)));
+}
+
+/* ---- FeatureCardsGrid ---- */
+.sc-app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: calc(10 * var(--u));
+  padding: calc(24 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u));
+}
+
+.sc-app-card {
+  display: flex;
+  flex-direction: column;
+  padding: calc(2 * var(--u));
+  border-radius: calc(8 * var(--u));
+  background: #ffffff;
+  box-shadow: calc(2 * var(--u)) calc(2 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, 0.1);
+}
+
+.sc-app-card img {
+  display: block;
+  width: 100%;
+  height: calc(64 * var(--u));
+  border-radius: calc(6 * var(--u));
+  object-fit: cover;
+}
+
+.sc-app-card b {
+  margin-bottom: calc(4 * var(--u));
+  padding: calc(6 * var(--u)) calc(6 * var(--u)) 0;
+  font-size: calc(10 * var(--u));
+  font-weight: 500;
+}
+
+.sc-app-card small {
+  padding: 0 calc(6 * var(--u)) calc(6 * var(--u));
+  color: rgba(0, 0, 0, 0.6);
+  font-size: calc(8 * var(--u));
+  line-height: 1.3;
+}
+
+/* ---- B2PracticeHome ---- */
+.sc-app-b2 {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--u));
+  margin-top: calc(24 * var(--u));
+  padding: calc(16 * var(--u));
+  border-radius: calc(20 * var(--u)) calc(20 * var(--u)) 0 0;
+  background: #f5f7fa;
+}
+
+.sc-app-b2-test {
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  min-height: calc(88 * var(--u));
+  padding: calc(10 * var(--u)) calc(12 * var(--u)) calc(10 * var(--u)) calc(8 * var(--u));
+  border: calc(1 * var(--u)) solid #c7dbf7;
+  border-radius: calc(12 * var(--u));
+  background: #ffffff;
+  color: #083262;
+  font-size: calc(20 * var(--u));
+}
+
+.sc-app-b2-test img {
+  width: calc(72 * var(--u));
+  height: calc(72 * var(--u));
+  object-fit: contain;
+}
+
+.sc-app-b2-test > span:not(.icon-svg) {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(3 * var(--u));
+}
+
+.sc-app-b2-test small {
+  color: #717680;
+  font-size: calc(12 * var(--u));
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sc-app-b2-test b {
+  font-size: calc(17 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-b2-test span span {
+  color: #535862;
+  font-size: calc(13 * var(--u));
+}
+
+.sc-app-b2-head {
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-app-b2-head b {
+  color: #181d27;
+  font-size: calc(16 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-b2-head small {
+  color: #717680;
+  font-size: calc(13 * var(--u));
+}
+
+.sc-app-b2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(10 * var(--u));
+  margin-top: calc(-8 * var(--u));
+}
+
+.sc-app-b2-card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(6 * var(--u));
+  padding: calc(4 * var(--u));
+  border: calc(1 * var(--u)) solid #e9eaeb;
+  border-radius: calc(12 * var(--u));
+  background: #ffffff;
+}
+
+.sc-app-b2-card img {
+  display: block;
+  width: 100%;
+  height: calc(64 * var(--u));
+  border-radius: calc(8 * var(--u));
+  object-fit: cover;
+}
+
+.sc-app-b2-card b {
+  padding: 0 calc(6 * var(--u));
+  color: #181d27;
+  font-size: calc(15 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-b2-card small {
+  padding: 0 calc(6 * var(--u)) calc(6 * var(--u));
+  color: #535862;
+  font-size: calc(12 * var(--u));
+  line-height: 1.35;
+}
+
+.sc-app-b2-exam {
+  display: flex;
+  align-items: center;
+  gap: calc(12 * var(--u));
+  padding: calc(14 * var(--u));
+  border-radius: calc(12 * var(--u));
+  background: #083262;
+  color: #ffffff;
+}
+
+.sc-app-b2-exam > span {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(2 * var(--u));
+}
+
+.sc-app-b2-exam b {
+  font-size: calc(15 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-b2-exam small {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: calc(12 * var(--u));
+}
+
+.sc-app-b2-exam em {
+  display: grid;
+  height: calc(44 * var(--u));
+  padding: 0 calc(18 * var(--u));
+  place-items: center;
+  border-radius: calc(8 * var(--u));
+  background: #edb843;
+  color: #083262;
+  font-size: calc(15 * var(--u));
+  font-weight: 600;
+}
+
+/* ---- LearnGermanHome ---- */
+.sc-device-screen.is-path .sc-app-body {
+  min-height: 100%;
+  background: linear-gradient(#dbeafe, #e0f2fe);
+}
+
+.sc-app-path {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(48 * var(--u));
+  padding: calc(16 * var(--u)) calc(24 * var(--u)) 0;
+}
+
+.sc-app-road {
+  position: absolute;
+  inset: 0 calc(24 * var(--u));
+  width: calc(100% - calc(48 * var(--u)));
+  height: calc(520 * var(--u));
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.75);
+  stroke-linecap: round;
+  stroke-width: 22;
+}
+
+.sc-app-lesson {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(200 * var(--u));
+  padding: calc(10 * var(--u)) calc(10 * var(--u)) calc(12 * var(--u));
+  border-radius: calc(20 * var(--u));
+  box-shadow: calc(2 * var(--u)) calc(2 * var(--u)) calc(4 * var(--u)) rgba(0, 0, 0, 0.25);
+  outline: calc(5 * var(--u)) solid #ffffff;
+  outline-offset: calc(-5 * var(--u));
+}
+
+.sc-app-lesson.is-open {
+  background: linear-gradient(to bottom right, #fef9c3, #fdba74);
+}
+
+.sc-app-lesson.is-locked {
+  align-self: flex-end;
+  background: linear-gradient(to bottom right, #e5e5e5, #a1a1aa);
+}
+
+.sc-app-lesson img,
+.sc-app-lesson-art {
+  display: block;
+  width: 100%;
+  height: calc(112 * var(--u));
+  border-radius: calc(10 * var(--u));
+  object-fit: cover;
+}
+
+.sc-app-lesson-art {
+  background: linear-gradient(135deg, #d4d4d8, #b4b4bb);
+}
+
+.sc-app-lesson small {
+  margin-top: calc(10 * var(--u));
+  padding: calc(2 * var(--u)) calc(8 * var(--u));
+  border-radius: calc(10 * var(--u));
+  background: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.6);
+  font-size: calc(10 * var(--u));
+  font-weight: 500;
+}
+
+.sc-app-lesson.is-locked small {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.sc-app-lesson b {
+  margin-top: calc(6 * var(--u));
+  font-size: calc(15 * var(--u));
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.sc-app-lesson em {
+  display: grid;
+  width: 100%;
+  height: calc(36 * var(--u));
+  margin-top: calc(12 * var(--u));
+  place-items: center;
+  border-radius: calc(10 * var(--u));
+  background: #ffffff;
+  box-shadow: 0 calc(3 * var(--u)) calc(8 * var(--u)) rgba(0, 0, 0, 0.25);
+  font-size: calc(14 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-lesson-lock {
+  position: absolute;
+  top: calc(-12 * var(--u));
+  right: 0;
+  display: grid;
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 calc(4 * var(--u)) calc(8 * var(--u)) rgba(0, 0, 0, 0.15);
+  color: #71717a;
+  font-size: calc(16 * var(--u));
+}
+
+/* ---- JobScreening lobby ---- */
+.sc-device-screen.is-jobs .sc-app-body {
+  min-height: 100%;
+  background: linear-gradient(#e0f2fe, #dbeafe);
+}
+
+.sc-app-jobs {
+  padding: calc(24 * var(--u)) calc(16 * var(--u)) 0;
+}
+
+.sc-app-jobs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(12 * var(--u));
+  margin-bottom: calc(24 * var(--u));
+  padding: calc(8 * var(--u)) 0 calc(12 * var(--u));
+}
+
+.sc-app-jobs-head b {
+  display: block;
+  color: var(--color-navy);
+  font-size: calc(30 * var(--u));
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.sc-app-jobs-head small {
+  display: block;
+  margin-top: calc(4 * var(--u));
+  color: rgba(0, 40, 86, 0.7);
+  font-size: calc(12 * var(--u));
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.sc-app-jobs-ring {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(96 * var(--u));
+  height: calc(96 * var(--u));
+  border: calc(8 * var(--u)) solid rgba(0, 40, 86, 0.12);
+  border-radius: 50%;
+}
+
+.sc-app-jobs-ring b {
+  font-size: calc(16 * var(--u));
+  font-weight: 800;
+  line-height: 1;
+}
+
+.sc-app-jobs-ring small {
+  margin-top: calc(2 * var(--u));
+  color: rgba(0, 40, 86, 0.5);
+  font-size: calc(8 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-app-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sc-app-steps li {
+  position: relative;
+  display: flex;
+  gap: calc(14 * var(--u));
+  padding-bottom: calc(24 * var(--u));
+}
+
+.sc-app-steps li.is-locked {
+  opacity: 0.6;
+}
+
+/* The timeline line between step dots. */
+.sc-app-steps li::before {
+  position: absolute;
+  top: calc(36 * var(--u));
+  bottom: calc(2 * var(--u));
+  left: calc(11.25 * var(--u));
+  width: calc(1.5 * var(--u));
+  background: rgba(0, 40, 86, 0.2);
+  content: "";
+}
+
+.sc-app-steps li > i {
+  display: grid;
+  flex: none;
+  width: calc(24 * var(--u));
+  height: calc(24 * var(--u));
+  margin-top: calc(6 * var(--u));
+  place-items: center;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #64748b;
+  font-size: calc(12 * var(--u));
+  font-weight: 700;
+}
+
+.sc-app-steps li.is-next > i {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.sc-app-step {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(8 * var(--u));
+  min-width: 0;
+  padding: calc(16 * var(--u));
+  border: calc(1 * var(--u)) solid #e2e8f0;
+  border-radius: calc(16 * var(--u));
+  background: #ffffff;
+}
+
+.sc-app-step > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sc-app-step b {
+  overflow: hidden;
+  color: #1e293b;
+  font-size: calc(14 * var(--u));
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sc-app-step small {
+  margin-top: calc(4 * var(--u));
+  color: #64748b;
+  font-size: calc(11 * var(--u));
+  line-height: 1.6;
+}
+
+.sc-app-step em {
+  flex: none;
+  padding: calc(2 * var(--u)) calc(8 * var(--u));
+  border: calc(1 * var(--u)) solid #f1f5f9;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #94a3b8;
+  font-size: calc(9 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sc-app-steps li.is-next .sc-app-step em {
+  border-color: #fef3c7;
+  background: #fffbeb;
+  color: #d97706;
+}
+
+/* ---- ScholarshipHome ---- */
+.sc-app-scholar-banner {
+  position: relative;
+  display: block;
+  height: calc(150 * var(--u));
+  margin-top: calc(4 * var(--u));
+  overflow: hidden;
+  background: linear-gradient(135deg, #002856, #0a3d7a 55%, #153a71);
+}
+
+/* Soft glow, then the white fade into the page. */
+.sc-app-scholar-banner::before {
+  position: absolute;
+  top: calc(-40 * var(--u));
+  right: calc(-40 * var(--u));
+  width: calc(176 * var(--u));
+  height: calc(176 * var(--u));
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(237, 184, 67, 0.22), transparent 70%);
+  content: "";
+}
+
+.sc-app-scholar-banner::after {
+  position: absolute;
+  inset: calc(16 * var(--u)) 0 0;
+  background: linear-gradient(rgba(255, 255, 255, 0), #ffffff);
+  content: "";
+}
+
+.sc-app-scholar-banner img {
+  position: absolute;
+  z-index: 1;
+  right: calc(24 * var(--u));
+  bottom: 0;
+  height: calc(142 * var(--u));
+  filter: drop-shadow(0 calc(8 * var(--u)) calc(16 * var(--u)) rgba(0, 0, 0, 0.35));
+}
+
+.sc-app-scholar-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: calc(16 * var(--u));
+}
+
+.sc-app-scholar-title em {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(4 * var(--u));
+  margin-bottom: calc(6 * var(--u));
+  padding: calc(2 * var(--u)) calc(8 * var(--u));
+  border-radius: 999px;
+  background: rgba(237, 184, 67, 0.18);
+  color: #ac8121;
+  font-size: calc(10 * var(--u));
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.sc-app-scholar-title b {
+  color: var(--color-navy);
+  font-size: calc(26 * var(--u));
+  font-weight: 600;
+  line-height: calc(34 * var(--u));
+}
+
+.sc-app-scholar-title small {
+  margin-top: calc(4 * var(--u));
+  color: rgba(0, 0, 0, 0.7);
+  font-size: calc(12 * var(--u));
+}
+
+.sc-app-scholar-ready {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(12 * var(--u));
+  margin: 0 calc(16 * var(--u));
+  padding: calc(12 * var(--u)) calc(16 * var(--u));
+  border: calc(1 * var(--u)) solid #dbdbdb;
+  border-radius: calc(12 * var(--u));
+  background: #ffffff;
+  color: #019035;
+  font-size: calc(20 * var(--u));
+}
+
+.sc-app-scholar-ready > span:not(.icon-svg) {
+  display: flex;
+  flex-direction: column;
+}
+
+.sc-app-scholar-ready b {
+  color: var(--color-navy);
+  font-size: calc(14 * var(--u));
+  font-weight: 600;
+}
+
+.sc-app-scholar-ready small {
+  margin-top: calc(2 * var(--u));
+  color: #7b7b7b;
+  font-size: calc(12 * var(--u));
+  line-height: 1.5;
+}
+
+.sc-app-scholar-start {
+  display: grid;
+  height: calc(52 * var(--u));
+  margin: calc(12 * var(--u)) calc(16 * var(--u)) 0;
+  place-items: center;
+  border-radius: calc(12 * var(--u));
+  background: linear-gradient(90deg, #edb843, #e0a92e);
+  box-shadow: 0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0, 0, 0, 0.12);
+  color: var(--color-navy);
+  font-size: calc(16 * var(--u));
+  font-weight: 700;
+}
+
+/* ---- Download ---- */
+.sc-plan-get {
+  display: grid;
+  gap: 10px;
+}
+
+.sc-plan-signin {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.sc-plan-signin strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.sc-plan-trial {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 11px 12px;
+  border: 1px solid rgba(237, 184, 67, 0.5);
+  border-radius: 12px;
+  background: #fff8e6;
+  color: var(--color-ink);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sc-plan-trial .icon-svg {
+  flex: none;
+  margin-top: 1px;
+  color: #a67a0c;
+}
+
+.sc-plan-trial strong {
+  font-weight: 600;
+}
+
+/* ---- Highlights and level road ---- */
+.sc-plan-section {
+  display: grid;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--sc-hairline, rgba(0, 40, 86, 0.08));
+}
+
+.sc-onb .sc-plan-section h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sc-plan-highlights {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sc-plan-highlights li {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+}
+
+.sc-plan-highlight-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 11px;
+  background: #eef3f9;
+  color: var(--color-navy);
+}
+
+.sc-plan-highlights strong {
+  display: block;
+  color: var(--color-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sc-plan-highlights small {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.sc-plan-road {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The track runs dot to dot and fills up to the learner's level. */
+.sc-plan-road::before {
+  position: absolute;
+  top: 9px;
+  right: 12.5%;
+  left: 12.5%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-navy) var(--road-fill, 0%),
+    var(--color-border) var(--road-fill, 0%)
+  );
+  content: "";
+}
+
+.sc-plan-road li {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  text-align: center;
+}
+
+.sc-plan-road-dot {
+  z-index: 1;
+  display: grid;
+  width: 20px;
+  height: 20px;
+  place-items: center;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  background: #ffffff;
+  color: #ffffff;
+}
+
+.sc-plan-road li.is-done .sc-plan-road-dot {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+}
+
+.sc-plan-road li.is-now .sc-plan-road-dot {
+  border-color: var(--color-cyan);
+  background: var(--color-cyan);
+  box-shadow: 0 0 0 4px rgba(5, 163, 229, 0.18);
+}
+
+.sc-plan-road strong {
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sc-plan-road small {
+  min-height: 15px;
+  color: #a67a0c;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.sc-plan-road li.is-now small {
+  color: #047cb3;
+}
+
+.sc-plan-road-note {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.sc-plan .sc-onb-advisor-cta {
+  margin-top: 2px;
+}
+
+/* ---- Desktop: the phone moves into the navy side panel ---- */
+@media (min-width: 1024px) {
+  .sc-plan-stage-wrap.is-inline {
+    display: none;
+  }
+
+  /* The panel is as tall as the plan, so keep the phone pinned in view
+     instead of centring it far down the page. */
+  .sc-onb-aside.sc-plan-aside {
+    align-items: flex-start;
+    overflow: visible;
+  }
+
+  .sc-plan-stage-wrap.is-aside {
+    position: sticky;
+    top: 96px;
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .is-aside .sc-plan-stage,
+  .is-aside .sc-plan-stage[data-kind] {
+    --phone: min(84cqw, 340px);
+    --visible: 700;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  /* The card grid ends early; show less of it than the other screens. */
+  .is-aside .sc-plan-stage[data-kind="grid"] {
+    --visible: 560;
+  }
+
+  .is-aside .sc-plan-stage::after {
+    height: 96px;
+    background: linear-gradient(rgba(0, 40, 86, 0), var(--color-navy) 88%);
+  }
+
+  .is-aside .sc-device-frame {
+    box-shadow:
+      inset 0 0 0 calc(1.5 * var(--u)) #4a515c,
+      inset 0 0 0 calc(3.5 * var(--u)) #16191f,
+      0 0 0 calc(1 * var(--u)) rgba(255, 255, 255, 0.08),
+      0 calc(30 * var(--u)) calc(70 * var(--u)) rgba(0, 0, 0, 0.4);
+  }
+}

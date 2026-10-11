@@ -887,24 +887,6 @@ main [id] {
     font-size: 22px;
     min-height: 52px;
   }
-  .sc-onb-choice-card {
-    min-height: 50px;
-    padding: 7px 10px;
-  }
-  .sc-onb-choice-text strong {
-    font-size: 13px;
-    line-height: 1.2;
-  }
-  .sc-onb-choice-text small {
-    font-size: 11px;
-    line-height: 1.25;
-  }
-  .sc-onb-choice-tag {
-    max-width: 78px;
-    font-size: 9px;
-    white-space: normal;
-    text-align: center;
-  }
   .sc-onb-cta {
     min-height: 48px;
     white-space: normal;

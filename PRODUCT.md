@@ -30,4 +30,4 @@ Use readable text, generous touch targets, accessible forms, keyboard navigation
 
 ## Scope
 
-Dashboards and login links were removed at the owner's request. Signup currently saves progress locally and ends with advisor contact. This mobile pass does not add backend services or change those product decisions.
+Dashboards and login links were removed at the owner's request. Signup asks the same onboarding questions as the Skillcase learner app and saves the answers on the device, using the app's field names. It ends by showing what the app offers at the visitor's German level, with download links. Answers are not yet sent to the app's backend, and the one-time code is still a placeholder.

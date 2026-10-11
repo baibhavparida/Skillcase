@@ -1,191 +1,104 @@
 import ResponsiveImage from "./ResponsiveImage.jsx";
-import LearnerReviewCard from "./LearnerReviewCard.jsx";
+import AppPlanReveal, { AppStage } from "./AppPlanReveal.jsx";
 import React, { useEffect, useRef, useState } from "react";
+import Icon from "./healthcare/Icon.jsx";
 import {
-  ArrowLeftIcon as ArrowLeft,
-  ArrowRightIcon as ArrowRight,
-  CheckIcon as Check,
-  ChatCircleTextIcon as ChatCircleText,
-  ClockIcon as Clock,
-  GlobeIcon as Globe,
-  PhoneCallIcon as PhoneCall,
-  SealCheckIcon as SealCheck,
-  ShieldCheckIcon as ShieldCheck,
-  SparkleIcon as Sparkle,
-  WhatsappLogoIcon as WhatsappLogo,
-} from "@phosphor-icons/react/ssr";
-const STORAGE_KEY = "skillcase_candidate_profile";
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.skillcase.app&hl=en_IN";
-const WEB_APP_URL = "https://learner.skillcase.in/start-now";
-const PLAY_STORE_SCREENSHOTS = [
-  {
-    src: "/assets/images/app-screens/play-store-start-german-journey.webp",
-    alt: "Start your German journey today with Skillcase",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-learn-german-a1-b2.webp",
-    alt: "Learn German from A1 to B2 with guided Skillcase lessons",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-daily-learning-goals.webp",
-    alt: "See your German learning growth and daily goals",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-german-flashcards.webp",
-    alt: "Build German vocabulary with Skillcase flashcards",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-vocabulary-progress.webp",
-    alt: "Track German words learned in Skillcase",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-germany-job-progress.webp",
-    alt: "Track each stage of a Germany healthcare job application",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-german-exam-practice.webp",
-    alt: "Practise real German exam papers in Skillcase",
-  },
-  {
-    src: "/assets/images/app-screens/play-store-speak-german-confidence.webp",
-    alt: "Build confidence speaking German with detailed feedback",
-  },
-];
+  GERMAN_STATUS,
+  INDIAN_MOBILE_REGEX,
+  PREFERENCE,
+  builtinPathway,
+  germanLevels,
+  germanStatusOptions,
+  hasOtherPathways,
+  learnerAppUrl,
+  levelFor,
+  occupationForRole,
+  occupations,
+  pathways,
+} from "../data/appOnboarding.js";
+import { planFor } from "../data/appPlans.js";
+
+// Answers use the app's own field names (see appOnboarding.js). The old
+// website-only profile (full name, email, qualification) lived under the
+// legacy key; only the phone and name carry over from it.
+const STORAGE_KEY = "skillcase_onboarding_profile";
+const LEGACY_STORAGE_KEY = "skillcase_candidate_profile";
+
 const defaultProfile = {
-  fullName: "",
-  email: "",
-  city: "",
   phone: "",
-  qualification: "",
-  germanLevel: "not_started",
-  experience: "",
+  firstName: "",
+  lastName: "",
+  occupation: "",
+  pathwayId: builtinPathway?.id ?? null,
+  germanStatus: "",
+  germanLevel: "",
+  germanPreference: "",
   whatsappOptIn: true,
 };
-const onboardingSteps = [
-  "phone",
-  "otp",
-  "name",
-  "qualification",
-  "experience",
-  "german",
-];
+
 const stepTitles = {
-  welcome: "Welcome",
   phone: "Phone",
   otp: "Verify",
-  name: "About you",
-  qualification: "Qualification",
-  experience: "Experience",
-  german: "German",
-  complete: "Start",
+  name: "Name",
+  occupation: "Occupation",
+  pathway: "Goal",
+  status: "German",
+  level: "Level",
+  preference: "Preference",
+  goal: "Path",
 };
-const qualificationOptions = [
-  {
-    value: "BSc Nursing",
-    label: "BSc Nursing",
-    detail: "4 years · strong hospital fit",
-    tag: "Popular",
-  },
-  {
-    value: "GNM Nursing",
-    label: "GNM Nursing",
-    detail: "3 years · accepted path",
-  },
-  {
-    value: "MSc Nursing",
-    label: "MSc Nursing",
-    detail: "2 years · senior pathway",
-  },
-  {
-    value: "Post Basic BSc Nursing",
-    label: "Post Basic BSc",
-    detail: "After GNM · eligible route",
-  },
-  {
-    value: "ANM Nursing",
-    label: "ANM Nursing",
-    detail: "1.5 years · Germany route check",
-  },
-];
-const experienceOptions = [
-  { value: "Fresher", label: "Fresher", detail: "No clinical work yet" },
-  {
-    value: "Less than 1 year",
-    label: "Under 1 year",
-    detail: "Early clinical exposure",
-  },
-  {
-    value: "1-2 years",
-    label: "1–2 years",
-    detail: "Building ward confidence",
-  },
-  {
-    value: "2-3 years",
-    label: "2–3 years",
-    detail: "Strong fit for many roles",
-    tag: "Most picked",
-  },
-  {
-    value: "3-5 years",
-    label: "3–5 years",
-    detail: "Experienced clinical profile",
-  },
-  {
-    value: "5-10 years",
-    label: "5–10 years",
-    detail: "Senior-care and hospital fit",
-  },
-  { value: "10+ years", label: "10+ years", detail: "Senior pathway review" },
-];
-const germanLevelOptions = [
-  {
-    value: "not_started",
-    label: "Not started",
-    detail: "Perfect. Most nurses begin here.",
-  },
-  {
-    value: "a1_completed",
-    label: "A1 completed",
-    detail: "Basics down. Next stop: A2.",
-  },
-  {
-    value: "a2_completed",
-    label: "A2 completed",
-    detail: "Halfway to B1.",
-    tag: "Halfway",
-  },
-  {
-    value: "b1_in_progress",
-    label: "B1 in progress",
-    detail: "Almost job-ready.",
-  },
-  {
-    value: "b1_completed",
-    label: "B1 completed",
-    detail: "You can apply for matched jobs.",
-    tag: "Jobs unlock",
-  },
-  {
-    value: "b2_in_progress",
-    label: "B2 in progress",
-    detail: "Premium hospitals open up.",
-  },
-  {
-    value: "b2_completed",
-    label: "B2 completed",
-    detail: "Strong language profile.",
-  },
-];
+
+// The app's branching (OnboardingFlow.jsx): a non-Jobs pathway ends the
+// questions; "Yet to start" skips the level; "completed" ends at the level
+// (job screening); B1/B2 learners choose practice or a job; A1/A2 learners
+// choose learn or practice. Until the German status is known, assume the
+// longest route so the step count never jumps backwards.
+function stepsFor(profile) {
+  const steps = ["phone", "otp", "name", "occupation"];
+  if (hasOtherPathways) steps.push("pathway");
+  const pathway = pathways.find((item) => item.id === profile.pathwayId);
+  if (pathway && !pathway.isBuiltin) return steps;
+  steps.push("status");
+  if (profile.germanStatus === GERMAN_STATUS.notStarted) {
+    return [...steps, "preference"];
+  }
+  steps.push("level");
+  if (profile.germanStatus === GERMAN_STATUS.completed) return steps;
+  const level = levelFor(profile.germanLevel);
+  return [...steps, level && level.rank >= 3 ? "goal" : "preference"];
+}
+
+// Levels offered on the level step: someone who has completed German picks
+// B1 or B2 only, exactly as in the app.
+function levelsFor(germanStatus) {
+  return germanStatus === GERMAN_STATUS.completed
+    ? germanLevels.filter((level) => level.rank >= 3)
+    : germanLevels;
+}
+
 function readStoredProfile() {
   if (typeof window === "undefined") return null;
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? { ...defaultProfile, ...JSON.parse(raw) } : null;
+    if (raw) return { ...defaultProfile, ...JSON.parse(raw) };
+    const legacy = JSON.parse(
+      window.localStorage.getItem(LEGACY_STORAGE_KEY) || "null",
+    );
+    if (!legacy) return null;
+    const [firstName = "", ...rest] = String(legacy.fullName || "")
+      .trim()
+      .split(/\s+/);
+    return {
+      ...defaultProfile,
+      phone: onlyDigits(String(legacy.phone || "")),
+      firstName,
+      lastName: rest.join(" "),
+    };
   } catch {
     return null;
   }
 }
+
 function writeStoredProfile(profile) {
   if (typeof window === "undefined") return;
   try {
@@ -194,12 +107,11 @@ function writeStoredProfile(profile) {
     // The signup flow remains usable when browser storage is unavailable.
   }
 }
+
 function onlyDigits(value, max = 10) {
   return value.replace(/\D/g, "").slice(0, max);
 }
-function getFirstName(name) {
-  return name.trim().split(" ")[0] || "there";
-}
+
 export default function CandidateSignup() {
   // Users arrive here straight from the homepage CTA, already sold. Start them
   // on the first real step (phone) instead of behind a redundant welcome gate.
@@ -208,7 +120,9 @@ export default function CandidateSignup() {
   const [otpDigits, setOtpDigits] = useState(["", "", "", "", "", ""]);
   const [otpError, setOtpError] = useState("");
   const [errors, setErrors] = useState({});
-  const [hasLoaded, setHasLoaded] = useState(false);
+  // Set only when this device already had saved answers, so the "welcome
+  // back" note never greets someone who typed their name a moment ago.
+  const [isReturning, setIsReturning] = useState(false);
   const otpRefs = useRef([]);
   const panelRef = useRef(null);
   useEffect(() => {
@@ -222,8 +136,16 @@ export default function CandidateSignup() {
   }, [step]);
   useEffect(() => {
     const stored = readStoredProfile();
-    if (stored) setProfile(stored);
-    setHasLoaded(true);
+    const role = new URLSearchParams(window.location.search).get("role");
+    const roleOccupation = occupationForRole(role);
+    if (stored || roleOccupation) {
+      setProfile((current) => {
+        const next = { ...current, ...stored };
+        if (roleOccupation && !next.occupation) next.occupation = roleOccupation;
+        return next;
+      });
+    }
+    setIsReturning(Boolean(stored?.firstName));
   }, []);
   useEffect(() => {
     if (step === "otp") {
@@ -232,12 +154,13 @@ export default function CandidateSignup() {
     }
     return undefined;
   }, [step]);
-  const stepIndex =
-    step === "complete"
-      ? onboardingSteps.length
-      : onboardingSteps.includes(step)
-        ? onboardingSteps.indexOf(step) + 1
-        : 0;
+
+  const steps = stepsFor(profile);
+  const stepIndex = steps.indexOf(step) + 1;
+  const plan = step === "complete" ? planFor(profile) : null;
+  const isLastQuestion = steps[steps.length - 1] === step;
+  const finishLabel = isLastQuestion ? "Complete my profile" : "Continue";
+
   const updateProfile = (field, value) => {
     setProfile((p) => ({ ...p, [field]: value }));
     setErrors((e) => {
@@ -245,25 +168,36 @@ export default function CandidateSignup() {
       return rest;
     });
   };
+  // Save every answer, then move to the next question on this profile's
+  // route, or to the app plan after the last one.
+  const advance = (nextProfile) => {
+    const route = stepsFor(nextProfile);
+    const nextStep = route[route.indexOf(step) + 1] || "complete";
+    writeStoredProfile(nextProfile);
+    setProfile(nextProfile);
+    setErrors({});
+    setStep(nextStep);
+  };
   const goBack = () => {
-    const i = onboardingSteps.indexOf(step);
+    const i = steps.indexOf(step);
     // First step has no prior screen, so Back returns to the marketing site.
-    if (step === "phone") {
+    if (i <= 0) {
       window.location.assign("/");
       return;
     }
-    if (i > 0) setStep(onboardingSteps[i - 1]);
+    setErrors({});
+    setStep(steps[i - 1]);
   };
   const submitPhone = (event) => {
     event.preventDefault();
     const phone = onlyDigits(profile.phone);
-    if (phone.length !== 10) {
-      setErrors({ phone: "Indian mobile numbers are 10 digits." });
+    if (!INDIAN_MOBILE_REGEX.test(phone)) {
+      setErrors({
+        phone: "Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.",
+      });
       return;
     }
-    setErrors({});
-    setProfile((p) => ({ ...p, phone }));
-    setStep("otp");
+    advance({ ...profile, phone });
   };
   const handleOtpChange = (index, value) => {
     const digit = value.replace(/\D/g, "").slice(-1);
@@ -302,55 +236,97 @@ export default function CandidateSignup() {
       return;
     }
     setOtpError("");
-    setStep("name");
+    advance(profile);
   };
   const submitName = (event) => {
     event.preventDefault();
+    const firstName = profile.firstName.trim();
+    const lastName = profile.lastName.trim();
     const next = {};
-    if (!profile.fullName.trim())
-      next.fullName = "Add the name your coach should use.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(profile.email.trim()))
-      next.email = "Add a valid email for class links.";
+    if (!firstName) next.firstName = "Add your first name.";
+    if (!lastName) next.lastName = "Add your last name.";
     if (Object.keys(next).length) return setErrors(next);
-    setProfile((p) => ({
-      ...p,
-      fullName: p.fullName.trim(),
-      email: p.email.trim(),
-      city: p.city.trim(),
-    }));
-    setErrors({});
-    setStep("qualification");
+    advance({ ...profile, firstName, lastName });
   };
-  const submitChoice = (field, nextStep) => {
-    const value = profile[field];
-    if (!value) {
-      setErrors({ [field]: "Choose one option to continue." });
+  const requireChoice = (field) => {
+    if (profile[field]) return true;
+    setErrors({ [field]: "Choose one option to continue." });
+    return false;
+  };
+  const submitOccupation = () => {
+    if (requireChoice("occupation")) advance(profile);
+  };
+  const submitPathway = () => {
+    if (requireChoice("pathwayId")) advance(profile);
+  };
+  // Same side effects as the app: new learners are steered to guided lessons,
+  // learners default to practice, and the level is cleared when it no longer
+  // applies.
+  const submitStatus = () => {
+    if (!requireChoice("germanStatus")) return;
+    const { germanStatus, germanLevel } = profile;
+    if (germanStatus === GERMAN_STATUS.notStarted) {
+      advance({
+        ...profile,
+        germanLevel: "",
+        germanPreference: PREFERENCE.learn,
+      });
       return;
     }
-    const clean = {
-      ...profile,
-      fullName: profile.fullName.trim(),
-      email: profile.email.trim(),
-      city: profile.city.trim(),
-      phone: onlyDigits(profile.phone),
-    };
-    setProfile(clean);
-    setErrors({});
-    setStep(nextStep);
+    const stillOffered = levelsFor(germanStatus).some(
+      (level) => level.value === germanLevel,
+    );
+    advance({ ...profile, germanLevel: stillOffered ? germanLevel : "" });
   };
-  // Save this device's progress and move directly into the app handoff.
-  const finishOnboarding = () => {
-    const clean = {
-      ...profile,
-      fullName: profile.fullName.trim(),
-      email: profile.email.trim(),
-      city: profile.city.trim(),
-      phone: onlyDigits(profile.phone),
-    };
-    writeStoredProfile(clean);
-    setProfile(clean);
-    setStep("complete");
+  const submitLevel = () => {
+    if (!requireChoice("germanLevel")) return;
+    const level = levelFor(profile.germanLevel);
+    let germanPreference = PREFERENCE.practice;
+    if (profile.germanStatus === GERMAN_STATUS.completed) {
+      germanPreference = PREFERENCE.job;
+    } else if (level.rank >= 3) {
+      // B1/B2 learners pick practice or a job on the next screen.
+      germanPreference = "";
+    }
+    advance({ ...profile, germanPreference });
   };
+  const submitPreference = () => {
+    if (requireChoice("germanPreference")) advance(profile);
+  };
+
+  const isNewToGerman = profile.germanStatus === GERMAN_STATUS.notStarted;
+  const learnOption = {
+    value: PREFERENCE.learn,
+    label: "Start learning German",
+    detail: "Guided lessons, step by step",
+    icon: "path",
+  };
+  const practiceOption = {
+    value: PREFERENCE.practice,
+    label: "Practice my German",
+    detail: "Flashcards, speaking and tests",
+    icon: "cards",
+  };
+  // The app recommends guided lessons to new learners and practice to
+  // everyone else, and lists the recommended option first.
+  const preferenceOptions = isNewToGerman
+    ? [{ ...learnOption, tag: "Recommended" }, practiceOption]
+    : [{ ...practiceOption, tag: "Recommended" }, learnOption];
+  const goalOptions = [
+    {
+      value: PREFERENCE.practice,
+      label: "Practice my German",
+      detail: "Keep building toward your exam",
+      icon: "cards",
+    },
+    {
+      value: PREFERENCE.job,
+      label: "Apply for a job",
+      detail: "Start your job screening in the app",
+      icon: "briefcase",
+    },
+  ];
+
   return (
     <div className="sc-onb">
       <header className="sc-onb-bar" data-step={step}>
@@ -362,14 +338,14 @@ export default function CandidateSignup() {
         </a>
         <div className="sc-onb-bar-tools">
           <span className="sc-onb-trust-pill" aria-hidden="true">
-            <ShieldCheck size={14} weight="bold" /> Free, zero recruitment cost
+            <Icon name="shield-check" size={14} /> Free, zero recruitment cost
           </span>
           <a
             className="sc-onb-call"
             href="tel:+919731462667"
             aria-label="Call Skillcase"
           >
-            <PhoneCall size={16} weight="bold" aria-hidden="true" />
+            <Icon name="phone-call" size={16} />
             <span>Call</span>
           </a>
         </div>
@@ -380,14 +356,14 @@ export default function CandidateSignup() {
           {step !== "complete" && (
             <div
               className="sc-onb-flow-rail"
-              aria-label={`Step ${stepIndex} of ${onboardingSteps.length}`}
+              aria-label={`Step ${stepIndex} of ${steps.length}`}
             >
               <button className="sc-onb-back" type="button" onClick={goBack}>
-                <ArrowLeft size={16} weight="bold" aria-hidden="true" />
+                <Icon name="arrow-left" size={16} />
                 <span>Back</span>
               </button>
               <div className="sc-onb-stepper">
-                {onboardingSteps.map((item, index) => {
+                {steps.map((item, index) => {
                   const isDone = index + 1 < stepIndex;
                   const isCurrent = index + 1 === stepIndex;
                   return (
@@ -401,7 +377,7 @@ export default function CandidateSignup() {
               </div>
               <strong className="sc-onb-step-count">
                 <span>{stepIndex}</span>
-                <em>of {onboardingSteps.length}</em>
+                <em>of {steps.length}</em>
               </strong>
             </div>
           )}
@@ -410,13 +386,13 @@ export default function CandidateSignup() {
             <section className="sc-onb-panel" ref={panelRef}>
               {step === "phone" && (
                 <form className="sc-onb-form" onSubmit={submitPhone} noValidate>
-                  <Eyebrow icon={<WhatsappLogo size={13} weight="bold" />}>
-                    WhatsApp OTP
+                  <Eyebrow icon={<Icon name="shield-check" size={13} />}>
+                    Your number
                   </Eyebrow>
                   <h1>Let’s start with your number</h1>
                   <p className="sc-onb-lede">
-                    We’ll send a quick code on WhatsApp. Your coach uses this
-                    number for class reminders and job alerts.
+                    Use the number you’ll sign in to the Skillcase app with.
+                    We’ll send a 6-digit code to verify it.
                   </p>
 
                   <label className="sc-onb-field">
@@ -464,11 +440,11 @@ export default function CandidateSignup() {
 
                   <button className="sc-onb-cta" type="submit">
                     Send OTP
-                    <ArrowRight size={17} weight="bold" aria-hidden="true" />
+                    <Icon name="arrow-right" size={17} />
                   </button>
                   <p className="sc-onb-login-prompt">
                     Already signed up?{" "}
-                    <a href={WEB_APP_URL} rel="noreferrer" target="_blank">
+                    <a href={learnerAppUrl} rel="noreferrer" target="_blank">
                       Log in instead
                     </a>
                   </p>
@@ -481,13 +457,13 @@ export default function CandidateSignup() {
 
               {step === "otp" && (
                 <form className="sc-onb-form" onSubmit={submitOtp} noValidate>
-                  <Eyebrow icon={<ShieldCheck size={13} weight="bold" />}>
+                  <Eyebrow icon={<Icon name="shield-check" size={13} />}>
                     Verify phone
                   </Eyebrow>
                   <h1>Enter the 6-digit code</h1>
                   <p className="sc-onb-lede">
-                    Sent on WhatsApp to <strong>+91 {profile.phone}</strong>.
-                    For now any 6 digits work.
+                    Sent to <strong>+91 {profile.phone}</strong>. For now any 6
+                    digits work.
                   </p>
 
                   <div
@@ -524,71 +500,69 @@ export default function CandidateSignup() {
                     </button>
                     <span aria-hidden="true">·</span>
                     <a className="sc-onb-text-link" href="tel:+919731462667">
-                      <PhoneCall size={13} weight="bold" aria-hidden="true" />{" "}
+                      <Icon name="phone-call" size={13} />{" "}
                       Verify by call
                     </a>
                   </div>
 
                   <button className="sc-onb-cta" type="submit">
                     Verify and continue
-                    <ArrowRight size={17} weight="bold" aria-hidden="true" />
+                    <Icon name="arrow-right" size={17} />
                   </button>
                 </form>
               )}
 
               {step === "name" && (
                 <form className="sc-onb-form" onSubmit={submitName} noValidate>
-                  <Eyebrow icon={<Sparkle size={13} weight="bold" />}>
-                    Personalise
+                  <Eyebrow icon={<Icon name="user" size={13} />}>
+                    Your name
                   </Eyebrow>
                   <h1>What should we call you?</h1>
                   <p className="sc-onb-lede">
-                    Your coach greets you by name in class. Email is for class
-                    links and backup updates.
+                    Enter your first and last name.
                   </p>
 
-                  <div className="sc-onb-field-grid">
+                  <div className="sc-onb-field-grid sc-onb-name-grid">
                     <label className="sc-onb-field">
-                      <span className="sc-onb-field-label">Full name</span>
+                      <span className="sc-onb-field-label">First name</span>
                       <input
-                        autoComplete="name"
-                        className={`sc-onb-text ${errors.fullName ? "is-error" : ""}`}
+                        autoComplete="given-name"
+                        className={`sc-onb-text ${errors.firstName ? "is-error" : ""}`}
                         aria-describedby={
-                          errors.fullName ? "name-error" : undefined
+                          errors.firstName ? "first-name-error" : undefined
                         }
-                        aria-invalid={Boolean(errors.fullName)}
-                        placeholder="Sanjukta Rout"
-                        value={profile.fullName}
+                        aria-invalid={Boolean(errors.firstName)}
+                        placeholder="Asha"
+                        value={profile.firstName}
                         onChange={(event) =>
-                          updateProfile("fullName", event.target.value)
+                          updateProfile("firstName", event.target.value)
                         }
                       />
-                      {errors.fullName && (
-                        <small id="name-error" className="sc-onb-error">
-                          {errors.fullName}
+                      {errors.firstName && (
+                        <small id="first-name-error" className="sc-onb-error">
+                          {errors.firstName}
                         </small>
                       )}
                     </label>
 
                     <label className="sc-onb-field">
-                      <span className="sc-onb-field-label">Email address</span>
+                      <span className="sc-onb-field-label">Last name</span>
                       <input
-                        autoComplete="email"
-                        type="email"
-                        className={`sc-onb-text ${errors.email ? "is-error" : ""}`}
+                        autoComplete="family-name"
+                        className={`sc-onb-text ${errors.lastName ? "is-error" : ""}`}
                         aria-describedby={
-                          errors.email ? "email-error" : undefined
+                          errors.lastName ? "last-name-error" : undefined
                         }
-                        aria-invalid={Boolean(errors.email)}
-                        placeholder="you@example.com…"
-                        value={profile.email}
+                        aria-invalid={Boolean(errors.lastName)}
+                        placeholder="Nair"
+                        value={profile.lastName}
                         onChange={(event) =>
-                          updateProfile("email", event.target.value)
+                          updateProfile("lastName", event.target.value)
                         }
                       />
-                      {errors.email && (
-                        <small id="email-error" className="sc-onb-error">
-                          {errors.email}
+                      {errors.lastName && (
+                        <small id="last-name-error" className="sc-onb-error">
+                          {errors.lastName}
                         </small>
                       )}
                     </label>
@@ -596,72 +570,143 @@ export default function CandidateSignup() {
 
                   <button className="sc-onb-cta" type="submit">
                     Continue
-                    <ArrowRight size={17} weight="bold" aria-hidden="true" />
+                    <Icon name="arrow-right" size={17} />
                   </button>
                 </form>
               )}
 
-              {step === "qualification" && (
+              {step === "occupation" && (
                 <ChoiceStep
-                  eyebrow="Qualification"
-                  eyebrowIcon={<SealCheck size={13} weight="bold" />}
-                  title="Your nursing qualification"
-                  copy="Pick what’s closest. All Indian nursing degrees can be checked for Germany."
-                  options={qualificationOptions}
-                  selectedValue={profile.qualification}
-                  error={errors.qualification}
-                  onSelect={(value) => updateProfile("qualification", value)}
-                  onContinue={() => submitChoice("qualification", "experience")}
+                  eyebrow="Occupation"
+                  eyebrowIcon={<Icon name="stethoscope" size={13} />}
+                  title="What do you do?"
+                  copy="Choose your current occupation."
+                  options={occupations}
+                  selectedValue={profile.occupation}
+                  error={errors.occupation}
+                  continueLabel={finishLabel}
+                  onSelect={(value) => updateProfile("occupation", value)}
+                  onContinue={submitOccupation}
                 />
               )}
 
-              {step === "experience" && (
+              {step === "pathway" && (
                 <ChoiceStep
-                  eyebrow="Experience"
-                  eyebrowIcon={<Clock size={13} weight="bold" />}
-                  title="Your nursing experience"
-                  copy="Years of clinical work after your degree. Helps match salary bands."
-                  options={experienceOptions}
-                  selectedValue={profile.experience}
-                  error={errors.experience}
-                  onSelect={(value) => updateProfile("experience", value)}
-                  onContinue={() => submitChoice("experience", "german")}
+                  eyebrow="Your goal"
+                  eyebrowIcon={<Icon name="target" size={13} />}
+                  title="What are you here for?"
+                  copy="Choose what you want to do in the Skillcase app."
+                  options={pathways.map((pathway) => ({
+                    value: pathway.id,
+                    label: pathway.title,
+                    detail: pathway.detail,
+                    tag: pathway.badge,
+                    icon: pathway.isBuiltin ? "briefcase" : "trophy",
+                  }))}
+                  selectedValue={profile.pathwayId}
+                  error={errors.pathwayId}
+                  continueLabel={finishLabel}
+                  onSelect={(value) => updateProfile("pathwayId", value)}
+                  onContinue={submitPathway}
                 />
               )}
 
-              {step === "german" && (
+              {step === "status" && (
+                <ChoiceStep
+                  eyebrow="German"
+                  eyebrowIcon={<Icon name="globe" size={13} />}
+                  title="Where are you with German?"
+                  copy="There’s no wrong answer. The app starts you from here."
+                  options={germanStatusOptions}
+                  selectedValue={profile.germanStatus}
+                  error={errors.germanStatus}
+                  continueLabel={finishLabel}
+                  onSelect={(value) => updateProfile("germanStatus", value)}
+                  onContinue={submitStatus}
+                />
+              )}
+
+              {step === "level" && (
                 <ChoiceStep
                   eyebrow="German level"
-                  eyebrowIcon={<Globe size={13} weight="bold" />}
-                  title="Where are you with German?"
-                  copy="Most Skillcase nurses start from zero. You’re not behind."
-                  options={germanLevelOptions}
+                  eyebrowIcon={<Icon name="globe" size={13} />}
+                  title="What is your current German level?"
+                  copy={
+                    profile.germanStatus === GERMAN_STATUS.completed
+                      ? "Pick the level you completed."
+                      : "Pick the one that sounds most like you."
+                  }
+                  options={levelsFor(profile.germanStatus).map((level) => ({
+                    value: level.value,
+                    label: level.label,
+                    detail: level.detail,
+                    visual: <LevelBars rank={level.rank} />,
+                  }))}
                   selectedValue={profile.germanLevel}
                   error={errors.germanLevel}
-                  continueLabel="Complete my profile"
+                  continueLabel={finishLabel}
                   onSelect={(value) => updateProfile("germanLevel", value)}
-                  onContinue={finishOnboarding}
+                  onContinue={submitLevel}
                 />
               )}
-              {step === "complete" && <AppDownloadReveal profile={profile} />}
+
+              {step === "preference" && (
+                <ChoiceStep
+                  eyebrow="Your plan"
+                  eyebrowIcon={<Icon name="path" size={13} />}
+                  title={
+                    isNewToGerman
+                      ? "How would you like to begin?"
+                      : "How would you like to continue?"
+                  }
+                  copy={
+                    isNewToGerman
+                      ? "Great start! We recommend guided lessons that teach German from the basics."
+                      : "You already know some German. Practise at your level, or follow guided lessons."
+                  }
+                  options={preferenceOptions}
+                  selectedValue={profile.germanPreference}
+                  error={errors.germanPreference}
+                  continueLabel={finishLabel}
+                  onSelect={(value) => updateProfile("germanPreference", value)}
+                  onContinue={submitPreference}
+                />
+              )}
+
+              {step === "goal" && (
+                <ChoiceStep
+                  eyebrow="Your path"
+                  eyebrowIcon={<Icon name="path" size={13} />}
+                  title="Which path would you like to take?"
+                  copy="You already have intermediate German. Keep practising, or start applying for jobs."
+                  options={goalOptions}
+                  selectedValue={profile.germanPreference}
+                  error={errors.germanPreference}
+                  continueLabel={finishLabel}
+                  onSelect={(value) => updateProfile("germanPreference", value)}
+                  onContinue={submitPreference}
+                />
+              )}
+
+              {plan && <AppPlanReveal profile={profile} plan={plan} />}
             </section>
           </div>
         </div>
 
-        <aside className="sc-onb-aside" aria-label="A Skillcase success story">
-          <AsideCard />
+        <aside
+          className={`sc-onb-aside ${plan ? "sc-plan-aside" : ""}`}
+          aria-label={plan ? "Your Skillcase app" : "A Skillcase success story"}
+        >
+          {plan ? <AppStage plan={plan} variant="aside" /> : <AsideCard />}
         </aside>
       </main>
 
-      {hasLoaded &&
-        profile.fullName &&
-        step !== "complete" &&
-        step !== "welcome" && (
-          <div className="sc-onb-return" role="status">
-            <SealCheck size={14} weight="bold" aria-hidden="true" />
-            Welcome back, {profile.fullName.split(" ")[0]}. Progress saved.
-          </div>
-        )}
+      {isReturning && profile.firstName && step !== "complete" && (
+        <div className="sc-onb-return" role="status">
+          <Icon name="seal-check" size={14} />
+          Welcome back, {profile.firstName}. Progress saved.
+        </div>
+      )}
     </div>
   );
 }
@@ -673,137 +718,15 @@ function Eyebrow({ children, icon }) {
     </p>
   );
 }
-function WelcomeScreen({ onStart }) {
+// Four rising bars, filled up to the level, like the app's level picker.
+function LevelBars({ rank }) {
   return (
-    <main className="sc-onb-welcome">
-      <section className="sc-onb-welcome-hero">
-        <div className="sc-onb-welcome-copy">
-          <span className="sc-onb-welcome-pill">
-            <span className="sc-onb-welcome-flag" aria-hidden="true">
-              🇩🇪
-            </span>
-            Now hiring in Germany
-          </span>
-          <h1>Your Germany nursing career, guided step by step.</h1>
-          <p>
-            Land a hospital job in Germany at zero recruitment cost. Skillcase
-            guides your German classes, documents, interviews and job placement.
-          </p>
-          <ul className="sc-onb-welcome-checks">
-            <li>
-              <Check size={14} weight="bold" aria-hidden="true" /> German A1 to
-              B2, live classes for nurses
-            </li>
-            <li>
-              <Check size={14} weight="bold" aria-hidden="true" /> 13+ matched
-              jobs unlocked at B1
-            </li>
-            <li>
-              <Check size={14} weight="bold" aria-hidden="true" /> Visa, flight
-              and first-week support
-            </li>
-          </ul>
-          <button
-            className="sc-onb-cta sc-onb-cta-lg"
-            type="button"
-            onClick={onStart}
-          >
-            Start free — takes 60 seconds
-            <ArrowRight size={18} weight="bold" aria-hidden="true" />
-          </button>
-        </div>
-
-        <div className="sc-onb-welcome-stage" aria-hidden="true">
-          <div className="sc-onb-welcome-stage-image">
-            <ResponsiveImage alt="" src="/assets/images/hero.webp" />
-          </div>
-          <div className="sc-onb-welcome-stage-card sc-onb-stage-card-top">
-            <span className="sc-onb-stage-card-icon">
-              <WhatsappLogo size={16} weight="bold" />
-            </span>
-            <div>
-              <strong>Coach Priya</strong>
-              <small>“Class starts at 7 PM. See you!”</small>
-            </div>
-            <em className="sc-onb-stage-pulse" />
-          </div>
-          <div className="sc-onb-welcome-stage-card sc-onb-stage-card-bottom">
-            <div className="sc-onb-stage-trophy">
-              <SealCheck size={20} weight="fill" />
-            </div>
-            <div>
-              <strong>Anjana, BSc</strong>
-              <small>Just landed a job in Aachen €3,100/mo</small>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="sc-onb-welcome-stats"
-        aria-label="Skillcase outcomes at a glance"
-      >
-        <article>
-          <strong>₹2.5L+</strong>
-          <small>average monthly salary in Germany</small>
-        </article>
-        <article>
-          <strong>13+</strong>
-          <small>jobs to preview before B1</small>
-        </article>
-        <article>
-          <strong>0₹</strong>
-          <small>recruitment fee from candidates</small>
-        </article>
-        <article>
-          <strong>60s</strong>
-          <small>to create your first profile</small>
-        </article>
-      </section>
-
-      <section
-        className="sc-onb-welcome-grid"
-        aria-label="What Skillcase helps with"
-      >
-        {[
-          {
-            title: "German A1 → B2",
-            detail: "Live online classes built for nurses.",
-            icon: "globe",
-          },
-          {
-            title: "Documents",
-            detail: "Resume, certificates, passport, recognition.",
-            icon: "doc",
-          },
-          {
-            title: "Job placement",
-            detail: "Preview Germany roles before B1.",
-            icon: "case",
-          },
-          {
-            title: "Visa & flight",
-            detail: "Hand-holding until your first day.",
-            icon: "plane",
-          },
-        ].map((tile) => (
-          <article key={tile.title}>
-            <span className="sc-onb-tile-icon" aria-hidden="true">
-              <TileGlyph kind={tile.icon} />
-            </span>
-            <strong>{tile.title}</strong>
-            <small>{tile.detail}</small>
-          </article>
-        ))}
-      </section>
-    </main>
+    <span className="sc-onb-level-bars" aria-hidden="true">
+      {[1, 2, 3, 4].map((bar) => (
+        <i key={bar} className={bar <= rank ? "is-on" : undefined} />
+      ))}
+    </span>
   );
-}
-function TileGlyph({ kind }) {
-  if (kind === "globe") return <Globe size={20} weight="bold" />;
-  if (kind === "doc") return <SealCheck size={20} weight="bold" />;
-  if (kind === "case") return <ChatCircleText size={20} weight="bold" />;
-  return <ShieldCheck size={20} weight="bold" />;
 }
 function ChoiceStep({
   copy,
@@ -823,27 +746,36 @@ function ChoiceStep({
       <h1>{title}</h1>
       <p className="sc-onb-lede">{copy}</p>
 
-      <div className="sc-onb-choice-grid" role="radiogroup" aria-label={title}>
+      <div
+        className={`sc-onb-choice-grid ${options.some((option) => option.tag) ? "has-tags" : ""}`}
+        role="radiogroup"
+        aria-label={title}
+      >
         {options.map((option) => {
           const isSelected = selectedValue === option.value;
+          const visual =
+            option.visual || (option.icon && <Icon name={option.icon} size={18} />);
           return (
             <button
               key={option.value}
-              className={`sc-onb-choice-card ${isSelected ? "is-selected" : ""}`}
+              className={`sc-onb-choice-card ${visual ? "has-visual" : ""} ${isSelected ? "is-selected" : ""}`}
               role="radio"
               type="button"
               aria-checked={isSelected}
               onClick={() => onSelect(option.value)}
             >
+              {visual && (
+                <span className="sc-onb-choice-visual" aria-hidden="true">
+                  {visual}
+                </span>
+              )}
               <span className="sc-onb-choice-text">
                 <strong>{option.label}</strong>
-                <small>{option.detail}</small>
+                {option.detail && <small>{option.detail}</small>}
               </span>
-              {option.tag && (
-                <em className="sc-onb-choice-tag">{option.tag}</em>
-              )}
-              <span className="sc-onb-choice-radio" aria-hidden="true">
-                {isSelected ? <Check size={13} weight="bold" /> : null}
+              {option.tag && <em className="sc-onb-choice-tag">{option.tag}</em>}
+              <span className="sc-onb-choice-check" aria-hidden="true">
+                <Icon name="check" size={12} />
               </span>
             </button>
           );
@@ -853,129 +785,8 @@ function ChoiceStep({
 
       <button className="sc-onb-cta" type="button" onClick={onContinue}>
         {continueLabel}
-        <ArrowRight size={17} weight="bold" aria-hidden="true" />
+        <Icon name="arrow-right" size={17} />
       </button>
-    </div>
-  );
-}
-function AppDownloadReveal({ profile }) {
-  const sliderRef = useRef(null);
-
-  const moveSlider = (direction) => {
-    const slider = sliderRef.current;
-    const slide = slider?.querySelector(".sc-onb-app-slide");
-    if (!slider || !slide) return;
-
-    const gap = Number.parseFloat(window.getComputedStyle(slider).columnGap) || 12;
-    slider.scrollBy({
-      left: direction * (slide.getBoundingClientRect().width + gap),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth",
-    });
-  };
-
-  return (
-    <div className="sc-onb-complete" aria-live="polite">
-      <Eyebrow icon={<SealCheck size={13} weight="fill" />}>
-        Profile ready
-      </Eyebrow>
-      <h1>You’re in, {getFirstName(profile.fullName)}. Start in the app.</h1>
-      <p className="sc-onb-lede">
-        Learn German, prepare for interviews, and track your Germany job in one
-        app.
-      </p>
-
-      <section className="sc-onb-app-handoff" aria-label="Choose your device">
-        <div className="sc-onb-app-actions">
-          <a
-            className="sc-onb-app-action sc-onb-app-action-primary"
-            href={PLAY_STORE_URL}
-            rel="noreferrer"
-            target="_blank"
-            aria-label="Download the Skillcase app from Google Play"
-          >
-            <img
-              className="sc-onb-app-brand-logo"
-              src="/assets/images/google-play-mark.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>
-              <small>Android</small>
-              <strong>Download on Google Play</strong>
-            </span>
-          </a>
-          <a
-            className="sc-onb-app-action sc-onb-app-action-secondary"
-            href={WEB_APP_URL}
-            rel="noreferrer"
-            target="_blank"
-            aria-label="Open the Skillcase web app for Apple users"
-          >
-            <img
-              className="sc-onb-app-brand-logo"
-              src="/assets/images/apple-mark.svg"
-              alt=""
-              aria-hidden="true"
-            />
-            <span>
-              <small>Apple user</small>
-              <strong>Open the web app</strong>
-            </span>
-          </a>
-        </div>
-        <p className="sc-onb-app-reassurance">
-          Free to start. Your learning and job progress stay together.
-        </p>
-      </section>
-
-      <section
-        className="sc-onb-app-slider-section"
-        aria-label="Skillcase app screenshots"
-      >
-        <div className="sc-onb-app-slider-frame">
-          <button
-            className="sc-onb-app-slider-arrow sc-onb-app-slider-arrow-prev"
-            type="button"
-            aria-label="View previous app screen"
-            onClick={() => moveSlider(-1)}
-          >
-            <ArrowLeft size={17} weight="bold" aria-hidden="true" />
-          </button>
-          <div className="sc-onb-app-slider" ref={sliderRef}>
-            {PLAY_STORE_SCREENSHOTS.map((screen) => (
-              <figure className="sc-onb-app-slide" key={screen.src}>
-                <ResponsiveImage alt={screen.alt} src={screen.src} />
-              </figure>
-            ))}
-          </div>
-          <button
-            className="sc-onb-app-slider-arrow sc-onb-app-slider-arrow-next"
-            type="button"
-            aria-label="View next app screen"
-            onClick={() => moveSlider(1)}
-          >
-            <ArrowRight size={17} weight="bold" aria-hidden="true" />
-          </button>
-        </div>
-      </section>
-
-      <LearnerReviewCard
-        avatarAlt="Portrait of Nikhil R."
-        avatarSrc="/assets/images/testimonial-nikhil.webp"
-        className="sc-onb-app-testimonial"
-        name="Nikhil R."
-        quote="Skillcase helped me understand what to prepare and how to keep my application moving without feeling lost."
-        showGoogle={false}
-        source="Healthcare candidate · Karnataka"
-        verifiedLabel="Verified Skillcase learner"
-      />
-
-      <a className="btn btn-outline sc-onb-advisor-cta" href="tel:+919731462667">
-        <PhoneCall size={16} weight="bold" aria-hidden="true" />
-        Talk to an advisor
-      </a>
     </div>
   );
 }
@@ -986,7 +797,7 @@ function AsideCard() {
         alt="Anjana, a Skillcase nurse now working in Aachen, Germany"
         src="/assets/images/testimonial-anjali.webp"
       />
-      <Eyebrow icon={<SealCheck size={13} weight="bold" />}>
+      <Eyebrow icon={<Icon name="seal-check" size={13} />}>
         Success story
       </Eyebrow>
       <h2>Anjana started at A1. Today she works in Aachen, Germany.</h2>

@@ -76,7 +76,7 @@
   font-weight: 600;
 }
 
-.sc-onb-trust-pill svg {
+.sc-onb-trust-pill .icon-svg {
   color: var(--color-cyan);
 }
 
@@ -99,13 +99,13 @@
   color: var(--color-cyan);
 }
 
-.sc-onb-call svg { color: var(--color-cyan); }
-.sc-onb-call span { display: none; }
+.sc-onb-call .icon-svg { color: var(--color-cyan); }
+.sc-onb-call span:not(.icon-svg) { display: none; }
 
 @media (min-width: 640px) {
   .sc-onb-bar { padding: 0 28px; height: 68px; }
   .sc-onb-trust-pill { display: inline-flex; }
-  .sc-onb-call span { display: inline; }
+  .sc-onb-call span:not(.icon-svg) { display: inline; }
 }
 
 /* ---- Welcome screen ---- */
@@ -758,69 +758,176 @@
 
 .sc-onb-text-link:hover { color: var(--color-cyan); text-decoration-color: var(--color-cyan); }
 
-/* ---- Choice cards ---- */
+/* ---- Choice cards ----
+   Modelled on the strongest Mobbin onboarding questions (Duolingo's level
+   picker, Substack, Bevel): the whole card is the target, cards are roomy and
+   evenly sized with one-line descriptions, and selection shows as a navy
+   border, a light tint and a check. Unselected cards carry no radio ring. */
 .sc-onb-choice-grid {
   display: grid;
-  gap: 5px;
+  gap: 10px;
+}
+
+/* Room for a badge sitting on the first card's top edge. */
+.sc-onb-choice-grid.has-tags {
+  padding-top: 8px;
 }
 
 .sc-onb-choice-card {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: minmax(0, 1fr) 22px;
   align-items: center;
-  gap: 7px;
-  padding: 7px 10px;
-  border: 1.5px solid var(--sc-border-soft);
-  border-radius: var(--sc-r-md);
-  background: var(--sc-surface);
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px 14px 12px 16px;
+  border: 1.5px solid #dfe6ef;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 40, 86, 0.04);
+  color: var(--color-ink);
+  font: inherit;
   text-align: left;
   cursor: pointer;
-  font: inherit;
-  color: var(--color-ink);
-  transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
-  min-height: 50px;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 120ms ease;
 }
 
-.sc-onb-choice-card:hover { border-color: rgba(5, 163, 229, 0.55); background: #fafcff; }
+.sc-onb-choice-card.has-visual {
+  grid-template-columns: 40px minmax(0, 1fr) 22px;
+  padding-left: 12px;
+}
 
+@media (hover: hover) {
+  .sc-onb-choice-card:hover {
+    border-color: rgba(0, 40, 86, 0.32);
+  }
+}
+
+.sc-onb-choice-card:active {
+  transform: scale(0.985);
+}
+
+/* The outer ring thickens the border without shifting the layout. */
 .sc-onb-choice-card.is-selected {
   border-color: var(--color-navy);
-  background: var(--sc-surface-cool);
+  background: #f3f7fc;
+  box-shadow:
+    0 0 0 1px var(--color-navy),
+    0 8px 20px rgba(0, 40, 86, 0.08);
 }
 
-.sc-onb-choice-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
-.sc-onb-choice-text strong { font-size: 13px; font-weight: 600; color: var(--color-ink); line-height: 1.2; }
-.sc-onb-choice-text small { font-size: 11px; color: var(--color-muted); line-height: 1.25; }
+.sc-onb-choice-visual {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+  background: #f1f5fa;
+  color: var(--color-navy);
+  transition:
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
 
-.sc-onb-choice-tag {
-  padding: 2px 6px;
-  background: var(--color-gold);
-  color: #211500;
-  border-radius: var(--sc-r-pill);
-  font-size: 9px;
+.sc-onb-choice-card.is-selected .sc-onb-choice-visual {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 40, 86, 0.1);
+}
+
+.sc-onb-choice-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sc-onb-choice-text strong {
+  color: var(--color-ink);
+  font-size: 15px;
   font-weight: 600;
-  font-style: normal;
-  letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
-.sc-onb-choice-radio {
-  width: 18px;
-  height: 18px;
+.sc-onb-choice-text small {
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+/* Gold badge on the card's top edge, so it never crowds the title. */
+.sc-onb-choice-tag {
+  position: absolute;
+  top: -9px;
+  right: 14px;
+  padding: 2px 9px;
   border-radius: var(--sc-r-pill);
-  border: 1.5px solid var(--sc-border-soft);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--sc-surface);
-  background: var(--sc-surface);
-  flex-shrink: 0;
-  transition: border-color 160ms ease, background 160ms ease;
+  background: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--vbc-paper, #f8fafd);
+  color: #241501;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
 }
 
-.sc-onb-choice-card.is-selected .sc-onb-choice-radio {
-  border-color: var(--color-navy);
+/* Only the chosen card shows a mark: a navy check that pops in. */
+.sc-onb-choice-check {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
   background: var(--color-navy);
-  color: var(--sc-surface);
+  color: #ffffff;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 160ms ease,
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sc-onb-choice-card.is-selected .sc-onb-choice-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* The app's level glyph: four rising bars, filled up to the level. */
+.sc-onb-level-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 18px;
+}
+
+.sc-onb-level-bars i {
+  width: 4px;
+  border-radius: 2px;
+  background: rgba(0, 40, 86, 0.18);
+}
+
+.sc-onb-level-bars i:nth-child(1) { height: 7px; }
+.sc-onb-level-bars i:nth-child(2) { height: 10px; }
+.sc-onb-level-bars i:nth-child(3) { height: 14px; }
+.sc-onb-level-bars i:nth-child(4) { height: 18px; }
+.sc-onb-level-bars i.is-on { background: var(--color-navy); }
+
+/* Each step's heading takes focus so screen readers announce it; it is not
+   interactive, so it shows no focus ring. */
+.sc-onb-panel h1[tabindex="-1"]:focus,
+.sc-onb-panel h1[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
+/* First and last name sit side by side, as in the app. */
+.sc-onb-name-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
 /* ---- CTA buttons ---- */
@@ -1253,7 +1360,7 @@
   font-size: 12.5px;
 }
 
-.sc-onb-advisor-cta svg {
+.sc-onb-advisor-cta .icon-svg {
   flex: 0 0 auto;
 }
 
@@ -1277,7 +1384,7 @@
   animation: sc-fade-up 320ms ease-out;
 }
 
-.sc-onb-return svg {
+.sc-onb-return .icon-svg {
   color: var(--color-gold);
 }
 
@@ -1875,14 +1982,6 @@
   box-shadow:
     0 12px 24px rgba(237, 184, 67, 0.26),
     0 1px 0 rgba(255, 255, 255, 0.52) inset;
-}
-
-/* Choice cards stay compact while preserving a comfortable tap target. */
-.sc-onb-choice-card { min-height: 50px; padding: 7px 10px; }
-.sc-onb-choice-card.is-selected {
-  border-color: var(--color-navy);
-  background: var(--sc-surface-cool);
-  box-shadow: 0 0 0 1px rgba(0, 40, 86, 0.08);
 }
 
 /* -------------------------------------------------------------------------

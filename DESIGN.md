@@ -2,6 +2,8 @@
 
 The current primary homepage is `src/pages/home.jsx`, served at `/` through `src/routes.js`, and is written for every healthcare profession. Its hero imagery is a moving row of professionals (`src/components/PlacedHero.jsx`, data in `src/data/placements.js`), followed by a role list (`src/components/RoleList.jsx`, data in `src/data/roles.js`) and "How it works" (`src/components/HowItWorks.jsx`). Backgrounds are flat (no light gradient washes) and phone CTAs keep the shared 40px button style. The previous homepage is kept unchanged, noindex, at `/home-legacy`.
 
+`/signup` (`src/components/CandidateSignup.jsx`) asks the learner app's own onboarding questions, with the exact values the app stores (`src/data/appOnboarding.js`, copied from the app's `OnboardingFlow.jsx`). It ends with a plan for the visitor's German level and goal (`src/components/AppPlanReveal.jsx`, content in `src/data/appPlans.js`, styles in `src/styles/app-plan.css`). The plan shows a realistic phone with the exact app screen that level lands on: navbar, mode tabs, card grid, guided path, job lobby or scholarship hub. It is rebuilt from the live learner app's components (the nursing-german branch), using the app's own images in `public/assets/images/app-ui`. It is drawn at the app's 390 px width and scaled with container units. On phones it rises out of a light-blue band; on desktop it sits in the navy side panel. Option cards are roomy and show one-line descriptions, with a navy border, light tint and check when selected. Signup icons use the site's Phosphor icon font (`src/components/healthcare/Icon.jsx`) rather than icon components, which keeps the page's script small.
+
 ## Visual identity
 
 - Poppins for public pages and signup.

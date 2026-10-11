@@ -4,8 +4,8 @@ export default function Signup(props) {
   return (
     <>
       <BaseLayout
-        title="Skillcase | Nurse Signup"
-        description="Create your Skillcase nurse profile and get a guided Germany pathway with German learning, job eligibility, and advisor support."
+        title="Skillcase | Get started"
+        description="Answer a few quick questions and see what the Skillcase app has ready for your German level, from guided lessons and exam practice to job screening."
       >
         <CandidateSignup />
       </BaseLayout>
