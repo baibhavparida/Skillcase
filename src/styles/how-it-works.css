@@ -15,8 +15,8 @@
   display: grid;
   grid-template-columns: 96px minmax(0, 1fr);
   gap: 18px;
-  align-items: start;
-  padding-bottom: 28px;
+  align-items: center;
+  padding-bottom: 40px;
 }
 
 /* One continuous dashed path: each segment runs from this photo's centre to
@@ -82,10 +82,6 @@
   line-height: 1;
 }
 
-.hiw-text {
-  padding-top: 10px;
-}
-
 .hiw-step h3 {
   margin: 0;
   color: var(--color-ink);
@@ -96,7 +92,7 @@
 }
 
 .hiw-step p {
-  margin: 5px 0 0;
+  margin: 3px 0 0;
   color: #607083;
   font-size: 14px;
   line-height: 1.55;
@@ -129,9 +125,12 @@
     gap: 28px;
   }
 
+  /* Top-align each column so a two-line caption doesn't shift the photos. */
   .hiw-step {
     grid-template-columns: 1fr;
     gap: 22px;
+    align-content: start;
+    align-items: start;
     padding-bottom: 0;
   }
 
@@ -168,10 +167,6 @@
     height: 42px;
     border-width: 4px;
     font-size: 16px;
-  }
-
-  .hiw-text {
-    padding-top: 0;
   }
 
   .hiw-step h3 {

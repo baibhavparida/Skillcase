@@ -54,8 +54,8 @@ body:has(.site-shell.home-page) {
 }
 
 .site-shell.home-page .webinar-pill-arrow {
-  background: var(--color-gold);
-  color: var(--color-navy-deep);
+  background: var(--color-navy);
+  color: #ffffff;
 }
 
 .site-shell.home-page .benefit-copy {
