@@ -1,13 +1,20 @@
 /* Homepage "How it works": four step cards, each with a small product-style
    UI mock (hm-*) built in code. Mobile-first: a swipeable row with the next
    card peeking in and step dots below; a 2x2 grid from 600px and four across
-   from 1040px. Flat colours only, no gradients. */
+   from 1040px. Flat colours only, no gradients, and no gold: gold is kept
+   for the page's calls to action.
+
+   Every card spans a visual row and a text row of the parent grid and uses
+   subgrid, so in any row of cards the mock areas share one height and the
+   numbers, titles and captions start on the same line. */
 
 .hiw-steps {
   display: grid;
   grid-auto-columns: 84%;
   grid-auto-flow: column;
-  gap: 12px;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  row-gap: 0;
   margin: 0 calc(var(--container-gutter) * -1);
   padding: 2px var(--container-gutter) 4px;
   overflow-x: auto;
@@ -23,14 +30,18 @@
 }
 
 .hiw-steps:focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-cyan);
   outline-offset: 2px;
 }
 
 .hiw-card {
   scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-row: span 2;
+  /* Fallback for browsers without subgrid, then subgrid. */
+  grid-template-rows: minmax(150px, auto) 1fr;
+  grid-template-rows: subgrid;
+  row-gap: 0;
   overflow: hidden;
   border: 1px solid rgba(0, 40, 86, 0.1);
   border-radius: 16px;
@@ -39,7 +50,6 @@
 
 .hiw-visual {
   display: grid;
-  flex: 1;
   place-items: center;
   padding: 18px 18px 16px;
   background: #f2f6fa;
@@ -244,8 +254,8 @@
 .hm-tag {
   padding: 2px 8px;
   border-radius: 999px;
-  background: #fdf3d8;
-  color: #85620a;
+  background: #eaf6fd;
+  color: #0a6a9e;
   font-size: 11px;
   font-weight: 600;
 }
@@ -325,8 +335,8 @@
 .hm-btn {
   padding: 5px 12px;
   border-radius: 999px;
-  background: var(--color-gold);
-  color: #211500;
+  background: var(--color-navy);
+  color: #ffffff;
   font-size: 11px;
   font-weight: 600;
 }
@@ -410,14 +420,21 @@
 }
 
 @media (min-width: 600px) {
+  /* Two rows of cards: each is a visual row and a text row, with a 12px row
+     between them as the gap. Cards 3 and 4 go in the second pair of rows. */
   .hiw-steps {
     grid-auto-columns: auto;
     grid-auto-flow: row;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto auto 12px auto auto;
     margin: 0;
     padding: 0;
     overflow: visible;
     scroll-snap-type: none;
+  }
+
+  .hiw-card:nth-child(n + 3) {
+    grid-row: 4 / span 2;
   }
 
   .hiw-dots {
@@ -432,7 +449,12 @@
 @media (min-width: 1040px) {
   .hiw-steps {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+  }
+
+  .hiw-card:nth-child(n + 3) {
+    grid-row: span 2;
   }
 
   .hiw-visual {

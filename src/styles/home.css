@@ -32,24 +32,25 @@ body:has(.site-shell.home-page) {
 }
 
 /* The webinar pill was frosted glass over a photo; on the flat white hero it
-   needs its own fill and edge so it reads as a separate, tappable element. */
+   gets a white fill with a cyan edge so it reads as a separate, tappable
+   element, and a light cyan icon chip. */
 .site-shell.home-page .webinar-pill {
-  border: 1px solid rgba(5, 163, 229, 0.32);
-  background: #eaf6fd;
+  border: 1px solid #a8daf3;
+  background: #ffffff;
   box-shadow: none;
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
 
 .site-shell.home-page .webinar-pill:hover {
-  border-color: rgba(5, 163, 229, 0.6);
-  background: #dff1fc;
+  border-color: var(--color-cyan);
+  background: #ffffff;
   box-shadow: none;
 }
 
 .site-shell.home-page .webinar-pill-icon {
-  border-color: rgba(5, 163, 229, 0.28);
-  background: #ffffff;
+  border-color: transparent;
+  background: #eaf6fd;
   color: var(--color-navy);
 }
 
@@ -68,6 +69,26 @@ body:has(.site-shell.home-page) {
    sticky header. */
 .site-shell.home-page main [id] {
   scroll-margin-top: 0;
+}
+
+/* Gold is reserved for calls to action on the homepage. Decorative accents
+   that used it (labels and icons on the navy webinar and podcast panels, the
+   blog meta dot, the globe's tint) use the brand cyan instead. Star ratings
+   keep their conventional gold. */
+.site-shell.home-page .webinar-copy .webinar-eyebrow,
+.site-shell.home-page .podcast-copy .eyebrow,
+.site-shell.home-page .webinar-detail .icon-svg,
+.site-shell.home-page .webinar-note .icon-svg,
+.site-shell.home-page .podcast-highlights .icon-svg {
+  color: #8fd8f8;
+}
+
+.site-shell.home-page .blog-meta span::before {
+  background: var(--color-cyan);
+}
+
+.site-shell.home-page .opportunity-cobe-globe::after {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.02));
 }
 
 /* Learner video labels: the same quiet pill as the hero's city tags instead
