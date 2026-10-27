@@ -39,7 +39,41 @@ export default function SiteHeader(props) {
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, [menuOpen]);
-  const { active = "home" } = props;
+  // `links` lets the homepage variant pages point Home and the nav at each
+  // other ({ home, candidate, stories, about, blog, faq }).
+  const { active = "home", revealCta = false, links = {} } = props;
+
+  // With revealCta (the homepage variant), the header's Get Started stays
+  // tucked away on phones while the hero's own buttons are on screen, and
+  // comes in once they scroll under the header. CSS limits it to phones.
+  const [ctaTucked, setCtaTucked] = useState(revealCta);
+  useEffect(() => {
+    if (!revealCta) return undefined;
+    const actions = document.querySelector("#top .hero-actions");
+    if (!actions) {
+      setCtaTucked(false);
+      return undefined;
+    }
+    // A scroll check once per frame; WebKit's IntersectionObserver missed
+    // this case. Tucked while the hero buttons are below the header's edge.
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const headerBottom = headerRef.current?.getBoundingClientRect().bottom || 0;
+      setCtaTucked(actions.getBoundingClientRect().bottom > headerBottom);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [revealCta]);
   const navItems = [
     {
       href: "/#jobs",
@@ -67,11 +101,14 @@ export default function SiteHeader(props) {
       label: "FAQ",
       key: "faq",
     },
-  ];
+  ].map((item) => ({ ...item, href: links[item.key] || item.href }));
   return (
     <>
-      <header className="site-header" ref={headerRef}>
-        <a className="brand" href="/" aria-label="Skillcase home">
+      <header
+        className={revealCta && ctaTucked ? "site-header is-cta-tucked" : "site-header"}
+        ref={headerRef}
+      >
+        <a className="brand" href={links.home || "/"} aria-label="Skillcase home">
           <img
             alt="Skillcase"
             className="brand-logo"

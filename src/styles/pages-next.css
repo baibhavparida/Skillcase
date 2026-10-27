@@ -1,0 +1,510 @@
+/* About Us (/about-next) and the blog (/blog-next, /blog-next/<post>) in the
+   homepage variant's style. home-next.css carries the shared parts (type,
+   headings, buttons, photo tiles, the learners row, the closing band); these
+   rules cover what only these pages have. Flat fills except the navy tile. */
+
+/* ---- About: hero ------------------------------------------------------------- */
+
+.ax-hero {
+  padding-bottom: 24px;
+}
+
+.ax-hero .eyebrow {
+  margin-bottom: 8px;
+}
+
+.ph-hero.ax-hero h1 {
+  max-width: 16ch;
+}
+
+.ax-proof {
+  display: grid;
+  gap: 6px;
+  margin: 20px 0 0;
+  padding: 0;
+  color: #3b5268;
+  font-size: 13.5px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.ax-proof li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ax-proof .icon-svg {
+  color: var(--color-cyan);
+}
+
+.ax-hero-photo {
+  width: var(--ph-wrap);
+  margin: 28px auto 0;
+  overflow: hidden;
+  border-radius: 20px;
+  aspect-ratio: 3 / 2;
+  background: #dce8f1;
+}
+
+.ax-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 1000px) {
+  .ax-hero {
+    padding-bottom: 48px;
+  }
+
+  .ph-hero.ax-hero h1 {
+    font-size: clamp(2.8rem, 4vw, 3.8rem);
+  }
+
+  .ax-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+
+  .ax-hero-photo {
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 4 / 3.4;
+  }
+}
+
+/* ---- About: what we do ------------------------------------------------------------ */
+
+.ax-what-copy p {
+  max-width: 62ch;
+  margin: 0 0 14px;
+  color: #3b5268;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.ax-what-copy p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 1000px) {
+  .ax-what {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: 56px;
+  }
+
+  .ax-what .nx-heading {
+    margin-bottom: 0;
+  }
+
+  .ax-what-copy p {
+    font-size: 17px;
+  }
+}
+
+/* ---- About: values bento ------------------------------------------------------------ */
+
+.ax-value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ax-value {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 16px 14px;
+  border-radius: 18px;
+  background: #eaf6fd;
+}
+
+.ax-value:nth-child(1) {
+  background:
+    radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.3), transparent 60%),
+    linear-gradient(145deg, #063b70, #06294e 72%);
+  color: #ffffff;
+}
+
+.ax-value:nth-child(3) {
+  background: #f6f9fc;
+}
+
+.ax-value-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--color-navy);
+}
+
+.ax-value:nth-child(1) .ax-value-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: #8fdcff;
+}
+
+.ax-value h3 {
+  margin: 0;
+  color: var(--color-navy-deep);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.ax-value p {
+  margin: 4px 0 0;
+  color: #607083;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.ax-value:nth-child(1) h3 {
+  color: #ffffff;
+}
+
+.ax-value:nth-child(1) p {
+  color: rgba(239, 247, 255, 0.8);
+}
+
+@media (min-width: 900px) {
+  .ax-value-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .ax-value {
+    padding: 22px 20px;
+  }
+
+  .ax-value h3 {
+    font-size: 18px;
+  }
+
+  .ax-value p {
+    font-size: 14px;
+  }
+}
+
+/* ---- About: why we exist (photo tiles) -----------------------------------------------
+   Phones: the first wide, the other two side by side. Wide screens: the first
+   large on the left, the other two stacked on the right. */
+
+.ax-why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 190px;
+  gap: 10px;
+}
+
+.ax-why-tile:first-child {
+  grid-column: 1 / -1;
+  min-height: 210px;
+}
+
+/* Photo tiles carry no padding (the shared tile rule adds some on desktop). */
+.ax-why-grid .ax-why-tile {
+  padding: 0;
+}
+
+@media (min-width: 900px) {
+  .ax-why-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-rows: 220px 220px;
+    grid-auto-rows: auto;
+    gap: 14px;
+  }
+
+  .ax-why-tile:first-child {
+    grid-row: 1 / span 2;
+    grid-column: 1;
+    min-height: 0;
+  }
+}
+
+/* ---- Blog: header ------------------------------------------------------------------ */
+
+.bx-head {
+  padding-top: 28px;
+}
+
+.bx-head h1,
+.bx-article-intro h1 {
+  max-width: 20ch;
+  margin: 0;
+  color: var(--color-navy-deep);
+  font-size: clamp(30px, 8vw, 40px);
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+.bx-lede {
+  max-width: 60ch;
+  margin: 12px 0 0;
+  color: #3b5268;
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+@media (min-width: 1000px) {
+  .bx-head {
+    padding-top: 48px;
+  }
+
+  .bx-head h1 {
+    font-size: 3.2rem;
+  }
+
+  .bx-lede {
+    font-size: 17px;
+  }
+}
+
+/* ---- Blog: guide cards ---------------------------------------------------------------
+   No box around a card: the photo, then the words. The title's link covers
+   the card. Phones: the featured guide full width, the others as rows with
+   a small photo. Wide screens: the featured guide with its photo beside the
+   words, the others side by side. */
+
+.bx-list {
+  display: grid;
+  gap: 28px;
+}
+
+.bx-post {
+  position: relative;
+  display: grid;
+  gap: 14px;
+}
+
+.bx-post-media {
+  overflow: hidden;
+  border-radius: 18px;
+  aspect-ratio: 3 / 2;
+  background: #dce8f1;
+}
+
+.bx-post-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.bx-post:hover .bx-post-media img {
+  transform: scale(1.03);
+}
+
+.bx-post-kicker {
+  margin: 0 0 4px;
+  color: var(--color-cyan);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bx-post-title {
+  margin: 0;
+  color: var(--color-navy-deep);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.bx-post-title a {
+  color: inherit;
+}
+
+/* The whole card is the link. */
+.bx-post-title a::after {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  content: "";
+}
+
+.bx-post-title a:focus-visible {
+  outline: none;
+}
+
+.bx-post-title a:focus-visible::after {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 4px;
+}
+
+.bx-post:hover .bx-post-title a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.bx-post-excerpt {
+  display: -webkit-box;
+  margin: 6px 0 0;
+  overflow: hidden;
+  color: #607083;
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.bx-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  color: #6a7a8d;
+  font-size: 12.5px;
+}
+
+.bx-grid {
+  display: grid;
+  gap: 18px;
+}
+
+/* Phones: the other guides as compact rows. */
+@media (max-width: 899px) {
+  .bx-grid .bx-post {
+    grid-template-columns: 112px minmax(0, 1fr);
+    align-items: start;
+    gap: 14px;
+  }
+
+  .bx-grid .bx-post-media {
+    border-radius: 14px;
+    aspect-ratio: 1;
+  }
+
+  .bx-grid .bx-post-title {
+    font-size: 16px;
+  }
+
+  .bx-grid .bx-post-excerpt {
+    display: none;
+  }
+
+  .bx-grid .bx-post-meta {
+    margin-top: 6px;
+  }
+}
+
+@media (min-width: 900px) {
+  .bx-list {
+    gap: 48px;
+  }
+
+  .bx-post.is-featured {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: 40px;
+  }
+
+  .bx-post.is-featured .bx-post-title {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .bx-post.is-featured .bx-post-excerpt {
+    font-size: 16px;
+    -webkit-line-clamp: 4;
+  }
+
+  .bx-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .bx-post-title {
+    font-size: 21px;
+  }
+}
+
+/* ---- Blog: article ------------------------------------------------------------------- */
+
+.bx-article-head {
+  padding-top: 20px;
+}
+
+.bx-back {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  color: #3b5268;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.bx-back:hover {
+  color: var(--color-navy);
+}
+
+.bx-article-image {
+  margin-top: 22px;
+  overflow: hidden;
+  border-radius: 20px;
+  aspect-ratio: 3 / 2;
+  background: #dce8f1;
+}
+
+.bx-article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The live article layout (contents list and body), at the page's width. */
+.bx-article-layout {
+  width: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
+  margin: 8px auto 0;
+}
+
+/* No boxes: the article body sits on the page, and the contents list is a
+   light panel without an outline. */
+.bx-page .article-content {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.bx-page .article-aside {
+  border: 0;
+  border-radius: 16px;
+  background: #f6f9fc;
+  box-shadow: none;
+}
+
+@media (min-width: 1000px) {
+  .bx-article-head {
+    padding-top: 36px;
+  }
+
+  .bx-article-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+    gap: 48px;
+  }
+
+  .bx-article-intro h1 {
+    font-size: 2.8rem;
+  }
+
+  .bx-article-image {
+    margin-top: 0;
+  }
+}

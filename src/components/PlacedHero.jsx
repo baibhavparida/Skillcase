@@ -8,7 +8,7 @@ import { formatLakhRange, placements } from "../data/placements.js";
 // Copy matches the live hero word for word. Built phone-first: on a 390px
 // screen the headline, both buttons and the moving row share the first view.
 
-function HeroCard({ item, index, duplicate }) {
+export function HeroCard({ item, index, duplicate }) {
   const eager = !duplicate && index < 2;
   return (
     <li className="ph-card">

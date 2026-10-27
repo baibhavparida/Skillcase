@@ -51,6 +51,25 @@ const pages = {
     source: "src/pages/home-legacy.jsx",
     load: () => import("./pages/home-legacy.jsx"),
   },
+  // Homepage variant with Leap Finance- and Mobbin-inspired sections (noindex).
+  "/home-next": {
+    source: "src/pages/home-next.jsx",
+    load: () => import("./pages/home-next.jsx"),
+  },
+  // The Learner Stories page in the homepage variant's style (noindex).
+  "/start-now-next": {
+    source: "src/pages/start-now-next.jsx",
+    load: () => import("./pages/start-now-next.jsx"),
+  },
+  // About Us and the blog in the homepage variant's style (noindex).
+  "/about-next": {
+    source: "src/pages/about-next.jsx",
+    load: () => import("./pages/about-next.jsx"),
+  },
+  "/blog-next": {
+    source: "src/pages/blog-next.jsx",
+    load: () => import("./pages/blog-next.jsx"),
+  },
   // Broadened healthcare homepage options, previewed side by side (noindex).
   "/option-1": {
     source: "src/pages/option-1.jsx",
@@ -70,6 +89,14 @@ for (const post of blogPosts) {
   pages[`/blog/${post.slug}`] = {
     source: "src/pages/blog/[slug].jsx",
     load: () => import("./pages/blog/[slug].jsx"),
+    props: { post },
+  };
+}
+
+for (const post of blogPosts) {
+  pages[`/blog-next/${post.slug}`] = {
+    source: "src/pages/blog-next/[slug].jsx",
+    load: () => import("./pages/blog-next/[slug].jsx"),
     props: { post },
   };
 }

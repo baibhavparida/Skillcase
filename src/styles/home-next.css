@@ -1,0 +1,4076 @@
+/* Homepage variant (/home-next): sections redesigned after Leap Finance and
+   Mobbin references, in the Skillcase identity. Mobile-first. Flat fills
+   (#f6f9fc, #eaf6fd) except navy panels, which keep a gradient; gold is for
+   calls to action only. Every number on the page is visible without
+   JavaScript; motion only decorates and keeps running (slower where it
+   loops) with Reduce Motion, as on the live homepage. */
+
+/* ---- Typeface: Manrope (the variant pages only) ------------------------------
+   BaseLayout loads it (font="manrope"). Sizes across the site were set for
+   Poppins, so font-size-adjust matches Poppins' x-height (0.548) and text
+   reads at the same size; headings use Manrope's own tracking, since the
+   site's -0.03em was tuned for Poppins' wider letters. Icon fonts keep their
+   own sizing. */
+:root:has(.site-shell.home-next) {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-size-adjust: 0.548;
+}
+
+.site-shell.home-next :is(h1, h2) {
+  letter-spacing: -0.015em !important;
+}
+
+.site-shell.home-next :is(.icon-svg, .ph-bold, .ph-fill) {
+  font-size-adjust: none;
+}
+
+/* ---- Hero ------------------------------------------------------------------ */
+
+/* Phones: the live hero's layout with more room between the parts. */
+.nx-hero {
+  padding-top: 28px;
+}
+
+/* Webinar link as an eyebrow line: plain text, no box. The padding keeps a
+   44px tap target; the negative margin keeps the visible gap small. */
+.nx-hero-news {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: -12px 0 6px;
+  padding: 12px 0;
+  color: #3b5268;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.nx-hero-news-kicker {
+  padding-right: 10px;
+  border-right: 1px solid rgba(0, 40, 86, 0.18);
+  color: var(--color-cyan);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nx-hero-news-text {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 40, 86, 0.25);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 160ms ease;
+}
+
+.nx-hero-news .icon-svg {
+  margin-left: -6px;
+  color: #6a7b90;
+  transition: transform 160ms ease;
+}
+
+/* Very narrow phones: the line wraps, so stack it without the divider. */
+@media (max-width: 359px) {
+  .nx-hero-news-kicker {
+    width: 100%;
+    padding-right: 0;
+    border-right: 0;
+  }
+}
+
+.nx-hero-news:hover {
+  color: var(--color-navy);
+}
+
+.nx-hero-news:hover .nx-hero-news-text {
+  text-decoration-color: currentColor;
+}
+
+.nx-hero-news:hover .icon-svg {
+  transform: translateX(2px);
+}
+
+.nx-hero-lede {
+  max-width: 34ch;
+  margin: 14px 0 0;
+  color: #3b5268;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.ph-hero.nx-hero .hero-actions {
+  margin-top: 26px;
+}
+
+.nx-orbit {
+  display: none;
+}
+
+/* Phones and tablets: the wheel. Only its top arc shows, under the
+   buttons. --R is the radius; card size and caption scale with it. Each card
+   sits at its angle (--a) on the ring and is tilted along it. */
+.nx-wheel {
+  /* Big cards set close together: at this ratio neighbours just meet at
+     their inner corners, like a fanned deck. */
+  --R: clamp(250px, 84vw, 420px);
+  --cw: calc(var(--R) * 0.37);
+  --ch: calc(var(--R) * 0.4933);
+  --top: 26px;
+  position: relative;
+  /* Just tall enough for the top card and its caption beneath it. */
+  height: calc(var(--top) + var(--ch) * 1.06 + 84px);
+  /* Breathing room between the buttons and the cards. */
+  margin-top: 30px;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+/* The cards fade out towards the bottom; the caption doesn't. */
+.nx-wheel-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+}
+
+.nx-wheel-ring {
+  position: absolute;
+  top: calc(var(--top) + var(--ch) / 2);
+  left: 50%;
+  width: calc(var(--R) * 2);
+  height: calc(var(--R) * 2);
+  margin-left: calc(var(--R) * -1);
+  will-change: transform;
+}
+
+.nx-wheel-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--cw);
+  height: var(--ch);
+  margin: calc(var(--ch) / -2) 0 0 calc(var(--cw) / -2);
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: calc(var(--R) * 0.05);
+  background: #d9e4ee;
+  box-shadow: 0 10px 24px rgba(0, 40, 86, 0.16);
+  cursor: pointer;
+  transform: rotate(var(--a)) translateY(calc(var(--R) * -1));
+  transition:
+    transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 450ms ease;
+}
+
+.nx-wheel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  pointer-events: none;
+}
+
+/* City on each card: the same quiet pill as the live hero cards. */
+.nx-wheel-card {
+  text-align: left;
+}
+
+.nx-wheel-city {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  display: inline-flex;
+  max-width: calc(100% - 14px);
+  min-height: 20px;
+  align-items: center;
+  gap: 3px;
+  overflow: hidden;
+  padding: 0 7px 0 5px;
+  border-radius: 999px;
+  background: rgba(0, 18, 40, 0.48);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.nx-wheel-city .icon-svg {
+  flex: none;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* The card at the top: a little larger, lifted, with a cyan edge. */
+.nx-wheel-card.is-active {
+  z-index: 1;
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 0 0 5px var(--color-cyan),
+    0 16px 32px rgba(0, 40, 86, 0.24);
+  transform: rotate(var(--a)) translateY(calc(var(--R) * -1)) scale(1.12);
+}
+
+/* Role, city and pay of the top card, in the open space under it. */
+.nx-wheel-caption {
+  position: absolute;
+  z-index: 1;
+  /* Just under the (slightly enlarged) top card, with a little air. */
+  top: calc(var(--top) + var(--ch) * 1.06 + 20px);
+  left: 50%;
+  width: calc(var(--R) * 0.8);
+  margin: 0 0 0 calc(var(--R) * -0.4);
+  text-align: center;
+  pointer-events: none;
+}
+
+.nx-wheel-caption > span {
+  display: grid;
+  justify-items: center;
+  gap: 1px;
+  animation: nxCaptionIn 420ms ease both;
+}
+
+.nx-wheel-caption small {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #607083;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nx-wheel-caption small .icon-svg {
+  color: var(--color-cyan);
+}
+
+.nx-wheel-caption strong {
+  color: var(--color-ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.nx-wheel-caption b {
+  color: var(--color-navy);
+  font-size: clamp(17px, 5vw, 20px);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nx-wheel-caption em {
+  margin-left: 2px;
+  color: #607083;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+@keyframes nxCaptionIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-wheel-card {
+    transition: box-shadow 450ms ease;
+  }
+
+  .nx-wheel-caption > span {
+    animation-duration: 600ms;
+  }
+}
+
+@media (max-width: 359px) {
+  .ph-hero.nx-hero .hero-actions {
+    gap: 8px;
+  }
+
+  .ph-hero.nx-hero .hero-actions .btn {
+    gap: 5px;
+    padding: 0 8px;
+    white-space: nowrap;
+  }
+}
+
+/* Phones: the header's Get Started waits until the hero's buttons have
+   scrolled under the header (SiteHeader revealCta), then slides in. */
+@media (max-width: 900px) {
+  .home-next .site-header.is-cta-tucked .nav-cta {
+    display: none;
+  }
+
+  .home-next .site-header:not(.is-cta-tucked) .nav-cta {
+    animation: nxCtaIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+@keyframes nxCtaIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.96);
+  }
+}
+
+@media (min-width: 761px) {
+  .nx-hero-news {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  .nx-hero-news-kicker {
+    font-size: 12px;
+  }
+
+  .nx-hero-lede {
+    margin-top: 18px;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+}
+
+/* Desktop: copy on the left, the orbit on the right (after Framer's orbit
+   of faces and Lovart's single featured card). */
+@media (min-width: 1000px) {
+  .nx-hero {
+    padding: 24px 0 40px;
+  }
+
+  .nx-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: 56px;
+    width: var(--ph-wrap);
+    margin-inline: auto;
+  }
+
+  .nx-hero .ph-copy {
+    width: auto;
+    margin: 0;
+  }
+
+  .ph-hero.nx-hero h1 {
+    max-width: 11ch;
+    font-size: clamp(3.2rem, 4.8vw, 4.5rem);
+  }
+
+  .nx-hero-lede {
+    max-width: 30ch;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .ph-hero.nx-hero .hero-actions {
+    margin-top: 30px;
+  }
+
+  .nx-wheel {
+    display: none;
+  }
+
+  .nx-hero-copy {
+    padding-block: 24px;
+  }
+
+  /* A square stage: the featured card in the middle, two faint rings of
+     faces around it. Sizes are % of the stage so it scales with the column. */
+  .nx-orbit {
+    position: relative;
+    display: block;
+    width: min(100%, 560px);
+    margin: 0 auto;
+    aspect-ratio: 1;
+    --nx-face: 9.2%;
+  }
+
+  .nx-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px dashed rgba(0, 40, 86, 0.16);
+    border-radius: 50%;
+    -webkit-animation: nxSpin var(--nx-spin) linear infinite;
+    animation: nxSpin var(--nx-spin) linear infinite;
+    will-change: transform;
+  }
+
+  /* In front of the card, so a selected face is never hidden behind it. */
+  .nx-ring-inner {
+    z-index: 3;
+    --nx-spin: 150s;
+    width: 66%;
+    height: 66%;
+    margin: -33% 0 0 -33%;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+  }
+
+  .nx-ring-outer {
+    --nx-spin: 210s;
+    width: 92%;
+    height: 92%;
+    margin: -46% 0 0 -46%;
+  }
+
+  /* Each face sits on its ring at an angle (--x, --y = cos, sin) and
+     counter-rotates so it always stays upright. */
+  .nx-face {
+    position: absolute;
+    top: calc(50% + var(--y) * 50%);
+    left: calc(50% + var(--x) * 50%);
+    width: calc(var(--nx-face) / var(--nx-ring-size));
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+  }
+
+  .nx-ring-inner .nx-face {
+    --nx-ring-size: 0.66;
+  }
+
+  .nx-ring-outer .nx-face {
+    --nx-ring-size: 0.92;
+  }
+
+  .nx-face-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    background: #d9e4ee;
+    box-shadow: 0 6px 16px rgba(0, 40, 86, 0.16);
+    -webkit-animation: nxSpin var(--nx-spin) linear infinite;
+    animation: nxSpin var(--nx-spin) linear infinite;
+    transition:
+      border-color 250ms ease,
+      box-shadow 250ms ease;
+  }
+
+  .nx-ring-outer .nx-face-inner {
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+  }
+
+  .nx-ring-inner .nx-face-inner {
+    -webkit-animation-direction: normal;
+    animation-direction: normal;
+  }
+
+  .nx-face-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    transition: transform 250ms ease;
+  }
+
+  .nx-face:hover .nx-face-inner img {
+    transform: scale(1.08);
+  }
+
+  /* Selection: the chosen face grows with a cyan edge and a countdown ring;
+     the rest step back a little. Scale sits on the button, because the
+     inner circle's transform is its counter-rotation. */
+  .nx-face {
+    transition:
+      transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      opacity 450ms ease;
+  }
+
+  .nx-face:not(.is-active) {
+    opacity: 0.62;
+  }
+
+  .nx-face:not(.is-active):hover {
+    opacity: 1;
+  }
+
+  .nx-face.is-active {
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+
+  .nx-face.is-active .nx-face-inner {
+    border-color: var(--color-cyan);
+    box-shadow: 0 10px 24px rgba(0, 40, 86, 0.25);
+  }
+
+  .nx-face-timer {
+    position: absolute;
+    inset: -7px;
+    width: calc(100% + 14px);
+    height: calc(100% + 14px);
+    overflow: visible;
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+
+  .nx-face-timer circle {
+    fill: none;
+    stroke: var(--color-cyan);
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    stroke-linecap: round;
+    stroke-width: 3;
+    animation: nxTimer var(--nx-select, 3600ms) linear forwards;
+  }
+
+  .nx-orbit.is-hovering .nx-face-timer {
+    display: none;
+  }
+
+  /* Pause the rings while the pointer is on the orbit, so faces are easy to
+     reach. */
+  .nx-orbit:hover .nx-ring,
+  .nx-orbit:hover .nx-face-inner {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+
+  .nx-orbit-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 34%;
+    aspect-ratio: 3 / 4;
+    transform: translate(-50%, -50%);
+  }
+
+  .nx-orbit-slide.ph-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    border-radius: 18px;
+    box-shadow:
+      0 2px 4px rgba(0, 40, 86, 0.06),
+      0 24px 48px rgba(0, 40, 86, 0.2);
+    opacity: 0;
+    transform: scale(1.04);
+    transition:
+      opacity 600ms ease,
+      transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nx-orbit-slide.is-active {
+    z-index: 1;
+    opacity: 1;
+    transform: none;
+  }
+
+  .nx-orbit-slide .ph-city {
+    top: 12px;
+    left: 12px;
+    min-height: 24px;
+    font-size: 12px;
+  }
+
+  .nx-orbit-slide .ph-info {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+  }
+
+  .nx-orbit-slide .ph-role {
+    font-size: 16px;
+  }
+
+  .nx-orbit-slide .ph-pay strong {
+    font-size: 21px;
+  }
+
+  .nx-orbit-slide .ph-pay span {
+    font-size: 12px;
+  }
+}
+
+@keyframes nxTimer {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nxSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes nxSpin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+/* As elsewhere on the site, Reduce Motion slows the rings, never stops them. */
+@media (prefers-reduced-motion: reduce) and (min-width: 1000px) {
+  .nx-ring-inner {
+    --nx-spin: 240s;
+  }
+
+  .nx-ring-outer {
+    --nx-spin: 340s;
+  }
+
+  .nx-orbit-slide.ph-card {
+    transition: opacity 600ms ease;
+  }
+}
+
+/* ---- Headings ------------------------------------------- */
+
+.nx-heading {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.nx-heading-center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.nx-heading h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(26px, 7.2vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.nx-heading-intro {
+  margin: 12px 0 0;
+  color: #607083;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ---- Why Germany: a compact bento of figures and photos ------------------------
+   Phones (2 columns): family wide; pay + demand; school + home.
+   Desktop (4 columns): family family pay demand / school school home home. */
+
+.nx-whyde .nx-heading {
+  margin-bottom: 18px;
+}
+
+.nx-bento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "family family"
+    "pay demand"
+    "school home";
+  gap: 10px;
+}
+
+.nx-tile {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 16px 14px;
+  border-radius: 18px;
+}
+
+.nx-tile-family {
+  grid-area: family;
+  min-height: 210px;
+}
+
+.nx-tile-pay {
+  grid-area: pay;
+}
+
+.nx-tile-demand {
+  grid-area: demand;
+}
+
+.nx-tile-school {
+  grid-area: school;
+  min-height: 190px;
+}
+
+.nx-tile-home {
+  grid-area: home;
+  min-height: 190px;
+}
+
+/* Photo tiles: photo fills the tile, caption on a bottom shade. */
+.nx-tile-photo {
+  justify-content: flex-end;
+  padding: 0;
+  background: #d9e4ee;
+  color: #ffffff;
+}
+
+.nx-tile-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.nx-tile-photo::after {
+  position: absolute;
+  inset: 30% 0 0;
+  background: linear-gradient(180deg, rgba(0, 18, 40, 0) 0%, rgba(0, 18, 40, 0.66) 48%, rgba(0, 18, 40, 0.92) 100%);
+  content: "";
+}
+
+.nx-tile-caption {
+  position: relative;
+  z-index: 1;
+  padding: 12px 14px 14px;
+}
+
+.nx-tile-caption h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.nx-tile-photo .nx-tile-caption p {
+  margin: 3px 0 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+/* Figure tiles. */
+.nx-tile-label {
+  color: #607083;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nx-tile-figure {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-navy-deep);
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+}
+
+.nx-tile p {
+  margin: 6px 0 0;
+  color: #607083;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.nx-tile-sky {
+  background: #eaf6fd;
+}
+
+.nx-tile-navy {
+  background:
+    radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.3), transparent 60%),
+    linear-gradient(145deg, #063b70, #06294e 72%);
+  color: #ffffff;
+}
+
+.nx-tile-navy .nx-tile-label {
+  color: #8fdcff;
+}
+
+.nx-tile-navy .nx-tile-figure {
+  color: #ffffff;
+}
+
+.nx-tile-navy p {
+  color: rgba(239, 247, 255, 0.8);
+}
+
+.nx-tile-pay a {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 6px;
+  color: #8fdcff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Narrow phones: smaller figures so the pay range fits its half tile. */
+@media (max-width: 374px) {
+  .nx-tile {
+    padding: 14px 12px;
+  }
+
+  .nx-tile-figure {
+    font-size: 23px;
+  }
+}
+
+@media (min-width: 600px) {
+  .nx-tile-figure {
+    font-size: 34px;
+  }
+
+  .nx-tile-family {
+    min-height: 260px;
+  }
+}
+
+@media (min-width: 900px) {
+  .nx-bento {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 220px 220px;
+    grid-template-areas:
+      "family family pay demand"
+      "school school home home";
+    gap: 14px;
+  }
+
+  .nx-tile {
+    padding: 22px 20px;
+  }
+
+  .nx-tile-family,
+  .nx-tile-school,
+  .nx-tile-home {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .nx-tile-caption {
+    padding: 16px 18px 18px;
+  }
+
+  .nx-tile-caption h3 {
+    font-size: 18px;
+  }
+}
+
+/* ---- How it works: scroll story -------------------------------------------- */
+
+.nx-steps {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 46px;
+  list-style: none;
+}
+
+/* The rail and its fill, which follows your scroll. */
+.nx-steps::before,
+.nx-steps::after {
+  position: absolute;
+  top: 16px;
+  bottom: 24px;
+  left: 15px;
+  width: 2px;
+  border-radius: 2px;
+  content: "";
+}
+
+.nx-steps::before {
+  background: rgba(0, 40, 86, 0.12);
+}
+
+.nx-steps::after {
+  background: var(--color-navy);
+  transform: scaleY(var(--nx-progress, 0));
+  transform-origin: top;
+}
+
+.nx-step {
+  position: relative;
+  padding-bottom: 32px;
+}
+
+.nx-step:last-child {
+  padding-bottom: 0;
+}
+
+.nx-step-dot {
+  position: absolute;
+  top: 0;
+  left: -46px;
+  z-index: 1;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 2px solid rgba(0, 40, 86, 0.16);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #6a7b90;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    color 250ms ease;
+}
+
+.nx-step.is-reached .nx-step-dot {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.nx-step.is-active .nx-step-dot {
+  box-shadow: 0 0 0 6px rgba(5, 163, 229, 0.18);
+}
+
+.nx-step-count {
+  margin: 4px 0 2px;
+  color: var(--color-cyan);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nx-step h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.nx-step-text > p:last-child {
+  margin: 4px 0 0;
+  color: #607083;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* The scene sits straight on the page; its UI card is the only box. */
+.nx-step-visual {
+  display: grid;
+  margin-top: 16px;
+  padding: 2px 0 10px;
+  place-items: center;
+}
+
+.nx-stage {
+  display: none;
+}
+
+/* ---- How it works: animated scenes (StepScenes.jsx) ----------------------------
+   Finished state by default (no JavaScript, search engines). Once armed, a
+   scene waits at its first frame; .is-play runs it. --sm stretches every
+   timing; Reduce Motion makes it slower rather than still. */
+
+.sc {
+  --sm: 1;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 290px;
+  margin-inline: auto;
+  color: var(--color-ink);
+  font-size: 12px;
+  line-height: 1.3;
+  text-align: left;
+}
+
+.sc.is-armed:not(.is-play) * {
+  animation-play-state: paused !important;
+}
+
+.sc-card {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(0, 40, 86, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0, 40, 86, 0.04),
+    0 14px 32px rgba(0, 40, 86, 0.12);
+}
+
+/* A second sheet peeking out underneath, for depth. */
+.sc-card::before {
+  position: absolute;
+  right: 14px;
+  bottom: -7px;
+  left: 14px;
+  z-index: -1;
+  height: 24px;
+  border-radius: 0 0 14px 14px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 6px 14px rgba(0, 40, 86, 0.08);
+  content: "";
+}
+
+.sc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sc-between {
+  justify-content: space-between;
+}
+
+.sc-head > strong {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.sc-avatar,
+.sc-notif-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf6fd;
+  color: var(--color-navy);
+}
+
+.sc-title {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.sc-title strong {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.sc-title small {
+  color: #6a7a8d;
+  font-size: 11px;
+}
+
+.sc-label {
+  margin: 2px 0 -3px;
+  color: #6a7a8d;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@keyframes scIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+}
+
+@keyframes scDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+  }
+}
+
+@keyframes scPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  70% {
+    transform: scale(1.12);
+  }
+}
+
+/* 1. Profile: chips, a pointer tap, an advisor match. */
+.sc-chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sc-chip {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 4px;
+  padding: 0 11px;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #4b6075;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.sc-pick {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.sc-pick .icon-svg {
+  color: #8fdcff;
+}
+
+.sc-pointer {
+  position: absolute;
+  top: 14px;
+  left: 26px;
+  z-index: 2;
+  color: var(--color-navy-deep);
+  filter: drop-shadow(0 2px 3px rgba(0, 18, 40, 0.3));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sc-toast {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -6px 12px 0;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--color-navy);
+  box-shadow: 0 12px 26px rgba(0, 40, 86, 0.28);
+  color: #ffffff;
+}
+
+.sc-toast strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.sc-toast small {
+  color: #8fdcff;
+  font-size: 11px;
+}
+
+.sc-toast-icon {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #8fdcff;
+}
+
+.sc-profile.is-armed .sc-chip {
+  animation: scIn calc(0.35s * var(--sm)) ease both;
+}
+
+.sc-profile.is-armed .sc-chip:nth-child(2) {
+  animation-delay: calc(0.08s * var(--sm));
+}
+
+.sc-profile.is-armed .sc-chip:nth-child(3) {
+  animation-delay: calc(0.16s * var(--sm));
+}
+
+.sc-profile.is-armed .sc-chip:nth-child(4) {
+  animation-delay: calc(0.24s * var(--sm));
+}
+
+.sc-profile.is-armed .sc-pick {
+  animation:
+    scIn calc(0.35s * var(--sm)) ease both,
+    scPickOn calc(0.25s * var(--sm)) ease calc(1.25s * var(--sm)) both;
+}
+
+.sc-profile.is-armed .sc-pick .icon-svg {
+  animation: scPop calc(0.3s * var(--sm)) ease calc(1.3s * var(--sm)) both;
+}
+
+.sc-profile.is-armed .sc-pointer {
+  animation: scTap calc(1.6s * var(--sm)) cubic-bezier(0.3, 0.7, 0.3, 1) calc(0.35s * var(--sm)) both;
+}
+
+.sc-profile.is-armed .sc-toast {
+  animation: scIn calc(0.45s * var(--sm)) cubic-bezier(0.2, 0.8, 0.2, 1) calc(1.75s * var(--sm)) both;
+}
+
+@keyframes scPickOn {
+  from {
+    border-color: rgba(0, 40, 86, 0.14);
+    background: #ffffff;
+    color: #4b6075;
+  }
+}
+
+@keyframes scTap {
+  0% {
+    opacity: 0;
+    transform: translate(150px, 70px);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  55% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  62% {
+    transform: translate(0, 0) scale(0.82);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(10px, 14px);
+  }
+}
+
+/* 2. German: the level bar fills, levels light up, a flashcard flips. */
+.sc-tag {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: #eaf6fd;
+  color: #0a6a9e;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.sc-track {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e8eef5;
+}
+
+.sc-track i {
+  display: block;
+  width: 62.5%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--color-navy);
+}
+
+.sc-levels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin: -2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sc-levels li {
+  display: grid;
+  height: 26px;
+  place-items: center;
+  border-radius: 8px;
+  background: #eef3f8;
+  color: #8193a6;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sc-levels li:nth-child(-n + 2) {
+  background: rgba(5, 163, 229, 0.14);
+  color: var(--color-navy);
+}
+
+.sc-levels li.is-now {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.sc-flash {
+  height: 62px;
+  perspective: 700px;
+}
+
+.sc-flash-inner {
+  position: relative;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.sc-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 2px;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: center;
+}
+
+.sc-face small {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-face strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sc-front {
+  background: #eaf6fd;
+  color: var(--color-navy);
+}
+
+.sc-front small {
+  color: #0a6a9e;
+}
+
+.sc-back {
+  background: var(--color-navy);
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+.sc-back small {
+  color: #8fdcff;
+}
+
+.sc-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b6075;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.sc-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #e5484d;
+}
+
+.sc-german.is-armed .sc-track i {
+  animation: scFill calc(1.2s * var(--sm)) cubic-bezier(0.3, 0.7, 0.3, 1) calc(0.2s * var(--sm)) both;
+}
+
+.sc-german.is-armed .sc-levels li:nth-child(1) {
+  animation: scLevelDone calc(0.25s * var(--sm)) ease calc(0.45s * var(--sm)) both;
+}
+
+.sc-german.is-armed .sc-levels li:nth-child(2) {
+  animation: scLevelDone calc(0.25s * var(--sm)) ease calc(0.85s * var(--sm)) both;
+}
+
+.sc-german.is-armed .sc-levels li.is-now {
+  animation: scLevelNow calc(0.3s * var(--sm)) ease calc(1.25s * var(--sm)) both;
+}
+
+.sc-german.is-armed .sc-flash-inner {
+  animation: scFlip calc(6s * var(--sm)) cubic-bezier(0.4, 0, 0.2, 1) calc(1.6s * var(--sm)) infinite;
+}
+
+.sc-german.is-armed .sc-dot {
+  animation: snLivePulse calc(1.6s * var(--sm)) ease-in-out infinite;
+}
+
+@keyframes scFill {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes scLevelDone {
+  from {
+    background: #eef3f8;
+    color: #8193a6;
+  }
+}
+
+@keyframes scLevelNow {
+  0% {
+    background: #eef3f8;
+    color: #8193a6;
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes scFlip {
+  0%,
+  30% {
+    transform: rotateY(0);
+  }
+
+  42%,
+  75% {
+    transform: rotateY(180deg);
+  }
+
+  87%,
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+/* 3. Offer: ticks, a notification drops in, the pay pops in. */
+.sc-notif {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 10px -14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 40, 86, 0.06);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 14px 30px rgba(0, 40, 86, 0.16);
+}
+
+.sc-notif em {
+  margin-left: auto;
+  align-self: flex-start;
+  color: #8193a6;
+  font-size: 10px;
+  font-style: normal;
+}
+
+.sc-offer .sc-card {
+  padding-top: 26px;
+}
+
+.sc-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-ink);
+  font-size: 12.5px;
+}
+
+.sc-tick {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  color: #ffffff;
+}
+
+.sc-offer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 40, 86, 0.08);
+}
+
+.sc-offer-row small {
+  display: block;
+  color: #6a7a8d;
+  font-size: 11px;
+}
+
+.sc-pay {
+  display: inline-block;
+  color: var(--color-navy);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.sc-pay em {
+  margin-left: 2px;
+  color: #6a7a8d;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.sc-accept {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--color-navy);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sc-offer.is-armed .sc-row {
+  animation: scRowIn calc(0.3s * var(--sm)) ease calc(0.25s * var(--sm)) both;
+}
+
+.sc-offer.is-armed .sc-row:nth-child(2) {
+  animation-delay: calc(0.6s * var(--sm));
+}
+
+.sc-offer.is-armed .sc-row .sc-tick {
+  animation: scPop calc(0.3s * var(--sm)) ease calc(0.35s * var(--sm)) both;
+}
+
+.sc-offer.is-armed .sc-row:nth-child(2) .sc-tick {
+  animation-delay: calc(0.7s * var(--sm));
+}
+
+.sc-offer.is-armed .sc-notif {
+  animation: scDrop calc(0.5s * var(--sm)) cubic-bezier(0.2, 0.8, 0.2, 1) calc(1s * var(--sm)) both;
+}
+
+.sc-offer.is-armed .sc-pay {
+  animation: scPop calc(0.45s * var(--sm)) ease calc(1.45s * var(--sm)) both;
+}
+
+.sc-offer.is-armed .sc-accept {
+  animation: scPulse calc(2.2s * var(--sm)) ease-out calc(2s * var(--sm)) infinite;
+}
+
+@keyframes scRowIn {
+  from {
+    opacity: 0.3;
+  }
+}
+
+@keyframes scPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(5, 163, 229, 0.5);
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 9px rgba(5, 163, 229, 0);
+  }
+}
+
+/* 4. Move: the plane flies along the arc; checks tick off. */
+.sc-pass-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6a7a8d;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sc-status {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #eaf6fd;
+  color: #0a6a9e;
+  letter-spacing: 0.04em;
+}
+
+.sc-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.sc-city {
+  display: grid;
+  gap: 1px;
+}
+
+.sc-city strong {
+  color: var(--color-navy-deep);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.sc-city small {
+  color: #6a7a8d;
+  font-size: 10px;
+}
+
+.sc-end {
+  text-align: right;
+}
+
+/* Fixed size, so the plane's path in px matches the drawn arc. */
+.sc-arc {
+  position: relative;
+  width: 120px;
+  height: 44px;
+  flex: none;
+}
+
+.sc-arc svg {
+  width: 120px;
+  height: 44px;
+  overflow: visible;
+}
+
+.sc-arc path {
+  fill: none;
+  stroke: rgba(0, 40, 86, 0.3);
+  stroke-dasharray: 3 4;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+}
+
+.sc-plane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  color: var(--color-cyan);
+  offset-path: path("M6 38 Q60 -4 114 38");
+  offset-distance: 50%;
+  offset-rotate: auto 90deg;
+}
+
+.sc-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(0, 40, 86, 0.18);
+}
+
+.sc-checks span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #eaf6fd;
+  color: #0a6a9e;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.sc-checks .icon-svg {
+  color: var(--color-cyan);
+}
+
+/* Narrow phones: scale the arc (plane and all) so the pass fits its column;
+   the negative margins give back the space the scaling frees. */
+@media (max-width: 359px) {
+  .sc-arc {
+    margin-inline: -11px;
+    transform: scale(0.82);
+  }
+}
+
+.sc-move.is-armed .sc-plane {
+  animation: scFly calc(3.4s * var(--sm)) cubic-bezier(0.45, 0, 0.3, 1) calc(0.2s * var(--sm)) infinite;
+}
+
+.sc-move.is-armed .sc-checks span {
+  animation: scIn calc(0.35s * var(--sm)) ease calc(1.5s * var(--sm)) both;
+}
+
+.sc-move.is-armed .sc-checks span:nth-child(2) {
+  animation-delay: calc(1.8s * var(--sm));
+}
+
+.sc-move.is-armed .sc-checks span:nth-child(3) {
+  animation-delay: calc(2.1s * var(--sm));
+}
+
+@keyframes scFly {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  80% {
+    offset-distance: 100%;
+    opacity: 1;
+  }
+
+  92%,
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/* Browsers without motion paths: the plane sits mid-arc, pointing right. */
+@supports not (offset-path: path("M0 0")) {
+  .sc-plane {
+    top: 2px;
+    left: 51px;
+    transform: rotate(90deg);
+  }
+
+  .sc-move.is-armed .sc-plane {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sc {
+    --sm: 1.7;
+  }
+}
+
+/* Steps can be tapped (phones: replay the scene; desktop: jump to it). */
+.nx-step {
+  cursor: pointer;
+}
+
+/* One call to action after the steps. */
+.nx-journey-cta {
+  display: flex;
+  margin-top: 28px;
+}
+
+.nx-journey-cta .btn {
+  gap: 7px;
+}
+
+@media (max-width: 760px) {
+  .site-shell.home-next .nx-journey-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Phones and tablets: an open timeline with no boxes around the steps. The
+   rail runs from each dot down to the next (it stops at the last step) and
+   fills as each step is passed. */
+@media (max-width: 999px) {
+  .nx-steps::before,
+  .nx-steps::after {
+    display: none;
+  }
+
+  .nx-step:not(:last-child)::before,
+  .nx-step:not(:last-child)::after {
+    position: absolute;
+    top: 38px;
+    bottom: 6px;
+    left: -31px;
+    width: 2px;
+    border-radius: 2px;
+    content: "";
+  }
+
+  .nx-step:not(:last-child)::before {
+    background: rgba(0, 40, 86, 0.12);
+  }
+
+  .nx-step:not(:last-child)::after {
+    background: var(--color-navy);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 600ms ease;
+  }
+
+  .nx-step.is-reached:not(.is-active)::after {
+    transform: scaleY(1);
+  }
+}
+
+/* ---- Pay calculator --------------------------------------------------------
+   Phone-first: role and salary first, the result right below them, then the
+   call to action. On desktop the column beside the calculator also lists what
+   comes with the pay. */
+
+.nx-pay-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  padding: 26px 12px 12px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.3), transparent 55%),
+    linear-gradient(145deg, #063b70, #06294e 72%);
+  color: #ffffff;
+}
+
+.nx-pay-copy {
+  padding-inline: 8px;
+}
+
+.nx-pay .nx-heading {
+  margin-bottom: 0;
+}
+
+/* Desktop only: what comes with the pay, and a way to ask. */
+.nx-pay-perks-title,
+.nx-pay-perks,
+.nx-pay-call {
+  display: none;
+}
+
+@media (min-width: 1000px) {
+  .nx-pay-perks-title {
+    display: block;
+    margin: 30px 0 14px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    color: #8fdcff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .nx-pay-perks {
+    display: grid;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nx-pay-perks li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    color: rgba(239, 247, 255, 0.72);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .nx-pay-perks strong {
+    display: block;
+    margin-bottom: 1px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .nx-pay-perk-icon {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #8fdcff;
+  }
+
+  .nx-pay-call {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .nx-pay-call .icon-svg {
+    color: #8fdcff;
+  }
+
+  .nx-pay-call:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.nx-pay .eyebrow {
+  color: #8fdcff;
+}
+
+.nx-pay .nx-heading h2 {
+  color: #ffffff;
+}
+
+.nx-pay .nx-heading-intro {
+  margin-top: 8px;
+  color: rgba(239, 247, 255, 0.78);
+}
+
+.nx-calc {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  padding: 12px 12px 14px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(0, 18, 39, 0.24);
+  color: var(--color-ink);
+}
+
+.nx-calc-label {
+  display: block;
+  margin: 0 0 10px;
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Result */
+.nx-calc-result {
+  padding: 14px 14px 12px;
+  border-radius: 14px;
+  background: #f2f6fa;
+}
+
+.nx-calc-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.nx-calc-result .nx-calc-label {
+  margin: 2px 0 0;
+  color: #607083;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nx-calc-times {
+  display: grid;
+  flex: none;
+  justify-items: center;
+  padding: 6px 10px 5px;
+  border-radius: 10px;
+  background: var(--color-navy);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.nx-calc-times small {
+  color: #8fdcff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.nx-calc-total {
+  margin: 4px 0 0;
+  color: var(--color-navy-deep);
+  font-size: 34px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.nx-calc-total span {
+  margin-left: 3px;
+  color: #607083;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.nx-calc-sub {
+  margin: 4px 0 0;
+  color: #607083;
+  font-size: 13px;
+}
+
+.nx-calc-sub span {
+  white-space: nowrap;
+}
+
+.nx-bars {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0, 40, 86, 0.08);
+}
+
+.nx-bar {
+  display: grid;
+  gap: 5px;
+}
+
+.nx-bar span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #4b6075;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.nx-bar b {
+  color: var(--color-navy);
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+}
+
+.nx-bar i {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-navy);
+  transition: width 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Solid up to the low end of the range, lighter up to the high end. */
+.nx-bar-de i {
+  background: linear-gradient(90deg, var(--color-cyan) var(--nx-low), rgba(5, 163, 229, 0.35) var(--nx-low));
+}
+
+/* Roles: one swipeable row on phones, wrapped from tablet up. */
+.nx-calc-roles {
+  display: flex;
+  gap: 6px;
+  margin: 0 -12px;
+  padding: 2px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, #000 88%, transparent);
+}
+
+.nx-calc-roles::-webkit-scrollbar {
+  display: none;
+}
+
+.nx-calc-roles button,
+.nx-picks button {
+  flex: none;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--color-navy);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.nx-calc-roles button:hover,
+.nx-picks button:hover {
+  border-color: rgba(5, 163, 229, 0.6);
+}
+
+.nx-calc-roles button.is-on,
+.nx-picks button.is-on {
+  border-color: var(--color-navy);
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+/* Salary: − value + (Wealthsimple), slider, quick picks (Stake). */
+.nx-stepper {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+}
+
+.nx-stepper button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--color-navy);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.nx-stepper button:hover {
+  border-color: rgba(5, 163, 229, 0.6);
+}
+
+.nx-stepper button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.nx-calc-now {
+  color: var(--color-navy-deep);
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+.nx-calc-slider {
+  width: 100%;
+  height: 36px;
+  margin: 4px 0 2px;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.nx-calc-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-navy) var(--nx-fill), #e3ebf3 var(--nx-fill));
+}
+
+.nx-calc-slider::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+  margin-top: -11px;
+  border: 3px solid var(--color-navy);
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 40, 86, 0.25);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.nx-calc-slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: #e3ebf3;
+}
+
+.nx-calc-slider::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-navy);
+}
+
+.nx-calc-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--color-navy);
+  border-radius: 50%;
+  background: #ffffff;
+}
+
+.nx-calc-slider:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.nx-picks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.nx-picks button {
+  padding: 0 6px;
+}
+
+.start-now-page .nx-calc-cta,
+.nx-calc-cta {
+  width: 100%;
+  gap: 7px;
+}
+
+@media (min-width: 761px) {
+  .nx-calc-roles {
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .nx-calc {
+    padding: 16px 18px 20px;
+  }
+}
+
+/* ---- Meet our learners: a slow full-width row of real learners -----------------
+   The heading keeps the page's width; the row runs edge to edge. The row is
+   two copies of the list, moved left by one copy's width (plus one gap) per
+   loop. Padding below keeps the cards' shadows from being cut off. */
+
+.site-shell.home-next .section.nx-learners {
+  width: 100%;
+}
+
+.nx-learners-head {
+  width: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
+  margin-inline: auto;
+}
+
+.nx-learners .nx-heading {
+  margin-bottom: 4px;
+}
+
+.nx-lm-window {
+  overflow: hidden;
+  padding: 12px 0 26px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+}
+
+.nx-lm-track {
+  --nx-lm-gap: 12px;
+  display: flex;
+  width: max-content;
+  gap: var(--nx-lm-gap);
+  animation: nxLearners 48s linear infinite;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nx-lm-window:hover .nx-lm-track {
+    animation-play-state: paused;
+  }
+}
+
+.nx-lm-group {
+  display: flex;
+  flex: none;
+  gap: var(--nx-lm-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nx-lm-card {
+  position: relative;
+  width: 150px;
+  aspect-ratio: 3 / 4;
+  flex: none;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #dce8f1;
+  box-shadow: 0 8px 18px rgba(0, 40, 86, 0.08);
+}
+
+.nx-lm-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.nx-lm-card::after {
+  position: absolute;
+  inset: 40% 0 0;
+  background: linear-gradient(180deg, rgba(0, 18, 40, 0), rgba(0, 18, 40, 0.86));
+  content: "";
+}
+
+.nx-lm-caption {
+  position: absolute;
+  right: 12px;
+  bottom: 11px;
+  left: 12px;
+  z-index: 1;
+  display: grid;
+  gap: 2px;
+  color: #ffffff;
+}
+
+.nx-lm-caption strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.nx-lm-caption span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 11px;
+}
+
+@keyframes nxLearners {
+  to {
+    transform: translate3d(calc(-50% - var(--nx-lm-gap) / 2), 0, 0);
+  }
+}
+
+@media (min-width: 761px) {
+  .nx-lm-track {
+    --nx-lm-gap: 16px;
+    animation-duration: 60s;
+  }
+
+  .nx-lm-card {
+    width: 210px;
+    border-radius: 18px;
+  }
+
+  .nx-lm-caption {
+    right: 16px;
+    bottom: 15px;
+    left: 16px;
+  }
+
+  .nx-lm-caption strong {
+    font-size: 16px;
+  }
+
+  .nx-lm-caption span {
+    font-size: 12px;
+  }
+}
+
+/* Slower with Reduce Motion, as elsewhere on the site. */
+@media (prefers-reduced-motion: reduce) {
+  .nx-lm-track {
+    animation-duration: 72s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 761px) {
+  .nx-lm-track {
+    animation-duration: 90s;
+  }
+}
+
+/* ---- Learner stories ---------------------------------------------------------
+   Compact video tiles: name and level on the photo, a round play button in
+   the middle, a silent preview in the tile most in view. */
+
+.nx-storyrow {
+  grid-auto-columns: 64%;
+}
+
+.nx-story {
+  min-width: 0;
+}
+
+.nx-pv {
+  position: relative;
+  aspect-ratio: var(--nx-pv-ratio, 3 / 4);
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0b1f3a;
+}
+
+.nx-pv video,
+.nx-pv-start img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--sn-focus, center);
+}
+
+/* Once the video sound plays, letterbox instead of cropping. */
+.nx-pv.has-sound video {
+  object-fit: contain;
+}
+
+.nx-pv-start {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* The poster fades away once the silent preview is moving. */
+.nx-pv-start img {
+  transition: opacity 400ms ease;
+}
+
+.nx-pv.is-playing .nx-pv-start img {
+  opacity: 0;
+}
+
+.nx-pv-start:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: -3px;
+  border-radius: inherit;
+}
+
+/* Shade for the name, and a light wash so the play button reads. */
+.nx-pv-start::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 18, 40, 0.18) 0%, rgba(0, 18, 40, 0) 30%, rgba(0, 18, 40, 0) 50%, rgba(0, 18, 40, 0.85) 100%);
+  content: "";
+}
+
+/* Below the face (faces sit around 30-45% down), above the name. */
+.nx-pv-play {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 8px 22px rgba(0, 18, 40, 0.22);
+  color: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transform: translate(-50%, -50%);
+  transition:
+    transform 200ms ease,
+    background 200ms ease;
+}
+
+.nx-pv-play .icon-svg {
+  margin-left: 3px;
+}
+
+/* Landscape recordings: no face to keep clear, so the button sits centred.
+   Their thumbnails are raw frames (often light slides or screen recordings),
+   shown as recorded without a shade, so the circle is a soft navy instead of
+   white; the duration and label have their own backgrounds. */
+.nx-pv-wide .nx-pv-play {
+  top: 50%;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(0, 31, 68, 0.5);
+}
+
+.nx-pv-wide .nx-pv-start:hover .nx-pv-play {
+  background: rgba(0, 31, 68, 0.62);
+}
+
+/* No shade, just a hairline edge so a near-white frame still reads as a
+   video on the white page. */
+.nx-pv-wide .nx-pv-start::after {
+  border-radius: inherit;
+  background: none;
+  box-shadow: inset 0 0 0 1px rgba(0, 40, 86, 0.1);
+}
+
+.nx-pv-start:hover .nx-pv-play {
+  background: rgba(255, 255, 255, 0.34);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.nx-pv-duration,
+.nx-pv-muted {
+  position: absolute;
+  top: 10px;
+  z-index: 2;
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: rgba(0, 18, 40, 0.5);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.nx-pv-duration {
+  left: 10px;
+}
+
+.nx-pv-muted {
+  right: 10px;
+  width: 28px;
+  min-height: 28px;
+  justify-content: center;
+  padding: 0;
+}
+
+.nx-story-info {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  z-index: 2;
+  display: grid;
+  gap: 1px;
+}
+
+.nx-story-info strong {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.nx-story-info > span:not(.nx-story-level) {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.nx-story-level {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.nx-story-level.is-done .icon-svg {
+  color: #8fdcff;
+}
+
+@media (min-width: 600px) {
+  .nx-storyrow {
+    grid-auto-columns: 40%;
+  }
+}
+
+/* Wide screens: all four side by side; no arrows or dots needed. */
+@media (min-width: 900px) {
+  .nx-storyrow {
+    grid-auto-columns: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .nx-stories .nx-storyrow-controls {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-pv-start img,
+  .nx-pv-play {
+    transition: none;
+  }
+}
+
+.nx-storyrow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.nx-storyrow-controls .sn-dots {
+  margin: 0;
+}
+
+.nx-storyrow-controls > button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--color-navy);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.nx-storyrow-controls > button:hover {
+  border-color: rgba(5, 163, 229, 0.6);
+}
+
+.nx-storyrow-controls > button:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+/* ---- Who can apply: expanding photo strips -------------------------------------
+   Phones: stacked strips; the open one grows. Desktop: side-by-side panels;
+   the open one widens. Closed strips still show the role and its pay. */
+
+/* Phones and tablets: tall full-width cards. A navy panel on the left
+   carries the text and blends into the photo on the right, so the text has
+   steady contrast and the face stays clear. Two columns on tablets. */
+.nx-rolegrid {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nx-rcard {
+  position: relative;
+  display: flex;
+  height: 136px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #062a52;
+  color: #ffffff;
+  isolation: isolate;
+}
+
+.nx-rcard:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+.nx-rcard-photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -2;
+  width: 62%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  /* The photo's own left edge fades out, so no hard edge shows through the
+     navy blend. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 40%);
+  transition: transform 500ms ease;
+}
+
+.nx-rcard:hover .nx-rcard-photo {
+  transform: scale(1.04);
+}
+
+/* The blend: solid navy behind the text, fading out over the photo. */
+.nx-rcard::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, #062a52 36%, rgba(6, 42, 82, 0.82) 46%, rgba(6, 42, 82, 0.25) 62%, rgba(6, 42, 82, 0) 74%),
+    linear-gradient(0deg, rgba(0, 18, 40, 0.35) 0%, rgba(0, 18, 40, 0) 40%);
+  content: "";
+}
+
+.nx-rcard-text {
+  display: flex;
+  max-width: 58%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 12px 0 12px 16px;
+}
+
+.nx-rcard-text strong {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.nx-rcard-pay {
+  margin-top: 2px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.nx-rcard-pay em {
+  margin-left: 2px;
+  color: rgba(239, 247, 255, 0.7);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.nx-rcard-german {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 4px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(239, 247, 255, 0.9);
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.nx-rcard-german .icon-svg {
+  color: #8fdcff;
+}
+
+.nx-rcard-go {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 5px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 3px 8px rgba(0, 18, 40, 0.2);
+  color: var(--color-navy);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 359px) {
+  .nx-rcard-text strong {
+    font-size: 16px;
+  }
+
+  .nx-rcard-pay {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 600px) {
+  .nx-rolegrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-rcard-photo {
+    transition: none;
+  }
+}
+
+.nx-strips {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 900px) {
+  .nx-rolegrid {
+    display: none;
+  }
+}
+
+.nx-strip {
+  position: relative;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0b1f3a;
+  transition: height 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nx-strip.is-open {
+  height: 330px;
+}
+
+.nx-strip-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.nx-strip.is-open .nx-strip-photo {
+  transform: scale(1.03);
+}
+
+/* Shades: across the strip while closed, from the bottom while open. */
+.nx-strip::before,
+.nx-strip::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  content: "";
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+
+.nx-strip::before {
+  background: linear-gradient(90deg, rgba(0, 18, 40, 0.86) 0%, rgba(0, 18, 40, 0.55) 55%, rgba(0, 18, 40, 0.2) 100%);
+}
+
+.nx-strip::after {
+  background: linear-gradient(180deg, rgba(0, 18, 40, 0) 40%, rgba(0, 18, 40, 0.88) 100%);
+  opacity: 0;
+}
+
+.nx-strip.is-open::before {
+  opacity: 0;
+}
+
+.nx-strip.is-open::after {
+  opacity: 1;
+}
+
+.nx-strip-toggle {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 0 60px 0 18px;
+  border: 0;
+  background: none;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.nx-strip.is-open .nx-strip-toggle {
+  justify-content: flex-end;
+  padding-bottom: 76px;
+  cursor: default;
+}
+
+.nx-strip-toggle:focus-visible {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: -3px;
+  border-radius: 18px;
+}
+
+.nx-strip-name {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.nx-strip-pay {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.nx-strip.is-open .nx-strip-name {
+  font-size: 22px;
+}
+
+.nx-strip.is-open .nx-strip-pay {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* A small + in a circle on closed strips. */
+.nx-strip-toggle::after {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  width: 30px;
+  height: 30px;
+  margin-top: -15px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background:
+    linear-gradient(#fff, #fff) center / 11px 1.5px no-repeat,
+    linear-gradient(#fff, #fff) center / 1.5px 11px no-repeat;
+  content: "";
+  transition: opacity 250ms ease;
+}
+
+.nx-strip.is-open .nx-strip-toggle::after {
+  opacity: 0;
+}
+
+.nx-strip-detail {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 18px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.nx-strip.is-open .nx-strip-detail {
+  opacity: 1;
+  transform: none;
+  transition-delay: 150ms;
+}
+
+.nx-strip-german {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.site-shell.home-next .nx-strip-apply {
+  flex: none;
+  gap: 6px;
+  padding: 0 18px;
+}
+
+@media (min-width: 900px) {
+  .nx-strips {
+    display: flex;
+    gap: 10px;
+    height: 340px;
+  }
+
+  .nx-strip {
+    height: auto;
+    flex: 1 1 0;
+    min-width: 0;
+    transition: flex-grow 550ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nx-strip.is-open {
+    height: auto;
+    flex-grow: 3.6;
+  }
+
+  .nx-strip::before {
+    background: linear-gradient(180deg, rgba(0, 18, 40, 0) 35%, rgba(0, 18, 40, 0.85) 100%);
+  }
+
+  .nx-strip-toggle {
+    justify-content: flex-end;
+    padding: 0 14px 18px;
+  }
+
+  .nx-strip-toggle::after {
+    display: none;
+  }
+
+  .nx-strip-name {
+    font-size: 15px;
+  }
+
+  /* Narrow closed panels: pay on one line, a touch smaller. */
+  .nx-strip:not(.is-open) .nx-strip-toggle {
+    padding-inline: 12px;
+  }
+
+  .nx-strip:not(.is-open) .nx-strip-pay {
+    font-size: 11.5px;
+    white-space: nowrap;
+  }
+
+  .nx-strip.is-open .nx-strip-name {
+    font-size: 24px;
+  }
+
+  .nx-strip.is-open .nx-strip-toggle {
+    padding: 0 22px 76px;
+  }
+
+  .nx-strip-detail {
+    right: 22px;
+    bottom: 22px;
+    left: 22px;
+  }
+}
+
+/* ---- Google review wall ----------------------------------------------------------
+   After bklit's testimonial wall: each review at its natural length, nothing
+   moving. Phones show three and a button for the rest. */
+
+.nx-reviews {
+  margin-top: 44px;
+}
+
+.nx-reviews-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.nx-reviews-g {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(0, 40, 86, 0.1);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.nx-reviews-g svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nx-reviews-head h3 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.nx-reviews-head p {
+  margin: 2px 0 0;
+  color: #607083;
+  font-size: 13px;
+}
+
+.nx-review-stars {
+  color: var(--color-gold);
+  letter-spacing: 0.06em;
+}
+
+.nx-wall {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nx-wall:not(.is-all) > li:nth-child(n + 4) {
+  display: none;
+}
+
+.nx-review {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 12px;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid rgba(0, 40, 86, 0.1);
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.nx-review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.nx-review-g svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.nx-review blockquote {
+  margin: 0;
+  color: #2b3d52;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.nx-review figcaption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nx-review-avatar {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf6fd;
+  color: var(--color-navy);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.nx-review figcaption strong {
+  display: block;
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nx-review figcaption small {
+  color: #6a7a8d;
+  font-size: 12px;
+}
+
+.nx-wall-more {
+  display: flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 12px;
+  background: #ffffff;
+  color: var(--color-navy);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Desktop: four columns, two even rows. The longest review (third in the
+   list) leads and spans two columns, so seven reviews leave no orphan. */
+@media (min-width: 900px) {
+  .nx-wall {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .nx-wall > li,
+  .nx-wall:not(.is-all) > li:nth-child(n + 4) {
+    display: flex;
+  }
+
+  .nx-wall > li > .nx-review {
+    width: 100%;
+  }
+
+  .nx-wall > li:nth-child(3) {
+    order: -1;
+    grid-column: span 2;
+  }
+
+  .nx-wall > li:nth-child(3) blockquote {
+    font-size: 17px;
+  }
+
+  .nx-wall-more {
+    display: none;
+  }
+}
+
+/* ---- The Skillcase app (shared AppJourneyShowcase), phones ----------------------
+   Smaller phones, two in view with the third peeking, so the section is
+   shorter. Each frame's width follows its screen's own ratio, so every phone
+   is the same height and no screen is stretched. Only on this page. */
+@media (max-width: 760px) {
+  .site-shell.home-next .app-journey-section {
+    --nx-app-h: clamp(252px, 82vw, 330px);
+  }
+
+  .site-shell.home-next .app-screen-reel {
+    gap: 12px;
+    padding-top: 14px;
+    padding-bottom: 10px;
+  }
+
+  .site-shell.home-next .app-screen-card {
+    width: min-content;
+    flex: 0 0 auto;
+    gap: 10px;
+  }
+
+  .site-shell.home-next .app-phone-frame {
+    width: calc((var(--nx-app-h) - 8px) * var(--app-screen-ratio) + 8px);
+    height: var(--nx-app-h);
+    border-width: 4px;
+    border-radius: 18px;
+    box-shadow:
+      0 12px 26px rgba(0, 40, 86, 0.14),
+      0 0 0 1px rgba(0, 40, 86, 0.05);
+  }
+
+  .site-shell.home-next .app-phone-frame::after {
+    border-radius: 14px;
+  }
+
+  .site-shell.home-next .app-screen-card figcaption {
+    gap: 4px;
+    padding: 0 2px;
+  }
+
+  .site-shell.home-next .app-screen-card h3 {
+    font-size: 13.5px;
+  }
+
+  /* The title says enough at this size; the screen's alt text describes it. */
+  .site-shell.home-next .app-screen-card p {
+    display: none;
+  }
+}
+
+/* ---- Webinar: event card with a travelling glow ----------------------------------
+   After libraries.dev's border beam: a soft cyan light runs round the
+   card's edge. Without @property support the glow simply stays still. */
+@property --nx-beam {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.nx-webinar-card {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(0, 40, 86, 0.08);
+}
+
+.nx-webinar-card::before,
+.nx-webinar-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+.nx-webinar-card::after {
+  border: 1px solid rgba(0, 40, 86, 0.1);
+}
+
+.nx-webinar-card::before {
+  padding: 2px;
+  background: conic-gradient(
+    from var(--nx-beam),
+    rgba(5, 163, 229, 0) 0deg,
+    rgba(5, 163, 229, 0) 240deg,
+    rgba(5, 163, 229, 0.95) 320deg,
+    rgba(143, 220, 255, 0.9) 340deg,
+    rgba(5, 163, 229, 0) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: nxBeam 6s linear infinite;
+}
+
+@keyframes nxBeam {
+  to {
+    --nx-beam: 360deg;
+  }
+}
+
+.nx-webinar-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #d9e4ee;
+}
+
+.nx-webinar-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nx-webinar-live {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(0, 18, 40, 0.6);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.nx-webinar-live .sn-live-dot {
+  color: #ff6b6f;
+}
+
+.nx-webinar-body {
+  padding: 20px 18px 20px;
+}
+
+.nx-webinar-body h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(24px, 6.8vw, 30px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.nx-webinar-lede {
+  margin: 8px 0 0;
+  color: #607083;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.nx-webinar-facts {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 18px;
+  padding: 0;
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.nx-webinar-facts li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nx-webinar-facts .icon-svg {
+  color: var(--color-cyan);
+}
+
+.site-shell.home-next .nx-webinar-cta {
+  width: 100%;
+  gap: 7px;
+}
+
+@media (min-width: 900px) {
+  .nx-webinar-card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+
+  .nx-webinar-media {
+    order: 2;
+    aspect-ratio: auto;
+    min-height: 380px;
+  }
+
+  .nx-webinar-body {
+    align-self: center;
+    padding: 44px;
+  }
+
+  .nx-webinar-body h2 {
+    font-size: 2.2rem;
+  }
+
+  .site-shell.home-next .nx-webinar-cta {
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-webinar-card::before {
+    animation-duration: 14s;
+  }
+}
+
+/* ---- Podcast: thumbnail first, YouTube on tap ------------------------------------- */
+
+.nx-pod-start {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: #06192a;
+  cursor: pointer;
+}
+
+.nx-pod-start img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nx-pod-start .nx-pv-play {
+  top: 50%;
+}
+
+.nx-pod-start:hover .nx-pv-play {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+/* ---- FAQ: icons, dividers, smooth answers ------------------------------------------- */
+
+.nx-faq {
+  display: grid;
+  gap: 20px;
+}
+
+.nx-faq-head h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: clamp(26px, 7.2vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.nx-faq-head > p:not(.eyebrow) {
+  margin: 10px 0 0;
+  color: #607083;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.nx-faq-call {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  color: var(--color-navy);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nx-faq-call .icon-svg {
+  color: var(--color-cyan);
+}
+
+.nx-faq-list {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(0, 40, 86, 0.1);
+  list-style: none;
+}
+
+.nx-faq-list li {
+  border-bottom: 1px solid rgba(0, 40, 86, 0.1);
+}
+
+.nx-faq-list h3 {
+  margin: 0;
+  font: inherit;
+}
+
+.nx-faq-list button {
+  display: flex;
+  width: 100%;
+  min-height: 60px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.nx-faq-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  place-items: center;
+  border-radius: 10px;
+  background: #eaf6fd;
+  color: var(--color-navy);
+}
+
+.nx-faq-q {
+  flex: 1;
+}
+
+/* + that turns into × when open. */
+.nx-faq-toggle {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border: 1px solid rgba(0, 40, 86, 0.16);
+  border-radius: 999px;
+  background:
+    linear-gradient(var(--color-navy), var(--color-navy)) center / 10px 1.5px no-repeat,
+    linear-gradient(var(--color-navy), var(--color-navy)) center / 1.5px 10px no-repeat;
+  transition:
+    transform 300ms ease,
+    background-color 300ms ease;
+}
+
+.nx-faq-list li.is-open .nx-faq-toggle {
+  background-color: #eaf6fd;
+  transform: rotate(45deg);
+}
+
+.nx-faq-a {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 320ms ease,
+    visibility 0s linear 320ms;
+}
+
+.nx-faq-list li.is-open .nx-faq-a {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 320ms ease,
+    visibility 0s;
+}
+
+.nx-faq-a > div {
+  overflow: hidden;
+}
+
+.nx-faq-a p {
+  margin: 0;
+  padding: 0 0 16px 48px;
+  color: #607083;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+@media (min-width: 900px) {
+  .nx-faq {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: 56px;
+  }
+
+  .nx-faq-head {
+    position: sticky;
+    top: 100px;
+  }
+
+  .nx-faq-head h2 {
+    font-size: 2.4rem;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+  }
+
+  .nx-faq-list button {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nx-faq-a,
+  .nx-faq-list li.is-open .nx-faq-a {
+    transition-duration: 480ms, 0s;
+  }
+}
+
+/* ---- Closing call to action: navy band with a real app screen ---------------------- */
+
+.nx-cta-band {
+  display: grid;
+  overflow: hidden;
+  padding: 30px 20px 0;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.3), transparent 55%),
+    linear-gradient(145deg, #063b70, #06294e 72%);
+  color: #ffffff;
+}
+
+.nx-cta-copy .eyebrow {
+  color: #8fdcff;
+}
+
+.nx-cta-copy h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(26px, 7.2vw, 32px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.nx-cta-copy > p:not(.eyebrow) {
+  margin: 10px 0 0;
+  color: rgba(239, 247, 255, 0.8);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.nx-cta-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.site-shell.home-next .nx-cta-actions .btn {
+  gap: 7px;
+}
+
+.nx-cta-call {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.nx-cta-call:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* Two real app screens in phones tilted in 3D: the same tilt for both, the
+   front one lower and to the right, overlapping the back one. They run off
+   the band's bottom edge. Nothing moves or reacts to the pointer, so they
+   read as a picture. --nx-phone-w sets the size; positions scale with it. */
+.nx-cta-phones {
+  --nx-phone-w: 128px;
+  position: relative;
+  height: calc(var(--nx-phone-w) * 1.72);
+  margin: 22px -20px 0;
+  perspective: 1100px;
+}
+
+/* A slim bezel around the whole screenshot: the frame's height comes from
+   the image, so the screen is never cropped, and the corner radius is close
+   to a real phone's so the corners don't eat into the app's header. */
+.nx-cta-phone {
+  position: absolute;
+  top: calc(var(--nx-phone-w) * 0.12);
+  left: calc(50% - var(--nx-phone-w) * 1.02);
+  width: var(--nx-phone-w);
+  overflow: hidden;
+  border: 3px solid #08131f;
+  border-radius: calc(var(--nx-phone-w) * 0.14);
+  background: #08131f;
+  box-shadow: -10px 24px 40px rgba(0, 8, 20, 0.45);
+  transform: rotateX(16deg) rotateY(-22deg) rotateZ(9deg);
+}
+
+.nx-cta-phone:nth-child(2) {
+  z-index: 1;
+  top: calc(var(--nx-phone-w) * 0.36);
+  left: calc(50% - var(--nx-phone-w) * 0.18);
+}
+
+/* Dynamic Island. */
+.nx-cta-phone::before {
+  position: absolute;
+  top: 2.1%;
+  left: 50%;
+  z-index: 1;
+  width: 30%;
+  height: 3.1%;
+  border-radius: 999px;
+  background: #050b12;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.nx-cta-phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 900px) {
+  .nx-cta-band {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: end;
+    gap: 40px;
+    padding: 0 56px;
+  }
+
+  .nx-cta-copy {
+    padding: 48px 0;
+  }
+
+  .nx-cta-copy h2 {
+    font-size: 2.6rem;
+    line-height: 1.1;
+  }
+
+  .nx-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .nx-cta-phones {
+    --nx-phone-w: 180px;
+    margin: 36px 0 0;
+  }
+
+  .nx-cta-phone {
+    border-width: 4px;
+  }
+}
+
+/* ---- Larger screens ------------------------------------------------------------ */
+
+@media (min-width: 761px) {
+  .nx-heading h2 {
+    font-size: 2.4rem;
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+  }
+
+}
+
+@media (min-width: 1000px) {
+  /* The story: steps scroll on the left past a sticky stage on the right. */
+  .nx-journey-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 64px;
+  }
+
+  .nx-steps {
+    padding-left: 60px;
+  }
+
+  .nx-steps::before,
+  .nx-steps::after {
+    left: 19px;
+    top: 18vh;
+    bottom: 18vh;
+  }
+
+  .nx-step {
+    display: flex;
+    min-height: 42vh;
+    align-items: center;
+    padding: 0;
+  }
+
+  .nx-step-dot {
+    top: 50%;
+    left: -60px;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    transform: translateY(-50%);
+  }
+
+  .nx-step-text {
+    transition: opacity 300ms ease;
+  }
+
+  .nx-step:not(.is-active) .nx-step-text {
+    opacity: 0.4;
+  }
+
+  .nx-step h3 {
+    font-size: 28px;
+    letter-spacing: -0.02em;
+  }
+
+  .nx-step-text > p:last-child {
+    font-size: 17px;
+  }
+
+  .nx-step-visual {
+    display: none;
+  }
+
+  .nx-stage {
+    display: block;
+    position: sticky;
+    top: 110px;
+    align-self: start;
+    margin-top: 10vh;
+  }
+
+  .nx-stage-card {
+    position: relative;
+    height: 440px;
+    overflow: hidden;
+    border-radius: 28px;
+    background: #f2f6fa;
+  }
+
+  .nx-stage-count {
+    position: absolute;
+    top: 22px;
+    left: 26px;
+    color: var(--color-navy);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .nx-stage-count small {
+    margin-left: 4px;
+    color: #8193a6;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .nx-stage-visual {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+    transition:
+      opacity 420ms ease,
+      transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nx-stage-visual.is-active {
+    opacity: 1;
+    transform: none;
+  }
+
+  .nx-stage-visual .sc {
+    transform: scale(1.3);
+  }
+
+  .nx-stage-card {
+    transition: background 500ms ease;
+  }
+
+  .nx-stage-card[data-step="1"] {
+    background: #eef2f8;
+  }
+
+  .nx-stage-card[data-step="2"] {
+    background: #e4f1fa;
+  }
+
+  .nx-stage-card[data-step="3"] {
+    background: #eaf6fd;
+  }
+
+  .nx-stage-title {
+    position: absolute;
+    top: 32px;
+    right: 26px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--color-navy);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .nx-stage-bar {
+    position: absolute;
+    right: 26px;
+    bottom: 24px;
+    left: 26px;
+    height: 4px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(0, 40, 86, 0.1);
+  }
+
+  .nx-stage-bar i {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--color-navy);
+    transition: width 450ms ease;
+  }
+
+  .nx-pay-panel {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+    gap: 48px;
+    padding: 48px;
+  }
+
+  .nx-calc {
+    padding: 26px;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-shell.home-next .nx-calc-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---- Phone pass (90%+ of visitors) -------------------------------------------
+   Long card stacks become swipeable rows with a visible next card; dense
+   sections get tighter spacing; small inline links get a full tap area. */
+
+@media (max-width: 760px) {
+  /* Blogs: a swipeable row instead of three tall cards. */
+  .site-shell.home-next .blog-grid {
+    grid-template-columns: none;
+    grid-auto-columns: 84%;
+    grid-auto-flow: column;
+    gap: 12px;
+    /* Room above and below so the cards' shadows aren't cut off by the
+       scrolling row; the negative margins keep the spacing unchanged. */
+    margin: -8px calc(var(--container-gutter) * -1) -20px;
+    padding: 8px var(--container-gutter) 28px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: var(--container-gutter);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .site-shell.home-next .blog-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-shell.home-next .blog-card {
+    box-shadow:
+      0 1px 2px rgba(0, 40, 86, 0.04),
+      0 8px 20px rgba(0, 40, 86, 0.06);
+    scroll-snap-align: start;
+  }
+
+  /* Softer, so it fits inside the podcast panel. */
+  .site-shell.home-next .podcast-video-frame {
+    box-shadow: 0 10px 24px rgba(0, 18, 38, 0.24);
+  }
+}
+
+/* Pay calculator: the navy runs edge to edge as a full-width band; the
+   content keeps the page's width. */
+.site-shell.home-next .section.nx-pay {
+  width: 100%;
+  margin-block: 24px;
+  padding: 44px 0 40px;
+  background:
+    radial-gradient(circle at 92% 0, rgba(5, 163, 229, 0.3), transparent 45%),
+    linear-gradient(145deg, #063b70, #06294e 72%);
+}
+
+.site-shell.home-next .nx-pay-panel {
+  width: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
+  margin-inline: auto;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.site-shell.home-next .nx-pay-copy {
+  padding-inline: 0;
+}
+
+@media (min-width: 1000px) {
+  .site-shell.home-next .section.nx-pay {
+    margin-block: 40px;
+    padding: 80px 0;
+  }
+
+  .site-shell.home-next .nx-pay-panel {
+    padding: 0;
+  }
+}
+
+/* Loops keep running with Reduce Motion, slower, as elsewhere on the site;
+   one-off reveals keep their timing. */
+@media (prefers-reduced-motion: reduce) {
+  .nx-calc-roles button,
+  .nx-step-dot {
+    transition: none;
+  }
+}
+
+/* ---- Buttons: one height across the variant pages ----------------------------
+   Every boxed call to action is the same height, so buttons side by side
+   always match: gold or outlined, a call button, the app download buttons,
+   the webinar button and "Show all reviews". 40px on phones (as on the live
+   site), 44px on wider screens. Round arrow buttons are 40px. Plain text
+   links and the header's small Get Started keep their own sizes. */
+.site-shell.home-next main :is(.btn, .nx-cta-call, .app-store-cta, .app-web-cta, .nx-wall-more) {
+  height: 40px;
+  min-height: 40px;
+}
+
+/* The app buttons have two lines of text; centre them in the shorter box. */
+.site-shell.home-next main :is(.app-store-cta, .app-web-cta) {
+  padding-block: 0;
+}
+
+.site-shell.home-next main :is(.app-gallery-controls > button, .nx-storyrow-controls > button) {
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 761px) {
+  .site-shell.home-next main :is(.btn, .nx-cta-call, .app-store-cta, .app-web-cta, .nx-wall-more) {
+    height: 44px;
+    min-height: 44px;
+  }
+}

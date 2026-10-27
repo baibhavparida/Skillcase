@@ -1,0 +1,54 @@
+import BaseLayout from "../layouts/BaseLayout.jsx";
+import AppJourneyShowcase from "../components/AppJourneyShowcase.jsx";
+import { BlogSection } from "../components/HomeSections.jsx";
+import SiteFooter from "../components/SiteFooter.jsx";
+import SiteHeader from "../components/SiteHeader.jsx";
+import FaqNext from "../components/next/FaqNext.jsx";
+import FinalCta from "../components/next/FinalCta.jsx";
+import HeroSplit from "../components/next/HeroSplit.jsx";
+import JourneyScroll from "../components/next/JourneyScroll.jsx";
+import LearnersNext from "../components/next/LearnersNext.jsx";
+import { PodcastNext, WebinarNext } from "../components/next/MediaNext.jsx";
+import PayCalculator from "../components/next/PayCalculator.jsx";
+import RoleStrips from "../components/next/RoleStrips.jsx";
+import StoriesNext from "../components/next/StoriesNext.jsx";
+import WhyGermany from "../components/next/WhyGermany.jsx";
+import { variantLinks } from "../components/next/shared.jsx";
+import "../styles/home.css";
+import "../styles/start-now.css";
+import "../styles/home-next.css";
+
+// A variant of the homepage for comparison (noindex). Hero: the live copy
+// with an orbit of role cards on desktop and a wheel of cards on phones,
+// where the header's Get Started waits until the hero's buttons scroll away.
+// Then "Why Germany" (figures, reasons and a city map), role strips, a
+// scroll-story "How it works" (stacking cards on phones), a pay calculator,
+// learner stories with a review wall, the app, a webinar card, blogs, a
+// tap-to-load podcast, the FAQ and a closing call to action. Patterns came
+// from the owner's reference list and Mobbin, rebuilt in our own style.
+
+export default function HomeNext() {
+  return (
+    <BaseLayout robots="noindex" font="manrope">
+      <div className="site-shell home-page home-next">
+        <SiteHeader active="home" revealCta links={variantLinks} />
+        <main>
+          <HeroSplit />
+          <WhyGermany />
+          <RoleStrips />
+          <JourneyScroll />
+          <PayCalculator />
+          <LearnersNext />
+          <StoriesNext />
+          <AppJourneyShowcase />
+          <WebinarNext />
+          <BlogSection />
+          <PodcastNext />
+          <FaqNext />
+          <FinalCta />
+        </main>
+        <SiteFooter />
+      </div>
+    </BaseLayout>
+  );
+}

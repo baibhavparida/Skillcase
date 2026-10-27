@@ -34,7 +34,7 @@
   min-height: 100vh;
   background: var(--sc-surface-soft);
   color: var(--color-ink);
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 

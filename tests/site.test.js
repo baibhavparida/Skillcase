@@ -17,10 +17,15 @@ const routes = [
   "blog-view",
   "home-b",
   "home-legacy",
+  "home-next",
+  "start-now-next",
+  "about-next",
+  "blog-next",
   "option-1",
   "option-2",
   "option-3",
   ...blogPosts.map((post) => `blog/${post.slug}`),
+  ...blogPosts.map((post) => `blog-next/${post.slug}`),
 ];
 
 test("every public URL has HTML, metadata, and local assets", async () => {

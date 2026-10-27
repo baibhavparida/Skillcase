@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
-export default function ArticleContents({ items }) {
+// `pathwayHref` lets the blog variant keep its link within the variant pages.
+export default function ArticleContents({ items, pathwayHref = "/#jobs" }) {
   const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     const media = window.matchMedia("(min-width: 761px)");
@@ -43,7 +44,7 @@ export default function ArticleContents({ items }) {
           ))}
         </nav>
       </details>
-      <a className="article-pathway-link" href="/#jobs">
+      <a className="article-pathway-link" href={pathwayHref}>
         Explore your pathway <span aria-hidden="true">↗</span>
       </a>
     </aside>

@@ -6260,7 +6260,7 @@ img {
   place-items: center;
   padding: 32px;
   color: var(--color-ink);
-  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans);
 }
 
 @media (max-width: 1040px) {

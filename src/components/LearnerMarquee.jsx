@@ -1,4 +1,4 @@
-const learners = [
+export const learners = [
   {
     name: "Ruth Joseph",
     location: "Tamil Nadu",

@@ -11,7 +11,7 @@ import { roles } from "../data/roles.js";
 
 const nursePay = formatLakhRange(roles.find((role) => role.key === "nurse").salary);
 
-function ProfileMock() {
+export function ProfileMock() {
   return (
     <div className="hm-card">
       <div className="hm-head">
@@ -36,7 +36,7 @@ function ProfileMock() {
   );
 }
 
-function GermanMock() {
+export function GermanMock() {
   return (
     <div className="hm-card">
       <div className="hm-head hm-between">
@@ -57,7 +57,7 @@ function GermanMock() {
   );
 }
 
-function OfferMock() {
+export function OfferMock() {
   return (
     <div className="hm-card">
       <div className="hm-head">
@@ -77,7 +77,7 @@ function OfferMock() {
   );
 }
 
-function MoveMock() {
+export function MoveMock() {
   return (
     <div className="hm-card hm-pass">
       <div className="hm-route">
@@ -111,7 +111,7 @@ function MoveMock() {
   );
 }
 
-const steps = [
+export const steps = [
   { title: "Create your profile", copy: "An advisor matches you to roles.", Visual: ProfileMock },
   { title: "Learn German", copy: "Live classes from A1 to B2.", Visual: GermanMock },
   { title: "Get your job offer", copy: "Interview prep and employer matching.", Visual: OfferMock },
