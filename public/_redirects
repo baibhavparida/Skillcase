@@ -1,0 +1,10 @@
+# The redesign previews became the main pages on 2026-10-28; links shared
+# for review keep working.
+/home-next / 301
+/home-next/ / 301
+/start-now-next /start-now/ 301
+/start-now-next/ /start-now/ 301
+/about-next /about/ 301
+/about-next/ /about/ 301
+/blog-next /blog/ 301
+/blog-next/* /blog/:splat 301

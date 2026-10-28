@@ -7,7 +7,7 @@ import FaqNext from "../components/next/FaqNext.jsx";
 import FinalCta from "../components/next/FinalCta.jsx";
 import PreviewVideo from "../components/next/PreviewVideo.jsx";
 import { GoogleReviews, StoryCarousel } from "../components/next/StoriesNext.jsx";
-import { Heading, variantLinks } from "../components/next/shared.jsx";
+import { Heading } from "../components/next/shared.jsx";
 import { cartUrl, classClips, faqs, lectures, notes, phone, webAppUrl } from "../data/startNow.js";
 import "../styles/placed-hero.css";
 import "../styles/home.css";
@@ -15,11 +15,12 @@ import "../styles/start-now.css";
 import "../styles/home-next.css";
 import "../styles/start-now-next.css";
 
-// The Learner Stories page (/start-now) redone in the homepage variant's style
-// for comparison (noindex). Same content, in the same order of a visitor's
-// questions: what is this, are people like me doing it, what are classes like,
-// can I try it, who else teaches, what do learners say, can I learn on my
-// phone, then answers and a final nudge. Built from the variant's parts: its
+// The Learner Stories page (served at /start-now; the previous design is
+// kept at /start-now-classic), in the homepage's style. The content follows
+// a visitor's questions: what is this, are people like me doing it, what are
+// classes like, can I try it, who else teaches, what do learners say, can I
+// learn on my phone, then answers and a final nudge. Built from the
+// homepage's parts: its
 // hero (with a collage of real learners), story tiles with silent previews,
 // the review wall, the FAQ with icons, the app reel and the navy closing band,
 // in Manrope.
@@ -291,11 +292,10 @@ export default function StartNowNext() {
     <BaseLayout
       title="Start Your Germany Journey | Skillcase"
       description="Live German classes, free A1 notes in your language, guest sessions and job support. See real Skillcase learners and choose the program that fits you."
-      robots="noindex"
       font="manrope"
     >
       <div className="site-shell home-page home-next sx-page">
-        <SiteHeader active="stories" revealCta links={variantLinks} />
+        <SiteHeader active="stories" revealCta />
         <main>
           <Hero />
           <Stories />

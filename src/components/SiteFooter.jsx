@@ -16,10 +16,6 @@ export default function SiteFooter(props) {
                 Helping healthcare professionals build careers in Germany with
                 language, recruitment, and relocation support.
               </p>
-              <a className="footer-cta" href="/signup/">
-                Get Started
-                <span data-icon="arrow-right" data-size="13"></span>
-              </a>
             </div>
             <div className="footer-column">
               <h2>Contact Us</h2>

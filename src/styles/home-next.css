@@ -819,6 +819,20 @@
   font-weight: 600;
 }
 
+/* Phones: no section intro (the tiles say it) and photo tiles show their
+   titles only, so the bento isn't a wall of text. */
+@media (max-width: 899px) {
+  .nx-whyde .nx-heading-intro,
+  .nx-tile-photo .nx-tile-caption p {
+    display: none;
+  }
+
+  .nx-tile-school,
+  .nx-tile-home {
+    min-height: 168px;
+  }
+}
+
 /* Narrow phones: smaller figures so the pay range fits its half tile. */
 @media (max-width: 374px) {
   .nx-tile {
@@ -2250,11 +2264,30 @@
   margin-bottom: 4px;
 }
 
+/* The row fades out at both edges. Phones: a long, eased fade (about a
+   fifth of the screen each side) so cards dissolve rather than get cut. */
 .nx-lm-window {
+  --nx-lm-fade: linear-gradient(
+    90deg,
+    transparent 0,
+    rgba(0, 0, 0, 0.08) 3%,
+    rgba(0, 0, 0, 0.25) 7%,
+    rgba(0, 0, 0, 0.5) 11%,
+    rgba(0, 0, 0, 0.75) 15%,
+    rgba(0, 0, 0, 0.92) 18%,
+    #000 21%,
+    #000 79%,
+    rgba(0, 0, 0, 0.92) 82%,
+    rgba(0, 0, 0, 0.75) 85%,
+    rgba(0, 0, 0, 0.5) 89%,
+    rgba(0, 0, 0, 0.25) 93%,
+    rgba(0, 0, 0, 0.08) 97%,
+    transparent 100%
+  );
   overflow: hidden;
   padding: 12px 0 26px;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
-  mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+  -webkit-mask-image: var(--nx-lm-fade);
+  mask-image: var(--nx-lm-fade);
 }
 
 .nx-lm-track {
@@ -2339,6 +2372,10 @@
 }
 
 @media (min-width: 761px) {
+  .nx-lm-window {
+    --nx-lm-fade: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+  }
+
   .nx-lm-track {
     --nx-lm-gap: 16px;
     animation-duration: 60s;

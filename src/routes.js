@@ -2,19 +2,22 @@ import { blogPosts } from "./data/siteContent.js";
 
 // Keep normal links and page loads, including direct visits to nested URLs.
 // Each route imports only its own React components and CSS.
+// The main pages (/, /start-now, /about, /blog and its guides) are the
+// redesign built as /home-next and friends, live since 2026-10-28. The
+// designs they replaced are kept (noindex) at -classic URLs in case they are
+// needed again; the old -next preview links redirect (public/_redirects).
 const pages = {
   "/": {
-    source: "src/pages/home.jsx",
-    load: () => import("./pages/home.jsx"),
-    props: { isPrimaryHome: true },
+    source: "src/pages/home-next.jsx",
+    load: () => import("./pages/home-next.jsx"),
   },
   "/about": {
-    source: "src/pages/about.jsx",
-    load: () => import("./pages/about.jsx"),
+    source: "src/pages/about-next.jsx",
+    load: () => import("./pages/about-next.jsx"),
   },
   "/blog": {
-    source: "src/pages/blog.jsx",
-    load: () => import("./pages/blog.jsx"),
+    source: "src/pages/blog-next.jsx",
+    load: () => import("./pages/blog-next.jsx"),
   },
   "/signup": {
     source: "src/pages/signup.jsx",
@@ -23,8 +26,8 @@ const pages = {
   // Redesign of learner.skillcase.in/start-now, the trust page before the
   // program picker.
   "/start-now": {
-    source: "src/pages/start-now.jsx",
-    load: () => import("./pages/start-now.jsx"),
+    source: "src/pages/start-now-next.jsx",
+    load: () => import("./pages/start-now-next.jsx"),
   },
   "/privacy-policy": {
     source: "src/pages/privacy-policy.jsx",
@@ -46,29 +49,30 @@ const pages = {
     source: "src/pages/home-b.jsx",
     load: () => import("./pages/home-b.jsx"),
   },
-  // The previous homepage, kept (noindex) in case it is needed again.
+  // The homepage before the healthcare-wide one, kept (noindex).
   "/home-legacy": {
     source: "src/pages/home-legacy.jsx",
     load: () => import("./pages/home-legacy.jsx"),
   },
-  // Homepage variant with Leap Finance- and Mobbin-inspired sections (noindex).
-  "/home-next": {
-    source: "src/pages/home-next.jsx",
-    load: () => import("./pages/home-next.jsx"),
+  // The designs live until 2026-10-28, kept (noindex).
+  "/home-classic": {
+    source: "src/pages/home.jsx",
+    load: () => import("./pages/home.jsx"),
   },
-  // The Learner Stories page in the homepage variant's style (noindex).
-  "/start-now-next": {
-    source: "src/pages/start-now-next.jsx",
-    load: () => import("./pages/start-now-next.jsx"),
+  "/start-now-classic": {
+    source: "src/pages/start-now.jsx",
+    load: () => import("./pages/start-now.jsx"),
+    props: { robots: "noindex" },
   },
-  // About Us and the blog in the homepage variant's style (noindex).
-  "/about-next": {
-    source: "src/pages/about-next.jsx",
-    load: () => import("./pages/about-next.jsx"),
+  "/about-classic": {
+    source: "src/pages/about.jsx",
+    load: () => import("./pages/about.jsx"),
+    props: { robots: "noindex" },
   },
-  "/blog-next": {
-    source: "src/pages/blog-next.jsx",
-    load: () => import("./pages/blog-next.jsx"),
+  "/blog-classic": {
+    source: "src/pages/blog.jsx",
+    load: () => import("./pages/blog.jsx"),
+    props: { robots: "noindex" },
   },
   // Broadened healthcare homepage options, previewed side by side (noindex).
   "/option-1": {
@@ -87,17 +91,14 @@ const pages = {
 
 for (const post of blogPosts) {
   pages[`/blog/${post.slug}`] = {
-    source: "src/pages/blog/[slug].jsx",
-    load: () => import("./pages/blog/[slug].jsx"),
-    props: { post },
-  };
-}
-
-for (const post of blogPosts) {
-  pages[`/blog-next/${post.slug}`] = {
     source: "src/pages/blog-next/[slug].jsx",
     load: () => import("./pages/blog-next/[slug].jsx"),
     props: { post },
+  };
+  pages[`/blog-classic/${post.slug}`] = {
+    source: "src/pages/blog/[slug].jsx",
+    load: () => import("./pages/blog/[slug].jsx"),
+    props: { post, robots: "noindex" },
   };
 }
 

@@ -1,28 +1,62 @@
+import { Fragment } from "react";
 import BaseLayout from "../../layouts/BaseLayout.jsx";
-import ArticleContents from "../../components/ArticleContents.jsx";
 import ResponsiveImage from "../../components/ResponsiveImage.jsx";
 import SiteFooter from "../../components/SiteFooter.jsx";
 import SiteHeader from "../../components/SiteHeader.jsx";
 import Icon from "../../components/healthcare/Icon.jsx";
 import FinalCta from "../../components/next/FinalCta.jsx";
-import PostCard from "../../components/next/PostCard.jsx";
-import { Heading, variantLinks } from "../../components/next/shared.jsx";
+import GuideContents from "../../components/next/GuideContents.jsx";
+import PostCard, { PostMeta } from "../../components/next/PostCard.jsx";
+import ShareGuide from "../../components/next/ShareGuide.jsx";
 import { blogPosts } from "../../data/siteContent";
 import { formatInline } from "../../utils/text";
 import "../../styles/home.css";
 import "../../styles/home-next.css";
 import "../../styles/pages-next.css";
 
-// A blog guide in the homepage variant's style, for comparison (noindex). The
-// article body and its "On this page" list are the live article page's (same
-// markup, so site.js highlights the section being read); the header, related
-// guides and closing band are the variant's.
+// A blog guide (served at /blog/<slug>; the previous design is kept at
+// /blog-classic/<slug>), in the homepage's style. One reading column:
+// breadcrumb, title, byline, what the guide covers, the photo, then the
+// text in large dark type with bold section headings. "In this guide" opens
+// from a row on phones and sits in a sticky rail on wide screens. Halfway
+// through, one prompt to check eligibility; at the end, sharing, more
+// guides and the navy closing band.
 
 const slugify = (value) =>
   value
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
+
+function EligibilityPrompt() {
+  return (
+    <aside className="bx-prompt" aria-label="Check your eligibility">
+      <div>
+        <p className="bx-prompt-title">Not sure you qualify?</p>
+        <p>Answer a few questions and see which roles in Germany fit your experience.</p>
+      </div>
+      <a className="btn btn-gold" href="/signup/">
+        Check your eligibility
+        <Icon name="arrow-right" size={16} />
+      </a>
+    </aside>
+  );
+}
+
+function Block({ block, className }) {
+  if (block.type === "heading") return <h2 id={block.id}>{block.text}</h2>;
+  if (block.type === "subheading") return <h3 id={block.id}>{block.text}</h3>;
+  if (block.type === "list") {
+    return (
+      <ul>
+        {block.items.map((item, index) => (
+          <li key={index} dangerouslySetInnerHTML={{ __html: formatInline(item) }} />
+        ))}
+      </ul>
+    );
+  }
+  return <p className={className} dangerouslySetInnerHTML={{ __html: formatInline(block.text) }} />;
+}
 
 export default function BlogArticleNext({ post }) {
   const related = blogPosts.filter((item) => item.slug !== post.slug);
@@ -31,83 +65,65 @@ export default function BlogArticleNext({ post }) {
       ? { ...block, id: `${slugify(block.text)}-${index}` }
       : block,
   );
-  const tocItems = blocks.filter((block) => block.type === "heading" || block.type === "subheading");
-  // Most guides open with their excerpt; don't print it twice.
-  const opensWithExcerpt = post.content[0]?.text?.startsWith(post.excerpt.slice(0, 80));
+  const sections = blocks.filter((block) => block.type === "heading");
+  // The prompt goes just before the middle section heading.
+  const promptBefore = sections[Math.floor(sections.length / 2)]?.id;
 
   return (
-    <BaseLayout title={`${post.title} | Skillcase Blog`} description={post.excerpt} robots="noindex" font="manrope">
+    <BaseLayout title={`${post.title} | Skillcase Blog`} description={post.excerpt} font="manrope">
       <div className="site-shell home-page home-next bx-page">
-        <SiteHeader active="blog" links={variantLinks} />
+        <SiteHeader active="blog" />
         <main>
-          <article className="bx-article">
-            <header className="section bx-article-head">
-              <a className="bx-back" href="/blog-next/">
-                <Icon name="arrow-left" size={14} />
-                All guides
-              </a>
-              <div className="bx-article-intro">
-                <div>
-                  <p className="eyebrow">{post.category}</p>
-                  <h1>{post.title}</h1>
-                  {!opensWithExcerpt && <p className="bx-lede">{post.excerpt}</p>}
-                  <p className="bx-post-meta">
-                    <span>{post.author}</span>
-                    <span aria-hidden="true">·</span>
-                    <time dateTime={post.datetime}>{post.date}</time>
-                    <span aria-hidden="true">·</span>
-                    {post.readTime}
-                  </p>
-                </div>
-                <div className="bx-article-image">
-                  <ResponsiveImage
-                    src={post.image}
-                    alt={post.imageAlt}
-                    loading="eager"
-                    sizes="(max-width: 899px) calc(100vw - 32px), 520px"
-                  />
-                </div>
-              </div>
+          <article className="bx-read">
+            <header className="bx-read-head">
+              <nav className="bx-crumbs" aria-label="Breadcrumb">
+                <a href="/blog/">Blog</a>
+                <Icon name="caret-right" size={12} />
+                <span>{post.category}</span>
+              </nav>
+              <h1>{post.title}</h1>
+              <PostMeta post={post} byline />
+              {post.highlights?.length > 0 && (
+                <ul className="bx-covers" aria-label="This guide covers">
+                  {post.highlights.map((item) => (
+                    <li key={item}>
+                      <Icon name="check" size={13} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </header>
 
-            <div className="article-layout bx-article-layout">
-              <ArticleContents items={tocItems} pathwayHref="/home-next/#jobs" />
-              <div className="article-content">
-                {blocks.map((block, index) => {
-                  if (block.type === "heading") {
-                    return (
-                      <h2 key={index} data-toc-section="" id={block.id}>
-                        {block.text}
-                      </h2>
-                    );
-                  }
-                  if (block.type === "subheading") {
-                    return (
-                      <h3 key={index} data-toc-section="" id={block.id}>
-                        {block.text}
-                      </h3>
-                    );
-                  }
-                  if (block.type === "list") {
-                    return (
-                      <ul key={index}>
-                        {block.items.map((item, itemIndex) => (
-                          <li key={itemIndex} dangerouslySetInnerHTML={{ __html: formatInline(item) }} />
-                        ))}
-                      </ul>
-                    );
-                  }
-                  return <p key={index} dangerouslySetInnerHTML={{ __html: formatInline(block.text) }} />;
-                })}
-              </div>
+            <figure className="bx-read-image">
+              <ResponsiveImage
+                src={post.image}
+                alt={post.imageAlt}
+                loading="eager"
+                sizes="(max-width: 799px) calc(100vw - 32px), 720px"
+              />
+            </figure>
+
+            <GuideContents items={sections} />
+
+            <div className="bx-prose">
+              {blocks.map((block, index) => (
+                <Fragment key={index}>
+                  {block.id && block.id === promptBefore && <EligibilityPrompt />}
+                  <Block block={block} className={index === 0 && block.type === "paragraph" ? "bx-intro" : undefined} />
+                </Fragment>
+              ))}
+              <ShareGuide title={post.title} />
             </div>
           </article>
 
-          <section className="section bx-related" aria-labelledby="bx-related-title">
-            <Heading id="bx-related-title" eyebrow="More guides" title="Keep exploring the Germany pathway" />
+          <section className="section bx-more bx-related" aria-labelledby="bx-related-title">
+            <h2 className="bx-section-title" id="bx-related-title">
+              Keep reading
+            </h2>
             <div className="bx-grid">
               {related.map((item) => (
-                <PostCard key={item.slug} post={item} headingLevel="h3" sizes="(max-width: 899px) 120px, 560px" />
+                <PostCard key={item.slug} post={item} headingLevel="h3" sizes="(max-width: 899px) calc(100vw - 32px), 560px" />
               ))}
             </div>
           </section>

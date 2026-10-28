@@ -39,11 +39,9 @@ export default function SiteHeader(props) {
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, [menuOpen]);
-  // `links` lets the homepage variant pages point Home and the nav at each
-  // other ({ home, candidate, stories, about, blog, faq }).
-  const { active = "home", revealCta = false, links = {} } = props;
+  const { active = "home", revealCta = false } = props;
 
-  // With revealCta (the homepage variant), the header's Get Started stays
+  // With revealCta (the homepage-style pages), the header's Get Started stays
   // tucked away on phones while the hero's own buttons are on screen, and
   // comes in once they scroll under the header. CSS limits it to phones.
   const [ctaTucked, setCtaTucked] = useState(revealCta);
@@ -101,14 +99,14 @@ export default function SiteHeader(props) {
       label: "FAQ",
       key: "faq",
     },
-  ].map((item) => ({ ...item, href: links[item.key] || item.href }));
+  ];
   return (
     <>
       <header
         className={revealCta && ctaTucked ? "site-header is-cta-tucked" : "site-header"}
         ref={headerRef}
       >
-        <a className="brand" href={links.home || "/"} aria-label="Skillcase home">
+        <a className="brand" href="/" aria-label="Skillcase home">
           <img
             alt="Skillcase"
             className="brand-logo"

@@ -150,8 +150,7 @@ body:has(.site-shell.home-page) {
   .site-shell.home-page .hiw-actions .btn,
   .site-shell.home-page .webinar-actions .btn,
   .site-shell.home-page .podcast-copy .podcast-secondary-cta,
-  .site-shell.home-page .faq-support-link,
-  .site-shell.home-page .footer-cta {
+  .site-shell.home-page .faq-support-link {
     width: 100%;
     max-width: none;
     justify-content: center;

@@ -7,7 +7,8 @@ import { CountUp, Heading } from "./shared.jsx";
 // "Why Germany" (merged with "Why choose Skillcase") as a compact bento:
 // two figure tiles and three photo tiles, one reason each. Figures and
 // reasons are ones the site already states; the photos are the live
-// homepage's benefit photos.
+// homepage's benefit photos. Phones show the photo tiles' titles only, so
+// the bento reads at a glance.
 // Desktop (4 columns):  family family | pay  | demand
 //                       school school | home home
 // Phones (2 columns): family wide, pay and demand, school and home.
@@ -31,14 +32,14 @@ export default function WhyGermany() {
           />
           <div className="nx-tile-caption">
             <h3>Bring your family</h3>
-            <p>Your spouse and children, with guidance on visas and work rights.</p>
+            <p>Your spouse and children can join you.</p>
           </div>
         </article>
 
         <article className="nx-tile nx-tile-navy nx-tile-pay">
-          <span className="nx-tile-label">Typical monthly pay</span>
+          <span className="nx-tile-label">Monthly pay</span>
           <strong className="nx-tile-figure">{formatLakhRange(salaryRange)}</strong>
-          <p>Earn up to 10x your current salary, plus allowances.</p>
+          <p>Up to 10x your current salary.</p>
           <a href="#pay">
             Check your role <Icon name="arrow-right" size={13} />
           </a>
@@ -49,9 +50,8 @@ export default function WhyGermany() {
           <strong className="nx-tile-figure">
             <CountUp to={500000} suffix="+" />
           </strong>
-          <p>Healthcare professionals Germany needs by 2030</p>
+          <p>Health workers needed by 2030</p>
         </article>
-
 
         <article className="nx-tile nx-tile-photo nx-tile-school">
           <ResponsiveImage
@@ -61,7 +61,7 @@ export default function WhyGermany() {
           />
           <div className="nx-tile-caption">
             <h3>Healthcare and schools</h3>
-            <p>Quality care and affordable schooling.</p>
+            <p>Good care, affordable schools.</p>
           </div>
         </article>
 
@@ -73,7 +73,7 @@ export default function WhyGermany() {
           />
           <div className="nx-tile-caption">
             <h3>A path to settle</h3>
-            <p>Guidance towards permanent residency.</p>
+            <p>Towards permanent residency.</p>
           </div>
         </article>
       </div>

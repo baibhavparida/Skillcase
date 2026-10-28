@@ -5,17 +5,17 @@ import SiteHeader from "../components/SiteHeader.jsx";
 import Icon from "../components/healthcare/Icon.jsx";
 import FinalCta from "../components/next/FinalCta.jsx";
 import LearnersNext from "../components/next/LearnersNext.jsx";
-import { Heading, variantLinks } from "../components/next/shared.jsx";
+import { Heading } from "../components/next/shared.jsx";
 import { aboutPage } from "../data/siteContent.js";
 import "../styles/placed-hero.css";
 import "../styles/home.css";
 import "../styles/home-next.css";
 import "../styles/pages-next.css";
 
-// About Us in the homepage variant's style, for comparison (noindex). The live
-// page's words (siteContent.js), laid out with the variant's parts: its hero,
-// a bento of values, photo tiles, the learners row and the navy closing band,
-// in Manrope.
+// About Us (served at /about; the previous design is kept at /about-classic),
+// in the homepage's style. The page's words (siteContent.js), laid out with
+// the homepage's parts: its hero, a bento of values, photo tiles, the
+// learners row and the navy closing band, in Manrope.
 
 const proof = ["Ethical recruitment", "End-to-end pathway support", "Germany career readiness"];
 const valueIcons = ["shield-check", "seal-check", "sparkle", "globe-hemisphere-east"];
@@ -135,11 +135,10 @@ export default function AboutNext() {
     <BaseLayout
       title="About Skillcase | Global Healthcare Careers"
       description="Learn how Skillcase connects Indian healthcare professionals with global opportunities through ethical recruitment, training, documentation, and relocation support."
-      robots="noindex"
       font="manrope"
     >
       <div className="site-shell home-page home-next ax-page">
-        <SiteHeader active="about" revealCta links={variantLinks} />
+        <SiteHeader active="about" revealCta />
         <main>
           <Hero />
           <WhatWeDo />

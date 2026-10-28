@@ -9,6 +9,7 @@ export default function About(props) {
       <BaseLayout
         title="About Skillcase | Global Healthcare Careers"
         description="Learn how Skillcase connects Indian healthcare professionals with global opportunities through ethical recruitment, training, documentation, and relocation support."
+        robots={props.robots}
       >
         <div className="site-shell">
           <SiteHeader active="about" />

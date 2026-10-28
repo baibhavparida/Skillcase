@@ -9,6 +9,7 @@ export default function Blog(props) {
       <BaseLayout
         title="Skillcase Blog | Healthcare Jobs in Germany"
         description="Read Skillcase guides on nursing jobs in Germany, salary expectations, documentation, relocation, and pathways for healthcare professionals."
+        robots={props.robots}
       >
         <div className="site-shell">
           <SiteHeader active="blog" />

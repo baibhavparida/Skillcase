@@ -410,11 +410,12 @@ function FinalCta() {
   );
 }
 
-export default function StartNow() {
+export default function StartNow({ robots }) {
   return (
     <BaseLayout
       title="Start Your Germany Journey | Skillcase"
       description="Live German classes, free A1 notes in your language, guest sessions and job support. See real Skillcase learners and choose the program that fits you."
+      robots={robots}
     >
       <div className="site-shell start-now-page">
         <SiteHeader active="stories" />

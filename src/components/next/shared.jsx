@@ -85,14 +85,3 @@ export function Heading({ id, eyebrow, title, intro, align = "left" }) {
     </div>
   );
 }
-
-// Header links on the homepage variant pages, so they lead to each other
-// rather than to the live pages.
-export const variantLinks = {
-  home: "/home-next/",
-  candidate: "/home-next/#jobs",
-  stories: "/start-now-next/",
-  about: "/about-next/",
-  blog: "/blog-next/",
-  faq: "/home-next/#faq",
-};

@@ -4711,34 +4711,6 @@ img {
   line-height: 1.55;
 }
 
-.footer-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 38px;
-  min-height: 38px;
-  margin-top: 16px;
-  padding: 0 16px;
-  border: 1px solid transparent;
-  border-radius: 8px;
-  background: var(--color-gold);
-  color: #211500;
-  font-size: 13px;
-  font-weight: 600;
-  box-shadow:
-    0 10px 20px rgba(237, 184, 67, 0.22),
-    0 1px 0 rgba(255, 255, 255, 0.45) inset;
-  transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
-}
-
-.footer-cta:hover {
-  background: #f1c65c;
-  box-shadow:
-    0 12px 24px rgba(237, 184, 67, 0.26),
-    0 1px 0 rgba(255, 255, 255, 0.52) inset;
-  transform: translateY(-1px);
-}
-
 .site-footer h2 {
   margin: 0 0 10px;
   color: rgba(255, 255, 255, 0.96);

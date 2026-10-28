@@ -575,10 +575,6 @@ main [id] {
     display: inline-flex;
     align-items: center;
   }
-  .footer-cta {
-    min-height: 36px;
-    height: 36px;
-  }
   .footer-column a,
   .footer-bottom a {
     display: flex;

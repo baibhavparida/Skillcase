@@ -231,65 +231,64 @@
   }
 }
 
-/* ---- Blog: header ------------------------------------------------------------------ */
+/* ---- Blog: index header ----------------------------------------------------------
+   Just the title, centred, then the guides. */
 
 .bx-head {
-  padding-top: 28px;
+  padding-top: 32px;
+  padding-bottom: 8px;
+  text-align: center;
 }
 
-.bx-head h1,
-.bx-article-intro h1 {
+.bx-head .eyebrow {
+  margin-bottom: 10px;
+}
+
+.bx-head h1 {
   max-width: 20ch;
-  margin: 0;
+  margin: 0 auto;
   color: var(--color-navy-deep);
-  font-size: clamp(30px, 8vw, 40px);
+  font-size: clamp(30px, 8.4vw, 40px);
   font-weight: 600;
-  line-height: 1.12;
-}
-
-.bx-lede {
-  max-width: 60ch;
-  margin: 12px 0 0;
-  color: #3b5268;
-  font-size: 15.5px;
-  line-height: 1.6;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 @media (min-width: 1000px) {
   .bx-head {
-    padding-top: 48px;
+    padding-top: 64px;
+    padding-bottom: 20px;
   }
 
   .bx-head h1 {
-    font-size: 3.2rem;
-  }
-
-  .bx-lede {
-    font-size: 17px;
+    max-width: 24ch;
+    font-size: 3.25rem;
   }
 }
 
-/* ---- Blog: guide cards ---------------------------------------------------------------
-   No box around a card: the photo, then the words. The title's link covers
-   the card. Phones: the featured guide full width, the others as rows with
-   a small photo. Wide screens: the featured guide with its photo beside the
-   words, the others side by side. */
+/* ---- Blog: guide cards -------------------------------------------------------------
+   One format for every guide: photo, category, title, two lines of excerpt,
+   date and read time. No box around a card; the title's link covers it.
+   The newest guide sits on a light panel with a "Latest guide" label. */
 
-.bx-list {
-  display: grid;
-  gap: 28px;
+.bx-featured {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .bx-post {
   position: relative;
-  display: grid;
-  gap: 14px;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
 }
 
 .bx-post-media {
+  position: relative;
   overflow: hidden;
   border-radius: 18px;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 10;
   background: #dce8f1;
 }
 
@@ -297,18 +296,38 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 400ms ease;
+  transition: transform 500ms ease;
 }
 
 .bx-post:hover .bx-post-media img {
   transform: scale(1.03);
 }
 
+.bx-post-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-navy-deep);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.bx-post-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-top: 16px;
+}
+
 .bx-post-kicker {
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   color: var(--color-cyan);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 11.5px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -319,6 +338,7 @@
   font-size: 19px;
   font-weight: 600;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .bx-post-title a {
@@ -328,6 +348,7 @@
 /* The whole card is the link. */
 .bx-post-title a::after {
   position: absolute;
+  z-index: 1;
   inset: 0;
   border-radius: 18px;
   content: "";
@@ -345,75 +366,142 @@
 .bx-post:hover .bx-post-title a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
 }
 
 .bx-post-excerpt {
   display: -webkit-box;
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   overflow: hidden;
-  color: #607083;
-  font-size: 14px;
+  color: #52657a;
+  font-size: 14.5px;
   line-height: 1.55;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
 }
 
-.bx-post-meta {
+.bx-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   color: #6a7a8d;
-  font-size: 12.5px;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.bx-meta-avatar {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  margin-right: 2px;
+  border-radius: 50%;
+  background: var(--color-navy);
+  color: #edb843;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.bx-meta-author {
+  color: var(--color-navy-deep);
+  font-weight: 600;
+}
+
+.bx-post-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  color: var(--color-navy);
+  font-size: 14.5px;
+  font-weight: 700;
+}
+
+.bx-post-more .icon-svg {
+  transition: transform 200ms ease;
+}
+
+.bx-post:hover .bx-post-more .icon-svg {
+  transform: translateX(3px);
+}
+
+/* The featured guide: a light panel, photo on top on phones. */
+.bx-post.is-featured {
+  overflow: hidden;
+  border-radius: 22px;
+  background: #f2f7fb;
+}
+
+.bx-post.is-featured .bx-post-media {
+  border-radius: 0;
+}
+
+.bx-post.is-featured .bx-post-body {
+  padding: 18px 18px 22px;
+}
+
+.bx-post.is-featured .bx-post-title {
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.bx-post.is-featured .bx-post-excerpt {
+  -webkit-line-clamp: 3;
+}
+
+.bx-post.is-featured .bx-post-title a::after {
+  border-radius: 22px;
+}
+
+/* "More guides" / "Keep reading". */
+.bx-section-title {
+  margin: 0 0 18px;
+  color: var(--color-navy-deep);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.bx-more {
+  padding-top: 24px;
 }
 
 .bx-grid {
   display: grid;
-  gap: 18px;
+  gap: 36px;
 }
 
-/* Phones: the other guides as compact rows. */
-@media (max-width: 899px) {
-  .bx-grid .bx-post {
-    grid-template-columns: 112px minmax(0, 1fr);
-    align-items: start;
-    gap: 14px;
-  }
-
-  .bx-grid .bx-post-media {
-    border-radius: 14px;
-    aspect-ratio: 1;
-  }
-
-  .bx-grid .bx-post-title {
-    font-size: 16px;
-  }
-
-  .bx-grid .bx-post-excerpt {
-    display: none;
-  }
-
-  .bx-grid .bx-post-meta {
-    margin-top: 6px;
+@media (min-width: 700px) {
+  .bx-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
   }
 }
 
 @media (min-width: 900px) {
-  .bx-list {
-    gap: 48px;
+  .bx-post.is-featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: stretch;
   }
 
-  .bx-post.is-featured {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    align-items: center;
-    gap: 40px;
+  .bx-post.is-featured .bx-post-media {
+    min-height: 420px;
+    aspect-ratio: auto;
+  }
+
+  .bx-post.is-featured .bx-post-body {
+    justify-content: center;
+    padding: 40px 44px;
   }
 
   .bx-post.is-featured .bx-post-title {
-    font-size: 30px;
-    line-height: 1.2;
+    font-size: 32px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
   }
 
   .bx-post.is-featured .bx-post-excerpt {
@@ -421,90 +509,439 @@
     -webkit-line-clamp: 4;
   }
 
+  .bx-more {
+    padding-top: 40px;
+  }
+
+  .bx-section-title {
+    margin-bottom: 24px;
+    font-size: 28px;
+  }
+
   .bx-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px;
   }
 
   .bx-post-title {
     font-size: 21px;
   }
+
+  .bx-post-excerpt {
+    font-size: 15px;
+  }
 }
 
-/* ---- Blog: article ------------------------------------------------------------------- */
+/* ---- Blog: a guide ----------------------------------------------------------------
+   One reading column (720px at most). Wide screens add a rail on the left
+   for "In this guide"; the title and text stay in the column. */
 
-.bx-article-head {
-  padding-top: 20px;
+.bx-read {
+  width: min(720px, calc(100% - (var(--container-gutter) * 2)));
+  margin: 0 auto;
+  padding: 16px 0 8px;
 }
 
-.bx-back {
-  display: inline-flex;
+.bx-crumbs {
+  display: flex;
   min-height: 40px;
   align-items: center;
   gap: 6px;
-  margin-bottom: 8px;
-  color: #3b5268;
-  font-size: 14px;
+  color: #6a7a8d;
+  font-size: 13.5px;
   font-weight: 600;
 }
 
-.bx-back:hover {
+.bx-crumbs a {
   color: var(--color-navy);
 }
 
-.bx-article-image {
-  margin-top: 22px;
+.bx-crumbs a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bx-crumbs .icon-svg {
+  color: #9aa9b8;
+}
+
+.bx-read-head h1 {
+  margin: 6px 0 0;
+  color: var(--color-navy-deep);
+  font-size: clamp(28px, 7.6vw, 34px);
+  font-weight: 600;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+}
+
+.bx-read-head .bx-meta {
+  margin-top: 18px;
+}
+
+.bx-covers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  color: #3b5268;
+  font-size: 13.5px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.bx-covers li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bx-covers .icon-svg {
+  color: var(--color-cyan);
+}
+
+.bx-read-image {
+  margin: 24px 0 0;
   overflow: hidden;
   border-radius: 20px;
   aspect-ratio: 3 / 2;
   background: #dce8f1;
 }
 
-.bx-article-image img {
+.bx-read-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* The live article layout (contents list and body), at the page's width. */
-.bx-article-layout {
-  width: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
-  margin: 8px auto 0;
+/* "In this guide". Phones and tablets: one row that opens into the list. */
+.bx-toc-row {
+  margin: 24px 0 0;
+  border-block: 1px solid #e3ebf2;
 }
 
-/* No boxes: the article body sits on the page, and the contents list is a
-   light panel without an outline. */
-.bx-page .article-content {
+.bx-toc-row summary {
+  display: flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-navy-deep);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  list-style: none;
+}
+
+.bx-toc-row summary::-webkit-details-marker {
+  display: none;
+}
+
+.bx-toc-row summary > .icon-svg:first-child {
+  color: var(--color-cyan);
+}
+
+.bx-toc-count {
+  margin-left: auto;
+  color: #6a7a8d;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.bx-toc-caret {
+  color: #6a7a8d;
+  transition: transform 200ms ease;
+}
+
+.bx-toc-row[open] .bx-toc-caret {
+  transform: rotate(180deg);
+}
+
+.bx-toc-row nav {
+  padding-bottom: 12px;
+}
+
+.bx-toc-list {
+  display: grid;
+  margin: 0;
   padding: 0;
-  border: 0;
-  background: none;
-  box-shadow: none;
+  list-style: none;
 }
 
-.bx-page .article-aside {
-  border: 0;
-  border-radius: 16px;
+.bx-toc-list a {
+  display: flex;
+  gap: 12px;
+  padding: 9px 0;
+  color: #3b5268;
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+
+.bx-toc-num {
+  flex: none;
+  width: 20px;
+  padding-top: 1px;
+  color: #8a9aac;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.bx-toc-list a.is-active {
+  color: var(--color-navy-deep);
+  font-weight: 600;
+}
+
+.bx-toc-list a.is-active .bx-toc-num {
+  color: var(--color-cyan);
+}
+
+.bx-toc-rail {
+  display: none;
+}
+
+/* The text: large, dark and roomy, with bold section headings. */
+.bx-prose {
+  margin-top: 28px;
+  color: #22364d;
+  font-size: 17px;
+  line-height: 1.72;
+}
+
+.bx-prose p {
+  margin: 0 0 18px;
+}
+
+.bx-prose .bx-intro {
+  color: var(--color-navy-deep);
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.bx-prose h2 {
+  margin: 44px 0 14px;
+  color: var(--color-navy-deep);
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.bx-prose h3 {
+  margin: 30px 0 10px;
+  color: var(--color-navy-deep);
+  font-size: 19.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.bx-prose ul {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.bx-prose li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.bx-prose li::before {
+  position: absolute;
+  top: 0.66em;
+  left: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  content: "";
+}
+
+.bx-prose strong {
+  color: var(--color-navy-deep);
+  font-weight: 700;
+}
+
+.bx-prose :is(p, li) a {
+  color: #0473a8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Halfway: one prompt to check eligibility. */
+.bx-prompt {
+  display: grid;
+  gap: 14px;
+  margin: 36px 0;
+  padding: 20px;
+  border-radius: 20px;
+  background: #eaf6fd;
+}
+
+.bx-prompt p {
+  margin: 0;
+  color: #3b5268;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.bx-prompt .bx-prompt-title {
+  margin-bottom: 4px;
+  color: var(--color-navy-deep);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.bx-prompt .btn {
+  justify-self: start;
+}
+
+/* The end: share on WhatsApp or copy the link. */
+.bx-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid #e3ebf2;
+}
+
+.bx-share p {
+  margin: 0;
+  color: var(--color-navy-deep);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.bx-share-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.bx-share-btn {
+  display: inline-flex;
+  height: 40px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid #d5e1ec;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--color-navy-deep);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.bx-share-btn:hover {
+  border-color: #a9c3da;
   background: #f6f9fc;
-  box-shadow: none;
 }
 
-@media (min-width: 1000px) {
-  .bx-article-head {
+.bx-share-btn .ph-whatsapp-logo {
+  color: #1faa59;
+}
+
+@media (min-width: 761px) {
+  .bx-share-btn {
+    height: 44px;
+  }
+}
+
+@media (min-width: 800px) {
+  .bx-read {
     padding-top: 36px;
   }
 
-  .bx-article-intro {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  .bx-read-head h1 {
+    font-size: 2.9rem;
+  }
+
+  .bx-read-image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .bx-prose {
+    font-size: 18px;
+  }
+
+  .bx-prose .bx-intro {
+    font-size: 21px;
+  }
+
+  .bx-prose h2 {
+    margin-top: 52px;
+    font-size: 30px;
+  }
+
+  .bx-prose h3 {
+    font-size: 21px;
+  }
+
+  .bx-prompt {
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 48px;
+    gap: 24px;
+    padding: 24px 28px;
+  }
+}
+
+/* Wide screens: "In this guide" moves to a sticky rail on the left. */
+@media (min-width: 1100px) {
+  .bx-read {
+    display: grid;
+    width: min(var(--container-width), calc(100% - (var(--container-gutter) * 2)));
+    grid-template-columns: 210px minmax(0, 720px);
+    justify-content: center;
+    column-gap: 64px;
   }
 
-  .bx-article-intro h1 {
-    font-size: 2.8rem;
+  .bx-read > * {
+    grid-column: 2;
   }
 
-  .bx-article-image {
-    margin-top: 0;
+  .bx-toc-row {
+    display: none;
+  }
+
+  .bx-read > .bx-toc-rail {
+    display: block;
+    grid-row: 2 / span 2;
+    grid-column: 1;
+  }
+
+  .bx-toc-rail nav {
+    position: sticky;
+    top: 100px;
+  }
+
+  .bx-toc-rail .bx-toc-label {
+    margin: 0 0 10px;
+    color: #6a7a8d;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bx-toc-rail .bx-toc-list a {
+    gap: 10px;
+    padding: 7px 0 7px 12px;
+    border-left: 2px solid #e3ebf2;
+    font-size: 13.5px;
+  }
+
+  .bx-toc-rail .bx-toc-list a.is-active {
+    border-left-color: var(--color-cyan);
+  }
+
+  .bx-toc-rail .bx-toc-num {
+    width: 18px;
+    font-size: 12px;
   }
 }

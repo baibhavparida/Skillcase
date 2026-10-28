@@ -29,6 +29,7 @@ export default function BlogArticle(props) {
       <BaseLayout
         title={`${post.title} | Skillcase Blog`}
         description={post.excerpt}
+        robots={props.robots}
       >
         <div className="site-shell">
           <SiteHeader active="blog" />
