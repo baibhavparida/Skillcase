@@ -6,7 +6,7 @@ import Icon from "../components/healthcare/Icon.jsx";
 import FaqNext from "../components/next/FaqNext.jsx";
 import { PayError, useCheckout } from "../components/next/Checkout.jsx";
 import FinalCta from "../components/next/FinalCta.jsx";
-import LearnerGlobe from "../components/next/LearnerGlobe.jsx";
+import LearnerMap from "../components/next/LearnerMap.jsx";
 import PreviewVideo from "../components/next/PreviewVideo.jsx";
 import { GoogleReviews, StoryCarousel } from "../components/next/StoriesNext.jsx";
 import { Heading } from "../components/next/shared.jsx";
@@ -24,8 +24,8 @@ import "../styles/start-now-next.css";
 // a visitor's questions: what is this, are people like me doing it, what are
 // classes like, can I try it, who else teaches, what do learners say, can I
 // learn on my phone, what does it cost, then answers and a final nudge.
-// Built from the homepage's parts: its hero (with a globe showing real
-// learners' home states, LearnerGlobe), story tiles with silent previews, the review
+// Built from the homepage's parts: its hero (with a map of India showing
+// real learners' home states, LearnerMap), story tiles with silent previews, the review
 // wall, the FAQ with icons, the app reel and the navy closing band, in
 // Manrope.
 
@@ -63,7 +63,7 @@ function Hero() {
         </div>
 
         <div className="sx-hero-visual">
-          <LearnerGlobe />
+          <LearnerMap />
         </div>
       </div>
     </section>

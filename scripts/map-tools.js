@@ -1,4 +1,4 @@
-// Used by scripts/india-globe.js (and any later map of India): reading
+// Used by scripts/india-map.js (and any later map of India): reading
 // DataMeet's state shapefile, simplifying borders so neighbours stay
 // matched, placing pins and writing compact SVG paths.
 import { readFileSync } from "node:fs";

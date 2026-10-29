@@ -18,18 +18,19 @@ export const phone = {
   label: "+91 99722 66767",
 };
 
-// The hero globe's tour: real learners, one at a time, each zoomed out of a
+// The hero map's tour: real learners, one at a time, each zoomed out of a
 // pin on their home state. These are all the learners with usable photos
 // (the CMS's candidates and the story videos), mostly women; more need real
 // photos and consent from the team. The CMS gives a state, not a town, so
 // pins mark states. Course and finished levels are the CMS's (July 2026) or
 // their story video's; levels still in progress are left out because they go
 // stale. Photos are square face crops of the CMS photos (Ganesh's only photo
-// is a distant one). `at` is where the zoomed photo floats, as [longitude,
-// latitude]: over Tibet for the north, over the Bay of Bengal for the rest,
-// clear of the highlighted state. North and south in turn.
-const NORTH = [94, 39];
-const BAY = [88, 17];
+// is a distant one). `lens` is where the zoomed photo floats, in map units
+// (src/data/indiaMap.js): top right for the north, over the Bay of Bengal
+// for the rest, clear of the highlighted state, with room below for the
+// caption and its shadow. North and south in turn.
+const NORTH = [760, 120];
+const BAY = [660, 740];
 export const mapLearners = [
   {
     name: "Sneha Shaji",
@@ -37,14 +38,14 @@ export const mapLearners = [
     course: "BSc Nursing",
     done: "B2 completed",
     image: "/assets/images/start-now/lens-sneha-shaji.webp",
-    at: BAY,
+    lens: BAY,
   },
   {
     name: "Qasim Malik",
     state: "uttar-pradesh",
     course: "BSc Nursing",
     image: "/assets/images/start-now/lens-qasim-malik.webp",
-    at: NORTH,
+    lens: NORTH,
   },
   {
     name: "Sheila H. V.",
@@ -52,14 +53,14 @@ export const mapLearners = [
     course: "GNM Nursing",
     done: "A1 completed",
     image: "/assets/images/start-now/lens-sheila-h-v.webp",
-    at: BAY,
+    lens: BAY,
   },
   {
     name: "Pinak Saini",
     state: "rajasthan",
     course: "MSc Nursing",
     image: "/assets/images/start-now/lens-pinak-saini.webp",
-    at: NORTH,
+    lens: NORTH,
   },
   {
     name: "Modem Praveena",
@@ -67,28 +68,28 @@ export const mapLearners = [
     course: "BSc Nursing",
     done: "A1 completed",
     image: "/assets/images/start-now/lens-modem-praveena.webp",
-    at: BAY,
+    lens: [740, 785],
   },
   {
     name: "Nitin Bewal",
     state: "haryana",
     course: "BSc Nursing",
     image: "/assets/images/start-now/lens-nitin-bewal.webp",
-    at: NORTH,
+    lens: NORTH,
   },
   {
     name: "Ruth Joseph",
     state: "tamil-nadu",
     course: "Post Basic BSc Nursing",
     image: "/assets/images/start-now/lens-ruth-joseph.webp",
-    at: BAY,
+    lens: BAY,
   },
   {
     name: "Ganesh Akhade",
     state: "maharashtra",
     course: "BSc Nursing",
     image: "/assets/images/start-now/lens-ganesh-akhade.webp",
-    at: BAY,
+    lens: BAY,
   },
   {
     name: "Priyanka C",
@@ -96,14 +97,14 @@ export const mapLearners = [
     course: "GNM Nursing",
     done: "B2 completed",
     image: "/assets/images/start-now/lens-priyanka-c.webp",
-    at: BAY,
+    lens: BAY,
   },
   {
     name: "Sivaranjani P",
     state: "tamil-nadu",
     course: "BSc Nursing",
     image: "/assets/images/start-now/lens-sivaranjani-p.webp",
-    at: BAY,
+    lens: BAY,
   },
 ];
 

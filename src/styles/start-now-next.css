@@ -24,11 +24,11 @@
   margin: 28px auto 0;
 }
 
-/* The globe with learners' home states (LearnerGlobe.jsx). Everything inside
-   the frame scales with it: the SVGs use map units, the lens and its label
-   sit at percentages of the frame. A stop opens in this order: the old lens
-   closes, the state lights up and the globe leans in (0.9s), then the line
-   and the lens grow out of the pin. */
+/* The map of learners' home states (LearnerMap.jsx). Everything inside the
+   frame scales with it: the SVGs use map units, the lens and its label sit
+   at percentages of the frame. A stop opens in this order: the old lens
+   closes, the state lights up and the map leans in (0.9s), then the line and
+   the lens grow out of the pin. */
 .sx-map {
   max-width: 460px;
   margin-inline: auto;
@@ -36,7 +36,7 @@
 
 .sx-map-frame {
   position: relative;
-  /* aspect-ratio comes from indiaGlobe's size (LearnerGlobe.jsx) */
+  aspect-ratio: 1120 / 1264; /* LearnerMap's VIEW */
 }
 
 .sx-map-land,
@@ -235,72 +235,6 @@
   font-weight: 600;
 }
 
-/* ---- The globe's own layers ---- */
-
-/* The picture fades out towards its edges; the lenses and their captions
-   sit outside this layer, so they are never clipped. */
-.sx-globe-view {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  /* Fade the sides and the last strip below India; the horizon's glow
-     stays whole. */
-  -webkit-mask-image:
-    linear-gradient(to right, transparent, #000 16%, #000 84%, transparent),
-    linear-gradient(to bottom, #000 95%, transparent);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent, #000 16%, #000 84%, transparent),
-    linear-gradient(to bottom, #000 95%, transparent);
-  mask-composite: intersect;
-}
-
-.sx-globe-grid {
-  fill: none;
-  stroke: #cddfee;
-  stroke-width: 1.5;
-  opacity: 0.7;
-}
-
-.sx-globe-dots path {
-  fill: none;
-  stroke: #8ea5ba;
-  stroke-linecap: round;
-  animation: sx-globe-dots 1.2s ease both;
-}
-
-.sx-globe-dots .is-0 {
-  stroke-width: 6.5;
-  opacity: 0.6;
-  animation-delay: 0.1s;
-}
-
-.sx-globe-dots .is-1 {
-  stroke-width: 5.5;
-  opacity: 0.34;
-  animation-delay: 0.25s;
-}
-
-.sx-globe-dots .is-2 {
-  stroke-width: 4.5;
-  opacity: 0.16;
-  animation-delay: 0.4s;
-}
-
-@keyframes sx-globe-dots {
-  from {
-    opacity: 0;
-  }
-}
-
-.sx-globe .sx-map-states path {
-  fill: #d3e3f1;
-}
-
-.sx-globe .sx-map-states path.is-on {
-  fill: #0596d4;
-}
-
 /* The smallest phones: keep the longest captions on screen. */
 @media (max-width: 359px) {
   .sx-lens-label {
@@ -345,7 +279,6 @@
 
   .sx-map-states path,
   .sx-map-states circle,
-  .sx-globe-dots path,
   .sx-map-pin-drop,
   .sx-map-pin.is-on .sx-map-pulse {
     animation: none;
