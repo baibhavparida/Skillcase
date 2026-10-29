@@ -133,7 +133,8 @@ function CountryFlip() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const timer = window.setInterval(() => setIndex((current) => (current + 1) % countries.length), 2400);
+    // A new country every 1.8s (the owner's pick); the flip itself takes 0.65s.
+    const timer = window.setInterval(() => setIndex((current) => (current + 1) % countries.length), 1800);
     return () => window.clearInterval(timer);
   }, []);
 
