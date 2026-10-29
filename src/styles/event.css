@@ -66,15 +66,11 @@
 
 /* ---- Layout ------------------------------------------------------------------- */
 
-.ev-main {
-  width: min(1180px, calc(100% - 32px));
-  margin: 0 auto;
-  padding-bottom: 24px;
-}
-
 .ev-layout {
   display: grid;
   gap: 22px;
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
   padding-top: 16px;
 }
 
@@ -85,17 +81,22 @@
 }
 
 @media (min-width: 761px) {
+  .ev-layout {
+    --ev-cover: 240px;
+    --ev-cover-gap: 28px;
+  }
+
   .ev-intro {
-    grid-template-columns: 240px minmax(0, 1fr);
+    grid-template-columns: var(--ev-cover) minmax(0, 1fr);
     align-items: start;
-    gap: 28px;
+    gap: var(--ev-cover-gap);
   }
 }
 
 @media (min-width: 1180px) {
-  .ev-intro {
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: 32px;
+  .ev-layout {
+    --ev-cover: 280px;
+    --ev-cover-gap: 32px;
   }
 }
 
@@ -115,8 +116,10 @@
     grid-area: intro;
   }
 
+  /* Lines up with the event's text beside the cover, not the cover. */
   .ev-details {
     grid-area: details;
+    padding-left: calc(var(--ev-cover) + var(--ev-cover-gap));
   }
 
   .ev-card {
@@ -610,6 +613,35 @@
   font-size: 15px;
   font-weight: 600;
   line-height: 1.4;
+}
+
+/* ---- FAQ: a full-width light band (as the Learner Stories notes band),
+   well clear of the form; inside, it lines up with the page's column. */
+.ev-faq-band {
+  margin-top: 56px;
+  background: #f2f7fb;
+}
+
+.site-shell.home-next .ev-faq-band .nx-faq {
+  width: min(1180px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+/* The band ends the page, so the footer sits right under it (its usual top
+   margin would leave a white strip). */
+.ev-page .site-footer {
+  margin-top: 0;
+}
+
+/* White icon tiles, so they show on the blue band. */
+.ev-faq-band .nx-faq-icon {
+  background: #ffffff;
+}
+
+@media (min-width: 1000px) {
+  .ev-faq-band {
+    margin-top: 88px;
+  }
 }
 
 /* ---- Phones: the next session and the button stay in reach ------------------------------- */

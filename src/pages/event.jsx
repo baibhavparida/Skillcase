@@ -25,7 +25,8 @@ import "../styles/event.css";
 //   through the Worker to the platform's own registration, which emails the
 //   link. The success card adds the session to Google Calendar and shows
 //   the link; it's remembered on this device until the session starts.
-// - Below: what the demo covers (the CMS's own points) and an FAQ.
+// - Below: what the demo covers (the CMS's own points), then the FAQ on a
+//   full-width light band.
 
 const LEVELS = ["Yet to learn", "A1", "A2", "B1", "B2"];
 const storageKey = (slug) => `skillcase_event_${slug}`;
@@ -430,13 +431,16 @@ export default function EventPage({ event }) {
             </div>
           </div>
 
-          <FaqNext
-            items={eventFaqs}
-            icons={["gift", "translate", "device-mobile", "calendar-check", "path"]}
-            title="Questions before you join"
-            intro="Quick answers about the free demo."
-            call={{ href: phone.href, label: "Talk to a counsellor" }}
-          />
+          {/* The FAQ on a full-width light band, set apart from the form. */}
+          <div className="ev-faq-band">
+            <FaqNext
+              items={eventFaqs}
+              icons={["gift", "translate", "device-mobile", "calendar-check", "path"]}
+              title="Questions before you join"
+              intro="Quick answers about the free demo."
+              call={{ href: phone.href, label: "Talk to a counsellor" }}
+            />
+          </div>
         </main>
 
         {/* Phones: the next session and the button stay in reach until the
