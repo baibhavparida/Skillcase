@@ -17,7 +17,7 @@ import "../styles/pages-next.css";
 // the homepage's parts: its hero, a bento of values, photo tiles, the
 // learners row and the navy closing band, in Manrope.
 
-const proof = ["Ethical recruitment", "End-to-end pathway support", "Germany career readiness"];
+const proof = ["Ethical recruitment", "End-to-end pathway support", "Careers in Germany and beyond"];
 const valueIcons = ["shield-check", "seal-check", "sparkle", "globe-hemisphere-east"];
 const reasonImages = [
   "/assets/images/about-mission-bridge.webp",
@@ -53,9 +53,11 @@ function Hero() {
           </ul>
         </div>
         <div className="ax-hero-photo">
+          {/* Illustrative (generated in the site's phone-photo style), so no
+              names or claims are attached to these faces. */}
           <ResponsiveImage
-            src="/assets/images/about-indian-teacher-guidance.webp"
-            alt="Indian teacher guiding nurses for global healthcare career preparation"
+            src="/assets/images/about-hero-team.webp"
+            alt="A group of young Indian nurses and healthcare professionals laughing together, two holding German workbooks"
             loading="eager"
             sizes="(max-width: 999px) calc(100vw - 32px), 560px"
           />

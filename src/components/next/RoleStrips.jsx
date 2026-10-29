@@ -24,7 +24,7 @@ export default function RoleStrips() {
         id="nx-roles-title"
         eyebrow="Job seeker?"
         title="Who can apply?"
-        intro="Pathways for nurses, nursing students, physiotherapists and other healthcare professionals, with typical pay and German level."
+        intro="Pathways for nurses, nursing students, physiotherapists and other healthcare professionals. Typical pay and language level shown for Germany."
       />
       <ul className="nx-rolegrid">
         {roles.map((role) => (

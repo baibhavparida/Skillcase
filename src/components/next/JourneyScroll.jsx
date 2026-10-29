@@ -61,9 +61,12 @@ function useScrollProgress() {
   return [ref, progress];
 }
 
-// Same titles and captions as the live homepage's steps; animated scenes.
+// The classic homepage's steps, with animated scenes. The last step says
+// "abroad" (Germany leads, other countries too); its scene still flies to
+// Frankfurt, the usual destination.
 const scenes = [ProfileScene, GermanScene, OfferScene, MoveScene];
-const steps = liveSteps.map((step, index) => ({ ...step, Scene: scenes[index] }));
+const titles = { 3: "Move abroad" };
+const steps = liveSteps.map((step, index) => ({ ...step, title: titles[index] || step.title, Scene: scenes[index] }));
 
 export default function JourneyScroll() {
   const [stepRefs, active] = useActiveStep(steps.length);
@@ -87,7 +90,7 @@ export default function JourneyScroll() {
       <Heading
         id="nx-journey-title"
         eyebrow="How it works"
-        title="4 steps to your job in Germany"
+        title="4 steps to your job abroad"
       />
 
       <div className="nx-journey-layout">

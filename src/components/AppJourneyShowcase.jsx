@@ -53,7 +53,7 @@ const screens = [
   {
     phase: "Prepare",
     title: "Start your job screening",
-    copy: "Move from German preparation into your Germany job pathway.",
+    copy: "Move from German preparation into your job pathway abroad.",
     src: "/assets/images/app-screens/job-screening-welcome.webp",
     alt: "Skillcase Jobs app welcome screen for starting a Germany job screening",
     width: 585,
@@ -97,7 +97,7 @@ export default function AppJourneyShowcase({ webAppUrl = defaultWebAppUrl }) {
         <div className="app-journey-heading">
           <p className="eyebrow">The Skillcase app</p>
           <h2 id="app-journey-title">
-            One app. From your first German lesson to your job in Germany.
+            One app. From your first German lesson to your job abroad.
           </h2>
           <p>
             Learn German, practise for exams and interviews, then manage your

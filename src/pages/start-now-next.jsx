@@ -39,10 +39,11 @@ function Hero() {
             <span className="nx-hero-news-text">German A1 notes in your language</span>
             <Icon name="arrow-right" size={12} />
           </a>
-          <h1 id="sx-title">From Day 1 to Germany</h1>
+          {/* "Day 1" stays on one line; the lines are balanced (start-now-next.css). */}
+          <h1 id="sx-title">From Day{"\u00a0"}1 to your job abroad</h1>
           <p className="nx-hero-lede">
-            From your first German class to your first job in Germany. One trusted team for your
-            entire journey.
+            From your first language class to your first job abroad, in Germany and beyond. One
+            trusted team for your entire journey.
           </p>
           <div className="hero-actions">
             <a className="btn btn-gold" href={cartUrl}>
@@ -199,8 +200,8 @@ function Lectures() {
       <Heading
         id="sx-guests-title"
         eyebrow="Guest sessions"
-        title="Learn from people who know Germany"
-        intro="A native speaker, an industry leader and a nurse who went from our classroom to a job in Germany."
+        title="Learn from people who’ve been there"
+        intro="A native German speaker, an industry leader and a nurse who went from our classroom to a job in Germany."
       />
       <ul className="sn-row sx-row sx-guest-row">
         {lectures.map((lecture) => (
@@ -243,7 +244,7 @@ function Programs() {
         id="sx-programs-title"
         eyebrow="Programs and fees"
         title="Choose how far we take you"
-        intro="From a single German level to complete support until your first job in Germany."
+        intro="From a single German level to complete support until your first job abroad."
       />
       <div className="sx-programs-grid">
         {complete && (
@@ -329,8 +330,8 @@ function Reviews() {
 export default function StartNowNext() {
   return (
     <BaseLayout
-      title="Start Your Germany Journey | Skillcase"
-      description="Live German classes, free A1 notes in your language, guest sessions and job support. See real Skillcase learners and choose the program that fits you."
+      title="Start Your Journey Abroad | Skillcase"
+      description="Live language classes, free German A1 notes in your language, guest sessions and job support for healthcare careers in Germany and beyond. See real Skillcase learners and choose the program that fits you."
       font="manrope"
     >
       <div className="site-shell home-page home-next sx-page">
@@ -346,13 +347,13 @@ export default function StartNowNext() {
           <Programs />
           <FaqNext
             items={faqs}
-            icons={["translate", "video-camera", "book-open-text", "device-mobile", "signpost"]}
+            icons={["translate", "video-camera", "book-open-text", "device-mobile", "globe-hemisphere-east", "signpost"]}
             title="Questions before you start"
             intro="Quick answers about classes, notes and your next step."
             call={{ href: phone.href, label: "Talk to a counsellor" }}
           />
           <FinalCta
-            title="Take your first step. Land in Germany."
+            title="Take your first step. Land your job abroad."
             copy="Choose the program that fits you, from a single German level to complete support all the way to your job."
             action={{ href: cartUrl, label: "Start your journey" }}
             call={{ href: phone.href, label: phone.label }}

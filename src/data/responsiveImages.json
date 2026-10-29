@@ -25,6 +25,32 @@
       }
     ]
   },
+  "/assets/images/about-hero-team.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/about-hero-team-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/about-hero-team-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/about-hero-team-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/about-hero-team-1200.webp",
+        "width": 1200
+      },
+      {
+        "src": "/assets/images/responsive/about-hero-team-1536.webp",
+        "width": 1536
+      }
+    ]
+  },
   "/assets/images/about-indian-teacher-guidance.webp": {
     "width": 1536,
     "height": 1024,

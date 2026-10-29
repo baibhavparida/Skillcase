@@ -337,6 +337,11 @@ export const faqs = [
       "Yes. The Skillcase app has lessons, flashcards, speaking practice and mock tests. Android users can get it on Google Play; iPhone users can use the web app.",
   },
   {
+    question: "Is it only Germany?",
+    answer:
+      "Germany is our main focus, and our German programs are built for it. We also help healthcare professionals with jobs in Ireland and Norway. Call us to talk about those.",
+  },
+  {
     question: "What’s my next step?",
     answer:
       "Choose Start your journey to see our programs, from single German levels to the complete Germany program, and pick the one that fits you. Not sure which? Call us and a counsellor will help you choose.",

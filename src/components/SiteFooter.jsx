@@ -15,8 +15,9 @@ export default function SiteFooter({ credit }) {
                 />
               </a>
               <p>
-                Helping healthcare professionals build careers in Germany with
-                language, recruitment, and relocation support.
+                Helping healthcare professionals build careers in Germany,
+                Ireland and Norway with language, recruitment and relocation
+                support.
               </p>
             </div>
             <div className="footer-column">

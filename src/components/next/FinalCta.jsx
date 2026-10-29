@@ -13,7 +13,7 @@ const defaultScreens = [
 // Defaults are the homepage's; the Learner Stories variant passes its own.
 export default function FinalCta({
   eyebrow = "Your next step",
-  title = "Ready to start your move to Germany?",
+  title = "Ready to start your move to Germany and beyond?",
   copy = "Create your profile in a few minutes. An advisor will suggest the roles that fit you.",
   action = { href: "/signup/", label: "Create your profile" },
   call = { href: "tel:+919731462667", label: "Talk to an advisor" },

@@ -191,7 +191,7 @@ export default function StoriesNext() {
       <Heading
         id="nx-stories-title"
         eyebrow="Learner stories"
-        title="Real learners. Real progress toward Germany."
+        title="Real learners. Real progress toward a job abroad."
         intro="Learners introduce themselves in German. Tap a video to hear them."
       />
       <StoryCarousel />

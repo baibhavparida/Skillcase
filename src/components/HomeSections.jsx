@@ -42,7 +42,7 @@ export const faqs = [
   {
     question: "Do I need to speak German before I start?",
     answer:
-      "No. Most learners start from zero. The level you need depends on your role: usually B1–B2 for nurses, B2 for physiotherapists and technicians, and C1 medical German for doctors.",
+      "No. Most learners start from zero. For Germany, the level you need depends on your role: usually B1–B2 for nurses, B2 for physiotherapists and technicians, and C1 medical German for doctors.",
   },
   {
     question: "How do I know if I’m eligible for a particular job?",
@@ -60,7 +60,8 @@ export const faqs = [
   },
   {
     question: "What countries can I apply to through Skillcase?",
-    answer: "We currently focus on healthcare opportunities in Germany.",
+    answer:
+      "Germany is our main focus. We also help healthcare professionals with jobs in Ireland and Norway, so talk to an advisor about which country fits you best.",
   },
 ];
 

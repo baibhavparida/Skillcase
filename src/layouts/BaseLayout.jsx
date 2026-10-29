@@ -9,8 +9,8 @@ const fontStylesheets = {
 };
 
 export default function BaseLayout({
-  title = "Skillcase | Healthcare Jobs in Germany",
-  description = "Skillcase helps Indian healthcare professionals find jobs in Germany with profile guidance, interview preparation, visa documentation, and transparent recruitment support.",
+  title = "Skillcase | Healthcare Jobs in Germany and Abroad",
+  description = "Skillcase helps Indian healthcare professionals find jobs in Germany, and also in Ireland and Norway, with profile guidance, language training, interview preparation, visa documentation and transparent recruitment support.",
   robots,
   font = "poppins",
   children,

@@ -9,6 +9,10 @@
   padding-bottom: 24px;
 }
 
+.sx-hero h1 {
+  text-wrap: balance;
+}
+
 .sx-proof {
   display: flex;
   align-items: center;
@@ -24,10 +28,12 @@
   margin: 28px auto 0;
 }
 
-/* The map of learners' home states (LearnerMap.jsx). Everything inside the
+/* The map of learners' home states (LearnerMap.jsx). The map is there from
+   the first paint, whole; only the pins pop in (within a second), then the
+   tour starts (the owner's call). Everything inside the
    frame scales with it: the SVGs use map units, the lens and its label sit
    at percentages of the frame. A stop opens in this order: the old lens
-   closes, the state lights up and the map leans in (0.9s), then the line and
+   closes, the state lights up and the map leans in (0.7s), then the line and
    the lens grow out of the pin. */
 .sx-map {
   max-width: 460px;
@@ -50,7 +56,7 @@
 
 .sx-map-land {
   transform-origin: 0 0;
-  transition: transform 0.9s cubic-bezier(0.45, 0, 0.2, 1);
+  transition: transform 0.7s cubic-bezier(0.45, 0, 0.2, 1);
 }
 
 .sx-map-states path,
@@ -59,11 +65,7 @@
   stroke: #ffffff;
   stroke-width: 2.5;
   stroke-linejoin: round;
-  transform-box: fill-box;
-  transform-origin: center;
   transition: fill 0.5s ease;
-  animation: sx-map-state 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(var(--i, 24) * 20ms);
 }
 
 .sx-map-states circle {
@@ -75,17 +77,11 @@
   fill: #0596d4;
 }
 
-@keyframes sx-map-state {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.96);
-  }
-}
-
-/* Pins drop in once the states are down; the active one grows and pulses. */
+/* Pins pop in one after another, all down within about a second; the
+   active one grows and pulses. */
 .sx-map-pin-drop {
-  animation: sx-map-pin-drop 0.55s cubic-bezier(0.3, 1.5, 0.5, 1) both;
-  animation-delay: calc(850ms + var(--i) * 90ms);
+  animation: sx-map-pin-drop 0.4s cubic-bezier(0.3, 1.5, 0.5, 1) both;
+  animation-delay: calc(80ms + var(--i) * 60ms);
 }
 
 @keyframes sx-map-pin-drop {
@@ -147,7 +143,7 @@
 
 .sx-map-lines path.is-on {
   stroke-dashoffset: 0;
-  transition: stroke-dashoffset 0.5s cubic-bezier(0.3, 0, 0.2, 1) 0.75s;
+  transition: stroke-dashoffset 0.45s cubic-bezier(0.3, 0, 0.2, 1) 0.45s;
 }
 
 /* The lens grows out of the pin (--from-x/y, set inline) to its place. */
@@ -166,8 +162,8 @@
   opacity: 1;
   transform: translate(-50%, -50%) translate(0, 0) scale(1);
   transition:
-    opacity 0.2s ease 0.85s,
-    transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.85s;
+    opacity 0.2s ease 0.5s,
+    transform 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.1) 0.5s;
 }
 
 .sx-lens-photo {
@@ -193,7 +189,7 @@
 
 .sx-lens.is-on .sx-lens-photo img {
   transform: none;
-  transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.85s;
+  transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s;
 }
 
 .sx-lens-label {
@@ -277,8 +273,6 @@
     transform: none !important;
   }
 
-  .sx-map-states path,
-  .sx-map-states circle,
   .sx-map-pin-drop,
   .sx-map-pin.is-on .sx-map-pulse {
     animation: none;

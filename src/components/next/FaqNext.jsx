@@ -15,7 +15,7 @@ export default function FaqNext({
   items = faqs,
   icons = homeIcons,
   title = "Frequently asked questions",
-  intro = "Clear answers before you start your Germany healthcare journey.",
+  intro = "Clear answers before you start your healthcare journey to Germany and beyond.",
   call = { href: "tel:+919731462667", label: "Talk to an advisor" },
 }) {
   const [open, setOpen] = useState(0);

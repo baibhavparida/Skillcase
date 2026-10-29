@@ -1,29 +1,35 @@
 import { useId, useState } from "react";
 import Icon from "../healthcare/Icon.jsx";
 import { INR_PER_EUR, formatLakhRange } from "../../data/placements.js";
-import { roles, signupHref } from "../../data/roles.js";
+import { applyGroups, signupHref } from "../../data/roles.js";
 import { groupThousands, Heading } from "./shared.jsx";
 
 // Pay calculator. Built for phones first, after the mobile calculators of
 // Wealthsimple (value with − and + buttons), Stake (quick-pick amounts) and
 // Zopa (one tidy row of options): pick a role and today's salary, and the
 // answer sits right below, above the call to action. Pay is the typical gross
-// monthly range for the role (the same figures as the role list).
+// monthly range for the role, from the same groups as "Who can apply"
+// (applyGroups in roles.js).
 
 const MIN = 10000;
 const MAX = 200000;
 const STEP = 5000;
 const PICKS = [20000, 35000, 50000, 100000];
 
-// Short chip labels so the row stays compact.
+// Nurses, physiotherapists and everyone else (doctors, technicians and more),
+// at the owner's request. Short chip labels so the row stays compact, and
+// the result's heading for each.
 const shortTitle = {
   nurse: "Nurse",
-  doctor: "Doctor",
   physiotherapist: "Physio",
-  "lab-technician": "Lab tech",
-  "radiology-technician": "Radiology tech",
-  "ot-anaesthesia-technician": "OT & anaesthesia",
+  other: "Others",
 };
+const resultTitle = {
+  nurse: "Nurse",
+  physiotherapist: "Physio",
+  other: "Other roles",
+};
+const calcRoles = applyGroups.filter((entry) => entry.key in shortTitle);
 
 // 150000 -> "1,50,000" (Indian grouping), by hand so server and browser agree.
 function indianGroup(value) {
@@ -64,7 +70,7 @@ export default function PayCalculator() {
   const [roleKey, setRoleKey] = useState("nurse");
   const [current, setCurrent] = useState(30000);
   const sliderId = useId();
-  const role = roles.find((entry) => entry.key === roleKey);
+  const role = calcRoles.find((entry) => entry.key === roleKey);
   const [lowEur, highEur] = role.salary;
   const low = lowEur * INR_PER_EUR;
   const high = highEur * INR_PER_EUR;
@@ -110,7 +116,7 @@ export default function PayCalculator() {
               Your role
             </p>
             <div className="nx-calc-roles" role="group" aria-labelledby="nx-calc-role">
-              {roles.map((entry) => (
+              {calcRoles.map((entry) => (
                 <button
                   key={entry.key}
                   type="button"
@@ -118,7 +124,7 @@ export default function PayCalculator() {
                   className={entry.key === roleKey ? "is-on" : undefined}
                   onClick={() => setRoleKey(entry.key)}
                 >
-                  {shortTitle[entry.key] || entry.title}
+                  {shortTitle[entry.key]}
                 </button>
               ))}
             </div>
@@ -179,7 +185,7 @@ export default function PayCalculator() {
           {/* The answer, right under the controls that change it. */}
           <div className="nx-calc-result" aria-live="polite">
             <div className="nx-calc-head">
-              <p className="nx-calc-label">{shortTitle[roleKey]} in Germany</p>
+              <p className="nx-calc-label">{resultTitle[roleKey]} in Germany</p>
               {timesHigh >= 2 && (
                 <span className="nx-calc-times">
                   {times}{" "}

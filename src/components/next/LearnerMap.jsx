@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { indiaMap } from "../../data/indiaMap.js";
 import { mapLearners } from "../../data/startNow.js";
 
-// The Learner Stories hero picture: a map of India that assembles north to
-// south, drops a pin on each learner's home state, then visits them in turn.
+// The Learner Stories hero picture: a map of India, whole from the start;
+// pins pop in on each learner's home state, then it visits them in turn.
 // At each stop the state lights up, the map leans in a little, and a round
 // "lens" with the learner's photo grows out of the pin, with their name,
 // state and course. It is only a picture: nothing in it can be pressed.
@@ -12,8 +12,8 @@ import { mapLearners } from "../../data/startNow.js";
 // (A globe version, LearnerGlobe, was tried and dropped at the owner's
 // request: just India.)
 //
-// The server renders the map and pins with no stop open. The entry (pure
-// CSS) plays from first paint; the tour starts when the last pin has landed,
+// The server renders the map and pins with no stop open. The pins' entry
+// (pure CSS) plays from first paint; the tour starts when the last has landed,
 // pauses while the map is off screen or the tab is hidden, and only fades
 // under Reduce Motion (start-now-next.css).
 
@@ -74,7 +74,7 @@ export default function LearnerMap() {
 
   useEffect(() => {
     if (!landed || !playing) return undefined;
-    const timer = setTimeout(() => setStop((current) => (current + 1) % mapLearners.length), stop < 0 ? 300 : STOP_MS);
+    const timer = setTimeout(() => setStop((current) => (current + 1) % mapLearners.length), stop < 0 ? 0 : STOP_MS);
     return () => clearTimeout(timer);
   }, [landed, playing, stop]);
 
@@ -90,7 +90,7 @@ export default function LearnerMap() {
       >
         <svg className="sx-map-land" viewBox={VIEW.join(" ")} style={{ transform: camera(stop) }}>
           <g className="sx-map-states">
-            {indiaMap.states.map((state, index) => (
+            {indiaMap.states.map((state) => (
               <path
                 key={state.id}
                 d={state.d}
@@ -100,7 +100,6 @@ export default function LearnerMap() {
                 ]
                   .filter(Boolean)
                   .join(" ") || undefined}
-                style={{ "--i": index }}
               />
             ))}
             {indiaMap.islands.map(([x, y]) => (
