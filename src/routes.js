@@ -1,3 +1,4 @@
+import { events } from "./data/events.js";
 import { blogPosts } from "./data/siteContent.js";
 
 // Keep normal links and page loads, including direct visits to nested URLs.
@@ -28,6 +29,12 @@ const pages = {
   "/start-now": {
     source: "src/pages/start-now-next.jsx",
     load: () => import("./pages/start-now-next.jsx"),
+  },
+  // The program picker the Learner Stories page leads to (replaces the
+  // learner site's cart; payment goes through the Worker to Razorpay).
+  "/start-now/cart": {
+    source: "src/pages/start-now-cart.jsx",
+    load: () => import("./pages/start-now-cart.jsx"),
   },
   "/privacy-policy": {
     source: "src/pages/privacy-policy.jsx",
@@ -99,6 +106,16 @@ for (const post of blogPosts) {
     source: "src/pages/blog/[slug].jsx",
     load: () => import("./pages/blog/[slug].jsx"),
     props: { post, robots: "noindex" },
+  };
+}
+
+// Free live demos, rebuilt from the learner site's event pages at the same
+// /events/<slug> paths; registration goes through the Worker.
+for (const event of events) {
+  pages[`/events/${event.slug}`] = {
+    source: "src/pages/event.jsx",
+    load: () => import("./pages/event.jsx"),
+    props: { event },
   };
 }
 

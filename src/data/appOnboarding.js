@@ -48,7 +48,9 @@ export const occupations = [
 // Ausbildung has no clean match, so it is left for the visitor to pick.
 const occupationByRole = {
   nurse: "Professional nurse",
+  "nursing-student": "Student (learning nursing)",
   physiotherapist: "Physiotherapist",
+  other: "Other",
   doctor: "Other",
   "lab-technician": "Other",
   "lab-technologist": "Other",

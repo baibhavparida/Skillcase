@@ -2,16 +2,17 @@ import { useState } from "react";
 import ResponsiveImage from "../ResponsiveImage.jsx";
 import Icon from "../healthcare/Icon.jsx";
 import { formatLakhRange } from "../../data/placements.js";
-import { roles, signupHref } from "../../data/roles.js";
+import { applyGroups as roles, signupHref } from "../../data/roles.js";
 import { Heading } from "./shared.jsx";
 
-// "Who can apply?"
+// "Who can apply?": nurses, nursing students, physiotherapists and everyone
+// else, the same four groups the learner app's sign-up asks about.
 // - Phones and tablets: compact full-width cards (two columns on tablets): a navy
 //   panel with role, pay and German level that blends into the person's
 //   photo on the right, so the text sits on solid colour and the face stays
 //   clear. Each whole card links to Apply for that role.
 // - Desktop: expanding photo strips (after React Bits' Accordion Gallery, in
-//   full colour): six panels side by side; the open one widens on click or
+//   full colour): four panels side by side; the open one widens on click or
 //   when the mouse rests on it. Closed panels still show role and pay.
 
 export default function RoleStrips() {
@@ -23,15 +24,16 @@ export default function RoleStrips() {
         id="nx-roles-title"
         eyebrow="Job seeker?"
         title="Who can apply?"
-        intro="Pathways for nurses, doctors, physiotherapists and medical technicians, with typical pay and German level."
+        intro="Pathways for nurses, nursing students, physiotherapists and other healthcare professionals, with typical pay and German level."
       />
       <ul className="nx-rolegrid">
         {roles.map((role) => (
           <li key={role.key}>
-            <a className="nx-rcard" href={signupHref(role.key)} aria-label={`Apply as ${role.title}: ${formatLakhRange(role.salary)} a month, ${role.german}`}>
+            <a className="nx-rcard" href={signupHref(role.key)} aria-label={`Apply: ${role.title}, ${role.detail}. ${formatLakhRange(role.salary)} a month, ${role.german}`}>
               <ResponsiveImage className="nx-rcard-photo" src={role.image} alt="" sizes="(max-width: 599px) 62vw, 31vw" />
               <span className="nx-rcard-text" aria-hidden="true">
                 <strong>{role.title}</strong>
+                <span className="nx-rcard-detail">{role.detail}</span>
                 <span className="nx-rcard-pay">
                   {formatLakhRange(role.salary)}
                   <em>/month</em>
@@ -72,6 +74,7 @@ export default function RoleStrips() {
                 onClick={() => setOpen(index)}
               >
                 <span className="nx-strip-name">{role.title}</span>
+                <span className="nx-strip-sub">{role.detail}</span>
                 <span className="nx-strip-pay">{formatLakhRange(role.salary)}/month</span>
               </button>
               <div className="nx-strip-detail" id={`nx-strip-${role.key}`} inert={!isOpen}>

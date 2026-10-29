@@ -25,7 +25,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
               <div className="hero-copy">
                 <a
                   className="webinar-pill"
-                  href="https://learner.skillcase.in/events/7cdknjvd"
+                  href="/events/7cdknjvd/"
                 >
                   <span className="webinar-pill-icon" aria-hidden="true">
                     <span data-icon="video" data-size="15"></span>
@@ -476,7 +476,7 @@ export default function HomeLegacy({ isPrimaryHome = false }) {
                   <div className="webinar-actions">
                     <a
                       className="btn btn-outline webinar-secondary-cta"
-                      href="https://learner.skillcase.in/events/7cdknjvd"
+                      href="/events/7cdknjvd/"
                     >
                       Register Now for Free
                       <span

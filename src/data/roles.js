@@ -53,4 +53,44 @@ export const salaryRange = [
   Math.max(...roles.map((role) => role.salary[1])),
 ];
 
+// The homepage's "Who can apply?" groups: the learner app's four answers to
+// "What do you do?" (occupations in appOnboarding.js), so each card opens
+// sign-up with its answer picked. Pay and German level as above; students
+// get the Ausbildung stipend (as the nursing trainee hero card), and "Other"
+// spans the technician and doctor ranges.
+export const applyGroups = [
+  {
+    key: "nurse",
+    title: "Nurses",
+    detail: "GNM, BSc or MSc Nursing",
+    german: "B1–B2 German",
+    salary: [3300, 3900],
+    image: "/assets/images/candidate-nurse-hamburg.webp",
+  },
+  {
+    key: "nursing-student",
+    title: "Nursing students",
+    detail: "Paid Ausbildung in Germany",
+    german: "B1–B2 German",
+    salary: [1300, 1600],
+    image: "/assets/images/candidate-trainee-nuremberg.webp",
+  },
+  {
+    key: "physiotherapist",
+    title: "Physiotherapists",
+    detail: "BPT or MPT",
+    german: "B2 German",
+    salary: [2700, 3500],
+    image: "/assets/images/candidate-physio-cologne.webp",
+  },
+  {
+    key: "other",
+    title: "Other roles",
+    detail: "Doctors, technicians and more",
+    german: "B2–C1 German",
+    salary: [3200, 6000],
+    image: "/assets/images/candidate-labtech-stuttgart.webp",
+  },
+];
+
 export const signupHref = (key) => `/signup/?role=${key}`;

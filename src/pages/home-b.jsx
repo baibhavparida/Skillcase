@@ -283,7 +283,7 @@ export default function HomeB(props) {
             <div className="vb-hero-copy">
               <a
                 className="vb-live-pill vb-reveal"
-                href="https://learner.skillcase.in/events/7cdknjvd"
+                href="/events/7cdknjvd/"
               >
                 <span className="vb-live-dot" aria-hidden="true"></span>
                 Live webinar&nbsp;·&nbsp;
@@ -321,7 +321,7 @@ export default function HomeB(props) {
                 </a>
                 <a
                   className="vb-btn vb-btn-ghost-dark"
-                  href="https://learner.skillcase.in/events/7cdknjvd"
+                  href="/events/7cdknjvd/"
                 >
                   <i className="ph-bold ph-video-camera" aria-hidden="true"></i>
                   Join Free Webinar
@@ -1475,7 +1475,7 @@ export default function HomeB(props) {
               <div className="vb-webinar-actions">
                 <a
                   className="vb-btn vb-btn-gold"
-                  href="https://learner.skillcase.in/events/7cdknjvd"
+                  href="/events/7cdknjvd/"
                 >
                   Register Now for Free
                   <i className="ph-bold ph-arrow-right" aria-hidden="true"></i>
@@ -1491,7 +1491,7 @@ export default function HomeB(props) {
               style={{
                 "--d": "160ms",
               }}
-              href="https://learner.skillcase.in/events/7cdknjvd"
+              href="/events/7cdknjvd/"
               aria-label="Register for the live webinar on nursing jobs in Germany"
             >
               <img

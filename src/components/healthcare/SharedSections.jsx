@@ -158,7 +158,7 @@ export function WebinarSection() {
             </div>
           </div>
           <div className="webinar-actions">
-            <a className="btn btn-outline webinar-secondary-cta" href="https://learner.skillcase.in/events/7cdknjvd">
+            <a className="btn btn-outline webinar-secondary-cta" href="/events/7cdknjvd/">
               Register Now for Free
               <span data-icon="arrow-right" data-size="16" aria-hidden="true"></span>
             </a>

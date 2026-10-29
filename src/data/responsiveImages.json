@@ -143,6 +143,20 @@
       }
     ]
   },
+  "/assets/images/app-maya-wave.webp": {
+    "width": 227,
+    "height": 240,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/app-maya-wave-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/app-maya-wave-227.webp",
+        "width": 227
+      }
+    ]
+  },
   "/assets/images/app-overview.jpg": {
     "width": 445,
     "height": 592,
@@ -653,6 +667,50 @@
       }
     ]
   },
+  "/assets/images/candidate-nurse-dialysis-stuttgart.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-dialysis-stuttgart-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-dialysis-stuttgart-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-dialysis-stuttgart-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-dialysis-stuttgart-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-nurse-emergency-berlin.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-emergency-berlin-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-emergency-berlin-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-emergency-berlin-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-emergency-berlin-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
   "/assets/images/candidate-nurse-frankfurt.webp": {
     "width": 1024,
     "height": 1536,
@@ -697,6 +755,28 @@
       }
     ]
   },
+  "/assets/images/candidate-nurse-icu-bremen.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-icu-bremen-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-icu-bremen-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-icu-bremen-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-icu-bremen-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
   "/assets/images/candidate-nurse-leipzig.webp": {
     "width": 1024,
     "height": 1536,
@@ -715,6 +795,28 @@
       },
       {
         "src": "/assets/images/responsive/candidate-nurse-leipzig-1024.webp",
+        "width": 1024
+      }
+    ]
+  },
+  "/assets/images/candidate-nurse-ward-bonn.webp": {
+    "width": 1024,
+    "height": 1536,
+    "variants": [
+      {
+        "src": "/assets/images/responsive/candidate-nurse-ward-bonn-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-ward-bonn-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-ward-bonn-768.webp",
+        "width": 768
+      },
+      {
+        "src": "/assets/images/responsive/candidate-nurse-ward-bonn-1024.webp",
         "width": 1024
       }
     ]

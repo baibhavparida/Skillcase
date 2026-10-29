@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import "../../styles/placed-hero.css";
 import ResponsiveImage from "../ResponsiveImage.jsx";
 import Icon from "../healthcare/Icon.jsx";
-import { formatLakhRange, placements } from "../../data/placements.js";
+import { demoUrl } from "../../data/events.js";
+import { formatLakhRange, heroPlacements as placements } from "../../data/placements.js";
 import { useInView } from "./shared.jsx";
 
-// The homepage hero for the variant. Same copy and buttons as the live hero
-// (PlacedHero.jsx; keep the copy in sync).
+// The homepage hero. The headline's country flips through the countries
+// Skillcase places people in; the role cards are mostly nurses
+// (heroPlacements in placements.js).
 // - Desktop: copy on the left; on the right one featured role card with the
 //   other roles' faces orbiting it on two slow rings (after Framer's orbit
 //   and Lovart's single featured card). Hover or click a face to feature it.
@@ -18,25 +20,11 @@ import { useInView } from "./shared.jsx";
 
 const byKey = Object.fromEntries(placements.map((item) => [item.key, item]));
 
-// Rings: angles spread evenly; neighbours never share a designation.
+// Rings: angles spread evenly; the first six cards on the inner ring, the
+// other eight on the outer.
 const rings = [
-  {
-    name: "inner",
-    keys: ["nurse-hamburg", "doctor-munich", "physio-cologne", "nurse-frankfurt", "ottech-heidelberg", "radiographer-freiburg"],
-  },
-  {
-    name: "outer",
-    keys: [
-      "labtech-stuttgart",
-      "nurse-leipzig",
-      "doctor-dusseldorf",
-      "physio-hannover",
-      "trainee-nuremberg",
-      "nurse-aachen",
-      "anaesthesia-dresden",
-      "doctor-berlin",
-    ],
-  },
+  { name: "inner", keys: placements.slice(0, 6).map((item) => item.key) },
+  { name: "outer", keys: placements.slice(6).map((item) => item.key) },
 ];
 
 // The selection travels face by face: round the inner ring, then the outer.
@@ -133,6 +121,39 @@ function HeroOrbit() {
         ))}
       </div>
     </div>
+  );
+}
+
+// The headline's last word: Germany, Norway, Ireland and round again (the
+// owner's order; Japan was dropped). The heading's text for search engines
+// and screen readers names them all; the flipping word is visual only.
+const countries = ["Germany", "Norway", "Ireland"];
+
+function CountryFlip() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setIndex((current) => (current + 1) % countries.length), 2400);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const leaving = (index + countries.length - 1) % countries.length;
+  return (
+    <>
+      <span className="sn-visually-hidden">{countries.slice(0, -1).join(", ")} or {countries[countries.length - 1]}</span>
+      {/* All words share one grid cell, so the box keeps the widest word's
+          width and the headline never reflows. */}
+      <span className="nx-flip" aria-hidden="true">
+        {countries.map((country, i) => (
+          <span
+            className={`nx-flip-word${i === index ? " is-active" : ""}${i === leaving ? " is-leaving" : ""}`}
+            key={country}
+          >
+            {country}
+          </span>
+        ))}
+      </span>
+    </>
   );
 }
 
@@ -270,13 +291,15 @@ export default function HeroSplit() {
         <div className="ph-copy nx-hero-copy">
           {/* The webinar as a quiet eyebrow link (after Wise and Evernote),
               so it reads as a label, not a third button. */}
-          <a className="nx-hero-news" href="https://learner.skillcase.in/events/7cdknjvd">
+          <a className="nx-hero-news" href={demoUrl}>
             <span className="nx-hero-news-kicker">Free live webinar</span>
             <span className="nx-hero-news-text">Nursing jobs in Germany</span>
             <Icon name="arrow-right" size={12} />
           </a>
-          <h1 id="ph-title">Land your healthcare job in Germany</h1>
-          <p className="nx-hero-lede">Explore healthcare jobs in Germany with expert support at every step.</p>
+          <h1 id="ph-title">
+            Land your healthcare job in <CountryFlip />
+          </h1>
+          <p className="nx-hero-lede">Explore healthcare jobs abroad with expert support at every step.</p>
           <div className="hero-actions">
             <a className="btn btn-gold" href="#jobs">
               See Jobs

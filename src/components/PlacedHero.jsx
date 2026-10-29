@@ -38,7 +38,7 @@ export default function PlacedHero() {
   return (
     <section className="ph-hero" id="top" aria-labelledby="ph-title">
       <div className="ph-copy">
-        <a className="webinar-pill" href="https://learner.skillcase.in/events/7cdknjvd">
+        <a className="webinar-pill" href="/events/7cdknjvd/">
           <span className="webinar-pill-icon" aria-hidden="true">
             <span data-icon="video" data-size="15"></span>
           </span>

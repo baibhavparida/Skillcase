@@ -1,5 +1,6 @@
 // Content for /start-now, the trust page that sends visitors to the program
-// picker (the "Choose your service" cart on learner.skillcase.in).
+// picker (/start-now/cart, which replaced the "Choose your service" cart on
+// learner.skillcase.in; that one still works and is the fallback).
 //
 // Copied from the live page's content API (learnerapi.skillcase.in
 // /trust-page/content) in October 2026. That API only returns links that
@@ -7,7 +8,8 @@
 // compressed for phones. Learner photos, videos and reviews are real: keep
 // them real, and get consent before adding anyone new.
 
-export const cartUrl = "https://learner.skillcase.in/start-now/cart";
+export const cartUrl = "/start-now/cart/";
+export const learnerCartUrl = "https://learner.skillcase.in/start-now/cart";
 export const webAppUrl = "https://learner.skillcase.in/";
 
 // The sales line shown on the live start-now page and its cart.
@@ -15,6 +17,95 @@ export const phone = {
   href: "tel:+919972266767",
   label: "+91 99722 66767",
 };
+
+// The hero globe's tour: real learners, one at a time, each zoomed out of a
+// pin on their home state. These are all the learners with usable photos
+// (the CMS's candidates and the story videos), mostly women; more need real
+// photos and consent from the team. The CMS gives a state, not a town, so
+// pins mark states. Course and finished levels are the CMS's (July 2026) or
+// their story video's; levels still in progress are left out because they go
+// stale. Photos are square face crops of the CMS photos (Ganesh's only photo
+// is a distant one). `at` is where the zoomed photo floats, as [longitude,
+// latitude]: over Tibet for the north, over the Bay of Bengal for the rest,
+// clear of the highlighted state. North and south in turn.
+const NORTH = [94, 39];
+const BAY = [88, 17];
+export const mapLearners = [
+  {
+    name: "Sneha Shaji",
+    state: "kerala",
+    course: "BSc Nursing",
+    done: "B2 completed",
+    image: "/assets/images/start-now/lens-sneha-shaji.webp",
+    at: BAY,
+  },
+  {
+    name: "Qasim Malik",
+    state: "uttar-pradesh",
+    course: "BSc Nursing",
+    image: "/assets/images/start-now/lens-qasim-malik.webp",
+    at: NORTH,
+  },
+  {
+    name: "Sheila H. V.",
+    state: "karnataka",
+    course: "GNM Nursing",
+    done: "A1 completed",
+    image: "/assets/images/start-now/lens-sheila-h-v.webp",
+    at: BAY,
+  },
+  {
+    name: "Pinak Saini",
+    state: "rajasthan",
+    course: "MSc Nursing",
+    image: "/assets/images/start-now/lens-pinak-saini.webp",
+    at: NORTH,
+  },
+  {
+    name: "Modem Praveena",
+    state: "andhra-pradesh",
+    course: "BSc Nursing",
+    done: "A1 completed",
+    image: "/assets/images/start-now/lens-modem-praveena.webp",
+    at: BAY,
+  },
+  {
+    name: "Nitin Bewal",
+    state: "haryana",
+    course: "BSc Nursing",
+    image: "/assets/images/start-now/lens-nitin-bewal.webp",
+    at: NORTH,
+  },
+  {
+    name: "Ruth Joseph",
+    state: "tamil-nadu",
+    course: "Post Basic BSc Nursing",
+    image: "/assets/images/start-now/lens-ruth-joseph.webp",
+    at: BAY,
+  },
+  {
+    name: "Ganesh Akhade",
+    state: "maharashtra",
+    course: "BSc Nursing",
+    image: "/assets/images/start-now/lens-ganesh-akhade.webp",
+    at: BAY,
+  },
+  {
+    name: "Priyanka C",
+    state: "karnataka",
+    course: "GNM Nursing",
+    done: "B2 completed",
+    image: "/assets/images/start-now/lens-priyanka-c.webp",
+    at: BAY,
+  },
+  {
+    name: "Sivaranjani P",
+    state: "tamil-nadu",
+    course: "BSc Nursing",
+    image: "/assets/images/start-now/lens-sivaranjani-p.webp",
+    at: BAY,
+  },
+];
 
 // Hero "live class" window. The teacher's frame comes from a real class
 // recording; learners are real Skillcase learners. Tiles after the ninth only

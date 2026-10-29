@@ -1,4 +1,6 @@
-export default function SiteFooter(props) {
+// `credit`: a page's own credit line (e.g. map data), shown beside the
+// copyright.
+export default function SiteFooter({ credit }) {
   return (
     <>
       <footer className="site-footer">
@@ -43,6 +45,7 @@ export default function SiteFooter(props) {
           <div className="footer-bottom">
             <p className="footer-note">
               © 2026 Skillcase. All rights reserved.
+              {credit && <span className="footer-credit"> {credit}</span>}
             </p>
             <div>
               <a href="/terms-and-condition/">Terms &amp; Conditions</a>

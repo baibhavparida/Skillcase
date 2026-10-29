@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ResponsiveImage from "../ResponsiveImage.jsx";
 import Icon from "../healthcare/Icon.jsx";
+import {
+  demoEvent,
+  demoUrl,
+  describeSession,
+  nextSessions,
+  scheduleDaysShort,
+  scheduleStart,
+} from "../../data/events.js";
 
 // Webinar and podcast for the homepage variant. Same content as the live
 // homepage's sections (HomeSections.jsx; keep them in sync).
 
-const WEBINAR_URL = "https://learner.skillcase.in/events/7cdknjvd";
 const PODCAST_ID = "-1NrsTNPab4";
 
 // The webinar as a light event card with a soft cyan glow travelling round
 // its edge (after libraries.dev's "Border beam"), so it draws the eye
-// without moving the layout.
+// without moving the layout. It leads to the demo's own page (/events/…)
+// and names the real next session, worked out in the browser from the
+// weekly schedule (the prerendered card names the days).
 export function WebinarNext() {
+  const [next, setNext] = useState(null);
+  useEffect(() => {
+    const now = new Date();
+    const [start] = nextSessions(demoEvent.schedule, now, 1);
+    if (start) setNext(describeSession(start, now, demoEvent.schedule.minutes));
+  }, []);
+  const when = next
+    ? `${next.short === "Today" || next.short === "Tomorrow" ? next.short : `${next.short} ${next.date}`} · ${next.at} IST`
+    : `${scheduleDaysShort(demoEvent.schedule)} · ${scheduleStart(demoEvent.schedule)} IST`;
+
   return (
     <section className="section nx-webinar" id="register-webinar" aria-labelledby="nx-webinar-title">
       <div className="nx-webinar-card">
@@ -35,7 +54,7 @@ export function WebinarNext() {
           <ul className="nx-webinar-facts">
             <li>
               <Icon name="calendar-check" size={16} />
-              Today · 8:00 PM IST
+              {when}
             </li>
             <li>
               <Icon name="video-camera" size={16} />
@@ -46,7 +65,7 @@ export function WebinarNext() {
               Free · limited seats
             </li>
           </ul>
-          <a className="btn nx-webinar-cta" href={WEBINAR_URL}>
+          <a className="btn nx-webinar-cta" href={demoUrl}>
             Register for free
             <Icon name="arrow-right" size={15} />
           </a>

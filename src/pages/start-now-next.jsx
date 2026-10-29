@@ -4,10 +4,14 @@ import SiteFooter from "../components/SiteFooter.jsx";
 import SiteHeader from "../components/SiteHeader.jsx";
 import Icon from "../components/healthcare/Icon.jsx";
 import FaqNext from "../components/next/FaqNext.jsx";
+import { PayError, useCheckout } from "../components/next/Checkout.jsx";
 import FinalCta from "../components/next/FinalCta.jsx";
+import LearnerGlobe from "../components/next/LearnerGlobe.jsx";
 import PreviewVideo from "../components/next/PreviewVideo.jsx";
 import { GoogleReviews, StoryCarousel } from "../components/next/StoriesNext.jsx";
 import { Heading } from "../components/next/shared.jsx";
+import { useCourses } from "../components/next/useCourses.js";
+import { COMPLETE_ID, compareLabel, comparePrice, courseExtras, formatRupees } from "../data/courses.js";
 import { cartUrl, classClips, faqs, lectures, notes, phone, webAppUrl } from "../data/startNow.js";
 import "../styles/placed-hero.css";
 import "../styles/home.css";
@@ -19,64 +23,11 @@ import "../styles/start-now-next.css";
 // kept at /start-now-classic), in the homepage's style. The content follows
 // a visitor's questions: what is this, are people like me doing it, what are
 // classes like, can I try it, who else teaches, what do learners say, can I
-// learn on my phone, then answers and a final nudge. Built from the
-// homepage's parts: its
-// hero (with a collage of real learners), story tiles with silent previews,
-// the review wall, the FAQ with icons, the app reel and the navy closing band,
-// in Manrope.
-
-// Hero picture: real Skillcase learners in a staggered collage, each with a
-// plain name and home state. It is only a picture, with no buttons or icons,
-// so nothing in it looks tappable (the live-class window it replaces did, and
-// confused visitors). Columns top to bottom; the middle one sits lower.
-const mosaic = [
-  [
-    { name: "Ruth Joseph", place: "Tamil Nadu", image: "/assets/images/learner-marquee/ruth-joseph.webp" },
-    { name: "Sneha Shaji", place: "Kerala", image: "/assets/images/start-now/story-sneha-shaji.webp" },
-  ],
-  [
-    {
-      name: "Sheila H. V.",
-      place: "Karnataka",
-      image: "/assets/images/learner-marquee/sheila-h-v-trimmed.webp",
-      focus: "center 45%",
-    },
-    { name: "Modem Praveena", place: "Andhra Pradesh", image: "/assets/images/learner-marquee/modem-praveena.webp" },
-  ],
-  [
-    { name: "Sivaranjani P", place: "Tamil Nadu", image: "/assets/images/learner-marquee/sivaranjani-p-trimmed.webp" },
-    { name: "Sandesh", place: "Karnataka", image: "/assets/images/start-now/story-sandesh.webp" },
-  ],
-];
-
-function LearnerMosaic() {
-  return (
-    <div
-      className="sx-mosaic"
-      role="img"
-      aria-label="Photos of Skillcase learners from Tamil Nadu, Kerala, Karnataka and Andhra Pradesh"
-    >
-      {mosaic.map((column) => (
-        <div className="sx-mosaic-col" key={column[0].name}>
-          {column.map((learner) => (
-            <figure className="sx-mosaic-photo" key={learner.name}>
-              <img
-                src={learner.image}
-                alt=""
-                decoding="async"
-                style={learner.focus ? { objectPosition: learner.focus } : undefined}
-              />
-              <figcaption>
-                <strong>{learner.name}</strong>
-                <span>{learner.place}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      ))}
-    </div>
-  );
-}
+// learn on my phone, what does it cost, then answers and a final nudge.
+// Built from the homepage's parts: its hero (with a globe showing real
+// learners' home states, LearnerGlobe), story tiles with silent previews, the review
+// wall, the FAQ with icons, the app reel and the navy closing band, in
+// Manrope.
 
 function Hero() {
   return (
@@ -112,7 +63,7 @@ function Hero() {
         </div>
 
         <div className="sx-hero-visual">
-          <LearnerMosaic />
+          <LearnerGlobe />
         </div>
       </div>
     </section>
@@ -273,6 +224,94 @@ function Lectures() {
   );
 }
 
+// The three ways in, with prices, so the cost isn't a surprise on the
+// program picker (/start-now/cart). Live prices, as on the picker; each card
+// opens it at that choice (the complete program already ticked).
+function Programs() {
+  const { blocks } = useCourses();
+  const complete = blocks.find((block) => block.id === COMPLETE_ID);
+  const compare = complete && comparePrice(complete, blocks);
+  const cheapest = (list) => list.reduce((low, block) => (!low || block.price_paise < low.price_paise ? block : low), null);
+  const level = cheapest(blocks.filter((block) => courseExtras[block.id]?.level));
+  const placement = cheapest(blocks.filter((block) => courseExtras[block.id]?.group === "placement"));
+  const was = (block) => comparePrice(block, blocks);
+  const { pay, paying, failed } = useCheckout();
+
+  return (
+    <section className="section sx-programs" id="programs" aria-labelledby="sx-programs-title">
+      <Heading
+        id="sx-programs-title"
+        eyebrow="Programs and fees"
+        title="Choose how far we take you"
+        intro="From a single German level to complete support until your first job in Germany."
+      />
+      <div className="sx-programs-grid">
+        {complete && (
+          <div className="sx-program is-main nx-glow">
+            {complete.is_recommended && <span className="sx-program-tag">Recommended</span>}
+            <strong>{complete.title}</strong>
+            <span className="sx-program-text">
+              German training, interview preparation, job placement, recognition, visa and relocation support.
+            </span>
+            {compare && (
+              <span className="sx-program-was">
+                <s>{formatRupees(compare.paise)}</s> {compareLabel(compare)}
+              </span>
+            )}
+            <span className="sx-program-price">
+              <span>{formatRupees(complete.price_paise)}</span>
+              {compare && <em className="sx-program-save">Save {formatRupees(compare.paise - complete.price_paise)}</em>}
+            </span>
+            <button type="button" className="btn btn-gold" disabled={Boolean(paying)} onClick={() => pay(COMPLETE_ID)}>
+              {paying === COMPLETE_ID ? (
+                "Opening payment…"
+              ) : (
+                <>
+                  Pay now
+                  <Icon name="arrow-right" size={16} />
+                </>
+              )}
+            </button>
+            {failed === COMPLETE_ID && <PayError />}
+          </div>
+        )}
+        {level && (
+          <a className="sx-program" href={`${cartUrl}#courses`}>
+            <strong>German courses</strong>
+            <span className="sx-program-text">A1 to B2, one level at a time, in live classes.</span>
+            <span className="sx-program-price">
+              <small>From</small>
+              {was(level) && <s>{formatRupees(was(level).paise)}</s>}
+              <span>{formatRupees(level.price_paise)}</span>
+              {level.show_gst_badge && <small>+ GST</small>}
+            </span>
+            <span className="sx-program-go">
+              See courses
+              <Icon name="arrow-right" size={13} />
+            </span>
+          </a>
+        )}
+        {placement && (
+          <a className="sx-program" href={`${cartUrl}#courses`}>
+            <strong>Job placement</strong>
+            <span className="sx-program-text">Hospital interviews and placement support.</span>
+            <span className="sx-program-price">
+              <small>From</small>
+              {was(placement) && <s>{formatRupees(was(placement).paise)}</s>}
+              <span>{formatRupees(placement.price_paise)}</span>
+              {placement.show_gst_badge && <small>+ GST</small>}
+            </span>
+            <span className="sx-program-go">
+              See placement
+              <Icon name="arrow-right" size={13} />
+            </span>
+          </a>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function Reviews() {
   return (
     <section className="section sx-reviews" id="reviews" aria-labelledby="sx-reviews-title">
@@ -304,6 +343,7 @@ export default function StartNowNext() {
           <Lectures />
           <Reviews />
           <AppJourneyShowcase webAppUrl={webAppUrl} />
+          <Programs />
           <FaqNext
             items={faqs}
             icons={["translate", "video-camera", "book-open-text", "device-mobile", "signpost"]}
@@ -322,7 +362,17 @@ export default function StartNowNext() {
             ]}
           />
         </main>
-        <SiteFooter />
+        <SiteFooter
+          credit={
+            <>
+              Map data:{" "}
+              <a href="https://github.com/datameet/maps" rel="noopener">
+                DataMeet
+              </a>
+              , CC BY 4.0.
+            </>
+          }
+        />
       </div>
     </BaseLayout>
   );

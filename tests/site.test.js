@@ -11,6 +11,8 @@ const routes = [
   "blog",
   "signup",
   "start-now",
+  "start-now/cart",
+  "events/7cdknjvd",
   "privacy-policy",
   "terms-and-condition",
   "terms-and-conditions",
