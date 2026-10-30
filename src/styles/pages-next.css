@@ -42,7 +42,7 @@
   width: var(--ph-wrap);
   margin: 28px auto 0;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: var(--r-card);
   aspect-ratio: 3 / 2;
   background: #dce8f1;
 }
@@ -122,7 +122,7 @@
   min-width: 0;
   flex-direction: column;
   padding: 16px 14px;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   background: #eaf6fd;
 }
 
@@ -143,7 +143,7 @@
   height: 40px;
   place-items: center;
   margin-bottom: 14px;
-  border-radius: 12px;
+  border-radius: var(--r-small);
   background: #ffffff;
   color: var(--color-navy);
 }
@@ -199,16 +199,18 @@
    Phones: the first wide, the other two side by side. Wide screens: the first
    large on the left, the other two stacked on the right. */
 
+/* The wide first tile gets its own taller row (a min-height on the tile
+   would spill into the row below and slide under the other two). */
 .ax-why-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 210px;
   grid-auto-rows: 190px;
   gap: 10px;
 }
 
 .ax-why-tile:first-child {
   grid-column: 1 / -1;
-  min-height: 210px;
 }
 
 /* Photo tiles carry no padding (the shared tile rule adds some on desktop). */
@@ -227,7 +229,6 @@
   .ax-why-tile:first-child {
     grid-row: 1 / span 2;
     grid-column: 1;
-    min-height: 0;
   }
 }
 
@@ -287,7 +288,7 @@
 .bx-post-media {
   position: relative;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   aspect-ratio: 16 / 10;
   background: #dce8f1;
 }
@@ -350,7 +351,7 @@
   position: absolute;
   z-index: 1;
   inset: 0;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   content: "";
 }
 
@@ -430,7 +431,7 @@
 /* The featured guide: a light panel, photo on top on phones. */
 .bx-post.is-featured {
   overflow: hidden;
-  border-radius: 22px;
+  border-radius: var(--r-card);
   background: #f2f7fb;
 }
 
@@ -452,7 +453,7 @@
 }
 
 .bx-post.is-featured .bx-post-title a::after {
-  border-radius: 22px;
+  border-radius: var(--r-card);
 }
 
 /* "More guides" / "Keep reading". */
@@ -602,7 +603,7 @@
 .bx-read-image {
   margin: 24px 0 0;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: var(--r-card);
   aspect-ratio: 3 / 2;
   background: #dce8f1;
 }
@@ -774,7 +775,7 @@
   gap: 14px;
   margin: 36px 0;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: var(--r-card);
   background: #eaf6fd;
 }
 
@@ -828,7 +829,7 @@
   gap: 8px;
   padding: 0 16px;
   border: 1px solid #d5e1ec;
-  border-radius: 8px;
+  border-radius: var(--r-btn);
   background: #ffffff;
   color: var(--color-navy-deep);
   cursor: pointer;

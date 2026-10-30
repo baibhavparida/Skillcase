@@ -815,24 +815,6 @@ main [id] {
   .sc-onb {
     min-height: 100svh;
   }
-  .sc-onb-bar {
-    height: auto;
-    min-height: 68px;
-    padding: max(10px, env(safe-area-inset-top))
-      max(20px, env(safe-area-inset-right)) 10px
-      max(20px, env(safe-area-inset-left));
-  }
-  .sc-onb-brand {
-    display: inline-flex;
-    min-height: 44px;
-    align-items: center;
-  }
-  .sc-onb-call {
-    min-width: 44px;
-    min-height: 44px;
-    height: auto;
-    justify-content: center;
-  }
   .sc-onb-back,
   .sc-onb-text-link {
     min-height: 44px;
@@ -996,8 +978,7 @@ main [id] {
     justify-content: space-between;
     gap: 12px;
   }
-  .sc-onb-flow,
-  .sc-onb-bar {
+  .sc-onb-flow {
     padding-inline: 16px;
   }
   .sc-onb-stepper {
@@ -1028,7 +1009,6 @@ main [id] {
 
 @media (max-height: 500px) and (orientation: landscape) {
   .site-header,
-  .sc-onb-bar,
   .vb-header {
     position: relative;
   }

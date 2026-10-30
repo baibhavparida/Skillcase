@@ -300,7 +300,15 @@ export default function HeroSplit() {
           <h1 id="ph-title">
             Land your healthcare job in <CountryFlip />
           </h1>
-          <p className="nx-hero-lede">Explore healthcare jobs abroad with expert support at every step.</p>
+          {/* Two lines of equal width (.nx-lines): measured 258/260px. */}
+          <p className="nx-hero-lede nx-lines">
+            <span>
+              <span>Explore healthcare jobs abroad</span>
+            </span>{" "}
+            <span>
+              <span>with expert support</span> <span>all the way.</span>
+            </span>
+          </p>
           <div className="hero-actions">
             <a className="btn btn-gold" href="#jobs">
               See Jobs

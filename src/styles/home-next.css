@@ -16,6 +16,30 @@
   font-size-adjust: 0.548;
 }
 
+/* ---- Corner radii: one scale for every redesigned page ---------------------
+   Buttons 8px; small parts (icon tiles, inputs, thumbnails, toasts, panels
+   nested inside a card) 12px; cards, panels, tiles and photos 20px; tags and
+   chips are pills; avatars are circles. Phone mockups keep their own device
+   corners. Set here so the cart, events, About and blog pages share it. */
+:root {
+  --r-btn: 8px;
+  --r-small: 12px;
+  --r-card: 20px;
+}
+
+/* Older shared parts used on these pages, on the same scale. */
+.site-shell.home-next :is(.blog-card, .podcast-section, .ph-card) {
+  border-radius: var(--r-card);
+}
+
+.site-shell.home-next .blog-card .blog-media {
+  border-radius: var(--r-card) var(--r-card) 0 0;
+}
+
+.site-shell.home-next .podcast-video-frame {
+  border-radius: var(--r-small);
+}
+
 .site-shell.home-next :is(h1, h2) {
   letter-spacing: -0.015em !important;
 }
@@ -136,6 +160,21 @@
   line-height: 1.55;
 }
 
+/* A lede written as lines of even length (the owner disliked ragged
+   shapes): each child span is a line; inside it, nowrap phrases, so a line
+   that doesn't fit splits once between phrases, never inside one. */
+.nx-lines > span {
+  display: block;
+}
+
+.nx-lines span span {
+  white-space: nowrap;
+}
+
+.ph-hero.nx-hero .nx-lines {
+  max-width: none;
+}
+
 .ph-hero.nx-hero .hero-actions {
   margin-top: 26px;
 }
@@ -192,7 +231,7 @@
   padding: 0;
   overflow: hidden;
   border: 0;
-  border-radius: calc(var(--R) * 0.05);
+  border-radius: var(--r-card);
   background: #d9e4ee;
   box-shadow: 0 10px 24px rgba(0, 40, 86, 0.16);
   cursor: pointer;
@@ -603,7 +642,7 @@
     position: absolute;
     inset: 0;
     width: 100%;
-    border-radius: 18px;
+    border-radius: var(--r-card);
     box-shadow:
       0 2px 4px rgba(0, 40, 86, 0.06),
       0 24px 48px rgba(0, 40, 86, 0.2);
@@ -732,7 +771,7 @@
   flex-direction: column;
   overflow: hidden;
   padding: 16px 14px;
-  border-radius: 18px;
+  border-radius: var(--r-card);
 }
 
 .nx-tile-family {
@@ -1068,7 +1107,7 @@
   gap: 10px;
   padding: 14px;
   border: 1px solid rgba(0, 40, 86, 0.08);
-  border-radius: 16px;
+  border-radius: var(--r-card);
   background: #ffffff;
   box-shadow:
     0 1px 2px rgba(0, 40, 86, 0.04),
@@ -1083,7 +1122,7 @@
   left: 14px;
   z-index: -1;
   height: 24px;
-  border-radius: 0 0 14px 14px;
+  border-radius: 0 0 var(--r-card) var(--r-card);
   background: rgba(255, 255, 255, 0.75);
   box-shadow: 0 6px 14px rgba(0, 40, 86, 0.08);
   content: "";
@@ -1217,7 +1256,7 @@
   gap: 10px;
   margin: -6px 12px 0;
   padding: 10px 12px;
-  border-radius: 14px;
+  border-radius: var(--r-small);
   background: var(--color-navy);
   box-shadow: 0 12px 26px rgba(0, 40, 86, 0.28);
   color: #ffffff;
@@ -1388,7 +1427,7 @@
   display: grid;
   place-content: center;
   gap: 2px;
-  border-radius: 12px;
+  border-radius: var(--r-small);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   text-align: center;
@@ -1517,7 +1556,7 @@
   margin: 0 10px -14px;
   padding: 10px 12px;
   border: 1px solid rgba(0, 40, 86, 0.06);
-  border-radius: 14px;
+  border-radius: var(--r-small);
   background: rgba(255, 255, 255, 0.97);
   box-shadow: 0 14px 30px rgba(0, 40, 86, 0.16);
 }
@@ -1881,7 +1920,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 18px;
   padding: 26px 12px 12px;
-  border-radius: 24px;
+  border-radius: var(--r-card);
   background:
     radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.3), transparent 55%),
     linear-gradient(145deg, #063b70, #06294e 72%);
@@ -1949,7 +1988,7 @@
     flex: none;
     place-items: center;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
+    border-radius: var(--r-small);
     background: rgba(255, 255, 255, 0.07);
     color: #8fdcff;
   }
@@ -1994,7 +2033,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   padding: 12px 12px 14px;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   background: #ffffff;
   box-shadow: 0 18px 40px rgba(0, 18, 39, 0.24);
   color: var(--color-ink);
@@ -2011,7 +2050,7 @@
 /* Result */
 .nx-calc-result {
   padding: 14px 14px 12px;
-  border-radius: 14px;
+  border-radius: var(--r-small);
   background: #f2f6fa;
 }
 
@@ -2034,7 +2073,7 @@
   flex: none;
   justify-items: center;
   padding: 6px 10px 5px;
-  border-radius: 10px;
+  border-radius: var(--r-small);
   background: var(--color-navy);
   color: #ffffff;
   font-size: 17px;
@@ -2351,7 +2390,7 @@
   aspect-ratio: 3 / 4;
   flex: none;
   overflow: hidden;
-  border-radius: 16px;
+  border-radius: var(--r-card);
   background: #dce8f1;
   box-shadow: 0 8px 18px rgba(0, 40, 86, 0.08);
 }
@@ -2414,7 +2453,7 @@
 
   .nx-lm-card {
     width: 210px;
-    border-radius: 18px;
+    border-radius: var(--r-card);
   }
 
   .nx-lm-caption {
@@ -2461,7 +2500,7 @@
   position: relative;
   aspect-ratio: var(--nx-pv-ratio, 3 / 4);
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   background: #0b1f3a;
 }
 
@@ -2730,7 +2769,7 @@
   display: flex;
   height: 136px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   background: #062a52;
   color: #ffffff;
   isolation: isolate;
@@ -2889,7 +2928,7 @@
   position: relative;
   height: 76px;
   overflow: hidden;
-  border-radius: 18px;
+  border-radius: var(--r-card);
   background: #0b1f3a;
   transition: height 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -2967,7 +3006,7 @@
 .nx-strip-toggle:focus-visible {
   outline: 3px solid var(--color-cyan);
   outline-offset: -3px;
-  border-radius: 18px;
+  border-radius: var(--r-card);
 }
 
 .nx-strip-name {
@@ -3153,7 +3192,7 @@
   flex: none;
   place-items: center;
   border: 1px solid rgba(0, 40, 86, 0.1);
-  border-radius: 14px;
+  border-radius: var(--r-small);
   background: #ffffff;
 }
 
@@ -3200,7 +3239,7 @@
   margin: 0;
   padding: 16px;
   border: 1px solid rgba(0, 40, 86, 0.1);
-  border-radius: 16px;
+  border-radius: var(--r-card);
   background: #ffffff;
 }
 
@@ -3264,7 +3303,7 @@
   gap: 6px;
   margin-top: 10px;
   border: 1px solid rgba(0, 40, 86, 0.14);
-  border-radius: 12px;
+  border-radius: var(--r-btn);
   background: #ffffff;
   color: var(--color-navy);
   cursor: pointer;
@@ -3367,7 +3406,7 @@
   position: relative;
   display: grid;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: var(--r-card);
   background: #ffffff;
   box-shadow: 0 18px 40px rgba(0, 40, 86, 0.08);
 }
@@ -3666,7 +3705,7 @@
   height: 36px;
   flex: none;
   place-items: center;
-  border-radius: 10px;
+  border-radius: var(--r-small);
   background: #eaf6fd;
   color: var(--color-navy);
 }
@@ -3761,7 +3800,7 @@
   display: grid;
   overflow: hidden;
   padding: 30px 20px 0;
-  border-radius: 24px;
+  border-radius: var(--r-card);
   background:
     radial-gradient(circle at 100% 0, rgba(5, 163, 229, 0.3), transparent 55%),
     linear-gradient(145deg, #063b70, #06294e 72%);
@@ -3806,7 +3845,7 @@
   gap: 8px;
   padding: 0 16px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 8px;
+  border-radius: var(--r-btn);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -3981,7 +4020,7 @@
     position: relative;
     height: 440px;
     overflow: hidden;
-    border-radius: 28px;
+    border-radius: var(--r-card);
     background: #f2f6fa;
   }
 
@@ -4182,9 +4221,11 @@
   min-height: 40px;
 }
 
-/* The app buttons have two lines of text; centre them in the shorter box. */
+/* The app buttons have two lines of text; centre them in the shorter box.
+   Same corners as every other button. */
 .site-shell.home-next main :is(.app-store-cta, .app-web-cta) {
   padding-block: 0;
+  border-radius: var(--r-btn);
 }
 
 .site-shell.home-next main :is(.app-gallery-controls > button, .nx-storyrow-controls > button) {

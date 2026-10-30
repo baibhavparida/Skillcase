@@ -38,26 +38,10 @@
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---- Top bar ---- */
-.sc-onb-bar {
-  position: sticky;
-  top: 0;
-  z-index: 30;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  height: 60px;
-  padding: 0 20px;
-  background: var(--sc-surface);
-  border-bottom: 1px solid var(--sc-border-soft);
-}
-
-.sc-onb-brand img {
-  height: 28px;
-  width: auto;
-}
-
+/* ---- Top bar ----
+   The bar is the site header (.site-header, .brand-logo in styles.css and
+   mobile.css), so it matches every other page; only its right side is its
+   own: the trust pill and a call button like the cart's. */
 .sc-onb-bar-tools {
   display: flex;
   align-items: center;
@@ -84,13 +68,13 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  height: 36px;
-  padding: 0 14px;
-  border: 1px solid var(--sc-border-soft);
-  border-radius: var(--sc-r-pill);
-  background: var(--sc-surface);
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(0, 40, 86, 0.14);
+  border-radius: 8px;
+  background: #ffffff;
   color: var(--color-navy);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
 }
 
@@ -100,12 +84,14 @@
 }
 
 .sc-onb-call .icon-svg { color: var(--color-cyan); }
-.sc-onb-call span:not(.icon-svg) { display: none; }
 
 @media (min-width: 640px) {
-  .sc-onb-bar { padding: 0 28px; height: 68px; }
   .sc-onb-trust-pill { display: inline-flex; }
-  .sc-onb-call span:not(.icon-svg) { display: inline; }
+}
+
+/* The other pages' Get Started height, once the header shows its nav. */
+@media (min-width: 901px) {
+  .sc-onb-call { height: 38px; }
 }
 
 /* ---- Welcome screen ---- */
@@ -1928,16 +1914,6 @@
   flex-direction: column;
 }
 
-/* Chrome echoes .site-header: translucent white + blur + hairline + sheen. */
-.sc-onb-bar {
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.86);
-  border-bottom: 1px solid var(--sc-hairline);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
-  backdrop-filter: blur(22px) saturate(150%);
-}
-
 /* The flow fills the viewport so the CTA can anchor to the bottom. */
 .sc-onb-flow {
   flex: 1;
@@ -1970,9 +1946,6 @@
    boxed card, and the primary action sits in the thumb zone at the bottom.
    ------------------------------------------------------------------------- */
 @media (max-width: 1023px) {
-  /* Trim the wordmark on phones so the chrome stays light. */
-  .sc-onb-brand img { height: 22px; }
-
   .sc-onb-flow {
     max-width: 560px;
     width: 100%;
@@ -2039,10 +2012,6 @@
 }
 
 @media (min-width: 1024px) {
-  /* Header chrome matched to the homepage. */
-  .sc-onb-bar { padding-inline: 40px; }
-  .sc-onb-brand img { width: 146px; height: auto; }
-
   /* Flow becomes a full-bleed 50/50 split. */
   .sc-onb-flow {
     flex: 1;
@@ -2313,14 +2282,6 @@
 }
 .sc-onb-cta:hover { transform: translateY(-2px); }
 .sc-onb-cta:active { transform: translateY(0) scale(0.98); }
-
-/* ---- Chrome: translucent blur bars like the homepage header ---- */
-.sc-onb-bar {
-  background: rgba(248, 250, 253, 0.86);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--sc-hairline);
-}
 
 /* ---- Reduced motion: no lifts ---- */
 @media (prefers-reduced-motion: reduce) {

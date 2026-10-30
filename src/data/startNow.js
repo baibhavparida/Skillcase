@@ -25,12 +25,13 @@ export const phone = {
 // pins mark states. Course and finished levels are the CMS's (July 2026) or
 // their story video's; levels still in progress are left out because they go
 // stale. Photos are square face crops of the CMS photos (Ganesh's only photo
-// is a distant one). `lens` is where the zoomed photo floats, in map units
-// (src/data/indiaMap.js): top right for the north, over the Bay of Bengal
-// for the rest, clear of the highlighted state, with room below for the
-// caption and its shadow. North and south in turn.
-const NORTH = [760, 120];
-const BAY = [660, 740];
+// is a distant one). `lens` is where the zoomed photo floats, in the units
+// of LearnerMap's FRAME (map units of the tilted view): top right over the
+// north-east for the north, over the Bay of Bengal for the rest, clear of the
+// highlighted state and its pin, with room below for the caption and its
+// shadow at every width. North and south in turn.
+const NORTH = [880, 190];
+const BAY = [770, 680];
 export const mapLearners = [
   {
     name: "Sneha Shaji",
@@ -68,7 +69,7 @@ export const mapLearners = [
     course: "BSc Nursing",
     done: "A1 completed",
     image: "/assets/images/start-now/lens-modem-praveena.webp",
-    lens: [740, 785],
+    lens: [800, 740],
   },
   {
     name: "Nitin Bewal",

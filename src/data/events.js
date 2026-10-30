@@ -13,11 +13,12 @@ export const events = [
     kicker: "Free live demo",
     // The page's search description; not shown on the page (owner's call).
     lede: "Start here. Join Skillcase’s free live demo on Google Meet and kickstart your German learning.",
-    highlights: [
-      { icon: "books", label: "A1 to B2 preparation" },
-      { icon: "target", label: "German language, exam prep and interview training" },
-      { icon: "airplane-tilt", label: "Complete support for the Germany nursing pathway" },
-    ],
+    // The team's own description in the CMS, word for word: the page shows
+    // it as free text under "About the demo", as Luma shows a host's (blank
+    // lines start paragraphs, line breaks stay, **bold** is bold). Copy it
+    // again when the team changes it.
+    description:
+      "👩‍⚕️ **Nursing Jobs in Germany — Start Here!**\nJoin Skillcase and kickstart your German learning ✅\n\n📚 A1 to B2 Preparation\n🎯 German Language + Exam Prep + Interview Training\n✈️ Complete support for Germany nursing pathway\n\n🕡 **Time: 08:00 PM (IST)**\n💻 Mode: Google Meet\n✅ FREE Demo – Limited Seats!",
     // The CMS's own words ("FREE Demo – Limited Seats!").
     seats: "Limited seats",
     // Every Monday, Wednesday, Thursday and Saturday, 8 to 9 PM IST: the days

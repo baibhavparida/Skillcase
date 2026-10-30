@@ -9,8 +9,18 @@
   padding-bottom: 24px;
 }
 
+/* Two lines everywhere ("From Day 1 to / your job abroad"): the headline
+   uses its whole column instead of the homepage hero's 11ch cap. */
 .sx-hero h1 {
   text-wrap: balance;
+}
+
+/* Specific enough to beat home-next.css's cap whatever order the build puts
+   the stylesheets in. */
+@media (min-width: 1000px) {
+  .ph-hero.nx-hero.sx-hero h1 {
+    max-width: none;
+  }
 }
 
 .sx-proof {
@@ -28,25 +38,58 @@
   margin: 28px auto 0;
 }
 
-/* The map of learners' home states (LearnerMap.jsx). The map is there from
+/* The map of learners' home states (LearnerMap.jsx): a slab of India lying
+   back in 3D, swaying slowly and never quite still (the team's call: a still
+   map with a jump at each stop felt "static + movement"). It is there from
    the first paint, whole; only the pins pop in (within a second), then the
-   tour starts (the owner's call). Everything inside the
-   frame scales with it: the SVGs use map units, the lens and its label sit
-   at percentages of the frame. A stop opens in this order: the old lens
-   closes, the state lights up and the map leans in (0.7s), then the line and
-   the lens grow out of the pin. */
+   tour starts. Everything inside the frame scales with it: the SVGs use map
+   units, the 3D layers' lengths are in cqw (the frame is a size container),
+   the lens and its label sit at percentages of the frame. A stop opens in
+   this order: the old lens closes, the state lights up, then the line and
+   the lens grow out of the pin. LearnerMap sets the frame's shape and the
+   layers' place and transform inline. */
 .sx-map {
-  max-width: 460px;
+  max-width: 480px;
   margin-inline: auto;
 }
 
 .sx-map-frame {
   position: relative;
-  aspect-ratio: 1120 / 1264; /* LearnerMap's VIEW */
+  container-type: inline-size;
 }
 
-.sx-map-land,
-.sx-map-lines {
+.sx-map-floor,
+.sx-map-slab,
+.sx-map-land {
+  position: absolute;
+}
+
+.sx-map-floor svg,
+.sx-map-slab svg,
+.sx-map-land svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* The grid floor the slab rests on: faint, fading out well inside its edges. */
+.sx-map-floor {
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
+  mask-image: radial-gradient(closest-side, #000 35%, transparent);
+}
+
+.sx-map-floor path {
+  fill: none;
+  stroke: #dce7f1;
+  stroke-width: 2;
+}
+
+.sx-map-floor circle {
+  fill: #c3d5e5;
+}
+
+.sx-map-marks {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -54,9 +97,14 @@
   overflow: visible;
 }
 
-.sx-map-land {
-  transform-origin: 0 0;
-  transition: transform 0.7s cubic-bezier(0.45, 0, 0.2, 1);
+/* The slab's underside shows as its edge along the near coasts, and casts a
+   soft shadow on the page. */
+.sx-map-slab {
+  filter: drop-shadow(0 2.5cqw 3cqw rgba(0, 40, 86, 0.14));
+}
+
+.sx-map-slab path {
+  fill: #bccfe0;
 }
 
 .sx-map-states path,
@@ -131,7 +179,7 @@
   }
 }
 
-.sx-map-lines path {
+.sx-map-line {
   fill: none;
   stroke: #002856;
   stroke-width: 3.5;
@@ -141,7 +189,7 @@
   transition: stroke-dashoffset 0.2s ease;
 }
 
-.sx-map-lines path.is-on {
+.sx-map-line.is-on {
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 0.45s cubic-bezier(0.3, 0, 0.2, 1) 0.45s;
 }
@@ -200,7 +248,7 @@
   justify-items: center;
   gap: 1px;
   padding: 7px 12px 8px;
-  border-radius: 12px;
+  border-radius: var(--r-small);
   background: #ffffff;
   box-shadow: 0 8px 22px rgba(0, 40, 86, 0.16);
   color: #002856;
@@ -267,12 +315,9 @@
   }
 }
 
-/* Reduce Motion: the tour still runs, but stops only fade in and out. */
+/* Reduce Motion: the map stays still at rest (LearnerMap doesn't sway it);
+   the tour still runs, but stops only fade in and out. */
 @media (prefers-reduced-motion: reduce) {
-  .sx-map-land {
-    transform: none !important;
-  }
-
   .sx-map-pin-drop,
   .sx-map-pin.is-on .sx-map-pulse {
     animation: none;
@@ -289,13 +334,13 @@
     transform: translate(-50%, -50%);
   }
 
-  .sx-map-lines path {
+  .sx-map-line {
     stroke-dashoffset: 0;
     opacity: 0;
     transition: opacity 0.2s ease;
   }
 
-  .sx-map-lines path.is-on {
+  .sx-map-line.is-on {
     opacity: 1;
     transition: opacity 0.3s ease 0.3s;
   }
@@ -502,7 +547,7 @@
   height: 44px;
   place-items: center;
   border: 1px solid rgba(0, 40, 86, 0.08);
-  border-radius: 12px;
+  border-radius: var(--r-small);
   background: #ffffff;
   color: var(--color-navy);
   font-size: 20px;
@@ -594,7 +639,7 @@
   align-items: flex-start;
   gap: 6px;
   padding: 16px;
-  border-radius: 20px;
+  border-radius: var(--r-card);
   background: #f6f9fc;
   color: var(--color-navy-deep);
   transition: background-color 200ms ease;
@@ -746,7 +791,7 @@
 .sx-program .cx-error {
   margin: 4px 0 0;
   padding: 8px 10px;
-  border-radius: 10px;
+  border-radius: var(--r-small);
   background: #fef3f2;
   color: #b42318;
   font-size: 12.5px;

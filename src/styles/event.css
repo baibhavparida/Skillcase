@@ -1,31 +1,16 @@
 /* Free live demo pages (/events/<slug>, event.jsx). Phone first, on top of
-   home-next.css (Manrope, the shared 40/44px buttons, the FAQ). Luma's
-   layout on wide screens: a square cover beside the event, the
-   registration card on the right, sticky. Flat light fills, navy text, gold only on the buttons
-   that move people forward. */
+   home-next.css (Manrope, the shared 40/44px buttons, the FAQ). Laid out
+   like a Luma event (the team's reference): cover, title, date, a short
+   registration card that opens the form in a sheet, then the team's own
+   description. Flat light fills, navy text, gold only on the buttons that
+   move people forward. */
 
 .ev-page {
   background: #ffffff;
 }
 
-/* ---- Header: logo and call. No menu, so the page stays on registering. */
-
-.ev-top {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-  padding: 0 16px;
-  border-bottom: 1px solid #edf1f6;
-  background: rgba(255, 255, 255, 0.97);
-}
-
-.ev-top .brand-logo {
-  width: 118px;
-}
+/* ---- Header: the site header (.site-header in styles.css and mobile.css,
+   so it matches every page), with a call button instead of the nav. */
 
 .ev-call {
   display: inline-flex;
@@ -34,7 +19,7 @@
   gap: 6px;
   padding: 0 12px;
   border: 1px solid rgba(0, 40, 86, 0.14);
-  border-radius: 8px;
+  border-radius: var(--r-btn);
   color: var(--color-navy);
   font-size: 13.5px;
   font-weight: 600;
@@ -45,16 +30,6 @@
 }
 
 @media (min-width: 700px) {
-  /* The ends line up with the page's 1180px column. */
-  .ev-top {
-    height: 68px;
-    padding: 0 max(24px, calc((100% - 1180px) / 2));
-  }
-
-  .ev-top .brand-logo {
-    width: 146px;
-  }
-
   .ev-call-long {
     display: inline;
   }
@@ -64,78 +39,81 @@
   }
 }
 
-/* ---- Layout ------------------------------------------------------------------- */
+/* The other pages' Get Started height, once the header shows its nav. */
+@media (min-width: 901px) {
+  .ev-call {
+    height: 38px;
+  }
+}
+
+/* ---- Layout ------------------------------------------------------------------
+   Phones: one column in Luma's order (cover, event, host, card, about), the
+   two columns' parts interleaved. From 900px: the cover and host in a
+   column on the left (wide enough for the landscape cover), the event on
+   the right. */
 
 .ev-layout {
   display: grid;
-  gap: 22px;
-  width: min(1180px, calc(100% - 32px));
+  gap: 20px;
+  width: min(1000px, calc(100% - 32px));
   margin: 0 auto;
   padding-top: 16px;
 }
 
-/* The square cover sits on top on phones, beside the event from 761px. */
-.ev-intro {
-  display: grid;
-  gap: 20px;
+.ev-side,
+.ev-body {
+  display: contents;
 }
 
-@media (min-width: 761px) {
-  .ev-layout {
-    --ev-cover: 240px;
-    --ev-cover-gap: 28px;
-  }
+.ev-cover {
+  order: 1;
+}
 
-  .ev-intro {
-    grid-template-columns: var(--ev-cover) minmax(0, 1fr);
+.ev-head {
+  order: 2;
+}
+
+.ev-host {
+  order: 3;
+}
+
+.ev-card {
+  order: 4;
+}
+
+.ev-about {
+  order: 5;
+}
+
+@media (min-width: 900px) {
+  .ev-layout {
+    grid-template-columns: 380px minmax(0, 1fr);
     align-items: start;
-    gap: var(--ev-cover-gap);
-  }
-}
-
-@media (min-width: 1180px) {
-  .ev-layout {
-    --ev-cover: 280px;
-    --ev-cover-gap: 32px;
-  }
-}
-
-@media (min-width: 1000px) {
-  .ev-layout {
-    grid-template-columns: minmax(0, 1fr) 360px;
-    grid-template-areas:
-      "intro card"
-      "details card";
-    align-items: start;
-    column-gap: 40px;
-    row-gap: 28px;
-    padding-top: 32px;
+    column-gap: 48px;
+    padding-top: 36px;
   }
 
-  .ev-intro {
-    grid-area: intro;
+  .ev-side,
+  .ev-body {
+    display: grid;
+    align-content: start;
+    gap: 20px;
   }
 
-  /* Lines up with the event's text beside the cover, not the cover. */
-  .ev-details {
-    grid-area: details;
-    padding-left: calc(var(--ev-cover) + var(--ev-cover-gap));
-  }
-
-  .ev-card {
-    position: sticky;
-    top: 92px;
-    grid-area: card;
+  .ev-body {
+    gap: 28px;
   }
 }
 
 /* ---- Cover and the event -------------------------------------------------------- */
 
+/* Landscape, the photo's own 3:2, so none of it is cropped (the owner's call;
+   it was square like Luma's). */
 .ev-cover {
   margin: 0;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
-  border-radius: 18px;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--r-card);
   background: #dce8f1;
 }
 
@@ -160,42 +138,50 @@
   letter-spacing: 0.02em;
 }
 
+/* Modest, like Luma's, so more of the event fits on a phone's first screen
+   (the team found the big one crowded it). */
 .ev-head h1 {
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   color: var(--color-navy-deep);
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
-/* Date, Meet and price as rows, like an event in a calendar app. */
-.ev-facts {
+/* Date and Meet as rows, like an event in a calendar app; the card's rows
+   match them. */
+.ev-facts,
+.ev-card-rows {
   display: grid;
   gap: 14px;
-  margin: 20px 0 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }
 
-.ev-facts li {
+.ev-facts li,
+.ev-card-rows li {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.ev-facts li > span:last-child {
+.ev-facts li > span:last-child,
+.ev-card-rows li > span:last-child {
   display: grid;
   gap: 1px;
   min-width: 0;
 }
 
-.ev-facts strong {
+.ev-facts strong,
+.ev-card-rows strong {
   color: var(--color-navy-deep);
   font-size: 15px;
   font-weight: 700;
 }
 
-.ev-facts small {
+.ev-facts small,
+.ev-card-rows small {
   color: var(--color-muted);
   font-size: 13px;
   line-height: 1.4;
@@ -214,7 +200,7 @@
   width: 44px;
   height: 44px;
   place-items: center;
-  border-radius: 12px;
+  border-radius: var(--r-small);
   background: #f1f6fb;
   color: var(--color-navy);
 }
@@ -246,7 +232,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 20px 0 0;
+  margin: 0;
   padding-top: 16px;
   border-top: 1px solid #edf1f6;
   color: var(--color-navy-deep);
@@ -274,28 +260,55 @@
 
 @media (min-width: 761px) {
   .ev-head h1 {
-    font-size: 38px;
+    font-size: 32px;
   }
 }
 
 @media (min-width: 1180px) {
   .ev-head h1 {
-    font-size: 44px;
+    font-size: 36px;
   }
 }
 
-/* ---- Registration card ------------------------------------------------------------ */
+/* ---- Registration card: Luma's, short. A tinted "Registration" strip, two
+   rows, the button (it opens the sheet). After registering it holds the
+   confirmation. */
 
 .ev-card {
-  padding: 20px 18px;
+  overflow: hidden;
   border: 1px solid #e3eaf2;
-  border-radius: 20px;
+  border-radius: var(--r-card);
   background: #ffffff;
-  box-shadow: 0 18px 44px rgba(0, 40, 86, 0.08);
-  scroll-margin-top: 76px;
+  box-shadow: 0 12px 32px rgba(0, 40, 86, 0.06);
+  scroll-margin-top: 84px;
 }
 
-.ev-card h2 {
+.ev-card-label {
+  margin: 0;
+  padding: 10px 18px;
+  border-bottom: 1px solid #edf1f6;
+  background: #f6f9fc;
+  color: #3b5268;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ev-card-rows {
+  margin: 0;
+  padding: 16px 18px 0;
+}
+
+.site-shell.home-next .ev-card .ev-submit {
+  width: calc(100% - 36px);
+  margin: 18px 18px 18px;
+}
+
+.ev-card > .ev-done {
+  padding: 20px 18px;
+}
+
+.ev-sheet h2,
+.ev-done h2 {
   margin: 0;
   color: var(--color-navy-deep);
   font-size: 21px;
@@ -335,7 +348,7 @@
   width: 100%;
   height: 46px;
   border: 1.5px solid #d6e0ea;
-  border-radius: 12px;
+  border-radius: var(--r-small);
   background: #ffffff;
   color: var(--color-ink);
   font: inherit;
@@ -412,7 +425,7 @@
   gap: 8px;
   margin: -4px 0 0;
   padding: 10px 12px;
-  border-radius: 12px;
+  border-radius: var(--r-small);
   background: #f6f9fc;
   color: #3b5268;
   font-size: 13.5px;
@@ -491,7 +504,7 @@
 .ev-failure {
   margin: -6px 0 0;
   padding: 10px 12px;
-  border-radius: 10px;
+  border-radius: var(--r-small);
   background: #fdecec;
   color: #8f2424;
   font-size: 13px;
@@ -576,43 +589,110 @@
   font-weight: 700;
 }
 
-@media (min-width: 761px) {
-  .ev-card {
-    padding: 24px 22px;
-  }
-}
+/* ---- About the demo: the team's description as free text, under a small
+   label like Luma's "About Event". */
 
-/* ---- About the demo ---------------------------------------------------- */
-
-.ev-details {
-  display: grid;
-  gap: 34px;
-  padding-top: 12px;
-}
-
-.ev-section h2 {
+.ev-about h2 {
   margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #edf1f6;
+  color: #3b5268;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.ev-about-text {
+  margin-top: 14px;
+  color: var(--color-ink);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.ev-about-text p {
+  margin: 0;
+}
+
+.ev-about-text p + p {
+  margin-top: 14px;
+}
+
+.ev-about-text strong {
   color: var(--color-navy-deep);
-  font-size: 21px;
   font-weight: 700;
 }
 
-.ev-points {
-  display: grid;
-  gap: 12px;
-  margin: 14px 0 0;
-  padding: 0;
-  list-style: none;
+/* ---- The form's sheet (a <dialog>): from the bottom on phones, a centred
+   dialog from 761px. The page behind doesn't scroll while it's open. */
+
+html:has(.ev-sheet[open]) {
+  overflow: hidden;
 }
 
-.ev-points li {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--color-navy-deep);
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
+.ev-sheet {
+  width: 100%;
+  max-width: none;
+  max-height: min(92dvh, 780px);
+  margin: auto 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-card) var(--r-card) 0 0;
+  background: #ffffff;
+  color: inherit;
+  box-shadow: 0 -12px 40px rgba(0, 40, 86, 0.18);
+  overscroll-behavior: contain;
+}
+
+.ev-sheet[open] {
+  animation: ev-sheet-in 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes ev-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+}
+
+.ev-sheet::backdrop {
+  background: rgba(0, 24, 52, 0.45);
+}
+
+.ev-sheet-body {
+  position: relative;
+  padding: 22px 18px calc(20px + env(safe-area-inset-bottom));
+}
+
+.ev-sheet-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f6fb;
+  color: var(--color-navy);
+  cursor: pointer;
+}
+
+.ev-sheet h2 {
+  padding-right: 48px;
+}
+
+@media (min-width: 761px) {
+  .ev-sheet {
+    width: min(460px, calc(100% - 32px));
+    margin: auto;
+    border-radius: var(--r-card);
+    box-shadow: 0 24px 64px rgba(0, 40, 86, 0.24);
+  }
+
+  .ev-sheet-body {
+    padding: 26px 24px 24px;
+  }
 }
 
 /* ---- FAQ: a full-width light band (as the Learner Stories notes band),
@@ -712,5 +792,9 @@
   .ev-bar,
   .ev-bar.is-shown {
     transition: none;
+  }
+
+  .ev-sheet[open] {
+    animation: none;
   }
 }

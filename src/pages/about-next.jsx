@@ -32,7 +32,20 @@ function Hero() {
         <div className="ph-copy nx-hero-copy">
           <p className="eyebrow">{aboutPage.eyebrow}</p>
           <h1 id="ax-title">{aboutPage.title}</h1>
-          <p className="nx-hero-lede">{aboutPage.intro[0]}</p>
+          {/* The intro (siteContent's first paragraph, tightened) as three lines
+              of equal width in Manrope (.nx-lines in home-next.css): measured
+              287/293/292px. Re-measure if the words change. */}
+          <p className="nx-hero-lede nx-lines">
+            <span>
+              <span>We believe in</span> <span>India’s skilled people,</span>
+            </span>{" "}
+            <span>
+              <span>and our mission is</span> <span>to connect them</span>
+            </span>{" "}
+            <span>
+              <span>with healthcare careers</span> <span>worldwide.</span>
+            </span>
+          </p>
           <div className="hero-actions">
             <a className="btn btn-gold" href="/signup/">
               Get started

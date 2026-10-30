@@ -328,14 +328,13 @@ export default function CandidateSignup() {
 
   return (
     <div className="sc-onb">
-      <header className="sc-onb-bar" data-step={step}>
-        <a className="sc-onb-brand" href="/" aria-label="Skillcase home">
-          <ResponsiveImage
-            alt="Skillcase"
-            src="/assets/images/SKILLCASE_logo.svg"
-          />
+      {/* The site header's chrome (SiteHeader's classes), without the nav:
+          sign-up is a focused flow, so only a call button sits on the right. */}
+      <header className="site-header sc-onb-bar" data-step={step}>
+        <a className="brand" href="/" aria-label="Skillcase home">
+          <img alt="Skillcase" className="brand-logo" src="/assets/images/SKILLCASE_logo.svg" />
         </a>
-        <div className="sc-onb-bar-tools">
+        <div className="header-actions sc-onb-bar-tools">
           <span className="sc-onb-trust-pill" aria-hidden="true">
             <Icon name="shield-check" size={14} /> Free, zero recruitment cost
           </span>

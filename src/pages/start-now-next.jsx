@@ -41,9 +41,15 @@ function Hero() {
           </a>
           {/* "Day 1" stays on one line; the lines are balanced (start-now-next.css). */}
           <h1 id="sx-title">From Day{"\u00a0"}1 to your job abroad</h1>
-          <p className="nx-hero-lede">
-            From your first language class to your first job abroad, in Germany and beyond. One
-            trusted team for your entire journey.
+          {/* Two lines of equal width, each splitting once more on narrow
+              phones (.nx-lines in home-next.css): measured 378/373px. */}
+          <p className="nx-hero-lede nx-lines">
+            <span>
+              <span>From your first lesson</span> <span>to your first job abroad,</span>
+            </span>{" "}
+            <span>
+              <span>in Germany and beyond,</span> <span>with a trusted team.</span>
+            </span>
           </p>
           <div className="hero-actions">
             <a className="btn btn-gold" href={cartUrl}>
